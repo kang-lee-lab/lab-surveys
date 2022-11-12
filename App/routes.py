@@ -104,7 +104,7 @@ def results():
     # First element in mylist has to have mean/sd in first row of SD_mean.csv. Specify sheet name (i.e., HRV, FS)
 
     def better_zscore(mylist, sheet_name):
-        df = pd.read_excel('static/SD_mean.xlsx', sheet_name=sheet_name)
+        df = pd.read_excel('App/static/SD_mean.xlsx', sheet_name=sheet_name)
 
         for counter, i in enumerate(mylist):
 
@@ -225,6 +225,6 @@ def results():
             font=dict(size=20)
         )
 
-        fig.write_image('static/plotly_output.png', width=1000, height=1000)
+        fig.write_image('App/static/plotly_output.png', width=1000, height=1000)
 
     return render_template('results page.html', p1=round(pipeline()[0], 1))  # round value to 1 decimal
