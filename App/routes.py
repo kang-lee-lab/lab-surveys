@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from math import sqrt
 import pandas as pd
 import plotly.graph_objects as go
+from App import app
 
 
 @app.route('/')
