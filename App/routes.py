@@ -4,10 +4,12 @@ import pandas as pd
 import plotly.graph_objects as go
 
 
+@app.route('/')
 def index():
     return render_template('index.html')
 
 
+@app.route('/results')
 def results():
     MHR = request.form['MHR']
     SDHR = request.form['SDHR']
