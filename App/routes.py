@@ -9,7 +9,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/results')
+@app.route('/results', methods=["GET", "POST"])
 def results():
     MHR = request.form['MHR']
     SDHR = request.form['SDHR']
