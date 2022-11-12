@@ -1,18 +1,13 @@
 from flask import Flask, render_template, request
 from math import sqrt
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
 
-app = Flask(__name__, static_url_path='')
 
-
-@app.route('/')
 def index():
     return render_template('index.html')
 
 
-@app.route('/results', methods=["GET", "POST"])
 def results():
     MHR = request.form['MHR']
     SDHR = request.form['SDHR']
@@ -180,7 +175,7 @@ def results():
             r=sq_list,
             theta=['SQ1', 'SQ2', 'SQ3',
                    'SQ4', 'SQ5', 'SQ6']))
-        #fig = px.line_polar(df, r='r', theta='theta', line_close=True)
+        # fig = px.line_polar(df, r='r', theta='theta', line_close=True)
 
         fig = go.Figure()
 
@@ -230,7 +225,3 @@ def results():
         fig.write_image('static/plotly_output.png', width=1000, height=1000)
 
     return render_template('results page.html', p1=round(pipeline()[0], 1))  # round value to 1 decimal
-
-if __name__ == '__main__':
-    app.debug = True
-    app.run(host = '0.0.0.0', port = 3000)
