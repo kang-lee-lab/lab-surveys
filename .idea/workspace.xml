@@ -11,6 +11,10 @@
       <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/SD_mean.csv" beforeDir="false" afterPath="$PROJECT_DIR$/App/static/SD_mean.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/SD_mean.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/App/static/SD_mean.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/demo_7394_none-5-1024x690.png" beforeDir="false" afterPath="$PROJECT_DIR$/App/static/demo_7394_none-5-1024x690.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/plotly_output.png" beforeDir="false" afterPath="$PROJECT_DIR$/App/static/plotly_output.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/results page.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/templates/results page.html" afterDir="false" />
     </list>
@@ -35,8 +39,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Nathan\Documents\GitHub\lab-surveys\App\templates" />
       <recent name="C:\Users\Nathan\Documents\GitHub\lab-surveys\App" />
+      <recent name="C:\Users\Nathan\Documents\GitHub\lab-surveys\App\templates" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
