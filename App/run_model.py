@@ -8,6 +8,7 @@ def z_score_norm(row, col, mean, stdev):
     z_score = (float(row[col]) - mean) / stdev
     return float(z_score)
 
+
 def normalize(user_inputs):
     mean_std = pd.read_csv(os.path.join(data_folder, "nafld_mean_std.csv"))
     
@@ -51,6 +52,7 @@ def run_model(model_type, user_inputs):
     
     return proba, predicted_label
 
+
 if __name__ == "__main__":
     nafld_data = pd.read_csv(os.path.join(data_folder, "NAFLD_filtered.csv"))
     valid_features = ['weight', 'bmi', 'Alanine aminotransferase', 'H cholesterol', 'fastingbloodsugar_cuttoff_5point5', 'Triglycerides', 'diastolic', 'Hemoglobin', 'systolic', 'Red blood cell count', 'height', 'Platelet count', 'age', 'gender0female1male', 'Aspartate aminotransferase', 'White blood cell count', 'Lymphocyte count', 'The average hemoglobin concentration', 'Neutrophil count', 'Eosinophil count']
@@ -58,5 +60,5 @@ if __name__ == "__main__":
     inputs = inputs.dropna()
     
     proba, label = run_model('lr', inputs)
-    print('Positive probability: ', proba[:, 1])
+    print('Positive probability: ', proba[0][1])
     

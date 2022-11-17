@@ -1,13 +1,23 @@
 from flask import Flask, render_template, request
 from math import sqrt
 import pandas as pd
+import os
+import pickle
+import pandas as pd
 import plotly.graph_objects as go
 from App import app
+
+data_folder = "./static"
 
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/nafld')
+def nafld():
+    return render_template('nafld.html')
 
 
 @app.route('/results', methods=["GET", "POST"])
@@ -227,4 +237,80 @@ def results():
 
         fig.write_image('App/static/plotly_output.png', width=1000, height=1000)
 
-    return render_template('results page.html', p1=round(pipeline()[0], 1))  # round value to 1 decimal
+    return render_template('results_page.html', p1=round(pipeline()[0], 1))  # round value to 1 decimal
+
+
+def normalize(user_inputs):
+    mean_std = pd.read_csv(os.path.join(data_folder, "nafld_mean_std.csv"))
+    norm = {}
+    
+    for inputs in user_inputs:
+        if inputs != 'gender0female1male':
+            mean = float(mean_std['{}_mean'.format(inputs)])
+            stdev = float(mean_std['{}_stdev'.format(inputs)])
+            z_scored = (user_inputs[inputs] - mean) / stdev
+            
+            norm[inputs+"_norm"] = [z_scored]
+        else:
+            norm[inputs] = [user_inputs[inputs]]
+            
+    return norm
+
+
+@app.route('/results_nafld', methods=["GET", "POST"])
+def results_nafld():
+    weight = float(request.form['Weight'])
+    bmi = float(request.form['BMI'])
+    aln_atf = float(request.form['Aln_Atf'])
+    hdl_chol = float(request.form['HDL_Chol'])
+    fbscp5= float(request.form['FBSCP5'])
+    triglycerides = float(request.form['Triglycerides'])
+    dbp = float(request.form['DBP'])
+    hemoglobin = float(request.form['Hemoglobin'])
+    sbp = float(request.form['SBP'])
+    rbcc = float(request.form['RBCC'])
+    height = float(request.form['Height'])
+    platelet = float(request.form['Platelet'])
+    age = float(request.form['Age'])
+    gender = int(request.form['Gender'])
+    as_atf = float(request.form['As_Atf'])
+    wbcc = float(request.form['WBCC'])
+    lc = float(request.form['LC'])
+    avg_hem = float(request.form['Avg_hem'])
+    nc = float(request.form['NC'])
+    ec = float(request.form['EC'])
+    
+    user_inputs = {
+        'weight': weight,
+         'bmi': bmi,
+         'Alanine aminotransferase': aln_atf,
+         'H cholesterol': hdl_chol,
+         'fastingbloodsugar_cuttoff_5point5': fbscp5,
+         'Triglycerides': triglycerides,
+         'diastolic': dbp,
+         'Hemoglobin': hemoglobin,
+         'systolic': sbp,
+         'Red blood cell count': rbcc,
+         'height': height,
+         'Platelet count': platelet,
+         'age': age,
+         'gender0female1male': gender,
+         'Aspartate aminotransferase': as_atf,
+         'White blood cell count': wbcc,
+         'Lymphocyte count': lc,
+         'The average hemoglobin concentration': avg_hem,
+         'Neutrophil count': nc,
+         'Eosinophil count': ec
+        }
+    
+    inputs_norm = normalize(user_inputs)
+    
+    with open("./static/models_lr.bin", "rb") as f:
+        all_models = pickle.load(f)
+        
+    model = all_models['models'][0]
+    proba = model.predict_proba(pd.DataFrame.from_dict(inputs_norm)) 
+    
+    positive = proba[0][1] # Positive probability
+    
+    return render_template('results_nafld.html'), positive
