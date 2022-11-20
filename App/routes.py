@@ -317,4 +317,4 @@ def results_nafld():
     
     positive = proba[0][1] # Positive probability
     
-    return render_template('results_nafld.html', p1=round(positive, 1))
+    return render_template('results_nafld.html', p1=round((positive*100), 1))
