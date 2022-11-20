@@ -7,7 +7,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from App import app
 
-data_folder = "./static"
+data_folder = "App/static"
 
 
 @app.route('/')
