@@ -264,7 +264,8 @@ def normalize(user_inputs):
 @app.route('/results_nafld', methods=["GET", "POST"])
 def results_nafld():
     weight = float(request.form['Weight'])
-    bmi = float(request.form['BMI'])
+    height = float(request.form['Height'])
+    bmi = weight/((height/100)**2)
     aln_atf = float(request.form['Aln_Atf'])
     hdl_chol = float(request.form['HDL_Chol'])
     fbscp5= float(request.form['FBSCP5'])
@@ -273,7 +274,6 @@ def results_nafld():
     hemoglobin = float(request.form['Hemoglobin'])
     sbp = float(request.form['SBP'])
     rbcc = float(request.form['RBCC'])
-    height = float(request.form['Height'])
     platelet = float(request.form['Platelet'])
     age = float(request.form['Age'])
     gender = int(request.form['Gender'])
