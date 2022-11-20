@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="026217e9-380f-4342-afa7-05e070f9217d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/App/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/runtime.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/index.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/App/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/App/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/SD_mean.csv" beforeDir="false" afterPath="$PROJECT_DIR$/App/static/SD_mean.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/SD_mean.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/App/static/SD_mean.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/demo_7394_none-5-1024x690.png" beforeDir="false" afterPath="$PROJECT_DIR$/App/static/demo_7394_none-5-1024x690.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/plotly_output.png" beforeDir="false" afterPath="$PROJECT_DIR$/App/static/plotly_output.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/results page.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/templates/results page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/templates/asq.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/templates/results_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/App/templates/results_asq.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,5 +53,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

@@ -14,14 +14,18 @@ data_folder = "./static"
 def index():
     return render_template('index.html')
 
+@app.route('/asq')
+def asq():
+    return render_template('asq.html')
+
 
 @app.route('/nafld')
 def nafld():
     return render_template('nafld.html')
 
 
-@app.route('/results', methods=["GET", "POST"])
-def results():
+@app.route('/results_asq', methods=["GET", "POST"])
+def results_asq():
     MHR = request.form['MHR']
     SDHR = request.form['SDHR']
     max_RR_interval = request.form['max_RR_interval']
@@ -237,7 +241,7 @@ def results():
 
         fig.write_image('App/static/plotly_output.png', width=1000, height=1000)
 
-    return render_template('results_page.html', p1=round(pipeline()[0], 1))  # round value to 1 decimal
+    return render_template('results_asq.html', p1=round(pipeline()[0], 1))  # round value to 1 decimal
 
 
 def normalize(user_inputs):

@@ -20,34 +20,37 @@
         top: 0;
         overflow-x: hidden;
         box-sizing: border-box;
+        font-family: 'Inter Tight', sans-serif;
+        text-align: left;
     }
 
     .center {
         position: absolute;
-
-        right: 13%;
-        color:#ffffff;
-        text-align: left;
-        font-family: 'Inter Tight', sans-serif;
-    
-    }
-
-    .rcorners1 {
-        top: 80;
-        left: 100;
-        font-family: 'Inter Tight', sans-serif;
-        border-radius: 25px;
+        left: 50%;
+        top: 50%;
         width: 500px;
-        background: #ffffff;
-        padding: 20px; 
-        text-align: left;
-        color:#4F6D7A
-        
+        transform: translate(-50%, -50%);
+       
+    }
+    
+    .relative {
+        position: relative;
+        right: 0px;
+
     }
 
     .right {
         right: 0;
-        background-color:#4F6D7A
+        color:#ffffff;
+        background-color:#4F6D7A;
+    }
+
+    .left {
+        padding-top: 300px;
+        border-top: 300px;
+        left: 0;
+        color:#4F6D7A;
+        overflow: auto;
     }
 
     .highlight {
@@ -55,7 +58,7 @@
     }
 
     h1 {
-        font-size:35px;
+        font-size:55px;
         font-weight: normal;
     }
 
@@ -64,151 +67,36 @@
         font-weight: normal;
     }
 
-    form  { display: table; padding-top: 130px; padding-bottom: 130px;}
-    p     { display: table-row;  }
-    label { display: table-cell; }
-    input { display: table-cell; padding: 10px; margin: 10px; border: 10px; color:#4F6D7A; border-radius: 4px;}
-
     </style>
 </head>
 
 <body>
-    <div class="split rcorners1">
-        <h1>
-            Welcome to the <span class="highlight">bootstrapping factor analysis</span> investigation interactive webpage.
-        </h1>
-
-        <h2>
-            This applet computes an individuals <span class="highlight">Average Stress Quotient (ASQ)</span>. An ASQ generalizes Stress Quotients 1-6, providing a <span class="highlight">more 'cohesive and interpretable'</span> means for 'analyzing and comparing Heart Rate Variability (HRV) indexes.'          
-        </h2>
+    <div class="split left">
+        <div class="center">
+            <h1>
+                Surveys for Kang Lee Development Lab
+            </h1>
+            <h2>
+               Please select a survey.
+            </h2>
+        </div>
     </div>
 
     <div class="split right">
-        <form action="/results" class="center" method="post">
-
-            <label> <b>Z-scored HRV Index:</b> </label><br><br>
-            <p>
-                <label for="MHR">Mean Heart Rate: </label>
-                <input type="text" id="fname" name="MHR" placeholder="BPM">
-            </p>
-            <p>
-                <label for="SDHR">Standard Deviation Heart Rate: </label>
-                <input type="text" id="lname" name="SDHR" placeholder="BPM">
-            </p>
-            <p>
-                <label for="max_RR_interval">Max RR Interval: </label>
-                <input type="text" id="fname" name="max_RR_interval" placeholder="">
-            </p>
-            <p>
-                <label for="min_RR_interval">Min RR Interval: </label>
-                <input type="text" id="fname" name="min_RR_interval" placeholder="">
-            </p>
-            <p>
-                <label for="mean_RR_interval">Mean RR Interval: </label>
-                <input type="text" id="fname" name="mean_RR_interval" placeholder="">
-            </p>
-            <p>
-                <label for="median_RR_interval">Median RR Interval: </label>
-                <input type="text" id="fname" name="median_RR_interval" placeholder="">
-            </p>
-            <p>
-                <label for="SDNN">SDNN: </label>
-                <input type="text" id="fname" name="SDNN" placeholder="">
-            </p>
-            <p>
-                <label for="NN50">NN50: </label>
-                <input type="text" id="lname" name="NN50" placeholder="">
-            </p>
-            <p>
-                <label for="pNN50">pNN50: </label>
-                <input type="text" id="lname" name="pNN50" placeholder="">
-            </p>
-            <p>
-                <label for="RMSSD">RMSSD: </label>
-                <input type="text" id="fname" name="RMSSD" placeholder="">
-            </p>
-            <p>
-                <label for="VLF">VLF: </label>
-                <input type="text" id="lname" name="VLF" placeholder="ms²">
-            </p>
-            <p>
-                <label for="LF">LF: </label>
-                <input type="text" id="fname" name="LF" placeholder="ms²">
-            </p>
-            <p>
-                <label for="HF">HF: </label>
-                <input type="text" id="fname" name="HF" placeholder="ms²">
-            </p>
-            <p>
-                <label for="total">Total: </label>
-                <input type="text" id="lname" name="total" placeholder="ms²">
-            </p>
-            <p>
-                <label for="VLF_peak">VLF (peak): </label>
-                <input type="text" id="lname" name="VLF_peak" placeholder="ms²">
-            </p>
-            <p>
-                <label for="LF_peak">LF (peak): </label>
-                <input type="text" id="fname" name="LF_peak" placeholder="ms²">
-            </p>
-            <p>
-                <label for="HF_peak">HF (peak): </label>
-                <input type="text" id="fname" name="HF_peak" placeholder="ms²">
-            </p>
-            <p>
-                <label for="VLF_percent">VLF: </label>
-                <input type="text" id="lname" name="VLF_percent" placeholder="%">
-            </p>
-            <p>
-                <label for="LF_percent">LF: </label>
-                <input type="text" id="fname" name="LF_percent" placeholder="%">
-            </p>
-            <p>
-                <label for="HF_percent">HF: </label>
-                <input type="text" id="fname" name="HF_percent" placeholder="%">
-            </p>
-            <p>
-                <label for="LF_nu">LF: </label>
-                <input type="text" id="fname" name="LF_nu" placeholder="nu">
-            </p>
-            <p>
-                <label for="HF_nu">HF: </label>
-                <input type="text" id="fname" name="HF_nu" placeholder="nu">
-            </p>
-            <p>
-                <label for="LF_HF">LF/HF: </label>
-                <input type="text" id="fname" name="LF_HF" placeholder="">
-            </p>
-            <p>
-                <label for="SD1">SD1: </label>
-                <input type="text" id="fname" name="SD1" placeholder="">
-            </p>
-            <p>
-                <label for="SD2">SD2: </label>
-                <input type="text" id="fname" name="SD2" placeholder="">
-            </p>
-            <p>
-                <label for="SD1_SD2">SD1/SD2: </label>
-                <input type="text" id="fname" name="SD1_SD2" placeholder="">
-            </p>
-            <p>
-                <label for="alpha">α: </label>
-                <input type="text" id="fname" name="alpha" placeholder="">
-            </p>
-            <p>
-                <label for="alpha1">α1: </label>
-                <input type="text" id="fname" name="alpha1" placeholder="">
-            </p>
-            <p>
-                <label for="alpha2">α2: </label>
-                <input type="text" id="fname" name="alpha2" placeholder="">
-
-                <input type="submit" name= "form" value="Submit" />
-            </p>
-
+        <div class="center">
+            <form action="/asq" class="center" method="post">
+                <input type="submit" name= "form" value="ASQ" />
+                <h2>
+                    Average Stress Quotient assessment
+                </h2>
+            </form>
             
-        </form>
+            <form action="/nafld" class="center" method="post">
+                <input type="submit" name= "form" value="NAFLD" />
+                <h2>
+                    Non-Alcoholic Fatty Liver Disease assessment
+                </h2>
+            </form>
+        </div>
     </div>
-
 </body>
-
