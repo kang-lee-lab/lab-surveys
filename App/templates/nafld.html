@@ -75,97 +75,97 @@
 <body>
     <div class="split rcorners1">
         <h1>
-            Welcome to the <span class="highlight">bootstrapping factor analysis</span> investigation interactive webpage.
+            Welcome to the <span class="highlight">Non-Alchoholic Fatty Liver Disease (NAFLD)</span> prediction interactive webpage.
         </h1>
 
         <h2>
-            This applet computes an individuals <span class="highlight">Average Stress Quotient (ASQ)</span>. An ASQ generalizes Stress Quotients 1-6, providing a <span class="highlight">more 'cohesive and interpretable'</span> means for 'analyzing and comparing Heart Rate Variability (HRV) indexes.'          
+            This applet computes an individuals <span class="highlight">likelihood of NAFLD</span>. Based on 20 physical measures and blood biomarkers, this app uses a machine learning model to compute the likelihood of NAFLD.
         </h2>
     </div>
 
     <div class="split right">
         <form action="/results_nafld" class="center" method="post">
 
-            <label> <b>Z-scored HRV Index:</b> </label><br><br>
+            <label> <b>Please enter your measures below:</b> </label><br><br>
             <p>
                 <label for="Weight">Weight (kg): </label>
-                <input type="number" id="fname" name="Weight" placeholder="65" min="40" max="150">
+                <input type="number" id="fname" name="Weight" value="65" min="40" max="150" required>
             </p>
             <p>
                 <label for="Height">Height (cm): </label>
-                <input type="number" id="lname" name="Height" placeholder="170" min="60" max="280">
+                <input type="number" id="lname" name="Height" value="170" min="60" max="280" required>
             </p>
             <p>
                 <label for="Aln_Atf">Alanine aminotransferase (IU/L): </label>
-                <input type="number" id="fname" name="Aln_Atf" placeholder="24.20">
+                <input type="number" id="fname" name="Aln_Atf" value="24.20" required>
             </p>
             <p>
                 <label for="HDL_Chol">HDL cholesterol (mmol/L): </label>
-                <input type="number" id="fname" name="HDL_Chol" placeholder="1.33">
+                <input type="number" id="fname" name="HDL_Chol" value="1.33" required>
             </p>
             <p>
                 <label for="FBSCP5">Fasting blood sugar cutoff point 5 (mmol/L): </label>
-                <input type="number" id="fname" name="FBSCP5" placeholder="0.13">
+                <input type="number" id="fname" name="FBSCP5" value="0.13" required>
             </p>
             <p>
                 <label for="Triglycerides">Triglycerides (mmol/L): </label>
-                <input type="number" id="fname" name="Triglycerides" placeholder="1.32">
+                <input type="number" id="fname" name="Triglycerides" value="1.32" required>
             </p>
             <p>
                 <label for="DBP">Diastolic blood pressure (mmHg): </label>
-                <input type="number" id="fname" name="DBP" placeholder="75.69">
+                <input type="number" id="fname" name="DBP" value="75.69" required>
             </p>
             <p>
                 <label for="Hemoglobin">Hemoglobin (g/dL): </label>
-                <input type="number" id="lname" name="Hemoglobin" placeholder="146.22">
+                <input type="number" id="lname" name="Hemoglobin" value="146.22" required>
             </p>
             <p>
                 <label for="SBP">Systolic blood pressure (mmHg): </label>
-                <input type="number" id="lname" name="SBP" placeholder="123.48">
+                <input type="number" id="lname" name="SBP" value="123.48" required>
             </p>
             <p>
                 <label for="RBCC">Red blood cell count (million/mm<sup>3</sup>): </label>
-                <input type="number" id="fname" name="RBCC" placeholder="4.85">
+                <input type="number" id="fname" name="RBCC" value="4.85" required>
             </p>
             <p>
                 <label for="Height">Height (cm): </label>
-                <input type="number" id="lname" name="Height" placeholder="166.57">
+                <input type="number" id="lname" name="Height" value="166.57" required>
             </p>
             <p>
                 <label for="Platelet">Platelet count (thousands/µL): </label>
-                <input type="number" id="fname" name="Platelet" placeholder="231.80">
+                <input type="number" id="fname" name="Platelet" value="231.80" required>
             </p>
             <p>
                 <label for="Age">Age: </label>
-                <input type="number" id="fname" name="Age" placeholder="40">
+                <input type="number" id="fname" name="Age" value="40" required>
             </p>
             <p>
                 <label for="Gender">Gender (Female=0; Male=1): </label>
-                <input type="number" id="lname" name="Gender" placeholder="1">
+                <input type="number" id="lname" name="Gender" value="1" required>
             </p>
             <p>
                 <label for="As_Atf">Aspartate aminotransferase (IU/L): </label>
-                <input type="number" id="lname" name="As_Atf" placeholder="21.12">
+                <input type="number" id="lname" name="As_Atf" value="21.12" required>
             </p>
             <p>
                 <label for="WBCC">White blood cell count (billions/L): </label>
-                <input type="number" id="fname" name="WBCC" placeholder="6.17">
+                <input type="number" id="fname" name="WBCC" value="6.17" required>
             </p>
             <p>
                 <label for="LC">Lymphocyte count (billions/L): </label>
-                <input type="number" id="fname" name="LC" placeholder="2.03">
+                <input type="number" id="fname" name="LC" value="2.03" required>
             </p>
             <p>
                 <label for="Avg_hem">The average hemoglobin concentration (g/L): </label>
-                <input type="number" id="lname" name="Avg_hem" placeholder="330.27">
+                <input type="number" id="lname" name="Avg_hem" value="330.27" required>
             </p>
             <p>
                 <label for="NC">Neutrophil count (billions/L): </label>
-                <input type="number" id="fname" name="NC" placeholder="3.63">
+                <input type="number" id="fname" name="NC" value="3.63" required>
             </p>
             <p>
                 <label for="EC">Eosinophil count (billions/L): </label>
-                <input type="number" id="fname" name="EC" placeholder="0.14">
+                <input type="number" id="fname" name="EC" value="0.14" required>
             </p>
             
                 <input type="submit" name= "form" value="Submit" />
