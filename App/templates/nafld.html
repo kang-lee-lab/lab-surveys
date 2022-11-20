@@ -88,16 +88,23 @@
 
             <label> <b>Please enter your measures below:</b> </label><br><br>
             <p>
+                <label for="Age">Age: </label>
+                <input type="number" id="fname" name="Age" value="40" min="18" max="100" required>
+            </p>
+            <p>
+                <label for="Gender">Gender (Female=0; Male=1): </label>
+                <select id="lname" name="Gender" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+            </p>
+            <p>
                 <label for="Weight">Weight (kg): </label>
                 <input type="number" id="fname" name="Weight" value="65" min="40" max="150" required>
             </p>
             <p>
                 <label for="Height">Height (cm): </label>
                 <input type="number" id="lname" name="Height" value="170" min="60" max="280" required>
-            </p>
-            <p>
-                <label for="Aln_Atf">Alanine aminotransferase (IU/L): </label>
-                <input type="number" id="fname" name="Aln_Atf" value="24.20" required>
             </p>
             <p>
                 <label for="HDL_Chol">HDL cholesterol (mmol/L): </label>
@@ -124,6 +131,10 @@
                 <input type="number" id="lname" name="Hemoglobin" value="146.22" required>
             </p>
             <p>
+                <label for="Avg_hem">The average hemoglobin concentration (g/L): </label>
+                <input type="number" id="lname" name="Avg_hem" value="330.27" required>
+            </p>
+            <p>
                 <label for="RBCC">Red blood cell count (million/mm<sup>3</sup>): </label>
                 <input type="number" id="fname" name="RBCC" value="4.85" required>
             </p>
@@ -132,16 +143,12 @@
                 <input type="number" id="fname" name="Platelet" value="231.80" required>
             </p>
             <p>
-                <label for="Age">Age: </label>
-                <input type="number" id="fname" name="Age" value="40" required>
-            </p>
-            <p>
-                <label for="Gender">Gender (Female=0; Male=1): </label>
-                <input type="number" id="lname" name="Gender" value="1" required>
-            </p>
-            <p>
                 <label for="As_Atf">Aspartate aminotransferase (IU/L): </label>
                 <input type="number" id="lname" name="As_Atf" value="21.12" required>
+            </p>
+            <p>
+                <label for="Aln_Atf">Alanine aminotransferase (IU/L): </label>
+                <input type="number" id="fname" name="Aln_Atf" value="24.20" required>
             </p>
             <p>
                 <label for="WBCC">White blood cell count (billions/L): </label>
@@ -150,10 +157,6 @@
             <p>
                 <label for="LC">Lymphocyte count (billions/L): </label>
                 <input type="number" id="fname" name="LC" value="2.03" required>
-            </p>
-            <p>
-                <label for="Avg_hem">The average hemoglobin concentration (g/L): </label>
-                <input type="number" id="lname" name="Avg_hem" value="330.27" required>
             </p>
             <p>
                 <label for="NC">Neutrophil count (billions/L): </label>
