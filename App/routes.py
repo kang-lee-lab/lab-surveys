@@ -309,7 +309,7 @@ def results_nafld():
     
     inputs_norm = normalize(user_inputs)
     
-    with open("./static/models_lr.bin", "rb") as f:
+    with open("App/static/models_lr.bin", "rb") as f:
         all_models = pickle.load(f)
         
     model = all_models['models'][0]
