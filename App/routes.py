@@ -225,7 +225,7 @@ def results_asq():
 
         # add actual sq values to each sq1-6
 
-        text = [i + ' (' + str(sq_list[count]) + ')' for count, i in enumerate(df['theta'].tolist())]
+        text = [i + ' (' + str(round(sq_list[count], 2)) + ')' for count, i in enumerate(df['theta'].tolist())]
 
         fig.add_trace(go.Scatterpolar(
             text=text,
