@@ -223,87 +223,87 @@
             <label> <b>Please enter your z-scored measures below:</b> </label><br><br>
             <p>
                 <label for="MHR">Mean Heart Rate (BPM): </label>
-                <input type="text" id="fname" name="MHR" value="71.1" step="any" required>
+                <input type="text" id="fname" name="MHR" value="71.1" min="5" max="1000" step="any" required>
             </p>
             <p>
                 <label for="SDHR">Standard Deviation Heart Rate (BPM): </label>
-                <input type="number" id="lname" name="SDHR" value="10.3" step="any" required>
+                <input type="number" id="lname" name="SDHR" value="10.3" min="0.5" max="6000" step="any" required>
             </p>
             <p>
                 <label for="max_RR_interval">Max RR Interval (ms): </label>
-                <input type="number" id="fname" name="max_RR_interval" value="980.5" step="any" required>
+                <input type="number" id="fname" name="max_RR_interval" value="980.5" min="300" max="30000" step="any" required>
             </p>
             <p>
                 <label for="min_RR_interval">Min RR Interval (ms): </label>
-                <input type="number" id="fname" name="min_RR_interval" value="635" step="any" required>
+                <input type="number" id="fname" name="min_RR_interval" value="635" min="1" max="3000" step="any" required>
             </p>
             <p>
                 <label for="mean_RR_interval">Mean RR Interval (ms): </label>
-                <input type="number" id="fname" name="mean_RR_interval" value="859.9" step="any" required>
+                <input type="number" id="fname" name="mean_RR_interval" value="859.9" min="200" max="50000" step="any" required>
             </p>
             <p>
                 <label for="median_RR_interval">Median RR Interval (ms): </label>
-                <input type="number" id="fname" name="median_RR_interval" value="915.8" step="any" required>
+                <input type="number" id="fname" name="median_RR_interval" value="915.8" min="200" max="50000" step="any" required>
             </p>
             <p>
                 <label for="SDNN">SDNN (ms): </label>
-                <input type="number" id="fname" name="SDNN" value="107.9" step="any" required>
+                <input type="number" id="fname" name="SDNN" value="107.9" min="1" max="70000" step="any" required>
             </p>
             <p>
                 <label for="NN50">NN50: </label>
-                <input type="number" id="lname" name="NN50" value="1" step="any" required>
+                <input type="number" id="lname" name="NN50" value="1" min="0" max="500" step="any" required>
             </p>
             <p>
                 <label for="pNN50">pNN50 (%): </label>
-                <input type="number" id="lname" name="pNN50" value="0.3" step="any" required>
+                <input type="number" id="lname" name="pNN50" value="0.3" min="0" max="150" step="any" required>
             </p>
             <p>
                 <label for="RMSSD">RMSSD (ms): </label>
-                <input type="number" id="fname" name="RMSSD" value="20.7" step="any" required>
+                <input type="number" id="fname" name="RMSSD" value="20.7" min="1" max="150000" step="any" required>
             </p>
             <p>
                 <label for="VLF">VLF (ms²): </label>
-                <input type="number" id="lname" name="VLF" value="0.01" step="any" required>
+                <input type="number" id="lname" name="VLF" value="0.01" min="0" max="150000000" step="any" required>
             </p>
             <p>
                 <label for="LF">LF (ms²): </label>
-                <input type="number" id="fname" name="LF" value="0.34" step="any" required>
+                <input type="number" id="fname" name="LF" value="0.34" min="0" max="900000000" step="any" required>
             </p>
             <p>
                 <label for="HF">HF (ms²): </label>
-                <input type="number" id="fname" name="HF" value="4.7" step="any" required>
+                <input type="number" id="fname" name="HF" value="4.7" min="0" max="1000000000" step="any" required>
             </p>
             <p>
                 <label for="total">Total (ms²): </label>
-                <input type="number" id="lname" name="total" value="5.05" step="any" required>
+                <input type="number" id="lname" name="total" value="5.05" min="0" max="2000000000" step="any" required>
             </p>
             <p>
                 <label for="VLF_peak">Peak VLF (ms²): </label>
-                <input type="number" id="lname" name="VLF_peak" value="0.03" step="any" required>
+                <input type="number" id="lname" name="VLF_peak" value="0.03" min="0" max="0.20" step="any" required>
             </p>
             <p>
                 <label for="LF_peak">Peak LF (ms²): </label>
-                <input type="number" id="fname" name="LF_peak" value="0.14" step="any" required>
+                <input type="number" id="fname" name="LF_peak" value="0.14" min="0" max="0.15" step="any" required>
             </p>
             <p>
                 <label for="HF_peak">Peak HF (ms²): </label>
-                <input type="number" id="fname" name="HF_peak" value="0.32" step="any" required>
+                <input type="number" id="fname" name="HF_peak" value="0.32" min="0" max="0.4" step="any" required>
             </p>
             <p>
                 <label for="VLF_percent">VLF (%): </label>
-                <input type="number" id="lname" name="VLF_percent" value="0.2" step="any" required>
+                <input type="number" id="lname" name="VLF_percent" value="0.2" min="0" max="" step="any" required>
             </p>
             <p>
                 <label for="LF_percent">LF (%): </label>
-                <input type="number" id="fname" name="LF_percent" value="6.7" step="any" required>
+                <input type="number" id="fname" name="LF_percent" value="6.7" min="0" max="" step="any" required>
             </p>
             <p>
                 <label for="HF_percent">HF (%): </label>
-                <input type="number" id="fname" name="HF_percent" value="93.1" step="any" required>
+                <input type="number" id="fname" name="HF_percent" value="93.1" min="0" max="" step="any" required>
             </p>
             <p>
                 <label for="LF_nu">LF (nu): </label>
-                <input type="number" id="fname" name="LF_nu" value="0.067" step="any" required>
+                <input type="number" id="fname" name="LF_nu" value="0.067" min="0" max="" step="any" required>
             </p>
             <p>
                 <label for="HF_nu">HF (nu): </label>

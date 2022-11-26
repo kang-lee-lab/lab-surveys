@@ -223,9 +223,12 @@ def results_asq():
             ))
             t = t + 1
 
+        # add actual sq values to each sq1-6
+
+        text = [i + ' (' + str(sq_list[count]) + ')' for count, i in enumerate(df['theta'].tolist())]
+
         fig.add_trace(go.Scatterpolar(
-            text=['SQ1', 'SQ2', 'SQ3',
-                   'SQ4', 'SQ5', 'SQ6'],
+            text=text,
             r=sq_list,
             mode='lines+text+markers',
             fill='toself',
