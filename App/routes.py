@@ -296,22 +296,26 @@ def results_childbmi():
     bmi = weight/((height/100)**2)
 
     user_inputs = {
-        'age': age,
-        'age1': age1,
-        'gender0female1male': gender,
-        'height': height,
-        'weight': weight,
-        'bmi': bmi
+        'Current age': age,
+        'Age to predict': age1,
+        'Sex': gender,
+        'Height': height,
+        'Weight': weight,
+        'BMI': bmi
     }
 
-    with open("App/static/models_lr.bin", "rb") as f:
-        all_models = pickle.load(f)
-        
-    model = all_models['models'][0]
-    proba = model.predict_proba(pd.DataFrame.from_dict(user_inputs))
-
+    with open("App/static/childbmi_model_height.bin", "rb") as f:
+        height_model = pickle.load(f)
+        pred_height = height_model.predict_proba(pd.DataFrame.from_dict(user_inputs))
+    with open("App/static/childbmi_model_weight.bin", "rb") as f:
+        weight_model = pickle.load(f)
+        pred_weight = weight_model.predict_proba(pd.DataFrame.from_dict(user_inputs))
+    with open("App/static/childbmi_model_bmi.bin", "rb") as f:
+        bmi_model = pickle.load(f)
+        pred_bmi = bmi_model.predict_proba(pd.DataFrame.from_dict(user_inputs))
+    
     return render_template('results_childbmi.html', 
-                           height=round(height * 100, 1),
-                           weight=round(weight, 1),
-                           bmi=round(bmi, 1),
+                           height=round(pred_height * 100, 1),
+                           weight=round(pred_weight, 1),
+                           bmi=round(pred_bmi, 1),
                            age=age1)
