@@ -1,8 +1,7 @@
-from flask import Flask, render_template, request
-from math import sqrt
-import pandas as pd
 import os
 import pickle
+from flask import render_template, request
+from math import sqrt
 import pandas as pd
 import plotly.graph_objects as go
 from App import app
@@ -14,6 +13,7 @@ data_folder = "App/static"
 def index():
     return render_template('index.html')
 
+
 @app.route('/asq')
 def asq():
     return render_template('asq.html')
@@ -22,6 +22,11 @@ def asq():
 @app.route('/nafld')
 def nafld():
     return render_template('nafld.html')
+
+
+@app.route('/childbmi')
+def childbmi():
+    return render_template('childbmi.html')
 
 
 @app.route('/results_asq', methods=["GET", "POST"])
@@ -115,10 +120,10 @@ def results_asq():
 
     }
 
-    # First element in mylist has to have mean/sd in first row of SD_mean.csv. Specify sheet name (i.e., HRV, FS)
+    # First element in mylist has to have mean/sd in first row of asq_SD_mean.csv. Specify sheet name (i.e., HRV, FS)
 
     def better_zscore(mylist, sheet_name):
-        df = pd.read_excel('App/static/SD_mean.xlsx', sheet_name=sheet_name)
+        df = pd.read_excel('App/static/asq_SD_mean.xlsx', sheet_name=sheet_name)
 
         for counter, i in enumerate(mylist):
 
@@ -312,7 +317,7 @@ def results_nafld():
     
     inputs_norm = normalize(user_inputs)
     
-    with open("App/static/models_lr.bin", "rb") as f:
+    with open("App/static/nafld_models_lr.bin", "rb") as f:
         all_models = pickle.load(f)
         
     model = all_models['models'][0]
@@ -321,3 +326,35 @@ def results_nafld():
     positive = proba[0][1] # Positive probability
     
     return render_template('results_nafld.html', p1=round((positive*100), 1))
+
+
+
+@app.route('/results_childbmi', methods=["GET", "POST"])
+def results_childbmi():
+    age = float(request.form['Age'])
+    age1 = float(request.form['Age1'])
+    gender = int(request.form['Gender'])
+    weight = float(request.form['Weight'])
+    height = float(request.form['Height'])
+    bmi = weight/((height/100)**2)
+
+    user_inputs = {
+        'age': age,
+        'age1': age1,
+        'gender0female1male': gender,
+        'height': height,
+        'weight': weight,
+        'bmi': bmi
+    }
+
+    with open("App/static/models_lr.bin", "rb") as f:
+        all_models = pickle.load(f)
+        
+    model = all_models['models'][0]
+    proba = model.predict_proba(pd.DataFrame.from_dict(user_inputs))
+
+    return render_template('results_childbmi.html', 
+                           height=round(height * 100, 1),
+                           weight=round(weight, 1),
+                           bmi=round(bmi, 1),
+                           age=age1)
