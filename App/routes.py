@@ -251,39 +251,35 @@ def results_nafld():
     
     user_inputs = {
         'weight': weight,
-         'bmi': bmi,
-         'Alanine aminotransferase': aln_atf,
-         'H cholesterol': hdl_chol,
-         'fastingbloodsugar_cuttoff_5point5': fbscp5,
-         'Triglycerides': triglycerides,
-         'diastolic': dbp,
-         'Hemoglobin': hemoglobin,
-         'systolic': sbp,
-         'Red blood cell count': rbcc,
-         'height': height,
-         'Platelet count': platelet,
-         'age': age,
-         'gender0female1male': gender,
-         'Aspartate aminotransferase': as_atf,
-         'White blood cell count': wbcc,
-         'Lymphocyte count': lc,
-         'The average hemoglobin concentration': avg_hem,
-         'Neutrophil count': nc,
-         'Eosinophil count': ec
-        }
-    
+        'bmi': bmi,
+        'Alanine aminotransferase': aln_atf,
+        'H cholesterol': hdl_chol,
+        'fastingbloodsugar_cuttoff_5point5': fbscp5,
+        'Triglycerides': triglycerides,
+        'diastolic': dbp,
+        'Hemoglobin': hemoglobin,
+        'systolic': sbp,
+        'Red blood cell count': rbcc,
+        'height': height,
+        'Platelet count': platelet,
+        'age': age,
+        'gender0female1male': gender,
+        'Aspartate aminotransferase': as_atf,
+        'White blood cell count': wbcc,
+        'Lymphocyte count': lc,
+        'The average hemoglobin concentration': avg_hem,
+        'Neutrophil count': nc,
+        'Eosinophil count': ec
+    }
     inputs_norm = normalize(user_inputs)
-    
+
     with open("App/static/nafld_models_lr.bin", "rb") as f:
         all_models = pickle.load(f)
         
     model = all_models['models'][0]
     proba = model.predict_proba(pd.DataFrame.from_dict(inputs_norm)) 
-    
     positive = proba[0][1] # Positive probability
-    
     return render_template('results_nafld.html', p1=round((positive*100), 1))
-
 
 
 @app.route('/results_childbmi', methods=["GET", "POST"])
@@ -296,26 +292,26 @@ def results_childbmi():
     bmi = weight/((height/100)**2)
 
     user_inputs = {
-        'Current age': age,
-        'Age to predict': age1,
-        'Sex': gender,
-        'Height': height,
-        'Weight': weight,
-        'BMI': bmi
+        'Current age': [age],
+        'Age to predict': [age1],
+        'Sex': [gender],
+        'Height': [height],
+        'Weight': [weight],
+        'BMI': [bmi]
     }
 
     with open("App/static/childbmi_model_height.bin", "rb") as f:
         height_model = pickle.load(f)
-        pred_height = height_model.predict(pd.DataFrame.from_dict(user_inputs))
+        pred_height = height_model.predict(pd.DataFrame(user_inputs)).tolist()[0]
     with open("App/static/childbmi_model_weight.bin", "rb") as f:
         weight_model = pickle.load(f)
-        pred_weight = weight_model.predict(pd.DataFrame.from_dict(user_inputs))
+        pred_weight = weight_model.predict(pd.DataFrame(user_inputs)).tolist()[0]
     with open("App/static/childbmi_model_bmi.bin", "rb") as f:
         bmi_model = pickle.load(f)
-        pred_bmi = bmi_model.predict(pd.DataFrame.from_dict(user_inputs))
+        pred_bmi = bmi_model.predict(pd.DataFrame(user_inputs)).tolist()[0]
     
     return render_template('results_childbmi.html', 
-                           height=round(pred_height * 100, 1),
+                           height=round(pred_height, 1),
                            weight=round(pred_weight, 1),
                            bmi=round(pred_bmi, 1),
-                           age=age1)
+                           age=int(age1))
