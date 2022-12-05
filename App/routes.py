@@ -306,13 +306,13 @@ def results_childbmi():
 
     with open("App/static/childbmi_model_height.bin", "rb") as f:
         height_model = pickle.load(f)
-        pred_height = height_model.predict_proba(pd.DataFrame.from_dict(user_inputs))
+        pred_height = height_model.predict(pd.DataFrame.from_dict(user_inputs))
     with open("App/static/childbmi_model_weight.bin", "rb") as f:
         weight_model = pickle.load(f)
-        pred_weight = weight_model.predict_proba(pd.DataFrame.from_dict(user_inputs))
+        pred_weight = weight_model.predict(pd.DataFrame.from_dict(user_inputs))
     with open("App/static/childbmi_model_bmi.bin", "rb") as f:
         bmi_model = pickle.load(f)
-        pred_bmi = bmi_model.predict_proba(pd.DataFrame.from_dict(user_inputs))
+        pred_bmi = bmi_model.predict(pd.DataFrame.from_dict(user_inputs))
     
     return render_template('results_childbmi.html', 
                            height=round(pred_height * 100, 1),
