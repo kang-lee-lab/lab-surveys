@@ -1,0 +1,921 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;1,100&display=swap" rel="stylesheet">
+    <style>
+
+    body {
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      height: 100vh;
+      
+    }
+
+    .split {
+        height: 100%;
+        width: 50%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        overflow-x: hidden;
+        box-sizing: border-box;
+    }
+
+    .center {
+        position: absolute;
+
+        right: 13%;
+        color:#ffffff;
+        text-align: left;
+        font-family: 'Inter Tight', sans-serif;
+    
+    }
+
+    .rcorners1 {
+        top: 80;
+        left: 100;
+        font-family: 'Inter Tight', sans-serif;
+        border-radius: 25px;
+        width: 500px;
+        background: #ffffff;
+        padding: 20px; 
+        text-align: left;
+        color:#4F6D7A
+        
+    }
+
+    .right {
+        right: 0;
+        background-color:#4F6D7A
+    }
+
+    .highlight {
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size:35px;
+        font-weight: normal;
+    }
+
+    h2 {
+        font-size:15px;
+        font-weight: normal;
+    }
+
+    form  { display: table; padding-top: 130px; padding-bottom: 130px;}
+    p     { display: table-row;  }
+    label { display: table-cell; }
+    input { display: table-cell; padding: 10px; margin: 10px; border: 10px; color:#4F6D7A; border-radius: 4px;}
+
+    </style>
+</head>
+
+<body>
+    <div class="split rcorners1">
+        <h1>
+            Welcome to the <span class="highlight">Minnesota Multiphasic Personality Inventory (MMPI)</span> prediction interactive webpage.
+        </h1>
+
+        <h2>
+            This applet computes an individuals <span class="highlight">likelihood of MMPI</span>. Based on 100 questions, this app uses a machine learning model to compute the likelihood of MMPI.
+        </h2>
+        <br>
+        <h2>
+            Minnesota Multiphasic Personality Inventory (MMPI) is the most widely used psychometric test in the world. This study aimed to investigate the feasibility of using a reduced number of questions to predict the status in each conditions accurately. 
+        </h2>
+        <h2>
+            We obtained a dataset of MMPI-2 responses from the Beijing Anding Hospital. The original dataset contains anonymized information on the participants including their demographics (age, sex, etc.), the raw scores and T-scores to each of the conditions, and the answers to each of the questions from the MMPI-2 test from each participant. The information of the participants includes their serial number, age, and their gender. The responses to the questions are “Yes”, “No”, or “Maybe”. 
+        </h2>
+        <h2>    
+            We identified the top 100 questions for predicting the ten MMPI conditions, which achieved at least 85% area under curve (AUC ROC) for predicting each of the conditions.
+        </h2>
+        <h2>   
+            Our findings suggest that machine learning models using reduced number of questions are capable of making accurate assessment for MMPI. 
+        </h2>
+    </div>
+
+    <div class="split right">
+        <form action="/results_nafld" class="center" method="post">
+
+            <label> <b>Please enter your answers below:</b> </label><br><br>
+            <p>
+                <label for="Gender">Gender: </label>
+                <select id="lname" name="Gender" step="any" required>
+                    <option value="1">Female</option>
+                    <option value="0">Male</option>
+                </select>
+            </p>
+            <p>
+                <label for="Age">Age: </label>
+                <input type="number" id="fname" name="Age" value="40" min="18" max="100" step="any" required>
+            </p>
+
+<p> 
+ <label for="Q2">Q2 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q2" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q3">Q3 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q3" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q6">Q6 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q6" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q7">Q7 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q7" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q8">Q8 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q8" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q9">Q9 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q9" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q12">Q12 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q12" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q18">Q18 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q18" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q21">Q21 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q21" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q22">Q22 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q22" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p> 
+<p> 
+ <label for="Q23">Q23 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q23" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q24">Q24 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q24" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q27">Q27 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q27" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q32">Q32 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q32" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q33">Q33 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q33" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q35">Q35 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q35" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q37">Q37 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q37" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q38">Q38 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q38" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q42">Q42 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q42" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q51">Q51 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q51" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>     
+<p> 
+ <label for="Q57">Q57 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q57" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q63">Q63 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q63" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q64">Q64 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q64" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q67">Q67 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q67" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q68">Q68 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q68" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q71">Q71 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q71" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q76">Q76 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q76" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q82">Q82 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q82" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q84">Q84 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q84" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q91">Q91 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q91" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q93">Q93 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q93" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q94">Q94 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q94" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q97">Q97 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q97" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q102">Q102 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q102" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q103">Q103 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q103" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q106">Q106 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q106" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q107">Q107 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q107" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q110">Q110 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q110" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q117">Q117 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q117" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q119">Q119 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q119" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q120">Q120 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q120" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q122">Q122 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q122" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q123">Q123 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q123" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q124">Q124 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q124" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q127">Q127 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q127" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q128">Q128 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q128" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q134">Q134 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q134" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q141">Q141 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q141" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q145">Q145 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q145" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q152">Q152 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q152" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q155">Q155 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q155" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q157">Q157 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q157" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q163">Q163 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q163" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q164">Q164 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q164" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q167">Q167 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q167" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q168">Q168 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q168" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q170">Q170 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q170" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q175">Q175 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q175" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q177">Q177 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q177" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q178">Q178 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q178" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q179">Q179 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q179" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q181">Q181 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q181" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q187">Q187 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q187" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q192">Q192 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q192" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q201">Q201 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q201" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q202">Q202 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q202" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q220">Q220 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q220" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q224">Q224 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q224" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q229">Q229 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q229" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q230">Q230 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q230" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q231">Q231 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q231" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q234">Q234 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q234" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q238">Q238 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q238" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q245">Q245 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q245" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q267">Q267 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q267" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q268">Q268 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q268" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q272">Q272 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q272" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q278">Q278 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q278" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q279">Q279 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q279" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q281">Q281 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q281" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q289">Q289 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q289" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q292">Q292 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q292" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q296">Q296 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q296" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q298">Q298 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q298" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q301">Q301 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q301" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q315">Q315 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q315" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q316">Q316 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q316" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q318">Q318 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q318" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q321">Q321 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q321" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q324">Q324 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q324" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q339">Q339 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q339" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q342">Q342 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q342" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q346">Q346 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q346" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q350">Q350 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q350" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q358">Q358 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q358" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q360">Q360 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q360" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q370">Q370 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q370" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q383">Q383 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q383" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q471">Q471 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q471" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+<p> 
+ <label for="Q527">Q527 (Replace this with actual questions): </label> 
+ <select id="lname" name="Q527" step="any" required> 
+ <option value="1">No</option> 
+ <option value="0">Yes</option> 
+ <option value="2">Uncertain</option> 
+ </select> 
+ </p>
+          <input type="submit" name= "form" value="Submit" />
+
+        </form>
+    </div>
+
+</body>
+
