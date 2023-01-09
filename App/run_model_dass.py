@@ -1,9 +1,8 @@
 import pickle
-import os
 import pandas as pd
 import random
 
-condition = "stress" # anxiety, depression, stress
+condition = "anxiety" # anxiety, depression, stress
 
 # questions = [13, 16, 3, 34, 24, 22, 27]     # depression_severe
 # questions = [13, 16, 3, 34, 24] # depression_moderate
@@ -18,7 +17,7 @@ elif condition == "depression":
 elif condition == "stress":
     questions = [6, 9, 11, 18, 27, 40]
 
-with open("{}_model_s.bin".format(condition), "rb") as f:
+with open("./static/{}_model_severe.bin".format(condition), "rb") as f:
     model = pickle.load(f)
 
 answers = {}
