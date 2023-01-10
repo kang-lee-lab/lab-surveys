@@ -29,6 +29,26 @@ def childbmi():
     return render_template('childbmi.html')
 
 
+@app.route('/mmpi')
+def mmpi():
+    return render_template('mmpi.html')
+
+
+@app.route('/anxiety_moderate')
+def anxiety_moderate():
+    return render_template('anxiety_moderate.html')
+
+
+@app.route('/depression_moderate')
+def depression_moderate():
+    return render_template('depression_moderate.html')
+
+
+@app.route('/stress_moderate')
+def stress_moderate():
+    return render_template('stress_moderate.html')
+
+
 @app.route('/results_asq', methods=["GET", "POST"])
 def results_asq():
     MHR = request.form['MHR']
@@ -273,7 +293,7 @@ def results_nafld():
     }
     inputs_norm = normalize(user_inputs)
 
-    with open("App/static/nafld_models_lr.bin", "rb") as f:
+    with open("App/static/models/nafld_models_lr.bin", "rb") as f:
         all_models = pickle.load(f)
         
     model = all_models['models'][0]
@@ -316,6 +336,7 @@ def results_childbmi():
                            bmi=round(pred_bmi, 1),
                            age=int(age1))
 
+
 @app.route('/results_mmpi', methods=["GET", "POST"])
 def results_mmpi():
     status = ['DT', 'HsT', 'HyT', 'MaT', 'MfT', 'PaT', 'PdT', 'PtT', 'ScT', 'SiT']
@@ -332,7 +353,7 @@ def results_mmpi():
 
     user_inputs = pd.DataFrame.from_dict(user_inputs)
 
-    with open("App/static/mmpi_models.bin", "rb") as f:
+    with open("App/static/models/mmpi_models.bin", "rb") as f:
         all_models = pickle.load(f)
         
     positive_proba = {}
@@ -358,3 +379,76 @@ def results_mmpi():
                            Schizophrenia=round(round(positive_proba['ScT']*100), 1),
                            Hypomania=round(round(positive_proba['MaT']*100), 1),
                            Social_Introversion=round(round(positive_proba['SiT']*100), 1))
+
+
+@app.route('/results_anxiety_moderate', methods=["GET", "POST"])
+def results_anxiety_moderate():
+    questions = [9, 11, 20, 30, 36, 40]
+    
+    user_inputs = {}    
+
+    user_inputs['gender'] = [int(request.form['Gender'])]
+    user_inputs['region'] = [int(request.form['Region'])]
+    user_inputs['age'] = [int(request.form['Age'])]
+    
+    for q in questions:
+        user_inputs['Q{}A'.format(q)] = [int(request.form['Q{}'.format(q)])]
+        
+
+    user_inputs = pd.DataFrame.from_dict(user_inputs)
+
+    with open("App/static/models/anxiety_model_moderate.bin", "rb") as f:
+        model = pickle.load(f)
+    
+    proba = model[0].predict_proba(user_inputs)
+        
+    return render_template('results_anxiety_moderate.html', p1=round((proba*100), 1))
+
+
+@app.route('/results_depression_moderate', methods=["GET", "POST"])
+def results_depression_moderate():
+    questions = [3, 13, 16, 22, 24, 34]
+    
+    user_inputs = {}    
+
+    user_inputs['gender'] = [int(request.form['Gender'])]
+    user_inputs['region'] = [int(request.form['Region'])]
+    user_inputs['age'] = [int(request.form['Age'])]
+    
+    for q in questions:
+        user_inputs['Q{}A'.format(q)] = [int(request.form['Q{}'.format(q)])]
+        
+
+    user_inputs = pd.DataFrame.from_dict(user_inputs)
+
+    with open("App/static/models/depression_model_moderate.bin", "rb") as f:
+        model = pickle.load(f)
+    
+    proba = model[0].predict_proba(user_inputs)
+        
+    return render_template('results_depression_moderate.html', p1=round((proba*100), 1))
+
+
+@app.route('/results_stress_moderate', methods=["GET", "POST"])
+def results_stress_moderate():
+    questions = [6, 11, 18, 27, 29]
+    
+    user_inputs = {}    
+
+    user_inputs['gender'] = [int(request.form['Gender'])]
+    user_inputs['region'] = [int(request.form['Region'])]
+    user_inputs['age'] = [int(request.form['Age'])]
+    
+    for q in questions:
+        user_inputs['Q{}A'.format(q)] = [int(request.form['Q{}'.format(q)])]
+        
+
+    user_inputs = pd.DataFrame.from_dict(user_inputs)
+
+    with open("App/static/models/stress_model_moderate.bin", "rb") as f:
+        model = pickle.load(f)
+    
+    proba = model[0].predict_proba(user_inputs)
+        
+    return render_template('results_stress_moderate.html', p1=round((proba*100), 1))
+

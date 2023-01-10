@@ -41,7 +41,7 @@ def run_model(model_type, user_inputs):
     Probability of being positive in NAFLD
 
     '''
-    with open("./static/models_{}.bin".format(model_type), "rb") as f:
+    with open("./static/models/nafld_models_{}.bin".format(model_type), "rb") as f:
         all_models = pickle.load(f)
         
     model = all_models['models'][0]
