@@ -20,7 +20,6 @@ def normalize(user_inputs):
                         lambda row: z_score_norm(row, col, mean, stdev), axis=1)
             user_inputs = user_inputs.drop([col], axis=1)
         
-            
     return user_inputs
             
     

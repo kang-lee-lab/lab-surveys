@@ -1,5 +1,4 @@
 import pickle
-import os
 import pandas as pd
 import random
 
@@ -32,5 +31,4 @@ for condition in status:
     answer = answers[q]
     
     proba = model.predict_proba(answer)
-    # predicted_label = model.predict(answer)
     print(proba[0][1])
