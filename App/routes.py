@@ -239,12 +239,12 @@ def results_asq():
     asq_definition = ''
 
     for key in asq_table:
-        if int(pipeline()[0]) in key:
+        if int(round(pipeline()[0], 2)) in key:
             asq_definition = asq_table[key]
             break
 
     return render_template('results_asq.html',
-                           p1=round(pipeline()[0], 2), # Round value to 2 decimals
+                           p1=round(pipeline()[0], 2),  # Round value to 2 decimals
                            p2=asq_definition
                            )
 
