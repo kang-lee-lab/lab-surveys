@@ -226,9 +226,10 @@ def results_asq():
 
         fig.write_image('App/static/plotly_output.png', width=1000, height=1000)
 
-    asq_definition = ''
+    def asq_definition():
 
-    def asq_definition(n):
+        x = ''
+
         asq_table = { # Explains what ASQ means
             range(0, 20): 'Very low stress',
             range(21, 30): 'Low stress',
@@ -241,12 +242,14 @@ def results_asq():
 
         for key in asq_table:
             if int(round(pipeline()[0], 2)) in key:
-                n = asq_table[key]
+                x = asq_table[key]
                 break
+
+        return x
 
     return render_template('results_asq.html',
                            p1=round(pipeline()[0], 2),  # Round value to 2 decimals
-                           p2=asq_definition
+                           p2=asq_definition(),
                            )
 
 
