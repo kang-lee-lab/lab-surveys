@@ -9,6 +9,7 @@
       justify-content: center;
       margin: 0 auto;
       height: 100vh;
+      overflow: visible;
       
     }
 
@@ -27,7 +28,6 @@
     .center {
         position: absolute;
         left: 50%;
-        top: 50%;
         width: 500px;
         transform: translate(-50%, -50%);
        
@@ -60,18 +60,59 @@
     h1 { font-size:55px; font-weight: normal;}
     h2 { font-size:15px; font-weight: normal;}
     h3 { font-size:10px; font-weight: normal;}
+
+    table, th, td { border:1px solid black; margin-bottom: 30px}
     
     </style>
 </head>
 
 <body>
     <div class="split left">
-        <div class="center">
+        <div class="center" style="top: 70%;">
             <h1>
                 Your ASQ is <span class="highlight">{{p1}}</span>
             </h1>
             <h2>
-                Displayed are your <span class="highlight">Stress Quotient Factors (SQF) </span> from 1-6. 
+                Your ASQ is an indication of your overall stress level. The table below can be used to interpret your score.
+            </h2>
+
+            <table style="width:100%">
+                <tr>
+                    <th>ASQ Range</th>
+                    <th>ASQ Classification</th>
+                </tr>
+                <tr>
+                    <td>80 and over</td>
+                    <td>Very High Stress</td>
+                </tr>
+                <tr>
+                    <td>70-79</td>
+                    <td>High Stress</td>
+                </tr>
+                <tr>
+                    <td>60-69</td>
+                    <td>Slightly High Stress</td>
+                </tr>
+                <tr>
+                    <td>41-59</td>
+                    <td>Average</td>
+                </tr>
+                <tr>
+                    <td>31-40</td>
+                    <td>Slightly Low Stress</td>
+                </tr>
+                <tr>
+                    <td>21-30</td>
+                    <td>Low Stress</td>
+                </tr>
+                <tr>
+                    <td>20 and below</td>
+                    <td>Very Low Stress</td>
+                </tr>
+            </table>
+
+            <h2>
+                Displayed below are your <span class="highlight">Stress Quotient Factors (SQF) </span> from 1-6. 
                 Each SQF is unique and contributes to your overall <span class="highlight">Average Stress Quotient (ASQ) </span>.
                 Dark green indicates low stress, while the red regions indicate severe stress.
             </h2>
@@ -86,7 +127,7 @@
     </div>
 
     <div class="split right">
-        <div class="center">
+        <div class="center" style="top: 50%;">
             <h2>
                 Thank you for taking the time to use our <span class="highlight">interactive ASQ calculator </span>. 
                 We hope our research was insightful towards your understanding of your stress levels.

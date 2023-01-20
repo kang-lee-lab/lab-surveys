@@ -226,7 +226,7 @@ def results_asq():
 
         fig.write_image('App/static/plotly_output.png', width=1000, height=1000)
 
-    return render_template('results_asq.html', p1=round(pipeline()[0], 1))  # round value to 1 decimal
+    return render_template('results_asq.html', p1=round(pipeline()[0], 2))  # round value to 2 decimals
 
 
 def normalize(user_inputs):
