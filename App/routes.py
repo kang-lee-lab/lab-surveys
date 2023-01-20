@@ -226,7 +226,27 @@ def results_asq():
 
         fig.write_image('App/static/plotly_output.png', width=1000, height=1000)
 
-    return render_template('results_asq.html', p1=round(pipeline()[0], 2))  # round value to 2 decimals
+    asq_table = { # Explains what ASQ means
+        range(0, 20): 'Very low stress',
+        range(21, 30): 'Low stress',
+        range(31, 40): 'Slightly low stress',
+        range(41, 59): 'Average',
+        range(60, 69): 'Slightly high stress',
+        range(70, 79): 'High stress',
+        range(80, 120): 'Very high stress'
+    }
+
+    asq_definition = ''
+
+    for key in asq_table:
+        if int(pipeline()[0]) in key:
+            asq_definition = asq_table[key]
+            break
+
+    return render_template('results_asq.html',
+                           p1=round(pipeline()[0], 2), # Round value to 2 decimals
+                           p2=asq_definition
+                           )
 
 
 def normalize(user_inputs):
@@ -300,26 +320,8 @@ def results_nafld():
     proba = model.predict_proba(pd.DataFrame.from_dict(inputs_norm)) 
     positive = proba[0][1] # Positive probability
 
-    asq_table = { # Explains what ASQ means
-        range(0, 20): 'Very low stress',
-        range(21, 30): 'Low stress',
-        range(31, 40): 'Slightly low stress',
-        range(41, 59): 'Average',
-        range(60, 69): 'Slightly high stress',
-        range(70, 79): 'High stress',
-        range(80, 120): 'Very high stress'
-    }
-
-    asq_definition = ''
-
-    for key in asq_table:
-        if int(positive) in key:
-            asq_definition = asq_table[key]
-            break
-
     return render_template('results_nafld.html',
                            p1=round((positive*100), 1),
-                           p2=asq_definition
                            )
 
 
