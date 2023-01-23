@@ -233,13 +233,13 @@ def results_asq():
         x = ''
 
         asq_table = { # Explains what ASQ means
-            range(0, 20): 'Very low stress',
-            range(21, 30): 'Low stress',
-            range(31, 40): 'Slightly low stress',
+            range(0, 20): 'Very low',
+            range(21, 30): 'Low',
+            range(31, 40): 'Slightly low',
             range(41, 59): 'Average',
-            range(60, 69): 'Slightly high stress',
-            range(70, 79): 'High stress',
-            range(80, 120): 'Very high stress'
+            range(60, 69): 'Slightly high',
+            range(70, 79): 'High',
+            range(80, 120): 'Very high'
         }
 
         for key in asq_table:
