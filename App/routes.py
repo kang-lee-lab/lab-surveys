@@ -347,13 +347,13 @@ def results_childbmi():
         'BMI': [bmi]
     }
 
-    with open("App/static/childbmi_model_height.bin", "rb") as f:
+    with open("App/static/models/childbmi_model_height.bin", "rb") as f:
         height_model = pickle.load(f)
         pred_height = height_model.predict(pd.DataFrame(user_inputs)).tolist()[0]
-    with open("App/static/childbmi_model_weight.bin", "rb") as f:
+    with open("App/static/models/childbmi_model_weight.bin", "rb") as f:
         weight_model = pickle.load(f)
         pred_weight = weight_model.predict(pd.DataFrame(user_inputs)).tolist()[0]
-    with open("App/static/childbmi_model_bmi.bin", "rb") as f:
+    with open("App/static/models/childbmi_model_bmi.bin", "rb") as f:
         bmi_model = pickle.load(f)
         pred_bmi = bmi_model.predict(pd.DataFrame(user_inputs)).tolist()[0]
     
@@ -396,16 +396,16 @@ def results_mmpi():
         positive_proba[condition] = proba[0][1]
         
     return render_template('results_mmpi.html', 
-                           Depression=round(round(positive_proba['DT']*100), 1),
-                           Hypochondriasis=round(round(positive_proba['HsT']*100), 1),
-                           Hysteria=round(round(positive_proba['HyT']*100), 1),
-                           Psychopathic_Deviate=round(round(positive_proba['PdT']*100), 1),
-                           Masculinity_Femininity=round(round(positive_proba['MfT']*100), 1),
-                           Paranoia=round(round(positive_proba['PaT']*100), 1),
-                           Psychasthenia=round(round(positive_proba['PtT']*100), 1),
-                           Schizophrenia=round(round(positive_proba['ScT']*100), 1),
-                           Hypomania=round(round(positive_proba['MaT']*100), 1),
-                           Social_Introversion=round(round(positive_proba['SiT']*100), 1))
+                           Depression=round(positive_proba['DT']*100, 1),
+                           Hypochondriasis=round(positive_proba['HsT']*100, 1),
+                           Hysteria=round(positive_proba['HyT']*100, 1),
+                           Psychopathic_Deviate=round(positive_proba['PdT']*100, 1),
+                           Masculinity_Femininity=round(positive_proba['MfT']*100, 1),
+                           Paranoia=round(positive_proba['PaT']*100, 1),
+                           Psychasthenia=round(positive_proba['PtT']*100, 1),
+                           Schizophrenia=round(positive_proba['ScT']*100, 1),
+                           Hypomania=round(positive_proba['MaT']*100, 1),
+                           Social_Introversion=round(positive_proba['SiT']*100, 1))
 
 
 @app.route('/results_anxiety_moderate', methods=["GET", "POST"])
@@ -428,8 +428,9 @@ def results_anxiety_moderate():
         model = pickle.load(f)
     
     proba = model[0].predict_proba(user_inputs)
+    positive = proba[0][1]
         
-    return render_template('results_anxiety_moderate.html', p1=round((proba*100), 1))
+    return render_template('results_anxiety_moderate.html', p1=round((positive*100), 1))
 
 
 @app.route('/results_depression_moderate', methods=["GET", "POST"])
@@ -452,8 +453,9 @@ def results_depression_moderate():
         model = pickle.load(f)
     
     proba = model[0].predict_proba(user_inputs)
+    positive = proba[0][1]
         
-    return render_template('results_depression_moderate.html', p1=round((proba*100), 1))
+    return render_template('results_depression_moderate.html', p1=round((positive*100), 1))
 
 
 @app.route('/results_stress_moderate', methods=["GET", "POST"])
@@ -476,6 +478,7 @@ def results_stress_moderate():
         model = pickle.load(f)
     
     proba = model[0].predict_proba(user_inputs)
+    positive = proba[0][1]
         
-    return render_template('results_stress_moderate.html', p1=round((proba*100), 1))
+    return render_template('results_stress_moderate.html', p1=round((positive*100), 1))
 
