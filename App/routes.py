@@ -226,6 +226,8 @@ def results_asq():
 
         fig.write_image('App/static/plotly_output.png', width=1000, height=1000)
 
+    asq_result = round(pipeline()[0], 2)  # Can't calculate pipeline twice, no idea why
+
     def asq_definition():
 
         x = ''
@@ -241,14 +243,14 @@ def results_asq():
         }
 
         for key in asq_table:
-            if int(round(pipeline()[0], 2)) in key:
+            if int(asq_result) in key:
                 x = asq_table[key]
                 break
 
         return x
 
     return render_template('results_asq.html',
-                           p1=round(pipeline()[0], 2),  # Round value to 2 decimals
+                           p1=asq_result,  # Round value to 2 decimals
                            p2=asq_definition(),
                            )
 
