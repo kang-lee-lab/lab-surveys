@@ -226,7 +226,33 @@ def results_asq():
 
         fig.write_image('App/static/plotly_output.png', width=1000, height=1000)
 
-    return render_template('results_asq.html', p1=round(pipeline()[0], 1))  # round value to 1 decimal
+    asq_result = round(pipeline()[0], 2)  # Can't calculate pipeline twice, no idea why
+
+    def asq_definition():
+
+        x = ''
+
+        asq_table = { # Explains what ASQ means
+            range(0, 20): 'Very low',
+            range(21, 30): 'Low',
+            range(31, 40): 'Slightly low',
+            range(41, 59): 'Average',
+            range(60, 69): 'Slightly high',
+            range(70, 79): 'High',
+            range(80, 120): 'Very high'
+        }
+
+        for key in asq_table:
+            if int(asq_result) in key:
+                x = asq_table[key]
+                break
+
+        return x
+
+    return render_template('results_asq.html',
+                           p1=asq_result,  # Round value to 2 decimals
+                           p2=asq_definition(),
+                           )
 
 
 def normalize(user_inputs):
@@ -299,7 +325,10 @@ def results_nafld():
     model = all_models['models'][0]
     proba = model.predict_proba(pd.DataFrame.from_dict(inputs_norm)) 
     positive = proba[0][1] # Positive probability
-    return render_template('results_nafld.html', p1=round((positive*100), 1))
+
+    return render_template('results_nafld.html',
+                           p1=round((positive*100), 1),
+                           )
 
 
 @app.route('/results_childbmi', methods=["GET", "POST"])
