@@ -54,7 +54,26 @@ def run_model(model_type, user_inputs):
 
 if __name__ == "__main__":
     nafld_data = pd.read_csv(os.path.join(data_folder, "NAFLD_filtered.csv"))
-    valid_features = ['weight', 'bmi', 'Alanine aminotransferase', 'H cholesterol', 'fastingbloodsugar_cuttoff_5point5', 'Triglycerides', 'diastolic', 'Hemoglobin', 'systolic', 'Red blood cell count', 'height', 'Platelet count', 'age', 'gender0female1male', 'Aspartate aminotransferase', 'White blood cell count', 'Lymphocyte count', 'The average hemoglobin concentration', 'Neutrophil count', 'Eosinophil count']
+    valid_features = [ 'bmi' ,
+ 'H cholesterol',
+ 'weight' ,
+ 'height',
+ 'Red blood cell count' ,
+ 'systolic',
+ 'Alanine aminotransferase' ,
+ 'The average hemoglobin concentration' ,
+ 'Triglycerides' ,
+ 'Eosinophil count' ,
+ 'diastolic' ,
+ 'Platelet count' ,
+ 'Lymphocyte count',
+ 'White blood cell count' ,
+ 'age',
+ 'Total bilirubin' ,
+ 'Cholinesterase',
+ 'Leucine aminopeptidase' ,
+ 'Alkaline phosphatase' ,
+'gender0female1male']
     inputs = nafld_data[valid_features]
     inputs = inputs.dropna()
     

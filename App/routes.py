@@ -274,49 +274,34 @@ def normalize(user_inputs):
 
 @app.route('/results_nafld', methods=["GET", "POST"])
 def results_nafld():
-    weight = float(request.form['Weight'])
-    height = float(request.form['Height'])
-    bmi = weight/((height/100)**2)
-    aln_atf = float(request.form['Aln_Atf'])
-    hdl_chol = float(request.form['HDL_Chol'])
-    fbscp5= float(request.form['FBSCP5'])
-    triglycerides = float(request.form['Triglycerides'])
-    dbp = float(request.form['DBP'])
-    hemoglobin = float(request.form['Hemoglobin'])
-    sbp = float(request.form['SBP'])
-    rbcc = float(request.form['RBCC'])
-    platelet = float(request.form['Platelet'])
-    age = float(request.form['Age'])
-    gender = int(request.form['Gender'])
-    as_atf = float(request.form['As_Atf'])
-    wbcc = float(request.form['WBCC'])
-    lc = float(request.form['LC'])
-    avg_hem = float(request.form['Avg_hem'])
-    nc = float(request.form['NC'])
-    ec = float(request.form['EC'])
+    features = [
+     'H cholesterol', 
+     'weight',
+     'height',
+     'Red blood cell count',
+     'systolic',
+     'Alanine aminotransferase',
+     'The average hemoglobin concentration',
+     'Triglycerides',
+     'Eosinophil count',
+     'diastolic',
+     'Platelet count',
+     'Lymphocyte count',
+     'White blood cell count',
+     'age',
+     'Total bilirubin',
+     'Cholinesterase',
+     'Leucine aminopeptidase',
+     'Alkaline phosphatase',
+     'gender0female1male']
     
-    user_inputs = {
-        'weight': weight,
-        'bmi': bmi,
-        'Alanine aminotransferase': aln_atf,
-        'H cholesterol': hdl_chol,
-        'fastingbloodsugar_cuttoff_5point5': fbscp5,
-        'Triglycerides': triglycerides,
-        'diastolic': dbp,
-        'Hemoglobin': hemoglobin,
-        'systolic': sbp,
-        'Red blood cell count': rbcc,
-        'height': height,
-        'Platelet count': platelet,
-        'age': age,
-        'gender0female1male': gender,
-        'Aspartate aminotransferase': as_atf,
-        'White blood cell count': wbcc,
-        'Lymphocyte count': lc,
-        'The average hemoglobin concentration': avg_hem,
-        'Neutrophil count': nc,
-        'Eosinophil count': ec
-    }
+    user_inputs = {}
+    
+    for q in features:
+        user_inputs[q] = float(request.form[q])
+    
+    user_inputs['bmi'] = user_inputs['weight']/((user_inputs['height']/100)**2)
+        
     inputs_norm = normalize(user_inputs)
 
     with open("App/static/models/nafld_models_lr.bin", "rb") as f:
