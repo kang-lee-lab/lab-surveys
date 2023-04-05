@@ -390,6 +390,13 @@ def results_mmpi():
         proba = model.predict_proba(answer)
         positive_proba[condition] = proba[0][1]
         
+    inputs_json = json.dumps(user_inputs)
+    results_json = json.dumps(positive_proba)
+  
+    response = Response("mmpi", inputs_json, results_json)
+    db.session.add(response)
+    db.session.commit()
+        
     return render_template('results_mmpi.html', 
                            Depression=round(positive_proba['DT']*100, 1),
                            Hypochondriasis=round(positive_proba['HsT']*100, 1),
