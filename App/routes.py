@@ -96,7 +96,7 @@ def queryMMPI():
 
 #@app.route('/queryDassAnxiety')
 #def queryDassAnxiety():
-#    responseResults = db.session.query(Response).filter(Response.response_type=='Dass Anxiety').all()
+#    responseResults = db.session.query(Response).filter(Response.response_type=='Dass_Anxiety').all()
 #    data = []
 #    responses = []
 #    for response in responseResults:
@@ -117,7 +117,7 @@ def queryMMPI():
 
 @app.route('/queryDassDepression')
 def queryDassDepression():
-    responseResults = db.session.query(Response).filter(Response.response_type=='Dass Depression').all()
+    responseResults = db.session.query(Response).filter(Response.response_type=='Dass_Depression').all()
     data = []
     responses = []
     for response in responseResults:
@@ -138,7 +138,7 @@ def queryDassDepression():
 
 @app.route('/queryDassStress')
 def queryDassAnxiety():
-    responseResults = db.session.query(Response).filter(Response.response_type=='Dass Anxiety').all()
+    responseResults = db.session.query(Response).filter(Response.response_type=='Dass_Anxiety').all()
     data = []
     responses = []
     for response in responseResults:
