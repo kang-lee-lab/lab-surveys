@@ -52,7 +52,7 @@ def queryASQ():
     
         temp.append(round(float(response.response_results), 3))
         data.append(temp)
-    return render_template('queryNafld.html', responses = responses, data = data, headings = ("id", "time", "results"))
+    return render_template('queryASQ.html', responses = responses, data = data, headings = ("id", "time", "results"))
 
 @app.route('/queryChildBMI')
 def queryChildBMI():
@@ -72,7 +72,7 @@ def queryChildBMI():
     
         temp.append(round(float(response.response_results), 3))
         data.append(temp)
-    return render_template('queryChildBMI.html', responses = responses, data = data, headings = ("id", "time", "results"))
+    return render_template('queryNafld.html', responses = responses, data = data, headings = ("id", "time", "results"))
 
 @app.route('/queryMMPI')
 def queryMMPI():
@@ -94,25 +94,25 @@ def queryMMPI():
         data.append(temp)
     return render_template('queryMMPI.html', responses = responses, data = data, headings = ("id", "time", "results"))
 
-@app.route('/queryDassAnxiety')
-def queryDassAnxiety():
-    responseResults = db.session.query(Response).filter(Response.response_type=='Dass Anxiety').all()
-    data = []
-    responses = []
-    for response in responseResults:
-        temp = []
-        temp.append(response.id)
-        temp.append(response.time_stamp)
-        str = response.response_answers
-        str = str.replace('{', '')
-        str = str.replace('"', '')
-        str = str.replace('}', '')
-        response_list = str.split(",")
-        responses.append(response_list)
-    
-        temp.append(round(float(response.response_results), 3))
-        data.append(temp)
-    return render_template('queryDassAnxiety.html', responses = responses, data = data, headings = ("id", "time", "results"))
+#@app.route('/queryDassAnxiety')
+#def queryDassAnxiety():
+#    responseResults = db.session.query(Response).filter(Response.response_type=='Dass Anxiety').all()
+#    data = []
+#    responses = []
+#    for response in responseResults:
+#        temp = []
+#        temp.append(response.id)
+#        temp.append(response.time_stamp)
+#        str = response.response_answers
+#        str = str.replace('{', '')
+#        str = str.replace('"', '')
+#        str = str.replace('}', '')
+#        response_list = str.split(",")
+#        responses.append(response_list)
+#    
+#        temp.append(round(float(response.response_results), 3))
+#        data.append(temp)
+#    return render_template('queryDassAnxiety.html', responses = responses, data = data, headings = ("id", "time", "results"))
 
 
 @app.route('/queryDassDepression')
