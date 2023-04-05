@@ -4,6 +4,5 @@ plotly
 gunicorn
 openpyxl
 kaleido
-sklearn
 scikit-learn==1.0.2
 xgboost==0.81
