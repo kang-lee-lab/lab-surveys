@@ -351,6 +351,13 @@ def results_childbmi():
     with open("App/static/models/childbmi_model_bmi.bin", "rb") as f:
         bmi_model = pickle.load(f)
         pred_bmi = bmi_model.predict(pd.DataFrame(user_inputs)).tolist()[0]
+        
+    inputs_json = json.dumps(user_inputs)
+    results_json = json.dumps(pred_bmi)
+  
+    response = Response("childBMI", inputs_json, results_json)
+    db.session.add(response)
+    db.session.commit()
     
     return render_template('results_childbmi.html', 
                            height=round(pred_height, 1),
