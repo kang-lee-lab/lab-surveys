@@ -14,6 +14,25 @@ data_folder = "App/static"
 def index():
     return render_template('index.html')
 
+@app.route('/queryNafld')
+def queryNafld():
+    responseResults = db.session.query(Response).filter(Response.response_type=='nafld').all()
+    data = []
+    responses = []
+    for response in responseResults:
+        temp = []
+        temp.append(response.id)
+        temp.append(response.time_stamp)
+        str = response.response_answers
+        str = str.replace('{', '')
+        str = str.replace('"', '')
+        str = str.replace('}', '')
+        response_list = str.split(",")
+        responses.append(response_list)
+    
+        temp.append(round(float(response.response_results), 3))
+        data.append(temp)
+    return render_template('queryNafld.html', responses = responses, data = data, headings = ("id", "time", "results"))
 
 @app.route('/asq')
 def asq():
