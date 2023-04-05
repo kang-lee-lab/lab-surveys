@@ -34,6 +34,128 @@ def queryNafld():
         data.append(temp)
     return render_template('queryNafld.html', responses = responses, data = data, headings = ("id", "time", "results"))
 
+@app.route('/queryASQ')
+def queryASQ():
+    responseResults = db.session.query(Response).filter(Response.response_type=='ASQ').all()
+    data = []
+    responses = []
+    for response in responseResults:
+        temp = []
+        temp.append(response.id)
+        temp.append(response.time_stamp)
+        str = response.response_answers
+        str = str.replace('{', '')
+        str = str.replace('"', '')
+        str = str.replace('}', '')
+        response_list = str.split(",")
+        responses.append(response_list)
+    
+        temp.append(round(float(response.response_results), 3))
+        data.append(temp)
+    return render_template('queryNafld.html', responses = responses, data = data, headings = ("id", "time", "results"))
+
+@app.route('/queryChildBMI')
+def queryChildBMI():
+    responseResults = db.session.query(Response).filter(Response.response_type=='childBMI').all()
+    data = []
+    responses = []
+    for response in responseResults:
+        temp = []
+        temp.append(response.id)
+        temp.append(response.time_stamp)
+        str = response.response_answers
+        str = str.replace('{', '')
+        str = str.replace('"', '')
+        str = str.replace('}', '')
+        response_list = str.split(",")
+        responses.append(response_list)
+    
+        temp.append(round(float(response.response_results), 3))
+        data.append(temp)
+    return render_template('queryChildBMI.html', responses = responses, data = data, headings = ("id", "time", "results"))
+
+@app.route('/queryMMPI')
+def queryMMPI():
+    responseResults = db.session.query(Response).filter(Response.response_type=='mmpi').all()
+    data = []
+    responses = []
+    for response in responseResults:
+        temp = []
+        temp.append(response.id)
+        temp.append(response.time_stamp)
+        str = response.response_answers
+        str = str.replace('{', '')
+        str = str.replace('"', '')
+        str = str.replace('}', '')
+        response_list = str.split(",")
+        responses.append(response_list)
+    
+        temp.append(round(float(response.response_results), 3))
+        data.append(temp)
+    return render_template('queryMMPI.html', responses = responses, data = data, headings = ("id", "time", "results"))
+
+@app.route('/queryDassAnxiety')
+def queryDassAnxiety():
+    responseResults = db.session.query(Response).filter(Response.response_type=='Dass Anxiety').all()
+    data = []
+    responses = []
+    for response in responseResults:
+        temp = []
+        temp.append(response.id)
+        temp.append(response.time_stamp)
+        str = response.response_answers
+        str = str.replace('{', '')
+        str = str.replace('"', '')
+        str = str.replace('}', '')
+        response_list = str.split(",")
+        responses.append(response_list)
+    
+        temp.append(round(float(response.response_results), 3))
+        data.append(temp)
+    return render_template('queryDassAnxiety.html', responses = responses, data = data, headings = ("id", "time", "results"))
+
+
+@app.route('/queryDassDepression')
+def queryDassDepression():
+    responseResults = db.session.query(Response).filter(Response.response_type=='Dass Depression').all()
+    data = []
+    responses = []
+    for response in responseResults:
+        temp = []
+        temp.append(response.id)
+        temp.append(response.time_stamp)
+        str = response.response_answers
+        str = str.replace('{', '')
+        str = str.replace('"', '')
+        str = str.replace('}', '')
+        response_list = str.split(",")
+        responses.append(response_list)
+    
+        temp.append(round(float(response.response_results), 3))
+        data.append(temp)
+    return render_template('queryDassDepression.html', responses = responses, data = data, headings = ("id", "time", "results"))
+
+
+@app.route('/queryDassStress')
+def queryDassAnxiety():
+    responseResults = db.session.query(Response).filter(Response.response_type=='Dass Anxiety').all()
+    data = []
+    responses = []
+    for response in responseResults:
+        temp = []
+        temp.append(response.id)
+        temp.append(response.time_stamp)
+        str = response.response_answers
+        str = str.replace('{', '')
+        str = str.replace('"', '')
+        str = str.replace('}', '')
+        response_list = str.split(",")
+        responses.append(response_list)
+    
+        temp.append(round(float(response.response_results), 3))
+        data.append(temp)
+    return render_template('queryDassAnxiety.html', responses = responses, data = data, headings = ("id", "time", "results"))
+
 @app.route('/asq')
 def asq():
     return render_template('asq.html')
