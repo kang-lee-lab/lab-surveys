@@ -310,6 +310,13 @@ def results_nafld():
     model = all_models['models'][0]
     proba = model.predict_proba(pd.DataFrame.from_dict(inputs_norm)) 
     positive = proba[0][1] # Positive probability
+    
+    inputs_json = json.dumps(user_inputs)
+    results_json = json.dumps(positive)
+  
+    response = Response("nafld", inputs_json, results_json)
+    db.session.add(response)
+    db.session.commit()
 
     return render_template('results_nafld.html',
                            p1=round((positive*100), 1),
