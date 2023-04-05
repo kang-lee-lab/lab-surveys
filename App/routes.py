@@ -438,7 +438,14 @@ def results_anxiety_moderate():
     
     proba = model[0].predict_proba(user_inputs)
     positive = proba[0][1]
-        
+    
+    inputs_json = json.dumps(user_inputs.to_dict())
+    results_json = json.dumps(positive)
+  
+    response = Response("DASS Anxiety", inputs_json, results_json)
+    db.session.add(response)
+    db.session.commit()
+
     return render_template('results_anxiety_moderate.html', p1=round((positive*100), 1))
 
 
@@ -455,7 +462,6 @@ def results_depression_moderate():
     for q in questions:
         user_inputs['Q{}A'.format(q)] = [int(request.form['Q{}'.format(q)])]
         
-
     user_inputs = pd.DataFrame.from_dict(user_inputs)
 
     with open("App/static/models/depression_model_moderate.bin", "rb") as f:
@@ -463,6 +469,13 @@ def results_depression_moderate():
     
     proba = model[0].predict_proba(user_inputs)
     positive = proba[0][1]
+    
+    inputs_json = json.dumps(user_inputs.to_dict())
+    results_json = json.dumps(positive)
+  
+    response = Response("DASS Depression", inputs_json, results_json)
+    db.session.add(response)
+    db.session.commit()
         
     return render_template('results_depression_moderate.html', p1=round((positive*100), 1))
 
@@ -488,6 +501,13 @@ def results_stress_moderate():
     
     proba = model[0].predict_proba(user_inputs)
     positive = proba[0][1]
+    
+    inputs_json = json.dumps(user_inputs.to_dict())
+    results_json = json.dumps(positive)
+  
+    response = Response("DASS Stress", inputs_json, results_json)
+    db.session.add(response)
+    db.session.commit()
         
     return render_template('results_stress_moderate.html', p1=round((positive*100), 1))
 
