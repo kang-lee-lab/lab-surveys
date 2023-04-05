@@ -583,7 +583,7 @@ def results_anxiety_moderate():
     inputs_json = json.dumps(user_inputs.to_dict())
     results_json = json.dumps(positive)
   
-    response = Response("DASS Anxiety", inputs_json, results_json)
+    response = Response("DASS_Anxiety", inputs_json, results_json)
     db.session.add(response)
     db.session.commit()
 
@@ -614,7 +614,7 @@ def results_depression_moderate():
     inputs_json = json.dumps(user_inputs.to_dict())
     results_json = json.dumps(positive)
   
-    response = Response("DASS Depression", inputs_json, results_json)
+    response = Response("DASS_Depression", inputs_json, results_json)
     db.session.add(response)
     db.session.commit()
         
@@ -646,7 +646,7 @@ def results_stress_moderate():
     inputs_json = json.dumps(user_inputs.to_dict())
     results_json = json.dumps(positive)
   
-    response = Response("DASS Stress", inputs_json, results_json)
+    response = Response("DASS_Stress", inputs_json, results_json)
     db.session.add(response)
     db.session.commit()
         
