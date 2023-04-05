@@ -390,7 +390,7 @@ def results_mmpi():
         proba = model.predict_proba(answer)
         positive_proba[condition] = proba[0][1]
         
-    inputs_json = json.dumps(user_inputs)
+    inputs_json = json.dumps(user_inputs.to_dict())
     results_json = json.dumps(positive_proba)
   
     response = Response("mmpi", inputs_json, results_json)
