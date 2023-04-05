@@ -4,7 +4,8 @@ from flask import render_template, request
 from math import sqrt
 import pandas as pd
 import plotly.graph_objects as go
-from App import app
+import json
+from App import app, db, Response
 
 data_folder = "App/static"
 
