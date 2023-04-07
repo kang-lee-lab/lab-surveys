@@ -137,7 +137,7 @@ def queryDassDepression():
 
 
 @app.route('/queryDassStress')
-def queryDassAnxiety():
+def queryDassStress():
     responseResults = db.session.query(Response).filter(Response.response_type=='Dass_Anxiety').all()
     data = []
     responses = []
