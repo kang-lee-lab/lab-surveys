@@ -110,7 +110,7 @@ def queryDassAnxiety():
         response_list = str.split(",")
         responses.append(response_list)
     
-        temp.append(round(float(response.response_results), 3))
+        temp.append(float(response.response_results), 3)
         data.append(temp)
     return render_template('queryDassAnxiety.html', responses = responses, data = data, headings = ("id", "time", "results"))
 
