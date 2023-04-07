@@ -90,7 +90,7 @@ def queryMMPI():
         response_list = str.split(",")
         responses.append(response_list)
     
-        temp.append(round(float(response.response_results), 3))
+        #temp.append(round(float(response.response_results), 3))
         data.append(temp)
     return render_template('queryMMPI.html', responses = responses, data = data, headings = ("id", "time", "results"))
 
