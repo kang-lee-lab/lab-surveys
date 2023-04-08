@@ -87,9 +87,13 @@ def queryMMPI():
         str = str.replace('{', '')
         str = str.replace('"', '')
         str = str.replace('}', '')
+        response_str = response.response_results
+        response_str.replace('{', '')
+        response_str.replace('}', '')
+        response_str.replace('"', '')
         response_list = str.split(",")
         responses.append(response_list)
-        temp.append(response.response_results)
+        temp.append(response_str)
         data.append(temp)
     return render_template('queryMMPI.html', responses = responses, data = data, headings = ("id", "time", "results"))
 
