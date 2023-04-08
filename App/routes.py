@@ -117,7 +117,7 @@ def queryDassAnxiety():
         response_list = [str.split(","), response.id]
         responses.append(response_list)
         
-        temp.append(float(response.response_results), 3)
+        temp.append(float(response.response_results))
         data.append(temp)
     return render_template('queryDassAnxiety.html', responses = responses, data = data, headings = ("id", "time", "results"))
 
@@ -399,6 +399,13 @@ def results_asq():
                 break
 
         return x
+    
+    inputs_json = json.dumps(hrv_input)
+    results_json = json.dumps(asq_result)
+  
+    response = Response("ASQ", inputs_json, results_json)
+    db.session.add(response)
+    db.session.commit()
 
     return render_template('results_asq.html',
                            p1=asq_result,  # Round value to 2 decimals
