@@ -91,6 +91,7 @@ def queryMMPI():
         response_str.replace('{', '')
         response_str.replace('}', '')
         response_str.replace('"', '')
+        print(response_str)
         response_list = str.split(",")
         responses.append(response_list)
         temp.append(response_str)
