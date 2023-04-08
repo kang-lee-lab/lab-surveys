@@ -125,6 +125,7 @@ def queryDassAnxiety():
 @app.route('/queryDassDepression')
 def queryDassDepression():
     responseResults = db.session.query(Response).filter(Response.response_type=='Dass_Depression').all()
+    print(responseResults)
     data = []
     responses = []
     for response in responseResults:
