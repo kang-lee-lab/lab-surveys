@@ -28,9 +28,9 @@ def queryNafld():
         str = str.replace('"', '')
         str = str.replace('}', '')
         response_list = str.split(",")
-        responses.append(response_list)
         response_list = [str.split(","), response.id]
-    
+        responses.append(response_list)
+        
         temp.append(round(float(response.response_results), 3))
         data.append(temp)
     return render_template('queryNafld.html', responses = responses, data = data, headings = ("id", "time", "results"))
@@ -49,8 +49,9 @@ def queryASQ():
         str = str.replace('"', '')
         str = str.replace('}', '')
         response_list = str.split(",")
-        responses.append(response_list)
         response_list = [str.split(","), response.id]
+        responses.append(response_list)
+        
     
         temp.append(round(float(response.response_results), 3))
         data.append(temp)
@@ -70,9 +71,8 @@ def queryChildBMI():
         str = str.replace('"', '')
         str = str.replace('}', '')
         response_list = str.split(",")
-        responses.append(response_list)
         response_list = [str.split(","), response.id]
-    
+        responses.append(response_list)
         temp.append(round(float(response.response_results), 3))
         data.append(temp)
     return render_template('queryChildBMI.html', responses = responses, data = data, headings = ("id", "time", "results"))
@@ -94,7 +94,6 @@ def queryMMPI():
         response_str = response_str.replace('{', '')
         response_str = response_str.replace('}', '')
         response_str = response_str.replace('"', '')
-        print(response_str)
         response_list = [str.split(","), response.id]
         responses.append(response_list)
         temp.append(response_str)
@@ -115,9 +114,9 @@ def queryDassAnxiety():
         str = str.replace('"', '')
         str = str.replace('}', '')
         response_list = str.split(",")
-        responses.append(response_list)
         response_list = [str.split(","), response.id]
-    
+        responses.append(response_list)
+        
         temp.append(float(response.response_results), 3)
         data.append(temp)
     return render_template('queryDassAnxiety.html', responses = responses, data = data, headings = ("id", "time", "results"))
@@ -137,9 +136,9 @@ def queryDassDepression():
         str = str.replace('"', '')
         str = str.replace('}', '')
         response_list = str.split(",")
-        responses.append(response_list)
         response_list = [str.split(","), response.id]
-    
+        responses.append(response_list)
+        
         temp.append(float(response.response_results))
         data.append(temp)
     return render_template('queryDassDepression.html', responses = responses, data = data, headings = ("id", "time", "results"))
@@ -159,8 +158,8 @@ def queryDassStress():
         str = str.replace('"', '')
         str = str.replace('}', '')
         response_list = str.split(",")
-        responses.append(response_list)
         response_list = [str.split(","), response.id]
+        responses.append(response_list)
     
         temp.append(float(response.response_results))
         data.append(temp)
