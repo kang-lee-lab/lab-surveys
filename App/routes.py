@@ -115,7 +115,7 @@ def queryDassAnxiety():
         str = str.replace('}', '')
         response_list = str.split(",")
         response_list = [str.split(","), response.id]
-        responses.append(response_list)
+        #responses.append(response_list)
         
         temp.append(float(response.response_results), 3)
         data.append(temp)
@@ -139,7 +139,7 @@ def queryDassDepression():
         response_list = [str.split(","), response.id]
         responses.append(response_list)
         
-        temp.append(float(response.response_results))
+        #temp.append(float(response.response_results))
         data.append(temp)
     return render_template('queryDassDepression.html', responses = responses, data = data, headings = ("id", "time", "results"))
 
@@ -161,7 +161,7 @@ def queryDassStress():
         response_list = [str.split(","), response.id]
         responses.append(response_list)
     
-        temp.append(float(response.response_results))
+        #temp.append(float(response.response_results))
         data.append(temp)
     return render_template('queryDassAnxiety.html', responses = responses, data = data, headings = ("id", "time", "results"))
 
