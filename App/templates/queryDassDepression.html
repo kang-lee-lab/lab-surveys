@@ -102,9 +102,9 @@
     <div class = "split right col-lg-6">
         
             {%for response in responses%}
-                <p> response: </p>
+                <p> response {{response[1]}}: </p>
                 <table>
-                    {%for i in response%}
+                    {%for i in response[0]%}
                         <tr>
                             
                             <td style="padding: 20px">{{ i }}</td>

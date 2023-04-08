@@ -29,6 +29,7 @@ def queryNafld():
         str = str.replace('}', '')
         response_list = str.split(",")
         responses.append(response_list)
+        response_list = [str.split(","), response.id]
     
         temp.append(round(float(response.response_results), 3))
         data.append(temp)
@@ -49,6 +50,7 @@ def queryASQ():
         str = str.replace('}', '')
         response_list = str.split(",")
         responses.append(response_list)
+        response_list = [str.split(","), response.id]
     
         temp.append(round(float(response.response_results), 3))
         data.append(temp)
@@ -69,6 +71,7 @@ def queryChildBMI():
         str = str.replace('}', '')
         response_list = str.split(",")
         responses.append(response_list)
+        response_list = [str.split(","), response.id]
     
         temp.append(round(float(response.response_results), 3))
         data.append(temp)
@@ -113,6 +116,7 @@ def queryDassAnxiety():
         str = str.replace('}', '')
         response_list = str.split(",")
         responses.append(response_list)
+        response_list = [str.split(","), response.id]
     
         temp.append(float(response.response_results), 3)
         data.append(temp)
@@ -134,6 +138,7 @@ def queryDassDepression():
         str = str.replace('}', '')
         response_list = str.split(",")
         responses.append(response_list)
+        response_list = [str.split(","), response.id]
     
         temp.append(float(response.response_results))
         data.append(temp)
@@ -155,6 +160,7 @@ def queryDassStress():
         str = str.replace('}', '')
         response_list = str.split(",")
         responses.append(response_list)
+        response_list = [str.split(","), response.id]
     
         temp.append(float(response.response_results))
         data.append(temp)
