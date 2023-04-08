@@ -92,7 +92,7 @@ def queryMMPI():
         response_str = response_str.replace('}', '')
         response_str = response_str.replace('"', '')
         print(response_str)
-        response_list = str.split(",")
+        response_list = [str.split(","), response.id]
         responses.append(response_list)
         temp.append(response_str)
         data.append(temp)
