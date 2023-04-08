@@ -400,7 +400,44 @@ def results_asq():
 
         return x
     
-    inputs_json = json.dumps(hrv_input)
+    features = [
+        'MHR'
+        'SDHR'
+        'max_RR_interval'
+        'min_RR_interval'
+        'mean_RR_interval'
+        'median_RR_interval'
+        'SDNN'
+        'NN50'
+        'pNN500'
+        'RMSSDD'
+        'VLF'
+        'LF'
+        'HF'
+        'totall'
+        'VLF_peakpeak'
+        'LF_peakeak'
+        'HF_peakeak'
+        'VLF_percentpercent'
+        'LF_percentercent'
+        'HF_percentercent'
+        'LF_nuu'
+        'HF_nuu'
+        'LF_HFF'
+        'SD1'
+        'SD2'
+        'SD1_SD2SD2'
+        'alphaa'
+        'alpha1a1'
+        'alpha2'
+    ]
+    
+    user_inputs = {}
+    
+    for q in features:
+        user_inputs[q] = float(request.form[q])
+    
+    inputs_json = json.dumps(user_inputs)
     results_json = json.dumps(asq_result)
   
     response = Response("ASQ", inputs_json, results_json)
