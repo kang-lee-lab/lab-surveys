@@ -432,12 +432,12 @@ def results_asq():
         'alpha2'
     ]
     
-    #user_inputs = {}
+    user_inputs = {}
     
-    #for q in features:
-    #    user_inputs[q] = float(request.form[q])
+    for q in range(len(features)):
+        user_inputs[features[q]] = hrv_input[q]
     
-    inputs_json = json.dumps(hrv_input)
+    inputs_json = json.dumps(user_inputs)
     results_json = json.dumps(asq_result)
   
     response = Response("ASQ", inputs_json, results_json)
