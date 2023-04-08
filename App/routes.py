@@ -87,7 +87,7 @@ def queryMMPI():
         str = str.replace('{', '')
         str = str.replace('"', '')
         str = str.replace('}', '')
-        response_str = str(response.response_results)
+        response_str = response.response_results
         response_str.replace('{', '')
         response_str.replace('}', '')
         response_str.replace('"', '')
