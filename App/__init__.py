@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import utcnow
 from sqlalchemy.types import DateTime
+import time
+from datetime import datetime, timedelta
 import os
 
 app = Flask(__name__, static_url_path='')
@@ -11,7 +12,7 @@ db = SQLAlchemy(app)
 class Response(db.Model):
     __tablename__ = 'responses'
     id = db.Column(db.Integer, primary_key=True)
-    time_stamp = db.Column(db.DateTime(timezone=False), server_default= utcnow())
+    time_stamp = db.Column(db.DateTime(timezone=False), server_default= datetime.utcnow())
     response_type = db.Column(db.String(40), nullable=False)
     response_answers = db.Column(db.JSON, nullable = False)
     response_results = db.Column(db.JSON, nullable = False)
