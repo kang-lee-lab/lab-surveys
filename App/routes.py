@@ -4,7 +4,8 @@ from flask import render_template, request
 from math import sqrt
 import pandas as pd
 import plotly.graph_objects as go
-from App import app
+import json
+from App import app, db, Response
 
 data_folder = "App/static"
 
@@ -13,6 +14,156 @@ data_folder = "App/static"
 def index():
     return render_template('index.html')
 
+@app.route('/queryNafld')
+def queryNafld():
+    responseResults = db.session.query(Response).filter(Response.response_type=='nafld').all()
+    data = []
+    responses = []
+    for response in responseResults:
+        temp = []
+        temp.append(response.id)
+        temp.append(response.time_stamp)
+        str = response.response_answers
+        str = str.replace('{', '')
+        str = str.replace('"', '')
+        str = str.replace('}', '')
+        response_list = str.split(",")
+        response_list = [str.split(","), response.id]
+        responses.append(response_list)
+        
+        temp.append(round(float(response.response_results), 3))
+        data.append(temp)
+    return render_template('queryNafld.html', responses = responses, data = data, headings = ("id", "time", "results"))
+
+@app.route('/queryASQ')
+def queryASQ():
+    responseResults = db.session.query(Response).filter(Response.response_type=='ASQ').all()
+    data = []
+    responses = []
+    for response in responseResults:
+        temp = []
+        temp.append(response.id)
+        temp.append(response.time_stamp)
+        str = response.response_answers
+        str = str.replace('{', '')
+        str = str.replace('"', '')
+        str = str.replace('}', '')
+        response_list = str.split(",")
+        response_list = [str.split(","), response.id]
+        responses.append(response_list)
+        
+    
+        temp.append(round(float(response.response_results), 3))
+        data.append(temp)
+    return render_template('queryASQ.html', responses = responses, data = data, headings = ("id", "time", "results"))
+
+@app.route('/queryChildBMI')
+def queryChildBMI():
+    responseResults = db.session.query(Response).filter(Response.response_type=='childBMI').all()
+    data = []
+    responses = []
+    for response in responseResults:
+        temp = []
+        temp.append(response.id)
+        temp.append(response.time_stamp)
+        str = response.response_answers
+        str = str.replace('{', '')
+        str = str.replace('"', '')
+        str = str.replace('}', '')
+        response_list = str.split(",")
+        response_list = [str.split(","), response.id]
+        responses.append(response_list)
+        temp.append(round(float(response.response_results), 3))
+        data.append(temp)
+    return render_template('queryChildBMI.html', responses = responses, data = data, headings = ("id", "time", "results"))
+
+@app.route('/queryMMPI')
+def queryMMPI():
+    responseResults = db.session.query(Response).filter(Response.response_type=='mmpi').all()
+    data = []
+    responses = []
+    for response in responseResults:
+        temp = []
+        temp.append(response.id)
+        temp.append(response.time_stamp)
+        str = response.response_answers
+        str = str.replace('{', '')
+        str = str.replace('"', '')
+        str = str.replace('}', '')
+        response_str = response.response_results
+        response_str = response_str.replace('{', '')
+        response_str = response_str.replace('}', '')
+        response_str = response_str.replace('"', '')
+        response_list = [str.split(","), response.id]
+        responses.append(response_list)
+        temp.append(response_str)
+        data.append(temp)
+    return render_template('queryMMPI.html', responses = responses, data = data, headings = ("id", "time", "results"))
+
+@app.route('/queryDassAnxiety')
+def queryDassAnxiety():
+    responseResults = db.session.query(Response).filter(Response.response_type=='DASS_Anxiety').all()
+    data = []
+    responses = []
+    for response in responseResults:
+        temp = []
+        temp.append(response.id)
+        temp.append(response.time_stamp)
+        str = response.response_answers
+        str = str.replace('{', '')
+        str = str.replace('"', '')
+        str = str.replace('}', '')
+        response_list = str.split(",")
+        response_list = [str.split(","), response.id]
+        responses.append(response_list)
+        
+        temp.append(float(response.response_results))
+        data.append(temp)
+    return render_template('queryDassAnxiety.html', responses = responses, data = data, headings = ("id", "time", "results"))
+
+
+@app.route('/queryDassDepression')
+def queryDassDepression():
+    responseResults = db.session.query(Response).filter(Response.response_type=='DASS_Depression').all()
+    data = []
+    responses = []
+    for response in responseResults:
+        temp = []
+        temp.append(response.id)
+        temp.append(response.time_stamp)
+        str = response.response_answers
+        str = str.replace('{', '')
+        str = str.replace('"', '')
+        str = str.replace('}', '')
+        response_list = str.split(",")
+        response_list = [str.split(","), response.id]
+        responses.append(response_list)
+        
+        temp.append(float(response.response_results))
+        data.append(temp)
+    return render_template('queryDassDepression.html', responses = responses, data = data, headings = ("id", "time", "results"))
+
+
+@app.route('/queryDassStress')
+def queryDassStress():
+    responseResults = db.session.query(Response).filter(Response.response_type=='DASS_Anxiety').all()
+    data = []
+    responses = []
+    for response in responseResults:
+        temp = []
+        temp.append(response.id)
+        temp.append(response.time_stamp)
+        str = response.response_answers
+        str = str.replace('{', '')
+        str = str.replace('"', '')
+        str = str.replace('}', '')
+        response_list = str.split(",")
+        response_list = [str.split(","), response.id]
+        responses.append(response_list)
+    
+        temp.append(float(response.response_results))
+        data.append(temp)
+    return render_template('queryDassAnxiety.html', responses = responses, data = data, headings = ("id", "time", "results"))
 
 @app.route('/asq')
 def asq():
@@ -248,6 +399,50 @@ def results_asq():
                 break
 
         return x
+    
+    features = [
+        'MHR',
+        'SDHR',
+        'max_RR_interval',
+        'min_RR_interval',
+        'mean_RR_interval',
+        'median_RR_interval',
+        'SDNN',
+        'NN50',
+        'pNN500',
+        'RMSSDD',
+        'VLF',
+        'LF',
+        'HF',
+        'totall',
+        'VLF_peakpeak',
+        'LF_peakeak',
+        'HF_peakeak',
+        'VLF_percentpercent',
+        'LF_percentercent',
+        'HF_percentercent',
+        'LF_nuu',
+        'HF_nuu',
+        'LF_HFF',
+        'SD1',
+        'SD2',
+        'SD1_SD2SD2',
+        'alphaa',
+        'alpha1a1',
+        'alpha2'
+    ]
+    
+    user_inputs = {}
+    
+    for q in range(len(features)):
+        user_inputs[features[q]] = float(hrv_input[q])
+    
+    inputs_json = json.dumps(user_inputs)
+    results_json = json.dumps(asq_result)
+  
+    response = Response("ASQ", inputs_json, results_json)
+    db.session.add(response)
+    db.session.commit()
 
     return render_template('results_asq.html',
                            p1=asq_result,  # Round value to 2 decimals
@@ -310,6 +505,13 @@ def results_nafld():
     model = all_models['models'][0]
     proba = model.predict_proba(pd.DataFrame.from_dict(inputs_norm)) 
     positive = proba[0][1] # Positive probability
+    
+    inputs_json = json.dumps(user_inputs)
+    results_json = json.dumps(positive)
+  
+    response = Response("nafld", inputs_json, results_json)
+    db.session.add(response)
+    db.session.commit()
 
     return render_template('results_nafld.html',
                            p1=round((positive*100), 1),
@@ -343,6 +545,13 @@ def results_childbmi():
     with open("App/static/models/childbmi_model_bmi.bin", "rb") as f:
         bmi_model = pickle.load(f)
         pred_bmi = bmi_model.predict(pd.DataFrame(user_inputs)).tolist()[0]
+        
+    inputs_json = json.dumps(user_inputs)
+    results_json = json.dumps(pred_bmi)
+  
+    response = Response("childBMI", inputs_json, results_json)
+    db.session.add(response)
+    db.session.commit()
     
     return render_template('results_childbmi.html', 
                            height=round(pred_height, 1),
@@ -382,6 +591,13 @@ def results_mmpi():
         proba = model.predict_proba(answer)
         positive_proba[condition] = proba[0][1]
         
+    inputs_json = json.dumps(user_inputs.to_dict())
+    results_json = json.dumps(positive_proba)
+  
+    response = Response("mmpi", inputs_json, results_json)
+    db.session.add(response)
+    db.session.commit()
+        
     return render_template('results_mmpi.html', 
                            Depression=round(positive_proba['DT']*100, 1),
                            Hypochondriasis=round(positive_proba['HsT']*100, 1),
@@ -416,7 +632,14 @@ def results_anxiety_moderate():
     
     proba = model[0].predict_proba(user_inputs)
     positive = proba[0][1]
-        
+    
+    inputs_json = json.dumps(user_inputs.to_dict())
+    results_json = json.dumps(positive)
+  
+    response = Response("DASS_Anxiety", inputs_json, results_json)
+    db.session.add(response)
+    db.session.commit()
+
     return render_template('results_anxiety_moderate.html', p1=round((positive*100), 1))
 
 
@@ -433,7 +656,6 @@ def results_depression_moderate():
     for q in questions:
         user_inputs['Q{}A'.format(q)] = [int(request.form['Q{}'.format(q)])]
         
-
     user_inputs = pd.DataFrame.from_dict(user_inputs)
 
     with open("App/static/models/depression_model_moderate.bin", "rb") as f:
@@ -441,6 +663,13 @@ def results_depression_moderate():
     
     proba = model[0].predict_proba(user_inputs)
     positive = proba[0][1]
+    
+    inputs_json = json.dumps(user_inputs.to_dict())
+    results_json = json.dumps(positive)
+  
+    response = Response("DASS_Depression", inputs_json, results_json)
+    db.session.add(response)
+    db.session.commit()
         
     return render_template('results_depression_moderate.html', p1=round((positive*100), 1))
 
@@ -466,6 +695,13 @@ def results_stress_moderate():
     
     proba = model[0].predict_proba(user_inputs)
     positive = proba[0][1]
+    
+    inputs_json = json.dumps(user_inputs.to_dict())
+    results_json = json.dumps(positive)
+  
+    response = Response("DASS_Stress", inputs_json, results_json)
+    db.session.add(response)
+    db.session.commit()
         
     return render_template('results_stress_moderate.html', p1=round((positive*100), 1))
 
