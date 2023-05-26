@@ -12,6 +12,13 @@
       
     }
 
+    .container{
+        width: 100%;
+        height: auto;
+        display:flex
+    }
+
+
     .split {
         height: 100%;
         width: 50%;
@@ -23,13 +30,24 @@
     }
 
     .center {
-        position: absolute;
+        /*position: absolute;*/
 
         right: 13%;
         color:#ffffff;
         text-align: left;
         font-family: 'Inter Tight', sans-serif;
     
+    }
+
+    .left{
+
+        background: #ffffff;
+        font-family: 'Inter Tight', sans-serif;
+        color:#4F6D7A;
+        padding-left: 10%;
+        padding-right: 10%;
+        padding-top: 5%;
+        border-radius: 25px;
     }
 
     .rcorners1 {
@@ -39,7 +57,7 @@
         border-radius: 25px;
         width: 500px;
         background: #ffffff;
-        padding: 20px; 
+        padding: 250px; 
         text-align: left;
         color:#4F6D7A
         
@@ -47,7 +65,8 @@
 
     .right {
         right: 0;
-        background-color:#4F6D7A
+        background-color:#4F6D7A;
+        padding: 20px; 
     }
 
     .highlight {
@@ -73,51 +92,53 @@
 </head>
 
 <body>
-    <div class="split rcorners1">
-        <h1>
-            Welcome to the <span class="highlight">Children's Future BMI</span> prediction interactive webpage.
-        </h1>
+    <div class="container">
+        <div class="split left">
+            <h1>
+                Welcome to the <span class="highlight">Children's Future BMI</span> prediction interactive webpage.
+            </h1>
 
-        <h2>
-            This applet computes <span class="highlight">children's future height, weight, and BMI</span>. Based on a child's current age and physical measurements, this app uses a machine learning model to compute the children's future height, weight, and BMI for a specified number of years into the future.
-        </h2>
-        <br>
-        <h2>
-            Yasin, Y., Sun, Y.H., and Lee, K. (2022). A machine learning approach for predicting children's future BMI. Canadian Developmental Psychology Conference.
-        </h2>
-    </div>
+            <h2>
+                This applet computes <span class="highlight">children's future height, weight, and BMI</span>. Based on a child's current age and physical measurements, this app uses a machine learning model to compute the children's future height, weight, and BMI for a specified number of years into the future.
+            </h2>
+            <br>
+            <h2>
+                Yasin, Y., Sun, Y.H., and Lee, K. (2022). A machine learning approach for predicting children's future BMI. Canadian Developmental Psychology Conference.
+            </h2>
+        </div>
 
-    <div class="split right">
-        <form action="/results_childbmi" class="center" method="post">
+        <div class="split right">
+            <form action="/results_childbmi" class="center" method="post">
 
-            <label> <b>Please enter the following information about your child:</b> </label><br><br>
-            <p>
-                <label for="Gender">Gender: </label>
-                <select id="lname" name="Gender" required>
-                    <option value="1">Male</option>
-                    <option value="0">Female</option>
-                </select>
-            </p>
-            <p>
-                <label for="Age">Current age: </label>
-                <input type="number" id="fname" name="Age" value="5" min="0" max="15" step="1" required>
-            </p>
-            <p>
-                <label for="Weight">Weight (kg): </label>
-                <input type="number" id="fname" name="Weight" value="20" min="3" max="150" step="1" required>
-            </p>
-            <p>
-                <label for="Height">Height (cm): </label>
-                <input type="number" id="lname" name="Height" value="110" min="50" max="200" step="1" required>
-            </p>
-            <p>
-                <label for="Age1">Age to predict: </label>
-                <input type="number" id="fname" name="Age1" value="15" min="5" max="18" step="1" required>
-            </p>
-            <input type="submit" name= "form" value="Submit" />
+                <label> <b>Please enter the following information about your child:</b> </label><br><br>
+                <p>
+                    <label for="Gender">Gender: </label>
+                    <select id="lname" name="Gender" required>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="Age">Current age: </label>
+                    <input type="number" id="fname" name="Age" value="5" min="0" max="15" step="1" required>
+                </p>
+                <p>
+                    <label for="Weight">Weight (kg): </label>
+                    <input type="number" id="fname" name="Weight" value="20" min="3" max="150" step="1" required>
+                </p>
+                <p>
+                    <label for="Height">Height (cm): </label>
+                    <input type="number" id="lname" name="Height" value="110" min="50" max="200" step="1" required>
+                </p>
+                <p>
+                    <label for="Age1">Age to predict: </label>
+                    <input type="number" id="fname" name="Age1" value="15" min="5" max="18" step="1" required>
+                </p>
+                <input type="submit" name= "form" value="Submit" />
 
-        </form>
-    </div>
+            </form>
+        </div>
+    </div>  
 
 </body>
 

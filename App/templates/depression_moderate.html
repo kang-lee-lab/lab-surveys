@@ -12,6 +12,12 @@
       
     }
 
+    .container{
+        width: 100%;
+        height: auto;
+        display:flex
+    }
+
     .split {
         height: 100%;
         width: 50%;
@@ -23,7 +29,7 @@
     }
 
     .center {
-        position: absolute;
+        /*position: absolute;*/
 
         right: 13%;
         color:#ffffff;
@@ -45,9 +51,21 @@
         
     }
 
+    .left{
+
+        background: #ffffff;
+        font-family: 'Inter Tight', sans-serif;
+        color:#4F6D7A;
+        padding-left: 10%;
+        padding-right: 10%;
+        padding-top: 5%;
+        border-radius: 25px;
+    }
+
     .right {
         right: 0;
-        background-color:#4F6D7A
+        background-color:#4F6D7A;
+        padding: 20px; 
     }
 
     .highlight {
@@ -73,105 +91,106 @@
 </head>
 
 <body>
-    <div class="split rcorners1">
-        <h1>
-            Welcome to the <span class="highlight">Depression Anxiety Stress Scales (DASS)</span> prediction interactive webpage.
-        </h1>
+    <div class="container">
+        <div class="split left">
+            <h1>
+                Welcome to the <span class="highlight">Depression Anxiety Stress Scales (DASS)</span> prediction interactive webpage.
+            </h1>
 
-        <h2>
-            This applet computes an individual's <span class="highlight">likelihood of moderate anxiety</span>. Based on 6 questions, this app uses a machine learning model to compute the likelihood of anxiety.
-        </h2>
-       
+            <h2>
+                This applet computes an individual's <span class="highlight">likelihood of moderate anxiety</span>. Based on 6 questions, this app uses a machine learning model to compute the likelihood of anxiety.
+            </h2>
+        
+        </div>
+
+        <div class="split right">
+            <form action="/results_depression_moderate" class="center" method="post">
+
+                <label> <b>Please enter your answers below:</b> </label><br><br>
+                <p>
+                    <label for="Gender">Gender: </label>
+                    <select id="lname" name="Gender" step="any" required>
+                        <option value="2">Female</option>
+                        <option value="1">Male</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="Region">Region: </label>
+                    <select id="lname" name="Region" step="any" required>
+                        <option value="0">East</option>
+                        <option value="2">West</option>
+                <option value="1">Other</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="Age">Age: </label>
+                    <input type="number" id="fname" name="Age" value="40" min="18" max="100" step="any" required>
+                </p>
+
+                <p> 
+                <label for="Q3">I couldn't seem to experience any positive feeling at all </label> 
+                <select id="lname" name="Q3" step="any" required> 
+                <option value="1">Did not apply to me at all</option> 
+                <option value="2">Applied to me to some degree, or some of the time</option> 
+                <option value="3">Applied to me to a considerable degree, or a good part of time</option> 
+                <option value="4">Applied to me very much, or most of the time</option> 
+                </select> 
+                </p> 
+                <br>
+                <p> 
+                <label for="Q13">I felt sad and depressed</label> 
+                <select id="lname" name="Q13" step="any" required> 
+                <option value="1">Did not apply to me at all</option> 
+                <option value="2">Applied to me to some degree, or some of the time</option> 
+                <option value="3">Applied to me to a considerable degree, or a good part of time</option> 
+                <option value="4">Applied to me very much, or most of the time</option> 
+                </select> 
+                </p> 
+                <br>
+                <p> 
+                <label for="Q16">I felt that I had lost interest in just about everything </label> 
+                <select id="lname" name="Q16" step="any" required> 
+                <option value="1">Did not apply to me at all</option> 
+                <option value="2">Applied to me to some degree, or some of the time</option> 
+                <option value="3">Applied to me to a considerable degree, or a good part of time</option> 
+                <option value="4">Applied to me very much, or most of the time</option> 
+                </select> 
+                </p> 
+                <br>
+                <p> 
+                <label for="Q22">I found it hard to wind down </label> 
+                <select id="lname" name="Q22" step="any" required> 
+                <option value="1">Did not apply to me at all</option> 
+                <option value="2">Applied to me to some degree, or some of the time</option> 
+                <option value="3">Applied to me to a considerable degree, or a good part of time</option> 
+                <option value="4">Applied to me very much, or most of the time</option> 
+                </select> 
+                </p> 
+                <br>
+                <p> 
+                <label for="Q24">I couldn't seem to get any enjoyment out of the things I did </label> 
+                <select id="lname" name="Q24" step="any" required> 
+                <option value="1">Did not apply to me at all</option> 
+                <option value="2">Applied to me to some degree, or some of the time</option> 
+                <option value="3">Applied to me to a considerable degree, or a good part of time</option> 
+                <option value="4">Applied to me very much, or most of the time</option> 
+                </select> 
+                </p> 
+                <br>
+                <p> 
+                <label for="Q34">I felt I was pretty worthless </label> 
+                <select id="lname" name="Q34" step="any" required> 
+                <option value="1">Did not apply to me at all</option> 
+                <option value="2">Applied to me to some degree, or some of the time</option> 
+                <option value="3">Applied to me to a considerable degree, or a good part of time</option> 
+                <option value="4">Applied to me very much, or most of the time</option> 
+                </select> 
+                </p> 
+                <br>
+                <input type="submit" name= "form" value="Submit" />
+
+            </form>
+        </div>
     </div>
-
-    <div class="split right">
-        <form action="/results_depression_moderate" class="center" method="post">
-
-            <label> <b>Please enter your answers below:</b> </label><br><br>
-            <p>
-                <label for="Gender">Gender: </label>
-                <select id="lname" name="Gender" step="any" required>
-                    <option value="2">Female</option>
-                    <option value="1">Male</option>
-                </select>
-            </p>
-            <p>
-                <label for="Region">Region: </label>
-                <select id="lname" name="Region" step="any" required>
-                    <option value="0">East</option>
-                    <option value="2">West</option>
-			  <option value="1">Other</option>
-                </select>
-            </p>
-            <p>
-                <label for="Age">Age: </label>
-                <input type="number" id="fname" name="Age" value="40" min="18" max="100" step="any" required>
-            </p>
-
-<p> 
- <label for="Q3">I couldn't seem to experience any positive feeling at all </label> 
- <select id="lname" name="Q3" step="any" required> 
- <option value="1">Did not apply to me at all</option> 
- <option value="2">Applied to me to some degree, or some of the time</option> 
- <option value="3">Applied to me to a considerable degree, or a good part of time</option> 
- <option value="4">Applied to me very much, or most of the time</option> 
-   </select> 
- </p> 
- <br>
-<p> 
- <label for="Q13">I felt sad and depressed</label> 
- <select id="lname" name="Q13" step="any" required> 
- <option value="1">Did not apply to me at all</option> 
- <option value="2">Applied to me to some degree, or some of the time</option> 
- <option value="3">Applied to me to a considerable degree, or a good part of time</option> 
- <option value="4">Applied to me very much, or most of the time</option> 
-   </select> 
- </p> 
- <br>
-<p> 
- <label for="Q16">I felt that I had lost interest in just about everything </label> 
- <select id="lname" name="Q16" step="any" required> 
- <option value="1">Did not apply to me at all</option> 
- <option value="2">Applied to me to some degree, or some of the time</option> 
- <option value="3">Applied to me to a considerable degree, or a good part of time</option> 
- <option value="4">Applied to me very much, or most of the time</option> 
-   </select> 
- </p> 
- <br>
-<p> 
- <label for="Q22">I found it hard to wind down </label> 
- <select id="lname" name="Q22" step="any" required> 
- <option value="1">Did not apply to me at all</option> 
- <option value="2">Applied to me to some degree, or some of the time</option> 
- <option value="3">Applied to me to a considerable degree, or a good part of time</option> 
- <option value="4">Applied to me very much, or most of the time</option> 
-   </select> 
- </p> 
- <br>
-<p> 
- <label for="Q24">I couldn't seem to get any enjoyment out of the things I did </label> 
- <select id="lname" name="Q24" step="any" required> 
- <option value="1">Did not apply to me at all</option> 
- <option value="2">Applied to me to some degree, or some of the time</option> 
- <option value="3">Applied to me to a considerable degree, or a good part of time</option> 
- <option value="4">Applied to me very much, or most of the time</option> 
-   </select> 
- </p> 
- <br>
-<p> 
- <label for="Q34">I felt I was pretty worthless </label> 
- <select id="lname" name="Q34" step="any" required> 
- <option value="1">Did not apply to me at all</option> 
- <option value="2">Applied to me to some degree, or some of the time</option> 
- <option value="3">Applied to me to a considerable degree, or a good part of time</option> 
- <option value="4">Applied to me very much, or most of the time</option> 
-   </select> 
- </p> 
- <br>
-          <input type="submit" name= "form" value="Submit" />
-
-        </form>
-    </div>
-
 </body>
 
