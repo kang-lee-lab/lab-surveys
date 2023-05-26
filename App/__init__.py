@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.types import DateTime
+from sqlalchemy.sql import func
 import time
 from datetime import datetime, timedelta
 import os
@@ -12,7 +13,7 @@ db = SQLAlchemy(app)
 class Response(db.Model):
     __tablename__ = 'responses'
     id = db.Column(db.Integer, primary_key=True)
-    time_stamp = db.Column(db.DateTime(timezone=True), server_default= datetime.func.now())
+    time_stamp = db.Column(db.DateTime(timezone=True), server_default= func.now())
     response_type = db.Column(db.String(40), nullable=False)
     response_answers = db.Column(db.JSON, nullable = False)
     response_results = db.Column(db.JSON, nullable = False)
