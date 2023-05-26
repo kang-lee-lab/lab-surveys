@@ -12,3 +12,7 @@ To run locally you must setup a postgresql database on your machine. The followi
 https://www.postgresqltutorial.com/postgresql-administration/postgresql-create-database/
 
 Once the database is creted, a table must be created with the name "responses" and must be created with matching data values and types as seen in Response class found in __innit__.py
+
+Below is a tutorial on how to create a table within a database on pgAdmin.
+
+https://www.guru99.com/create-drop-table-postgresql.html
