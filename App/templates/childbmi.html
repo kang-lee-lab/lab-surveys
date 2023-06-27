@@ -50,7 +50,7 @@
                     <form action="/results_childbmi" method="post">
                         <div class="py-2">
                             <label for="gender" class="form-label">Gender:</label>
-                                    <select class="form-select" aria-label="Default select example" id="gender">
+                                    <select class="form-select" aria-label="Default select example" name = "Gender" id="gender">
                                         <option selected>Click to Drop Down</option>
                                         <option value="1">Male</option>
                                         <option value="2">Female</option>
@@ -61,14 +61,14 @@
                             <div class="col">
                                 <div class="form-outline">
                                     <label class="form-label" for="typeNumber">Current Age:</label>
-                                    <input type="number" id="typeNumber" class="form-control" placeholder="5"/>
+                                    <input type="number" id="typeNumber" name = "Age" class="form-control" placeholder="5"/>
                                 </div>
                             </div>
 
                             <div class="col">
                                 <div class="form-outline">
                                     <label class="form-label" for="typeNumber">Weight (kg):</label>
-                                    <input type="number" id="typeNumber" class="form-control" placeholder="20" />
+                                    <input type="number" id="typeNumber" name="Weight" class="form-control" placeholder="20" />
                                 </div>
                             </div>
                         </div>
@@ -77,19 +77,19 @@
                             <div class="col">
                                 <div class="form-outline">
                                     <label class="form-label" for="typeNumber">Height (cm):</label>
-                                    <input type="number" id="typeNumber" class="form-control" placeholder="110" />
+                                    <input type="number" id="typeNumber" name="Height" class="form-control" placeholder="110" />
                                 </div>
                             </div>
 
                             <div class="col">
                                 <div class="form-outline">
                                     <label class="form-label" for="typeNumber">Age to predict:</label>
-                                    <input type="number" id="typeNumber" class="form-control" placeholder="15" />
+                                    <input type="number" id="typeNumber" name="Age1" class="form-control" placeholder="15" />
                                 </div>
                             </div>
                         </div>
 
-                        <input type="submit" href="#" class="btn btn-primary"></input>
+                        <input type="submit" name="form" class="btn btn-primary"></input>
                     </form>
                 </div>
             </div>
