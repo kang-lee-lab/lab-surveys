@@ -35,65 +35,51 @@
             </div>
           </nav>
 
-        <div class="container px-5 py-5">
-            <h2> Welcome to the <span class="highlight">Children's Future BMI</span> prediction interactive webpage.</h2>
-            <p>This applet computes children's future height, weight, and BMI. Based on a child's current age and physical measurements, this app uses a machine learning model to compute the children's future height, weight, and BMI for a specified number of years into the future.</p>
-            <p>Yasin, Y., Sun, Y.H., and Lee, K. (2022). A machine learning approach for predicting children's future BMI. Canadian Developmental Psychology Conference.</p>
-        </div>
-        
-        <div class="container px-5 py-5">
+          <div class="container px-5 py-5">
             
             <div class="card">
                 <div class="card-body">
                     <h4>Please enter your answers below:</h4>
-
-                    <form action="/results_childbmi" method="post">
-                        <div class="py-2">
-                            <label for="gender" class="form-label">Gender:</label>
+                    <div id="carouselExample" class="carousel carousel-dark slide">
+                        <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row py-2">
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="typeNumber">Age:</label>
+                                        <input type="number" id="typeNumber" class="form-control" placeholder="5" />
+                                    </div>
+                                </div>
+        
+                                <div class="col">
+                                    <label for="gender" class="form-label">Gender:</label>
                                     <select class="form-select" aria-label="Default select example" id="gender">
                                         <option selected>Click to Drop Down</option>
                                         <option value="1">Male</option>
                                         <option value="2">Female</option>
                                     </select>
-                        </div>
-
-                        <div class="row py-2">
-                            <div class="col">
-                                <div class="form-outline">
-                                    <label class="form-label" for="typeNumber">Current Age:</label>
-                                    <input type="number" id="typeNumber" class="form-control" placeholder="5"/>
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="form-outline">
-                                    <label class="form-label" for="typeNumber">Weight (kg):</label>
-                                    <input type="number" id="typeNumber" class="form-control" placeholder="20" />
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row py-2">
-                            <div class="col">
-                                <div class="form-outline">
-                                    <label class="form-label" for="typeNumber">Height (cm):</label>
-                                    <input type="number" id="typeNumber" class="form-control" placeholder="110" />
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="form-outline">
-                                    <label class="form-label" for="typeNumber">Age to predict:</label>
-                                    <input type="number" id="typeNumber" class="form-control" placeholder="15" />
-                                </div>
-                            </div>
+                        <div class="carousel-item">
+                            <p>hey</p>
                         </div>
-
-                        <input type="submit" href="#" class="btn btn-primary"></input>
-                    </form>
+                        <div class="carousel-item">
+                            <p>hey</p>
+                        </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+          </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     </body>
