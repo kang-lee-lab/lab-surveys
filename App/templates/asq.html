@@ -1,109 +1,46 @@
-<head>
-    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;1,100&display=swap" rel="stylesheet">
-    <style>
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Surveys for Kang Lee Development Lab</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    </head>
 
-    body {
-      background-color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto;
-      height: 100vh;
-      
-    }
+    <body>
+        <nav class="navbar sticky-top navbar-expand-lg bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Kang Lee Development Surveys</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#">Surveys</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://www.kangleelab.com/" target="_blank">Lab Website
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="participate.html">participate
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
 
-    .container{
-        width: 100%;
-        height: auto;
-        display:flex
-    }
-
-    .split {
-        height: 100%;
-        width: 50%;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        overflow-x: hidden;
-        box-sizing: border-box;
-    }
-
-    .center {
-        /*position: absolute;*/
-
-        right: 13%;
-        color:#ffffff;
-        text-align: left;
-        font-family: 'Inter Tight', sans-serif;
-    
-    }
-
-    .rcorners1 {
-        top: 80;
-        left: 100;
-        font-family: 'Inter Tight', sans-serif;
-        border-radius: 25px;
-        width: 500px;
-        background: #ffffff;
-        padding: 20px; 
-        text-align: left;
-        color:#4F6D7A
+          
+        <div class="container px-5 py-5">
+            <h2> Welcome to the <span class="highlight">Average Stress Quotient (ASQ) Calculator</span>.</h2>
+            <p> The Average Stress Quotient (ASQ) is a synthesized value derived from 29 Heart Rate Variability indexes (see description for each index in the table below). Heart Rate Variability indexes are measures of variation in the time intervals between two successive heartbeats. These measures can be obtained through analysis of an electrocardiogram. Extensive research has found these measures to be indicative of a person’s stress level. However, research often use different indexes, making interpretation of Heart Rate Variability as a physiological indicator of stress difficult. Wu et al. (submitted) established a method for synthesizing multiple indexes to enable examination of six dimensions of Heart Rate Variability, called Stress Quotient1-6 (SQ1-6). As well, as a single value called Average Stress Quotient (ASQ) is derived to allow easy interpretation. Here, we provide the ASQ Calculator for you to try Wu et al. (submitted)’s method! Please input values of Heart Rate Variability indexes and we will generate your SQ1-6 and ASQ!          </p>
         
-    }
-
-    .left{
-
-        background: #ffffff;
-        font-family: 'Inter Tight', sans-serif;
-        color:#4F6D7A;
-        padding-left: 10%;
-        padding-right: 10%;
-        padding-top: 5%;
-        border-radius: 25px;
-    }
-
-    .right {
-        right: 0;
-        background-color:#4F6D7A;
-        padding: 20px;
-    }
-
-    .highlight {
-        font-weight: bold;
-    }
-
-    h1 {
-        font-size:35px;
-        font-weight: normal;
-    }
-
-    h2 {
-        font-size:15px;
-        font-weight: normal;
-    }
-    
-    table, th, td { border:1px solid black; margin-bottom: 120px}
-    form  { display: table; padding-top: 130px; padding-bottom: 130px;}
-    p     { display: table-row;  }
-    label { display: table-cell; }
-    input { display: table-cell; padding: 10px; margin: 10px; border: 10px; color:#4F6D7A; border-radius: 4px;}
-
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <div class="split left">
-            <h1>
-                Welcome to the <span class="highlight">Average Stress Quotient (ASQ) Calculator</span>.
-            </h1>
-
-            <h2>
-                The Average Stress Quotient (ASQ) is a synthesized value derived from 29 Heart Rate Variability indexes (see description for each index in the table below). Heart Rate Variability indexes are measures of variation in the time intervals between two successive heartbeats. These measures can be obtained through analysis of an electrocardiogram. Extensive research has found these measures to be indicative of a person’s stress level. However, research often use different indexes, making interpretation of Heart Rate Variability as a physiological indicator of stress difficult. Wu et al. (submitted) established a method for synthesizing multiple indexes to enable examination of six dimensions of Heart Rate Variability, called Stress Quotient1-6 (SQ1-6). As well, as a single value called Average Stress Quotient (ASQ) is derived to allow easy interpretation. Here, we provide the ASQ Calculator for you to try Wu et al. (submitted)’s method! Please input values of Heart Rate Variability indexes and we will generate your SQ1-6 and ASQ!          
-            </h2>
-            <br>
-
-            <table style="width:100%">
+            <table class="table" style="width:100%">
                 <tr>
                 <th>Method of Analysis</th>
                 <th>Heart Rate Variability Index (unit of measure)</th>
@@ -233,135 +170,253 @@
                     <td>Long-term fluctuations from Detrended Fluctuation Analysis.</td>
                 </tr>
             </table>
+        </div>
+
+          <div class="container px-5 py-5">
             
-        </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4>Please enter your answers below:</h4>
+                    <form action="/results_asq" class="center" method="post">
+                        <div class="row py-2">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">Mean Heart Rate (BPM)::</label>
+                                    <input type="number" id="typeNumber" name="MHR" class="form-control" placeholder="71.1" />
+                                </div>
+                            </div>
+            
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">Standard Deviation Heart Rate (BPM):</label>
+                                    <input type="number" id="typeNumber" name="SDHR" class="form-control" placeholder="10.3" />
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="split right">
-            <form action="/results_asq" class="center" method="post">
+                        <div class="row py-2">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">Max RR Interval (ms):</label>
+                                    <input type="number" id="typeNumber" name="max_RR_interval" class="form-control" placeholder="400" />
+                                </div>
+                            </div>
+            
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">Min RR Interval (ms):</label>
+                                    <input type="number" id="typeNumber" name="min_RR_interval" class="form-control" placeholder="635" />
+                                </div>
+                            </div>
+                        </div>
 
-                <label> <b>Please enter your measures below:</b> </label><br><br>
-                <p>
-                    <label for="MHR">Mean Heart Rate (BPM): </label>
-                    <input type="text" id="fname" name="MHR" value="71.1" min="25" max="180" step="any" required>
-                </p>
-                <p>
-                    <label for="SDHR">Standard Deviation Heart Rate (BPM): </label>
-                    <input type="number" id="lname" name="SDHR" value="10.3" min="0.5" max="300" step="any" required>
-                </p>
-                <p>
-                    <label for="max_RR_interval">Max RR Interval (ms): </label>
-                    <input type="number" id="fname" name="max_RR_interval" value="400" min="300" max="60000" step="any" required>
-                </p>
-                <p>
-                    <label for="min_RR_interval">Min RR Interval (ms): </label>
-                    <input type="number" id="fname" name="min_RR_interval" value="635" min="10" max="1500" step="any" required>
-                </p>
-                <p>
-                    <label for="mean_RR_interval">Mean RR Interval (ms): </label>
-                    <input type="number" id="fname" name="mean_RR_interval" value="859.9" min="350" max="5000" step="any" required>
-                </p>
-                <p>
-                    <label for="median_RR_interval">Median RR Interval (ms): </label>
-                    <input type="number" id="fname" name="median_RR_interval" value="915.8" min="300" max="3000" step="any" required>
-                </p>
-                <p>
-                    <label for="SDNN">SDNN (ms): </label>
-                    <input type="number" id="fname" name="SDNN" value="107.9" min="1" max="8000" step="any" required>
-                </p>
-                <p>
-                    <label for="NN50">NN50: </label>
-                    <input type="number" id="lname" name="NN50" value="1" min="0" max="400" step="any" required>
-                </p>
-                <p>
-                    <label for="pNN50">pNN50 (%): </label>
-                    <input type="number" id="lname" name="pNN50" value="0.3" min="0" max="150" step="any" required>
-                </p>
-                <p>
-                    <label for="RMSSD">RMSSD (ms): </label>
-                    <input type="number" id="fname" name="RMSSD" value="3" min="1" max="15000" step="any" required>
-                </p>
-                <p>
-                    <label for="VLF">VLF (ms²): </label>
-                    <input type="number" id="lname" name="VLF" value="0.01" min="0" max="4000000" step="any" required>
-                </p>
-                <p>
-                    <label for="LF">LF (ms²): </label>
-                    <input type="number" id="fname" name="LF" value="0.34" min="0" max="25000000" step="any" required>
-                </p>
-                <p>
-                    <label for="HF">HF (ms²): </label>
-                    <input type="number" id="fname" name="HF" value="4.7" min="0" max="30000000" step="any" required>
-                </p>
-                <p>
-                    <label for="total">Total (ms²): </label>
-                    <input type="number" id="lname" name="total" value="5.05" min="0" max="60000000" step="any" required>
-                </p>
-                <p>
-                    <label for="VLF_peak">Peak VLF (ms²): </label>
-                    <input type="number" id="lname" name="VLF_peak" value="0.03" min="0" max="0.1" step="any" required>
-                </p>
-                <p>
-                    <label for="LF_peak">Peak LF (ms²): </label>
-                    <input type="number" id="fname" name="LF_peak" value="0.14" min="0" max="0.30" step="any" required>
-                </p>
-                <p>
-                    <label for="HF_peak">Peak HF (ms²): </label>
-                    <input type="number" id="fname" name="HF_peak" value="0.32" min="0" max="1.0" step="any" required>
-                </p>
-                <p>
-                    <label for="VLF_percent">VLF (%): </label>
-                    <input type="number" id="lname" name="VLF_percent" value="0.2" min="0" max="100" step="any" required>
-                </p>
-                <p>
-                    <label for="LF_percent">LF (%): </label>
-                    <input type="number" id="fname" name="LF_percent" value="6.7" min="0" max="100" step="any" required>
-                </p>
-                <p>
-                    <label for="HF_percent">HF (%): </label>
-                    <input type="number" id="fname" name="HF_percent" value="93.1" min="0" max="100" step="any" required>
-                </p>
-                <p>
-                    <label for="LF_nu">LF (nu): </label>
-                    <input type="number" id="fname" name="LF_nu" value="0.067" min="0" max="1.0" step="any" required>
-                </p>
-                <p>
-                    <label for="HF_nu">HF (nu): </label>
-                    <input type="number" id="fname" name="HF_nu" value="0.933" min="0" max="2.0" step="any" required>
-                </p>
-                <p>
-                    <label for="LF_HF">LF/HF: </label>
-                    <input type="number" id="fname" name="LF_HF" value="0.072" min="0" max="2.0" step="any" required>
-                </p>
-                <p>
-                    <label for="SD1">SD1 (ms): </label>
-                    <input type="number" id="fname" name="SD1" value="14.6" min="0" max="10000" step="any" required>
-                </p>
-                <p>
-                    <label for="SD2">SD2 (ms): </label>
-                    <input type="number" id="fname" name="SD2" value="151.9" min="0" max="10000" step="any" required>
-                </p>
-                <p>
-                    <label for="SD1_SD2">SD1/SD2: </label>
-                    <input type="number" id="fname" name="SD1_SD2" value="0.096" min="0" max="2.0" step="any" required>
-                </p>
-                <p>
-                    <label for="alpha">α: </label>
-                    <input type="number" id="fname" name="alpha" value="1.53" min="-0.5" max="3.0" step="any" required>
-                </p>
-                <p>
-                    <label for="alpha1">α1: </label>
-                    <input type="number" id="fname" name="alpha1" value="0.976" min="-0.5" max="3.0" step="any" required>
-                </p>
-                <p>
-                    <label for="alpha2">α2: </label>
-                    <input type="number" id="fname" name="alpha2" value="1.632" min="-0.5" max="3.0" step="any" required>
-                </p>
+                        <div class="row py-2">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">Mean RR Interval (ms):</label>
+                                    <input type="number" id="typeNumber" name="mean_RR_interval" class="form-control" placeholder="859.9" />
+                                </div>
+                            </div>
+            
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">Median RR Interval (ms):</label>
+                                    <input type="number" id="typeNumber" name="mean_RR_interval" class="form-control" placeholder="915.8" />
+                                </div>
+                            </div>
+                        </div>
 
-                    <input type="submit" name= "form" value="Submit" />
-                
-            </form>
-        </div>
-    </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">SDNN (ms):</label>
+                                    <input type="number" id="typeNumber" name="SDNN" class="form-control" placeholder="107.9" />
+                                </div>
+                            </div>
+            
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">NN50:</label>
+                                    <input type="number" id="typeNumber" name="NN50" class="form-control" placeholder="1" />
+                                </div>
+                            </div>
+                        </div>
 
-</body>
+                        <div class="row py-2">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">pNN50 (%):</label>
+                                    <input type="number" id="typeNumber" name="pNN50" class="form-control" placeholder="0.3" />
+                                </div>
+                            </div>
+            
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">RMSSD (ms):</label>
+                                    <input type="number" id="typeNumber" name="RMSSD" class="form-control" placeholder="3" />
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="row py-2">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">VLF (ms²):</label>
+                                    <input type="number" id="typeNumber" name="VLF" class="form-control" placeholder="0.01" />
+                                </div>
+                            </div>
+            
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">LF (ms²):</label>
+                                    <input type="number" id="typeNumber" name="LF" class="form-control" placeholder="0.34" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">HF (ms²):</label>
+                                    <input type="number" id="typeNumber" name="HF" class="form-control" placeholder="4.7" />
+                                </div>
+                            </div>
+            
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">Total (ms²):</label>
+                                    <input type="number" id="typeNumber" name="total" class="form-control" placeholder="5.05" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">Peak VLF (ms²):</label>
+                                    <input type="number" id="typeNumber" name="VLF_peak" class="form-control" placeholder="0.03" />
+                                </div>
+                            </div>
+            
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">Peak LF (ms²):</label>
+                                    <input type="number" id="typeNumber" name="LF_peak" class="form-control" placeholder="0.14" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">Peak HF (ms²):</label>
+                                    <input type="number" id="typeNumber" name="HF_peak" class="form-control" placeholder="0.32" />
+                                </div>
+                            </div>
+            
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">VLF (%):</label>
+                                    <input type="number" id="typeNumber" name="VLF_peak" class="form-control" placeholder="0.2" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">LF (%):</label>
+                                    <input type="number" id="typeNumber" name="LF_percent" class="form-control" placeholder="6.7" />
+                                </div>
+                            </div>
+            
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">HF (%):</label>
+                                    <input type="number" id="typeNumber" name="HF_peak" class="form-control" placeholder="6.7" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">LF (nu):</label>
+                                    <input type="number" id="typeNumber" name="LF_nu" class="form-control" placeholder="0.067" />
+                                </div>
+                            </div>
+            
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">HF (nu):</label>
+                                    <input type="number" id="typeNumber" name="HF_nu" class="form-control" placeholder="0.933" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">LF/HF:</label>
+                                    <input type="number" id="typeNumber" name="LF_HF" class="form-control" placeholder="0.072" />
+                                </div>
+                            </div>
+            
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">SD1 (ms):</label>
+                                    <input type="number" id="typeNumber" name="SD1" class="form-control" placeholder="14.6" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">SD2 (ms):</label>
+                                    <input type="number" id="typeNumber" name="SD2" class="form-control" placeholder="151.9" />
+                                </div>
+                            </div>
+            
+                            <div class="col">
+                                <<div class="form-outline">
+                                    <label class="form-label" for="typeNumber">SD1/SD2:</label>
+                                    <input type="number" id="typeNumber" name="SD1_SD2" class="form-control" placeholder="0.096" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">α:</label>
+                                    <input type="number" id="typeNumber" name="alpha" class="form-control" placeholder="1.53" />
+                                </div>
+                            </div>
+            
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">α1:</label>
+                                    <input type="number" id="typeNumber" name="alpha1" class="form-control" placeholder="0.976" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="py-2">
+                            <div class="form-outline">
+                                <label class="form-label" for="typeNumber">α2:</label>
+                                <input type="number" id="typeNumber" name="alpha2" class="form-control" placeholder="1.632" />
+                            </div>
+                        </div>
+                        
+
+                        <input type="submit" name="form" class="btn btn-primary"></input>
+                    </form>
+                </div>
+                        
+            </div>
+             
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    </body>
+</html>
