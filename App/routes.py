@@ -329,8 +329,8 @@ def results_asq():
         # draw spiderplot
         df = pd.DataFrame(dict(
             r=sq_list,
-            theta=['SQ1', 'SQ2', 'SQ3',
-                   'SQ4', 'SQ5', 'SQ6']))
+            theta=['HRV-D1', 'HRV-D2', 'HRV-D3',
+                   'HRV-D3', 'HRV-D5', 'HRV-D6']))
         # fig = px.line_polar(df, r='r', theta='theta', line_close=True)
         fig = go.Figure()
 
