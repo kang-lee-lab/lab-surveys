@@ -384,13 +384,13 @@ def results_asq():
         x = ''
 
         asq_table = { # Explains what ASQ means
-            range(0, 20): 'Very low',
-            range(21, 30): 'Low',
-            range(31, 40): 'Slightly low',
-            range(41, 59): 'Average',
-            range(60, 69): 'Slightly high',
-            range(70, 79): 'High',
-            range(80, 120): 'Very high'
+            range(0, 20): ['Extremely High', 'Emerald'],
+            range(21, 30): ['High', 'Dark Green'],
+            range(31, 40): ['Slightly High', 'Green'],
+            range(41, 59): ['Average', 'Light Green'],
+            range(60, 69): ['Slightly Low', 'Yellow'],
+            range(70, 79): ['Low', 'Orange'],
+            range(80, 120): ['Extremely low', 'Red']
         }
 
         for key in asq_table:
@@ -446,7 +446,8 @@ def results_asq():
 
     return render_template('results_asq.html',
                            p1=asq_result,  # Round value to 2 decimals
-                           p2=asq_definition(),
+                           p2=asq_definition()[0],
+                           p3=asq_definition()[1]
                            )
 
 
