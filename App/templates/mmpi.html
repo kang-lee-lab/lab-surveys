@@ -1,1041 +1,1157 @@
-<head>
-    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;1,100&display=swap" rel="stylesheet">
-    <style>
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Surveys for Kang Lee Development Lab</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    </head>
 
-    body {
-      background-color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto;
-      height: 100vh;
-      
-    }
+    <body>
+        <nav class="navbar sticky-top navbar-expand-lg bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Kang Lee Development Surveys</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="https://kangleelab-surveys.herokuapp.com/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://www.kangleelab.com/" target="_blank">Lab Website
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="participate.html">participate
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
 
-    .container{
-        width: 100%;
-        height: auto;
-        display:flex
-    }
-
-    .split {
-        height: 100%;
-        width: 50%;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        overflow-x: hidden;
-        box-sizing: border-box;
-    }
-
-    .center {
-        /*position: absolute;*/
-
-        right: 13%;
-        color:#ffffff;
-        text-align: left;
-        font-family: 'Inter Tight', sans-serif;
-    
-    }
-
-    .rcorners1 {
-        top: 80;
-        left: 100;
-        font-family: 'Inter Tight', sans-serif;
-        border-radius: 25px;
-        width: 500px;
-        background: #ffffff;
-        padding: 20px; 
-        text-align: left;
-        color:#4F6D7A
-        
-    }
-
-    .right {
-        right: 0;
-        padding: 20px; 
-        background-color:#4F6D7A
-    }
-
-    .left{
-
-        background: #ffffff;
-        font-family: 'Inter Tight', sans-serif;
-        color:#4F6D7A;
-        padding-left: 10%;
-        padding-right: 10%;
-        padding-top: 5%;
-        border-radius: 25px;
-    }
-
-    .highlight {
-        font-weight: bold;
-    }
-
-    h1 {
-        font-size:35px;
-        font-weight: normal;
-    }
-
-    h2 {
-        font-size:15px;
-        font-weight: normal;
-    }
-
-    form  { display: table; padding-top: 130px; padding-bottom: 130px;}
-    p     { display: table-row;  }
-    label { display: table-cell; }
-    input { display: table-cell; padding: 10px; margin: 10px; border: 10px; color:#4F6D7A; border-radius: 4px;}
-
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <div class="split left">
-            <h1>
-                Welcome to the <span class="highlight">Minnesota Multiphasic Personality Inventory (MMPI)</span> prediction interactive webpage.
-            </h1>
-
-            <h2>
-                This applet computes an individuals <span class="highlight">likelihood of MMPI</span>. Based on 100 questions, this app uses a machine learning model to compute the likelihood of MMPI.
-            </h2>
+          
+        <div class="container px-5 py-5">
+            <h2>  Welcome to the Minnesota Multiphasic Personality Inventory (MMPI) prediction interactive webpage.</h2>
+            <p>
+                This applet computes an individuals likelihood of MMPI. Based on 100 questions, this app uses a machine learning model to compute the likelihood of MMP
+            </p>
             <br>
-            <h2>
+            <p>
                 Minnesota Multiphasic Personality Inventory (MMPI) is the most widely used psychometric test in the world. This study aimed to investigate the feasibility of using a reduced number of questions to predict the status in each conditions accurately. 
-            </h2>
-            <h2>
-                We obtained a dataset of MMPI-2 responses from the Beijing Anding Hospital. The original dataset contains anonymized information on the participants including their demographics (age, sex, etc.), the raw scores and T-scores to each of the conditions, and the answers to each of the questions from the MMPI-2 test from each participant. The information of the participants includes their serial number, age, and their gender. The responses to the questions are “Yes”, “No”, or “Maybe”. 
-            </h2>
-            <h2>    
+            </p>
+            <p>
+                We obtained a dataset of MMPI-2 responses from the Beijing Anding Hospital. The original dataset contains anonymized information on the participants including their demographics (age, sex, etc.), the raw scores and T-scores to each of the conditions, and the answers to each of the questions from the MMPI-2 test from each participant. The information of the participants includes their serial number, age, and their gender. The responses to the questions are “Yes”, “No”, or “Maybe”.
+            </p>
+            <p>    
                 We identified the top 100 questions for predicting the ten MMPI conditions, which achieved at least 85% area under curve (AUC ROC) for predicting each of the conditions.
-            </h2>
-            <h2>   
-                Our findings suggest that machine learning models using reduced number of questions are capable of making accurate assessment for MMPI. 
-            </h2>
+            </p>
+            <p>   
+                Our findings suggest that machine learning models using reduced number of questions are capable of making accurate assessment for MMPI.
+            </p>
+            
+            
         </div>
 
-        <div class="split right">
-            <form action="/results_mmpi" class="center" method="post">
+          <div class="container px-5 py-5">
+            
+            <div class="card">
+                <div class="card-body">
+                    <h4>Please enter your answers below:</h4>
+                    <form action="/results_mmpi" method="post">
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">Gender:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Gender">
+                                    <option selected>Click to Drop Down</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">No</option>
+                                    <option value="3">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="typeNumber">Age:</label>
+                                    <input type="number" step="any" id="typeNumber" name="Age" class="form-control" value="39" />
+                                </div>
+                            </div>
+                        </div>
 
-                <label> <b>Please enter your answers below:</b> </label><br><br>
-                <p>
-                    <label for="Gender">Gender: </label>
-                    <select id="lname" name="Gender" step="any" required>
-                        <option value="1">Female</option>
-                        <option value="0">Male</option>
-                    </select>
-                </p>
-                <p>
-                    <label for="Age">Age: </label>
-                    <input type="number" id="fname" name="Age" value="40" min="18" max="100" step="any" required>
-                </p>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I have a good appetite.</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q2">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
 
-                <p> 
-                <label for="Q2">I have a good appetite.
-                </label> 
-                <select id="lname" name="Q2" step="any" required> 
-                <option value="1">No</option> 
-                <option value="0">Yes</option> 
-                <option value="2">Uncertain</option> 
-                </select> 
-                </p> <br> <br>
-                <p> 
-                <label for="Q3">When I wake up in the morning, I often feel rested and clear-headed.
-                </label> 
-                <select id="lname" name="Q3" step="any" required> 
-                <option value="1">No</option> 
-                <option value="0">Yes</option> 
-                <option value="2">Uncertain</option> 
-                </select> 
-                </p> <br> <br>
-                <p> 
-                <label for="Q6">I like to read news on crimes.
-                </label> 
-                <select id="lname" name="Q6" step="any" required> 
-                <option value="1">No</option> 
-                <option value="0">Yes</option> 
-                <option value="2">Uncertain</option> 
-                </select> 
-                </p> <br> <br>
-                <p> 
-                <label for="Q7">My hands and feet are usually warm.
-                </label> 
-                <select id="lname" name="Q7" step="any" required> 
-                <option value="1">No</option> 
-                <option value="0">Yes</option> 
-                <option value="2">Uncertain</option> 
-                </select> 
-                </p> <br> <br>
-                <p> 
-                <label for="Q8">My daily life is full of things that are interesting to me.
-                </label> 
-                <select id="lname" name="Q8" step="any" required> 
-                <option value="1">No</option> 
-                <option value="0">Yes</option> 
-                <option value="2">Uncertain</option> 
-                </select> 
-                </p> <br> <br>
-                <p> 
-                <label for="Q9">My ability in work (study) is the same as before.
-                </label> 
-                <select id="lname" name="Q9" step="any" required> 
-                <option value="1">No</option> 
-                <option value="0">Yes</option> 
-                <option value="2">Uncertain</option> 
-                </select> 
-                </p> <br> <br>
-                <p> 
-                <label for="Q12">I like detective or mystery novels.
-                </label> 
-                <select id="lname" name="Q12" step="any" required> 
-                <option value="1">No</option> 
-                <option value="0">Yes</option> 
-                <option value="2">Uncertain</option> 
-                </select> 
-                </p> <br> <br>
-                <p> 
-                <label for="Q18">I rarely have constipation issues.
-                </label> 
-                <select id="lname" name="Q18" step="any" required> 
-                <option value="1">No</option> 
-                <option value="0">Yes</option> 
-                <option value="2">Uncertain</option> 
-                </select> 
-                </p> <br> <br>
-                <p> 
-            <label for="Q21">Sometimes I want to leave home.
-            </label> 
-            <select id="lname" name="Q21" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q22">Sometimes I cry and laugh uncontrollably.
-            </label> 
-            <select id="lname" name="Q22" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q23">I am troubled with nausea and vomiting problems.
-            </label> 
-            <select id="lname" name="Q23" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q24">It seems like nobody understands me.
-            </label> 
-            <select id="lname" name="Q24" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q27">Sometimes I feel like I am being possessed.
-            </label> 
-            <select id="lname" name="Q27" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q32">I find it hard to focus on one job.
-            </label> 
-            <select id="lname" name="Q32" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q33">I have had very special or strange experiences.
-            </label> 
-            <select id="lname" name="Q33" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q35">I would have achieved a lot more if it wasn’t because I was impeded by someone. 
-            </label> 
-            <select id="lname" name="Q35" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q37">I have never had problems with my sexual activities.
-            </label> 
-            <select id="lname" name="Q37" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q38">I did petty theft when I was young. 
-            </label> 
-            <select id="lname" name="Q38" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q42">My family is unsatisfied with my chosen job (or upcoming job).
-            </label> 
-            <select id="lname" name="Q42" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q51">I am as healthy as most of my friends.
-            </label> 
-            <select id="lname" name="Q51" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q57">I become familiar with others as soon as I meet them.
-            </label> 
-            <select id="lname" name="Q57" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q63">I defecate normally and controllably.
-            </label> 
-            <select id="lname" name="Q63" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q64">Sometimes I do something non-stop until it annoys someone.
-            </label> 
-            <select id="lname" name="Q64" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q67">I hope I can be happy like others.
-            </label> 
-            <select id="lname" name="Q67" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q68">I have never had pain in the back of my neck.
-            </label> 
-            <select id="lname" name="Q68" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q71">I believe many people exaggerate their misfortunes to gain sympathy and help from others.
-            </label> 
-            <select id="lname" name="Q71" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q76">I get angry sometimes.
-            </label> 
-            <select id="lname" name="Q76" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q82">I believe I would enjoy being a forest ranger (or a similar job).
-            </label> 
-            <select id="lname" name="Q82" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q84">Everyone can succeed if they have the ability and desire to do the job.
-            </label> 
-            <select id="lname" name="Q84" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q91">Sometimes I delay things I am supposed to do today to the next day.
-            </label> 
-            <select id="lname" name="Q91" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q93">I want to be a nurse.
-            </label> 
-            <select id="lname" name="Q93" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q94">I believe most people will lie to make gains.
-            </label> 
-            <select id="lname" name="Q94" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q97">I rarely quarrel with my family.
-            </label> 
-            <select id="lname" name="Q97" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q102">I believe women should enjoy the same rights as men when it comes to sex life.
-            </label> 
-            <select id="lname" name="Q102" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q103">I believe I am the hardest to control.
-            </label> 
-            <select id="lname" name="Q103" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q106">I lose my temper when my body is in discomfort.
-            </label> 
-            <select id="lname" name="Q106" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q107">I always feel like I have done something wrong or committed some crime.
-            </label> 
-            <select id="lname" name="Q107" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q110">Some people are so bossy that I have to go against them, even when I know they are right.
-            </label> 
-            <select id="lname" name="Q110" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q117">I like games or competitions that I have wagered in more.
-            </label> 
-            <select id="lname" name="Q117" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q119">When I was in school, sometimes I was called out by the leader for making a fuss.
-            </label> 
-            <select id="lname" name="Q119" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q120">I always speak at a pace that is neither fast nor slow, and I am neither ambiguous nor hoarse.
-            </label> 
-            <select id="lname" name="Q120" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q122">I believe someone is plotting against me.
-            </label> 
-            <select id="lname" name="Q122" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q123">I seem to be as capable as the people around me.
-            </label> 
-            <select id="lname" name="Q123" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q124">I believe someone is stalking me.
-            </label> 
-            <select id="lname" name="Q124" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q127">I enjoy theatrical works. 
-            </label> 
-            <select id="lname" name="Q127" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q128">I know who is causing me trouble.
-            </label> 
-            <select id="lname" name="Q128" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q134">I have never indulged myself in any unusual sexual behavior.
-            </label> 
-            <select id="lname" name="Q134" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q141">I enjoy cooking.
-            </label> 
-            <select id="lname" name="Q141" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q145">I like to be a soldier.
-            </label> 
-            <select id="lname" name="Q145" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q152">Someone has been wanting to kill me with poison.
-            </label> 
-            <select id="lname" name="Q152" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q155">I have never had a twitching problem.
-            </label> 
-            <select id="lname" name="Q155" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q157">There was a time when I didn't remember anything I did.
-            </label> 
-            <select id="lname" name="Q157" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q163">I hate it when people trick me, forcing me to admit defeat.
-            </label> 
-            <select id="lname" name="Q163" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q164">I hardly get tired.
-            </label> 
-            <select id="lname" name="Q164" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q167">I am afraid of looking down from high places.
-            </label> 
-            <select id="lname" name="Q167" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q168">I don’t get nervous, even when someone in my family breaks the law.
-            </label> 
-            <select id="lname" name="Q168" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q170">I am not afraid to manage money.
-            </label> 
-            <select id="lname" name="Q170" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q175">I have never fainted before.
-            </label> 
-            <select id="lname" name="Q175" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q177">I am not afraid of snakes.
-            </label> 
-            <select id="lname" name="Q177" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q178">My mother is a good person.
-            </label> 
-            <select id="lname" name="Q178" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q179">My memory seems to be good.
-            </label> 
-            <select id="lname" name="Q179" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q181">I feel like I don’t know what to say when I encounter strangers.
-            </label> 
-            <select id="lname" name="Q181" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q187">I often find my hands trembling when I need to do something. 
-            </label> 
-            <select id="lname" name="Q187" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q192">Sometimes, I sweat a lot when I am embarrassed. This troubles me.
-            </label> 
-            <select id="lname" name="Q192" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q201">Someone wants to steal my thoughts and plans.
-            </label> 
-            <select id="lname" name="Q201" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q202">I wish I am not as shy as I am now.
-            </label> 
-            <select id="lname" name="Q202" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q220">I think I'd like a job as a construction contractor.
-            </label> 
-            <select id="lname" name="Q220" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q224">I like to hunt.
-            </label> 
-            <select id="lname" name="Q224" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q229">Sometimes I feel it is easy to make a decision.
-            </label> 
-            <select id="lname" name="Q229" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q230">I like joining several groups at once.
-            </label> 
-            <select id="lname" name="Q230" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q231">I never felt short of breath.
-            </label> 
-            <select id="lname" name="Q231" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q234">Sometimes I prevent others from doing certain things, not because of the potential impact, but because I feel I am morally obligated.
-            </label> 
-            <select id="lname" name="Q234" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q238">Almost all my relatives sympathize with me.
-            </label> 
-            <select id="lname" name="Q238" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q245">My methods are often misunderstood.
-            </label> 
-            <select id="lname" name="Q245" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q267">I get excited at least once or twice a week.
-            </label> 
-            <select id="lname" name="Q267" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q268">I don’t know what to say when there are a lot of people.
-            </label> 
-            <select id="lname" name="Q268" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q272">I don’t blame someone who bullies a person who has brought it upon themselves.
-            </label> 
-            <select id="lname" name="Q272" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q278">Sometimes I admire a con man's wit so much that I even hope they get away with it.
-            </label> 
-            <select id="lname" name="Q278" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q279">I often feel that some strangers are staring at me critically.
-            </label> 
-            <select id="lname" name="Q279" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q281">Most people make friends because friends are useful to them.
-            </label> 
-            <select id="lname" name="Q281" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q289">Problems with nausea and vomiting bother me.
-            </label> 
-            <select id="lname" name="Q289" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q292">At least once or twice in my life, I felt someone hint at me to do something.
-            </label> 
-            <select id="lname" name="Q292" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q296">I like reading novels like Dream of the Red Chamber.
-            </label> 
-            <select id="lname" name="Q296" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q298">I wish I wasn't bothered by sexual thoughts anymore.
-            </label> 
-            <select id="lname" name="Q298" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q301">I have never liked dolls in my entire life.
-            </label> 
-            <select id="lname" name="Q301" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q315">Occasionally I think of things that are too evil to be said aloud. 
-            </label> 
-            <select id="lname" name="Q315" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q316">I deeply believe that life is cruel to me. 
-            </label> 
-            <select id="lname" name="Q316" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q318">I am more sensitive than most people.
-            </label> 
-            <select id="lname" name="Q318" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q321">I have a lot of dreams about sex.
-            </label> 
-            <select id="lname" name="Q321" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q324">I have had very special or strange experiences.
-            </label> 
-            <select id="lname" name="Q324" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q339">I worry about more things than I should.
-            </label> 
-            <select id="lname" name="Q339" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q342">Sometimes my hearing is so sensitive that it annoys me.
-            </label> 
-            <select id="lname" name="Q342" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q346">I often feel everything is not real.
-            </label> 
-            <select id="lname" name="Q346" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q350">I have some weird or special ideas.
-            </label> 
-            <select id="lname" name="Q350" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q358">There were a few times I gave up on the thing I was doing because I feel incapable.
-            </label> 
-            <select id="lname" name="Q358" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q360">Sometimes I am bothered by unimportant thoughts, making me uneasy for days.
-            </label> 
-            <select id="lname" name="Q360" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q370">In social gatherings, I mostly sit alone or with another person, rather than being with a crowd.
-            </label> 
-            <select id="lname" name="Q370" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q383">I like social gatherings because I can get together with people.
-            </label> 
-            <select id="lname" name="Q383" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q471">Things about sex annoy me.
-            </label> 
-            <select id="lname" name="Q471" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <p> 
-            <label for="Q527">My future doesn’t seem hopeful.
-            </label> 
-            <select id="lname" name="Q527" step="any" required> 
-            <option value="1">No</option> 
-            <option value="0">Yes</option> 
-            <option value="2">Uncertain</option> 
-            </select> 
-            </p> <br> <br>
-            <input type="submit" name= "form" value="Submit" />
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">When I wake up in the morning, I often feel rested and clear-headed:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q3">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I like to read news on crimes:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q6">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
 
-            </form>
-        </div>
-    </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">My hands and feet are usually warm:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q7">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">My daily life is full of things that are interesting to me:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q8">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
 
-</body>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">My ability in work (study) is the same as before:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q9">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I like detective or mystery novels:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q12">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
 
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I rarely have constipation issues:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q18">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">Sometimes I want to leave home:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q21">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">Sometimes I cry and laugh uncontrollably:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q22">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I am troubled with nausea and vomiting problems:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q23">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">It seems like nobody understands me:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q24">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">Sometimes I feel like I am being possessed:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q27">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I find it hard to focus on one job:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q32">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I have had very special or strange experiences:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q33">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I would have achieved a lot more if it wasn’t because I was impeded by someone:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q35">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="I did petty theft when I was young" class="form-label">I have never had problems with my sexual activities:</label>
+                                <select class="form-select" aria-label="Default select example" id="I did petty theft when I was young" name="Q37">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I did petty theft when I was young:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q38">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">My family is unsatisfied with my chosen job (or upcoming job)</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q42">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I am as healthy as most of my friends:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q51">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I become familiar with others as soon as I meet them:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q57">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I defecate normally and controllably:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q63">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">Sometimes I do something non-stop until it annoys someone:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q64">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I hope I can be happy like others:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q67">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I have never had pain in the back of my neck:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q68">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I believe many people exaggerate their misfortunes to gain sympathy and help from others:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q71">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I get angry sometimes:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q76">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I believe I would enjoy being a forest ranger (or a similar job):</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q82">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">Everyone can succeed if they have the ability and desire to do the job:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q84">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">Sometimes I delay things I am supposed to do today to the next day:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q91">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I want to be a nurse:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q93">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I believe most people will lie to make gains:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q94">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I rarely quarrel with my family:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q97">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I believe women should enjoy the same rights as men when it comes to sex life:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q102">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I believe I am the hardest to control:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q103">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I lose my temper when my body is in discomfort:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q106">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I always feel like I have done something wrong or committed some crime:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q107">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">Some people are so bossy that I have to go against them, even when I know they are right:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q110">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I like games or competitions that I have wagered in more:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q117">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">When I was in school, sometimes I was called out by the leader for making a fuss:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q119">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I always speak at a pace that is neither fast nor slow, and I am neither ambiguous nor hoarse:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q120">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I believe someone is plotting against me:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q122">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I seem to be as capable as the people around me:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q123">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I believe someone is stalking me:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q124">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I enjoy theatrical works:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q127">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I know who is causing me trouble:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q128">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I have never indulged myself in any unusual sexual behavior:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q134">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I enjoy cooking:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q141">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I like to be a soldier:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q145">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">Someone has been wanting to kill me with poison:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q152">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I have never had a twitching problem:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q155">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">There was a time when I didn't remember anything I did:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q157">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I hate it when people trick me, forcing me to admit defeat:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q163">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I hardly get tired:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q164">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I am afraid of looking down from high places:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q167">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I don’t get nervous, even when someone in my family breaks the law:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q168">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I am not afraid to manage money:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q170">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I have never fainted before:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q175">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I am not afraid of snakes:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q177">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">My mother is a good person:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q178">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">My memory seems to be good:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q179">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I feel like I don’t know what to say when I encounter strangers:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q181">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I often find my hands trembling when I need to do something:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q187">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">Sometimes, I sweat a lot when I am embarrassed. This troubles me:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q192">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">Someone wants to steal my thoughts and plans:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q201">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I wish I am not as shy as I am now:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q202">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I think I'd like a job as a construction contractor:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q220">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I like to hunt:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q224">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">Sometimes I feel it is easy to make a decision:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q229">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I like joining several groups at once:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q230">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I never felt short of breath:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q231">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">Sometimes I prevent others from doing certain things, not because of the potential impact, but because I feel I am morally obligated:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q234">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">Almost all my relatives sympathize with me:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q238">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">My methods are often misunderstood:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q245">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I get excited at least once or twice a week:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q267">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I don’t know what to say when there are a lot of people:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q268">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I don’t blame someone who bullies a person who has brought it upon themselves:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q272">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">Sometimes I admire a con man's wit so much that I even hope they get away with it:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q278">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I often feel that some strangers are staring at me critically:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="279">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">Most people make friends because friends are useful to them:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q281">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">Problems with nausea and vomiting bother me:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q289">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">At least once or twice in my life, I felt someone hint at me to do something:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q292">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I like reading novels like Dream of the Red Chamber:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q296">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I wish I wasn't bothered by sexual thoughts anymore:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q298">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I have never liked dolls in my entire life:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q301">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">Occasionally I think of things that are too evil to be said aloud:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q315">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I deeply believe that life is cruel to me:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q316">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I am more sensitive than most people:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q318">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I have a lot of dreams about sex:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q321">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I have had very special or strange experiences:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q324">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I worry about more things than I should:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q339">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">Sometimes my hearing is so sensitive that it annoys me:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q342">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">I often feel everything is not real:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q346">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I have some weird or special ideas:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q350">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">There were a few times I gave up on the thing I was doing because I feel incapable:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q358">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">Sometimes I am bothered by unimportant thoughts, making me uneasy for days:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q360">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">In social gatherings, I mostly sit alone or with another person, rather than being with a crowd:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q370">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col">
+                                <label for="gender" class="form-label">I like social gatherings because I can get together with people:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q383">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+            
+                            <div class="col">
+                                <label for="gender" class="form-label">Things about sex annoy me:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q471">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="py-2">
+                            <label for="gender" class="form-label">My future doesn’t seem hopeful:</label>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Q527">
+                                    
+                                    <option selected>No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">Uncertain</option>
+                                </select>
+                        </div>
+                        
+
+                        <input type="submit" name="form" class="btn btn-primary"></input>
+                    </form>
+                </div>
+                        
+            </div>
+             
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    </body>
+</html>
