@@ -11,5 +11,7 @@ Please perform the following in a separate branch based off the main branch, and
   - Your age (integer, limited to between)
   - Your gender (single selection, options: Male, Female, Other)
   - Please enter a random number (decimal, rounded to 1 decimal place)
+- Note the survey cannot be submitted unless all the questions are answered
 - The survey should compute a score with the following formula: score = age * random_number * gender (1 for Male, 2 for Female, 3 for Other).
 - The score should be displayed on a results page along with the user's entered name and email address
+- Make sure the new survey works without any errors and demo it to Bill.
