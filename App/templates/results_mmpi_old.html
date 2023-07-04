@@ -1,0 +1,125 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;1,100&display=swap" rel="stylesheet">
+    <style>
+
+    body {
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      height: 100vh;
+      
+    }
+
+    .split {
+        height: 100%;
+        width: 50%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        overflow-x: hidden;
+        box-sizing: border-box;
+        font-family: 'Inter Tight', sans-serif;
+        text-align: left;
+    }
+
+    .center {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 500px;
+        transform: translate(-50%, -50%);
+       
+    }
+    
+    .relative {
+        position: relative;
+        right: 0px;
+
+    }
+
+    .right {
+        right: 0;
+        color:#ffffff;
+        background-color:#4F6D7A;
+    }
+
+    .left {
+        padding-top: 300px;
+        border-top: 300px;
+        left: 0;
+        color:#4F6D7A;
+        overflow: auto;
+    }
+
+    .highlight {
+        font-weight: bold;
+    }
+
+    a { color:#ffffff;}
+    h1 { font-size:25px; font-weight: normal;}
+    h2 { font-size:15px; font-weight: normal;}
+    h3 { font-size:10px; font-weight: normal;}
+    
+    </style>
+</head>
+
+<body>
+    <div class="split left">
+        <div class="center">
+            <h1>
+                Your likelihood of being positive in depression is <span class="highlight">{{Depression}} %</span> 
+            </h1>
+            <h1>
+                Your likelihood of being positive in hypochondriasis is <span class="highlight">{{Hypochondriasis}} %</span> 
+            </h1>
+            <h1>
+                Your likelihood of being positive in hysteria is <span class="highlight">{{Hysteria}} %</span> 
+            </h1>
+            <h1>
+                Your likelihood of being positive in psychopathic deviate is <span class="highlight">{{Psychopathic_Deviate}} %</span> 
+            </h1>
+            <h1>
+                Your likelihood of being masculine in masculinity femininity is <span class="highlight">{{Masculinity_Femininity}} %</span> 
+            </h1>
+            <h1>
+                Your likelihood of being positive in paranoia is <span class="highlight">{{Paranoia}} %</span> 
+            </h1>
+            <h1>
+                Your likelihood of being positive in psychasthenia is <span class="highlight">{{Psychasthenia}} %</span> 
+            </h1>
+            <h1>
+                Your likelihood of being positive in schizophrenia is <span class="highlight">{{Schizophrenia}} %</span> 
+            </h1>
+            <h1>
+                Your likelihood of being positive in hypomania is <span class="highlight">{{Hypomania}} %</span> 
+            </h1>
+            <h1>
+                Your likelihood of being positive in social introversion is <span class="highlight">{{Social_Introversion}} %</span> 
+            </h1>
+            <h3>
+                *This webpage does not contain medical/health advice. This tool is intended for informational and educational purposes only, and should not be taken as a substitute for professional advice. Reliance on any information on the webpage is solely at your own risk.
+            </h3>
+        </div>
+    </div>
+
+    <div class="split right">
+        <div class="center">
+            <h2>
+                Thank you for taking the time to use our <span class="highlight">shortened MMPI survey</span>. 
+                We hope our research was insightful towards your understanding of your stress levels. </span>
+		        If your likelihood is higher than 50% in any of the MMPI-2 conditions other than </span>
+		        masculinity femininity, we advice you to take the full test for thorough evaluation.
+            </h2>
+            <button onclick="location.href='/mmpi'" type="button">Try Again</button>
+            <br>
+            <br>
+            <button onclick="location.href='/'" type="button">Menu</button>
+            <br>
+            <h2>
+                This webpage was designed by Nathan Yee Lee, Bill Sun and Kenny Liu. A link to the paper with relevant equations can be found <u><a href="/poster-childbmi.pdf">here</a></u>.
+            </h2>
+        </div>
+    </div>
+</body>
