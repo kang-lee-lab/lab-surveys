@@ -24,3 +24,12 @@ Make sure you have a Python runtime environment set up (preferably Anaconda Pyth
 Then make sure you install all the libraries (`pip install -r requirements.txt` or `conda install -r requirements.txt` for Anaconda)
 
 Once created, launch the app by running `python run.py`
+
+
+## Development
+
+The "main" branch is locked, and all changes should come in the form of a pull request (PR) on GitHub from your development branch.
+
+Please test your application in the QA Heroku environment (https://dashboard.heroku.com/apps/kangleelab-surveys-qa) before pushing to the "main" branch (you can deploy a branch on Heroku) 
+
+If you have any suggestions about how to improve this app, please add a ticket on the project page (https://github.com/orgs/kang-lee-lab/projects/2/views/2)
