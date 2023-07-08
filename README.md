@@ -13,7 +13,7 @@ To run locally you must set up a PostgreSQL database on your machine. The follow
 
 https://www.postgresqltutorial.com/postgresql-administration/postgresql-create-database/
 
-Once the database is created, a table must be created with the name "responses" and must be created with matching data values and types as seen in the Response class found in __init__.py
+Once the database is created, a table must be created with the name "responses" and must be created with matching data values and types as seen in the Response class found in `__init__.py`
 
 Below is a tutorial on how to create a table within a database on pgAdmin.
 
@@ -28,7 +28,9 @@ Once created, launch the app by running `python run.py`
 
 ## Development
 
-The "main" branch is locked, and all changes should come in the form of a pull request (PR) on GitHub from your development branch.
+The `main` branch is locked, and all changes should come in the form of a pull request (PR) on GitHub from your development branch.
+
+Please name your branches `<yourname>/<issue_ID>/<brief description of your changes>`.
 
 Please test your application in the QA Heroku environment (https://dashboard.heroku.com/apps/kangleelab-surveys-qa) before pushing to the "main" branch (you can deploy a branch on Heroku) 
 
