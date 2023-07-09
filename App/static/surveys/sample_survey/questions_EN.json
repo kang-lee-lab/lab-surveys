@@ -1,0 +1,26 @@
+{
+    "survey_id": "sample_survey",
+    "language": "EN",
+    "questions": [
+        {
+            "question_id": "Name",
+            "question_text": "Your name",
+            "show_number": false,
+            "question": {
+                "type": "short_text",
+                "maxlength": 100
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "Name",
+            "question_text": "Introduce yourself",
+            "show_number": false,
+            "question": {
+                "type": "long_text",
+                "rows": 5
+            },
+            "is_required": true
+        }
+    ]
+}

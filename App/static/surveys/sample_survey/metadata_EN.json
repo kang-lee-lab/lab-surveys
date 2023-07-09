@@ -1,0 +1,14 @@
+{
+    "survey_id": "sample_survey",
+    "language": "EN",
+    "short_name": "Sample Survey",
+    "full_name": "Sample survey for demonstration purposes",
+    "description": "Sample survey for demonstration purposes",
+    "survey_type": "other",
+    "display": false,
+    "is_data_collection": false,
+    "turn_off_data_collection": true,
+    "has_results": true,
+    "is_machine_learning": false,
+    "instructions": "Please answer the following questions:"
+}
