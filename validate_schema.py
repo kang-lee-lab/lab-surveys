@@ -9,7 +9,12 @@ import json
 import os
 import sys
 from jsonschema import validate
-from App.consts import SCHEMAS_PATH, SURVEYS_PATH
+from App.consts import (
+    METADATA_SCHEMA_PATH,
+    QUESTIONS_SCHEMA_PATH,
+    RESULTS_SCHEMA_PATH,
+    SURVEYS_PATH
+)
 
 
 def validate_schema(survey_id: str, language: str = 'EN'):
@@ -25,7 +30,7 @@ def validate_schema(survey_id: str, language: str = 'EN'):
     
     with open(os.path.join(survey_path, f'metadata_{language}.json'), 'r') as f:
         metadata = json.load(f)
-    with open(os.path.join(SCHEMAS_PATH, 'metadata.json'), 'r') as f:
+    with open(os.path.join(METADATA_SCHEMA_PATH), 'r') as f:
         metadata_schema = json.load(f)
     print(' * Validating metadata JSON')
     validate(metadata, metadata_schema)
@@ -33,7 +38,7 @@ def validate_schema(survey_id: str, language: str = 'EN'):
 
     with open(os.path.join(survey_path, f'questions_{language}.json'), 'r') as f:
         questions = json.load(f)
-    with open(os.path.join(SCHEMAS_PATH, 'questions.json'), 'r') as f:
+    with open(os.path.join(QUESTIONS_SCHEMA_PATH), 'r') as f:
         questions_schema = json.load(f)
     print(' * Validating questions JSON')
     validate(questions, questions_schema)
@@ -41,7 +46,7 @@ def validate_schema(survey_id: str, language: str = 'EN'):
 
     with open(os.path.join(survey_path, f'results_{language}.json'), 'r') as f:
         results = json.load(f)
-    with open(os.path.join(SCHEMAS_PATH, 'results.json'), 'r') as f:
+    with open(os.path.join(RESULTS_SCHEMA_PATH), 'r') as f:
         results_schema = json.load(f)
     print(' * Validating results JSON')
     validate(results, results_schema)
