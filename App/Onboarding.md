@@ -4,7 +4,7 @@ Please perform the following in a separate branch based off the main branch, and
 
 - Define a new survey called <your_firstname>_test
 - Create the appropriate functions and routes, where the format should be consistent with existing functions and routes
-- Create the appropriate web pages, where the design is consistent with the remainder of the website
+- Create the appropriate web pages, where the design is consistent with the remainder of the website (use Bootstrap)
 - The new survey should consist of the following questions with the appropriate input types and ranges (see HTML input forms for details):
   - Your name (short input text)
   - Your email (email)
