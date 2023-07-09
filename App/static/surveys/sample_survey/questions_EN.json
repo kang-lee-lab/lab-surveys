@@ -1,0 +1,194 @@
+{
+    "survey_id": "sample_survey",
+    "language": "EN",
+    "questions": [
+        {
+            "question_id": "consent",
+            "question_text": "Consent",
+            "show_number": false,
+            "question": {
+                "type": "checkbox",
+                "text": "Do you consent to your information being recorded?"
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "name",
+            "question_text": "Your name",
+            "show_number": false,
+            "question": {
+                "type": "short_text",
+                "maxlength": 100
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "introduction",
+            "question_text": "Please briefly introduce yourself",
+            "show_number": false,
+            "question": {
+                "type": "long_text",
+                "rows": 5
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "image",
+            "question_text": "Upload an image of yourself",
+            "show_number": false,
+            "question": {
+                "type": "file",
+                "accepted_filetypes": ["jpg", "jepg", "png"]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "age",
+            "question_text": "Your age",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 1,
+                "min": 18,
+                "max": 100
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "rate",
+            "question_text": "Rate this experience",
+            "show_number": false,
+            "question": {
+                "type": "number_slider",
+                "step": 1,
+                "min": 0,
+                "max": 10
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "birthday",
+            "question_text": "Your birthday",
+            "show_number": false,
+            "question": {
+                "type": "date",
+                "min": "1900-01-01",
+                "max": "2020-01-01"
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "lunchtime",
+            "question_text": "When did you have lunch",
+            "show_number": false,
+            "question": {
+                "type": "time"
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "now",
+            "question_text": "Current time",
+            "show_number": false,
+            "question": {
+                "type": "datetime"
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "gender",
+            "question_text": "Your gender",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "male",
+                        "value": "1",
+                        "text": "Male"
+                    },
+                    {
+                        "id": "female",
+                        "value": "0",
+                        "text": "Female"
+                    },
+                    {
+                        "id": "other",
+                        "value": "2",
+                        "text": "Other"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "race",
+            "question_text": "Your race",
+            "show_number": false,
+            "question": {
+                "type": "single_select",
+                "choices": [
+                    {
+                        "id": "asian",
+                        "value": "0",
+                        "text": "Asian"
+                    },
+                    {
+                        "id": "white",
+                        "value": "1",
+                        "text": "White"
+                    },
+                    {
+                        "id": "black",
+                        "value": "2",
+                        "text": "Black"
+                    },
+                    {
+                        "id": "hispanic",
+                        "value": "3",
+                        "text": "Hispanic"
+                    },
+                    {
+                        "id": "other",
+                        "value": "4",
+                        "text": "Other (Please specify)",
+                        "textbox": true
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "orientation",
+            "question_text": "Your sexual orientation",
+            "show_number": false,
+            "question": {
+                "type": "multiple_select",
+                "choices": [
+                    {
+                        "id": "straight",
+                        "value": "0",
+                        "text": "Straight"
+                    },
+                    {
+                        "id": "gay",
+                        "value": "1",
+                        "text": "Homosexual"
+                    },
+                    {
+                        "id": "bi",
+                        "value": "2",
+                        "text": "Bisexual"
+                    },
+                    {
+                        "id": "other",
+                        "value": "3",
+                        "text": "Other (Please specify)",
+                        "textbox": true
+                    }
+                ]
+            },
+            "is_required": true
+        }
+    ]
+}

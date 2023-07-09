@@ -1,3 +1,5 @@
+""" Run application """
+
 from App import app
 
 if __name__ == '__main__':
