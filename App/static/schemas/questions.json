@@ -34,7 +34,7 @@
                     "question": {
                         "type": "object",
                         "description": "Contents of the question",
-                        "oneOf": [
+                        "anyOf": [
                             {
                                 "type": "object", 
                                 "description": "Short text question",
@@ -137,7 +137,7 @@
                                     },
                                     "accepted_filetypes": {
                                         "type": "array",
-                                        "dependencies": "Accepted file extensions (csv, png, etc.)",
+                                        "description": "Accepted file extensions (csv, png, etc.)",
                                         "items": {
                                             "type": "string"
                                         }
@@ -188,7 +188,7 @@
                                 "properties": {
                                     "type": {
                                         "type": "string",
-                                        "value": "slider"
+                                        "value": "number_slider"
                                     },
                                     "default_value": {
                                         "type": "number",
@@ -228,11 +228,11 @@
                                         "description": "Default value (YYYY-mm-dd)"
                                     },
                                     "min": {
-                                        "type": "number",
+                                        "type": "string",
                                         "description": "Minumum accepted date (YYYY-mm-dd)"
                                     },
                                     "max": {
-                                        "type": "number",
+                                        "type": "string",
                                         "description": "Maximum accepted date (YYYY-mm-dd)"
                                     }
                                 },
@@ -317,6 +317,10 @@
                                                 "text": {
                                                     "type": "string",
                                                     "description": "Option text"
+                                                },
+                                                "textbox": {
+                                                    "type": "boolean",
+                                                    "description": "Show textbox (e.g. for other, please enter:)"
                                                 }
                                             },
                                             "required": [
@@ -358,10 +362,6 @@
                                                 "text": {
                                                     "type": "string",
                                                     "description": "Option text"
-                                                },
-                                                "textbox": {
-                                                    "type": "boolean",
-                                                    "description": "Show textbox (e.g. for other, please enter:)"
                                                 }
                                             },
                                             "required": [
@@ -407,6 +407,10 @@
                                                 "selected_default": {
                                                     "type": "boolean",
                                                     "description": "If option is selected by default"
+                                                },
+                                                "textbox": {
+                                                    "type": "boolean",
+                                                    "description": "Show textbox (e.g. for other, please enter:)"
                                                 }
                                             },
                                             "required": [
