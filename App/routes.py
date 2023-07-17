@@ -14,6 +14,10 @@ data_folder = "App/static"
 def index():
     return render_template('index.html')
 
+@app.route('/in_progress')
+def in_progress():
+    return render_template('in_progress.html')
+
 @app.route('/queryNafld')
 def queryNafld():
     responseResults = db.session.query(Response).filter(Response.response_type=='nafld').all()
