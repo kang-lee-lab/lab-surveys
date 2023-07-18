@@ -34,7 +34,7 @@
 
         <div class="container px-5 py-5">
             <h2>Welcome to the Depression Anxiety Stress Scales (DASS) prediction interactive webpage.</h2>
-            <p>This applet computes an individual's likelihood of moderate anxiety. Based on 6 questions, this app uses a machine learning model to compute the likelihood of anxiety.</p>
+            <p>This applet computes an individual's likelihood of moderate stress. Based on 6 questions, this app uses a machine learning model to compute the likelihood of stress.</p>
         </div>
         
         <div class="container px-5 py-5">
@@ -46,8 +46,8 @@
                         <div class="row">
                             <div class="col">
                                 <label for="gender" class="form-label">Gender:</label>
-                                <select class="form-select" aria-label="Default select example" id="gender" name="Gender">
-                                    <option selected>Click to Drop Down</option>
+                                <select class="form-select" aria-label="Default select example" id="gender" name="Gender" required>
+                                    <option value="" selected>Click to Drop Down</option>
                                     <option value="1">Male</option>
                                     <option value="2">Female</option>
                                 </select>
@@ -55,8 +55,8 @@
 
                             <div class="col">
                                 <label for="Region" class="form-label">Region:</label>
-                                <select class="form-select" aria-label="Default select example" id="Region" name="Region">
-                                    <option selected>Click to Drop Down</option>
+                                <select class="form-select" aria-label="Default select example" id="Region" name="Region" required>
+                                    <option value="" selected>Click to Drop Down</option>
                                     <option value="1">East</option>
                                     <option value="2">West</option>
                                     <option value="3">Other</option>
@@ -65,13 +65,13 @@
                         </div>
                         <div class="form-outline">
                             <label class="form-label" for="typeNumber">Age:</label>
-                            <input type="number" step="any" id="typeNumber" class="form-control" value="40" name="Age"/>
+                            <input type="number" step="1" min="0" max="100" id="typeNumber" class="form-control" name="Age" required/>
                         </div>
 
                         <div class="py-2">
                             <label for="q1" class="form-label">I tended to over-react to situations</label>
-                            <select class="form-select" aria-label="Default select example" id="q1" name="Q6">
-                                <option selected>Click to Drop Down</option>
+                            <select class="form-select" aria-label="Default select example" id="q1" name="Q6" required>
+                                <option value="" selected>Click to Drop Down</option>
                                 <option value="1">Did not apply to me at all</option>
                                 <option value="2">Applied to me to some degree, or some of the time</option>
                                 <option value="3">Applied to me to a considerable degree, or a good part of time</option>
@@ -81,8 +81,8 @@
 
                         <div class="py-2">
                             <label for="q2" class="form-label">I found myself getting upset rather easily</label>
-                            <select class="form-select" aria-label="Default select example" id="q2" name="Q11">
-                                <option selected>Click to Drop Down</option>
+                            <select class="form-select" aria-label="Default select example" id="q2" name="Q11" required>
+                                <option value="" selected>Click to Drop Down</option>
                                 <option value="1">Did not apply to me at all</option>
                                 <option value="2">Applied to me to some degree, or some of the time</option>
                                 <option value="3">Applied to me to a considerable degree, or a good part of time</option>
@@ -92,8 +92,8 @@
 
                         <div class="py-2">
                             <label for="q3" class="form-label">I felt that I was rather touchy</label>
-                            <select class="form-select" aria-label="Default select example" id="q3" name="Q18">
-                                <option selected>Click to Drop Down</option>
+                            <select class="form-select" aria-label="Default select example" id="q3" name="Q18" required>
+                                <option value="" selected>Click to Drop Down</option>
                                 <option value="1">Did not apply to me at all</option>
                                 <option value="2">Applied to me to some degree, or some of the time</option>
                                 <option value="3">Applied to me to a considerable degree, or a good part of time</option>
@@ -103,8 +103,8 @@
 
                         <div class="py-2">
                             <label for="q4" class="form-label">I found that I was very irritable</label>
-                            <select class="form-select" aria-label="Default select example" id="q4" name="Q27">
-                                <option selected>Click to Drop Down</option>
+                            <select class="form-select" aria-label="Default select example" id="q4" name="Q27" required>
+                                <option value="" selected>Click to Drop Down</option>
                                 <option value="1">Did not apply to me at all</option>
                                 <option value="2">Applied to me to some degree, or some of the time</option>
                                 <option value="3">Applied to me to a considerable degree, or a good part of time</option>
@@ -114,15 +114,15 @@
 
                         <div class="py-2">
                             <label for="q5" class="form-label">I found it hard to calm down after something upset me</label>
-                            <select class="form-select" aria-label="Default select example" id="q5" name="Q29">
-                                <option selected>Click to Drop Down</option>
+                            <select class="form-select" aria-label="Default select example" id="q5" name="Q29" required>
+                                <option value="" selected>Click to Drop Down</option>
                                 <option value="1">Did not apply to me at all</option>
                                 <option value="2">Applied to me to some degree, or some of the time</option>
                                 <option value="3">Applied to me to a considerable degree, or a good part of time</option>
                                 <option value="4">Applied to me very much, or most of the time</option>
                             </select>
                         </div>
-                        <input type="submit" name="form" value="submit" class="btn btn-primary"/>
+                        <input type="submit" name="form" value="Submit" class="btn btn-primary"/>
                     </form>
                 </div>
             </div>

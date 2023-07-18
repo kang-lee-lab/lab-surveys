@@ -47,8 +47,8 @@
                     <form action="/results_childbmi" method="post">
                         <div class="py-2">
                             <label for="gender" class="form-label">Gender:</label>
-                                    <select class="form-select" aria-label="Default select example" name = "Gender" id="gender">
-                                        <option selected>Click to Drop Down</option>
+                                    <select class="form-select" aria-label="Default select example" name = "Gender" id="gender" required>
+                                        <option value="" selected>Click to Drop Down</option>
                                         <option value="1">Male</option>
                                         <option value="2">Female</option>
                                     </select>
@@ -58,14 +58,14 @@
                             <div class="col">
                                 <div class="form-outline">
                                     <label class="form-label" for="typeNumber">Current Age:</label>
-                                    <input type="number" step="any" id="typeNumber" name = "Age" class="form-control" value="5"/>
+                                    <input type="number" step="1" id="typeNumber" name = "Age" class="form-control" value="5" required/>
                                 </div>
                             </div>
 
                             <div class="col">
                                 <div class="form-outline">
                                     <label class="form-label" for="typeNumber">Weight (kg):</label>
-                                    <input type="number" step="any" id="typeNumber" name="Weight" class="form-control" value="20" />
+                                    <input type="number" step="any" id="typeNumber" name="Weight" class="form-control" value="20" value="" required/>
                                 </div>
                             </div>
                         </div>
@@ -74,14 +74,14 @@
                             <div class="col">
                                 <div class="form-outline">
                                     <label class="form-label" for="typeNumber">Height (cm):</label>
-                                    <input type="number" step="any" id="typeNumber" name="Height" class="form-control" value="110" />
+                                    <input type="number" step="any" id="typeNumber" name="Height" class="form-control" value="110" value="" required/>
                                 </div>
                             </div>
 
                             <div class="col">
                                 <div class="form-outline">
                                     <label class="form-label" for="typeNumber">Age to predict:</label>
-                                    <input type="number" step="any" id="typeNumber" name="Age1" class="form-control" value="15" />
+                                    <input type="number" step="1" id="typeNumber" name="Age1" class="form-control" value="15" value="" required/>
                                 </div>
                             </div>
                         </div>
