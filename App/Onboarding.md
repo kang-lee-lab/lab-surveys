@@ -15,4 +15,5 @@ Please perform the following in a separate branch based off the main branch, and
 - The survey should compute a score (decimal) with the following formula: score = age * random_number * gender (1 for Male, 2 for Female, 3 for Other).
 - The score (rounded to 1 decimal place) should be displayed on a results page along with the user's entered name and email address
 - This survey should be visible from the main menu under "Physical"
+- Create JSON files (metadata, questions, results) for your new survey and make sure it passes schema validation
 - Make sure the new survey works without any errors and demo it to Bill.
