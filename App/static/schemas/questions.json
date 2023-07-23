@@ -11,7 +11,11 @@
         "language": {
             "type": "string",
             "description": "Language of the survey",
-            "enum": ["EN", "CH", "FR"]
+            "enum": [
+                "EN",
+                "CH",
+                "FR"
+            ]
         },
         "questions": {
             "type": "array",
@@ -36,7 +40,7 @@
                         "description": "Contents of the question",
                         "anyOf": [
                             {
-                                "type": "object", 
+                                "type": "object",
                                 "description": "Short text question",
                                 "properties": {
                                     "type": {
@@ -58,8 +62,8 @@
                                 ],
                                 "additionalProperties": false
                             },
-                            { 
-                                "type": "object", 
+                            {
+                                "type": "object",
                                 "description": "Long text (text box) question",
                                 "properties": {
                                     "type": {
@@ -85,8 +89,8 @@
                                 ],
                                 "additionalProperties": false
                             },
-                            { 
-                                "type": "object", 
+                            {
+                                "type": "object",
                                 "description": "Email input",
                                 "properties": {
                                     "type": {
@@ -99,8 +103,8 @@
                                 ],
                                 "additionalProperties": false
                             },
-                            { 
-                                "type": "object", 
+                            {
+                                "type": "object",
                                 "description": "Phone number input",
                                 "properties": {
                                     "type": {
@@ -113,8 +117,8 @@
                                 ],
                                 "additionalProperties": false
                             },
-                            { 
-                                "type": "object", 
+                            {
+                                "type": "object",
                                 "description": "Password / Hidden field input",
                                 "properties": {
                                     "type": {
@@ -127,8 +131,8 @@
                                 ],
                                 "additionalProperties": false
                             },
-                            { 
-                                "type": "object", 
+                            {
+                                "type": "object",
                                 "description": "File upload",
                                 "properties": {
                                     "type": {
@@ -149,8 +153,8 @@
                                 ],
                                 "additionalProperties": false
                             },
-                            { 
-                                "type": "object", 
+                            {
+                                "type": "object",
                                 "description": "Number input",
                                 "properties": {
                                     "type": {
@@ -182,8 +186,8 @@
                                 ],
                                 "additionalProperties": false
                             },
-                            { 
-                                "type": "object", 
+                            {
+                                "type": "object",
                                 "description": "Slider number input",
                                 "properties": {
                                     "type": {
@@ -215,8 +219,8 @@
                                 ],
                                 "additionalProperties": false
                             },
-                            { 
-                                "type": "object", 
+                            {
+                                "type": "object",
                                 "description": "Date input",
                                 "properties": {
                                     "type": {
@@ -243,8 +247,8 @@
                                 ],
                                 "additionalProperties": false
                             },
-                            { 
-                                "type": "object", 
+                            {
+                                "type": "object",
                                 "description": "Time input",
                                 "properties": {
                                     "type": {
@@ -257,8 +261,8 @@
                                 ],
                                 "additionalProperties": false
                             },
-                            { 
-                                "type": "object", 
+                            {
+                                "type": "object",
                                 "description": "Datetime input",
                                 "properties": {
                                     "type": {
@@ -271,8 +275,8 @@
                                 ],
                                 "additionalProperties": false
                             },
-                            { 
-                                "type": "object", 
+                            {
+                                "type": "object",
                                 "properties": {
                                     "type": {
                                         "type": "string",
@@ -289,8 +293,8 @@
                                 ],
                                 "additionalProperties": false
                             },
-                            { 
-                                "type": "object", 
+                            {
+                                "type": "object",
                                 "properties": {
                                     "type": {
                                         "type": "string",
@@ -338,8 +342,8 @@
                                 ],
                                 "additionalProperties": false
                             },
-                            { 
-                                "type": "object", 
+                            {
+                                "type": "object",
                                 "properties": {
                                     "type": {
                                         "type": "string",
@@ -379,8 +383,8 @@
                                 ],
                                 "additionalProperties": false
                             },
-                            { 
-                                "type": "object", 
+                            {
+                                "type": "object",
                                 "properties": {
                                     "type": {
                                         "type": "string",

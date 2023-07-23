@@ -1,23 +1,28 @@
-""" Script to validate a survey against the schema 
+""" Script to validate a survey against the schema
 
     Make sure all your survey files are in App/static/surveys/<survey_id>
 
-    To run in command line: "python validate_schema.py <survey_id> <language>"
+    To run in command line: "python3 validate_schema.py <survey_id> <language>"
+
+    Alternatively to validate all schemas, run "python3 validate_schema.py all"
 """
 
+import glob
 import json
 import os
 import sys
+
 from jsonschema import validate
+
 from App.consts import (
     METADATA_SCHEMA_PATH,
     QUESTIONS_SCHEMA_PATH,
     RESULTS_SCHEMA_PATH,
-    SURVEYS_PATH
+    SURVEYS_PATH,
 )
 
 
-def validate_schema(survey_id: str, language: str = 'EN'):
+def validate_schema(survey_id: str, language: str = "EN"):
     """
     Validate a survey (metadata, questions, responses) against the schema
 
@@ -25,35 +30,45 @@ def validate_schema(survey_id: str, language: str = 'EN'):
         survey_id (str): Survey ID
         language (str): Language of the survey (EN, FR, CH, etc.)
     """
-    print(f' * Survey ID: {survey_id}\n * Language: {language}\n')
+    print(f" -- Survey ID: {survey_id}\n -- Language: {language}\n")
     survey_path = os.path.join(SURVEYS_PATH, survey_id)
-    
-    with open(os.path.join(survey_path, f'metadata_{language}.json'), 'r') as f:
+
+    with open(os.path.join(survey_path, f"metadata_{language}.json"), "r") as f:
         metadata = json.load(f)
-    with open(os.path.join(METADATA_SCHEMA_PATH), 'r') as f:
+    with open(os.path.join(METADATA_SCHEMA_PATH), "r") as f:
         metadata_schema = json.load(f)
-    print(' * Validating metadata JSON')
+    print(" * Validating metadata JSON")
     validate(metadata, metadata_schema)
-    print(' * Metadata JSON is good\n')
+    print(" * Metadata JSON is good\n")
 
-    with open(os.path.join(survey_path, f'questions_{language}.json'), 'r') as f:
+    with open(os.path.join(survey_path, f"questions_{language}.json"), "r") as f:
         questions = json.load(f)
-    with open(os.path.join(QUESTIONS_SCHEMA_PATH), 'r') as f:
+    with open(os.path.join(QUESTIONS_SCHEMA_PATH), "r") as f:
         questions_schema = json.load(f)
-    print(' * Validating questions JSON')
+    print(" * Validating questions JSON")
     validate(questions, questions_schema)
-    print(' * Questions JSON is good\n')
+    print(" * Questions JSON is good\n")
 
-    with open(os.path.join(survey_path, f'results_{language}.json'), 'r') as f:
+    with open(os.path.join(survey_path, f"results_{language}.json"), "r") as f:
         results = json.load(f)
-    with open(os.path.join(RESULTS_SCHEMA_PATH), 'r') as f:
+    with open(os.path.join(RESULTS_SCHEMA_PATH), "r") as f:
         results_schema = json.load(f)
-    print(' * Validating results JSON')
+    print(" * Validating results JSON")
     validate(results, results_schema)
-    print(' * Results JSON is good\n')
+    print(" * Results JSON is good\n")
 
 
-if __name__ == '__main__':
+def validate_all():
+    all_surveys = glob.glob(os.path.join(SURVEYS_PATH, "*"), recursive=True)
+    for survey in all_surveys:
+        validate_schema(survey_id=os.path.split(survey)[-1], language="EN")
+
+
+if __name__ == "__main__":
     survey_id = sys.argv[1]
-    language = sys.argv[2]
-    validate_schema(survey_id, language)
+
+    if survey_id == "all":
+        validate_all()
+    else:
+        language = sys.argv[2]
+        validate_schema(survey_id, language)
