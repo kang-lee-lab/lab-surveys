@@ -4,7 +4,7 @@ Please follow these instructions for adding a new survey to be displayed on the 
 
 1. Clone this repository onto your computer, and create a branch in git from the `main` branch (`git branch <your branch name>`).
 
-2. Come up with a unique survey_ID that does not have spaces or special characters (except for "_"). 
+2. Come up with a unique survey_ID that does not have spaces or special characters (except for "_").
 
 3. Create a folder in `App/static/surveys_files` named after your survey_ID.
 
@@ -18,6 +18,6 @@ Please follow these instructions for adding a new survey to be displayed on the 
 
 8. Under `App/surveys`, create a Python file titled `<survey_ID>.py`. Please follow the exact format of the functions in `sample_survey.py`. You can add your custom logic for loading the questions and calculating the results.
 
-9. Launch the web application locally (`python run.py`) and test your new survey. Make sure there are no errors. 
+9. Launch the web application locally (`python run.py`) and test your new survey. Make sure there are no errors.
 
 10. Push your branch (`git push`), then create a pull request on GitHub from your branch from your branch to the `main` branch.
