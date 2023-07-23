@@ -37,6 +37,9 @@ jobs:
       #     pytest
       - name: Check JSON schema
         run: |
+          export DATABASE_URL=postgres://postgres:123456@127.0.0.1:5432/dummy
+          export DATABASE_USER=user
+          export DATABASE_PWD=password
           python validate_schema.py all
       - name: Run linter
         run: |
