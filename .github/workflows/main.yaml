@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Install packages
         run: |
-          pip3 install -r requirements.txt
+          pip3 install -r ../requirements.txt
       - name: Check JSON schema
         run: |
           python3 ../validate_schema.py all
