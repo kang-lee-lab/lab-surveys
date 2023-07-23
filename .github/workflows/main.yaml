@@ -1,0 +1,24 @@
+name: Main CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  # Cancels previous run based on a unique workflow+pull request number, or branchname
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: (github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/master')) && needs.changes.outputs.tests == 'true'
+    steps:
+      - name: Check JSON schema
+        run: |
+          python3 validate_schema.py all
+      - name: Run linter
+        run: |
+          pre-commit run --all-files

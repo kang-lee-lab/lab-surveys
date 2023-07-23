@@ -2,9 +2,12 @@
 
     Make sure all your survey files are in App/static/surveys/<survey_id>
 
-    To run in command line: "python validate_schema.py <survey_id> <language>"
+    To run in command line: "python3 validate_schema.py <survey_id> <language>"
+
+    Alternatively to validate all schemas, run "python3 validate_schema.py all"
 """
 
+import glob
 import json
 import os
 import sys
@@ -25,7 +28,7 @@ def validate_schema(survey_id: str, language: str = 'EN'):
         survey_id (str): Survey ID
         language (str): Language of the survey (EN, FR, CH, etc.)
     """
-    print(f' * Survey ID: {survey_id}\n * Language: {language}\n')
+    print(f' -- Survey ID: {survey_id}\n -- Language: {language}\n')
     survey_path = os.path.join(SURVEYS_PATH, survey_id)
     
     with open(os.path.join(survey_path, f'metadata_{language}.json'), 'r') as f:
@@ -53,7 +56,17 @@ def validate_schema(survey_id: str, language: str = 'EN'):
     print(' * Results JSON is good\n')
 
 
+def validate_all():
+    all_surveys = glob.glob(os.path.join(SURVEYS_PATH, '*'), recursive=True)
+    for survey in all_surveys:
+        validate_schema(survey_id=os.path.split(survey)[-1], language='EN')
+
+
 if __name__ == '__main__':
     survey_id = sys.argv[1]
-    language = sys.argv[2]
-    validate_schema(survey_id, language)
+
+    if survey_id == 'all':
+        validate_all()
+    else:
+        language = sys.argv[2]
+        validate_schema(survey_id, language)
