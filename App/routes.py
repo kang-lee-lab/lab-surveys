@@ -1,11 +1,13 @@
 import json
 import os
 import pickle
+import pygal
+from flask import render_template, request
 from math import sqrt
+from pygal.style import Style
 
 import pandas as pd
 import plotly.graph_objects as go
-from flask import render_template, request
 
 from App import Response, app, db
 
@@ -266,6 +268,9 @@ def depression_moderate():
 def stress_moderate():
     return render_template("stress_moderate.html")
 
+@app.route('/queenny_test')
+def queenny_test():
+    return render_template('queenny_test.html')
 
 @app.route("/results_asq", methods=["GET", "POST"])
 def results_asq():
@@ -776,10 +781,33 @@ def results_nafld():
     db.session.add(response)
     db.session.commit()
 
-    return render_template(
-        "results_nafld.html",
-        p1=round((positive * 100), 1),
+    p1 = round((positive*100), 1)
+    
+    custom_style = Style(
+        value_font_size=45,
+        background='transparent',
+        #foreground_strong='#FFFFFF',
+        font_family='googlefont:Arial'
     )
+    
+    gauge = pygal.SolidGauge(#half_pie = True,
+                            inner_radius = 0.70,
+                            show_legend=False,
+                            style=custom_style,
+                            explicit_size = True,
+                            height=500,
+                            width=500)
+
+    percent_formatter = lambda x: '{:.10g}%'.format(x)
+    gauge.value_formatter = percent_formatter
+    
+    gauge.add('', [{'value': p1, 'min_value': 0, 'max_value': 100, 'color': '#0000EE'}])
+
+    gauge.render_to_png('App/static/nafld_chart.png')
+    
+    return render_template('results_nafld.html',
+                           p1=round((positive*100), 1),
+                           )
 
 
 @app.route("/results_childbmi", methods=["GET", "POST"])
@@ -963,23 +991,68 @@ def results_mmpi():
     response = Response("mmpi", inputs_json, results_json)
     db.session.add(response)
     db.session.commit()
-
-    return render_template(
-        "results_mmpi.html",
-        Depression=round(positive_proba["DT"] * 100, 1),
-        Hypochondriasis=round(positive_proba["HsT"] * 100, 1),
-        Hysteria=round(positive_proba["HyT"] * 100, 1),
-        Psychopathic_Deviate=round(positive_proba["PdT"] * 100, 1),
-        Masculinity_Femininity=round(positive_proba["MfT"] * 100, 1),
-        Paranoia=round(positive_proba["PaT"] * 100, 1),
-        Psychasthenia=round(positive_proba["PtT"] * 100, 1),
-        Schizophrenia=round(positive_proba["ScT"] * 100, 1),
-        Hypomania=round(positive_proba["MaT"] * 100, 1),
-        Social_Introversion=round(positive_proba["SiT"] * 100, 1),
+    
+    Depression=round(positive_proba['DT']*100, 1)
+    Hypochondriasis=round(positive_proba['HsT']*100, 1)
+    Hysteria=round(positive_proba['HyT']*100, 1)
+    Psychopathic_Deviate=round(positive_proba['PdT']*100, 1)
+    Masculinity_Femininity=round(positive_proba['MfT']*100, 1)
+    Paranoia=round(positive_proba['PaT']*100, 1)
+    Psychasthenia=round(positive_proba['PtT']*100, 1)
+    Schizophrenia=round(positive_proba['ScT']*100, 1)
+    Hypomania=round(positive_proba['MaT']*100, 1)
+    Social_Introversion=round(positive_proba['SiT']*100, 1)
+    
+    # Style
+    custom_style = Style(
+        value_font_size = 32,
+        background = 'transparent',
+        font_family = 'googlefont:Arial',
+        title_font_size = 32
     )
 
+    # Function to create a gauge chart
+    def create_gauge_chart(title, value):
+        gauge = pygal.SolidGauge(
+            inner_radius = 0.70,
+            show_legend = False,
+            style = custom_style,
+            explicit_size = True,
+            height = 500,
+            width = 500,
+            title = title
+        )
 
-@app.route("/results_anxiety_moderate", methods=["GET", "POST"])
+        percent_formatter = lambda x: '{:.10g}%'.format(x)
+        gauge.value_formatter = percent_formatter
+
+        gauge.add('A', [{'value': value, 'min_value': 0, 'max_value': 100, 'color': '#0000EE'}])
+
+        return gauge
+
+    # Input data
+    titles = ['Depression', 'Hypochondriasis', 'Hysteria', 'Psychopathic Deviate', 'Masculine', 'Paranoia', 'Psychasthenia', 'Schizophrenia', 'Hypomania', 'Social Introversion']
+    values = [Depression, Hypochondriasis, Hysteria, Psychopathic_Deviate, Masculinity_Femininity, Paranoia, Psychasthenia, Schizophrenia, Hypomania, Social_Introversion]
+    
+    # Create and render the charts
+    for i in range(10):
+        gauge = create_gauge_chart(titles[i], values[i])
+        gauge.render_to_png(f'App/static/mmpi_{titles[i]}_chart.png')
+    
+    return render_template('results_mmpi.html', 
+                           Depression=round(positive_proba['DT']*100, 1),
+                           Hypochondriasis=round(positive_proba['HsT']*100, 1),
+                           Hysteria=round(positive_proba['HyT']*100, 1),
+                           Psychopathic_Deviate=round(positive_proba['PdT']*100, 1),
+                           Masculinity_Femininity=round(positive_proba['MfT']*100, 1),
+                           Paranoia=round(positive_proba['PaT']*100, 1),
+                           Psychasthenia=round(positive_proba['PtT']*100, 1),
+                           Schizophrenia=round(positive_proba['ScT']*100, 1),
+                           Hypomania=round(positive_proba['MaT']*100, 1),
+                           Social_Introversion=round(positive_proba['SiT']*100, 1))
+
+
+@app.route('/results_anxiety_moderate', methods=["GET", "POST"])
 def results_anxiety_moderate():
     questions = [9, 11, 20, 30, 36, 40]
 
@@ -1006,6 +1079,30 @@ def results_anxiety_moderate():
     response = Response("DASS_Anxiety", inputs_json, results_json)
     db.session.add(response)
     db.session.commit()
+    
+    p1=round((positive*100), 1)
+    
+    custom_style= Style(
+        value_font_size=45,
+        background='transparent',
+        #foreground_strong='#FFFFFF',
+        font_family='googlefont:Arial'
+    )
+    
+    gauge = pygal.SolidGauge(#half_pie = True,
+                            inner_radius = 0.70,
+                            show_legend=False,
+                            style=custom_style,
+                            explicit_size = True,
+                            height=500,
+                            width=500)
+
+    percent_formatter = lambda x: '{:.10g}%'.format(x)
+    gauge.value_formatter = percent_formatter
+    
+    gauge.add('', [{'value': p1, 'min_value': 0, 'max_value': 100, 'color': '#0000EE'}])
+
+    gauge.render_to_png('App/static/anxiety_moderate_chart.png')
 
     return render_template(
         "results_anxiety_moderate.html", p1=round((positive * 100), 1)
@@ -1039,10 +1136,32 @@ def results_depression_moderate():
     response = Response("DASS_Depression", inputs_json, results_json)
     db.session.add(response)
     db.session.commit()
-
-    return render_template(
-        "results_depression_moderate.html", p1=round((positive * 100), 1)
+    
+    p1=round((positive*100), 1)
+    
+    custom_style= Style(
+        value_font_size=45,
+        background='transparent',
+        #foreground_strong='#FFFFFF',
+        font_family='googlefont:Arial'
     )
+
+    gauge = pygal.SolidGauge(#half_pie = True,
+                            inner_radius = 0.70,
+                            show_legend=False,
+                            style=custom_style,
+                            explicit_size = True,
+                            height=500,
+                            width=500)
+
+    percent_formatter = lambda x: '{:.10g}%'.format(x)
+    gauge.value_formatter = percent_formatter
+    
+    gauge.add('', [{'value': p1, 'min_value': 0, 'max_value': 100, 'color': '#0000EE'}])
+
+    gauge.render_to_png('App/static/depression_moderate_chart.png')
+        
+    return render_template('results_depression_moderate.html', p1=round((positive*100), 1))
 
 
 @app.route("/results_stress_moderate", methods=["GET", "POST"])
@@ -1072,7 +1191,29 @@ def results_stress_moderate():
     response = Response("DASS_Stress", inputs_json, results_json)
     db.session.add(response)
     db.session.commit()
-
-    return render_template(
-        "results_stress_moderate.html", p1=round((positive * 100), 1)
+    
+    p1=round((positive*100), 1)
+    
+    custom_style= Style(
+        value_font_size=45,
+        background='transparent',
+        #foreground_strong='#FFFFFF',
+        font_family='googlefont:Arial'
     )
+    
+    gauge = pygal.SolidGauge(#half_pie = True,
+                            inner_radius = 0.70,
+                            show_legend=False,
+                            style=custom_style,
+                            explicit_size = True,
+                            height=500,
+                            width=500)
+
+    percent_formatter = lambda x: '{:.10g}%'.format(x)
+    gauge.value_formatter = percent_formatter
+    
+    gauge.add('', [{'value': p1, 'min_value': 0, 'max_value': 100, 'color': '#0000EE'}])
+
+    gauge.render_to_png('App/static/stress_moderate_chart.png')
+        
+    return render_template('results_stress_moderate.html', p1=round((positive*100), 1))
