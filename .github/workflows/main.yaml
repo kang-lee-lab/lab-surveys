@@ -14,11 +14,13 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
+      - name: Install packages
+        run: |
+          pip3 install -r requirements.txt
       - name: Check JSON schema
         run: |
-          python3 validate_schema.py all
+          python3 ../validate_schema.py all
       - name: Run linter
         run: |
           pre-commit run --all-files
