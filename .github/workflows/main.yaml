@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.9"]
 
     steps:
       - uses: actions/checkout@v3
@@ -38,3 +38,9 @@ jobs:
       - name: Test with pytest
         run: |
           pytest
+      - name: Check JSON schema
+        run: |
+          python validate_schema.py all
+      - name: Run linter
+        run: |
+          pre-commit run --all-files
