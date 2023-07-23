@@ -2,9 +2,9 @@
 
     Make sure all your survey files are in App/static/surveys/<survey_id>
 
-    To run in command line: "python3 validate_schema.py <survey_id> <language>"
+    To run in command line: 'python3 validate_schema.py <survey_id> <language>'
 
-    Alternatively to validate all schemas, run "python3 validate_schema.py all"
+    Alternatively to validate all schemas, run 'python3 validate_schema.py all'
 """
 
 import glob

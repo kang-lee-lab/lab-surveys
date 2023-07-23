@@ -1,11 +1,8 @@
 import os
-import time
-from datetime import datetime, timedelta
 
-from flask import Flask, render_template, request
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
-from sqlalchemy.types import DateTime
 
 app = Flask(__name__, static_url_path="")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL").replace(
