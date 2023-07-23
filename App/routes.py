@@ -37,27 +37,26 @@ def queryNafld():
         temp.append(response.time_stamp)
         str = response.response_answers
         str = str.replace("{", "")
-        str = str.replace(
-            """, '')
-        str = str.replace('}', '')
-        response_list = str.split(',')
-        response_list = [str.split(','), response.id]
+        str = str.replace("'", "")
+        str = str.replace("}", "")
+        response_list = str.split(",")
+        response_list = [str.split(","), response.id]
         responses.append(response_list)
 
         temp.append(round(float(response.response_results), 3))
         data.append(temp)
     return render_template(
-        'queryNafld.html',
+        "queryNafld.html",
         responses=responses,
         data=data,
-        headings=('id', 'time', 'results'),
+        headings=("id", "time", "results"),
     )
 
 
-@app.route('/queryASQ')
+@app.route("/queryASQ")
 def queryASQ():
     responseResults = (
-        db.session.query(Response).filter(Response.response_type == 'ASQ').all()
+        db.session.query(Response).filter(Response.response_type == "ASQ").all()
     )
     data = []
     responses = []
@@ -66,10 +65,8 @@ def queryASQ():
         temp.append(response.id)
         temp.append(response.time_stamp)
         str = response.response_answers
-        str = str.replace('{', '')
-        str = str.replace(""",
-            "",
-        )
+        str = str.replace("{", "")
+        str = str.replace("'", "")
         str = str.replace("}", "")
         response_list = str.split(",")
         response_list = [str.split(","), response.id]
@@ -98,26 +95,25 @@ def queryChildBMI():
         temp.append(response.time_stamp)
         str = response.response_answers
         str = str.replace("{", "")
-        str = str.replace(
-            """, '')
-        str = str.replace('}', '')
-        response_list = str.split(',')
-        response_list = [str.split(','), response.id]
+        str = str.replace("'", "")
+        str = str.replace("}", "")
+        response_list = str.split(",")
+        response_list = [str.split(","), response.id]
         responses.append(response_list)
         temp.append(round(float(response.response_results), 3))
         data.append(temp)
     return render_template(
-        'queryChildBMI.html',
+        "queryChildBMI.html",
         responses=responses,
         data=data,
-        headings=('id', 'time', 'results'),
+        headings=("id", "time", "results"),
     )
 
 
-@app.route('/queryMMPI')
+@app.route("/queryMMPI")
 def queryMMPI():
     responseResults = (
-        db.session.query(Response).filter(Response.response_type == 'mmpi').all()
+        db.session.query(Response).filter(Response.response_type == "mmpi").all()
     )
     data = []
     responses = []
@@ -126,33 +122,30 @@ def queryMMPI():
         temp.append(response.id)
         temp.append(response.time_stamp)
         str = response.response_answers
-        str = str.replace('{', '')
-        str = str.replace(""",
-            "",
-        )
+        str = str.replace("{", "")
+        str = str.replace("'", "")
         str = str.replace("}", "")
         response_str = response.response_results
         response_str = response_str.replace("{", "")
         response_str = response_str.replace("}", "")
-        response_str = response_str.replace(
-            """, '')
-        response_list = [str.split(','), response.id]
+        response_str = response_str.replace("'", "")
+        response_list = [str.split(","), response.id]
         responses.append(response_list)
         temp.append(response_str)
         data.append(temp)
     return render_template(
-        'queryMMPI.html',
+        "queryMMPI.html",
         responses=responses,
         data=data,
-        headings=('id', 'time', 'results'),
+        headings=("id", "time", "results"),
     )
 
 
-@app.route('/queryDassAnxiety')
+@app.route("/queryDassAnxiety")
 def queryDassAnxiety():
     responseResults = (
         db.session.query(Response)
-        .filter(Response.response_type == 'DASS_Anxiety')
+        .filter(Response.response_type == "DASS_Anxiety")
         .all()
     )
     data = []
@@ -162,10 +155,8 @@ def queryDassAnxiety():
         temp.append(response.id)
         temp.append(response.time_stamp)
         str = response.response_answers
-        str = str.replace('{', '')
-        str = str.replace(""",
-            "",
-        )
+        str = str.replace("{", "")
+        str = str.replace("'", "")
         str = str.replace("}", "")
         response_list = str.split(",")
         response_list = [str.split(","), response.id]
@@ -196,28 +187,27 @@ def queryDassDepression():
         temp.append(response.time_stamp)
         str = response.response_answers
         str = str.replace("{", "")
-        str = str.replace(
-            """, '')
-        str = str.replace('}', '')
-        response_list = str.split(',')
-        response_list = [str.split(','), response.id]
+        str = str.replace("'", "")
+        str = str.replace("}", "")
+        response_list = str.split(",")
+        response_list = [str.split(","), response.id]
         responses.append(response_list)
 
         temp.append(float(response.response_results))
         data.append(temp)
     return render_template(
-        'queryDassDepression.html',
+        "queryDassDepression.html",
         responses=responses,
         data=data,
-        headings=('id', 'time', 'results'),
+        headings=("id", "time", "results"),
     )
 
 
-@app.route('/queryDassStress')
+@app.route("/queryDassStress")
 def queryDassStress():
     responseResults = (
         db.session.query(Response)
-        .filter(Response.response_type == 'DASS_Anxiety')
+        .filter(Response.response_type == "DASS_Anxiety")
         .all()
     )
     data = []
@@ -227,10 +217,8 @@ def queryDassStress():
         temp.append(response.id)
         temp.append(response.time_stamp)
         str = response.response_answers
-        str = str.replace('{', '')
-        str = str.replace(""",
-            "",
-        )
+        str = str.replace("{", "")
+        str = str.replace("'", "")
         str = str.replace("}", "")
         response_list = str.split(",")
         response_list = [str.split(","), response.id]
@@ -601,7 +589,7 @@ def results_asq():
                 theta=["HRV-D1", "HRV-D2", "HRV-D3", "HRV-D3", "HRV-D5", "HRV-D6"],
             )
         )
-        # fig = px.line_polar(df, r='r', theta='theta', line_close=True)
+        # fig = px.line_polar(df, r="r", theta="theta", line_close=True)
         fig = go.Figure()
 
         # change background color for different ranges
@@ -656,7 +644,7 @@ def results_asq():
 
         fig.write_image("App/static/plotly_output.png", width=1000, height=1000)
 
-    asq_result = round(pipeline()[0], 2)  # Can't calculate pipeline twice, no idea why
+    asq_result = round(pipeline()[0], 2)  # Can"t calculate pipeline twice, no idea why
 
     def asq_definition():
 
@@ -800,7 +788,7 @@ def results_nafld():
     custom_style = Style(
         value_font_size=45,
         background="transparent",
-        # foreground_strong='#FFFFFF',
+        # foreground_strong="#FFFFFF",
         font_family="googlefont:Arial",
     )
 
@@ -1128,7 +1116,7 @@ def results_anxiety_moderate():
     custom_style = Style(
         value_font_size=45,
         background="transparent",
-        # foreground_strong='#FFFFFF',
+        # foreground_strong="#FFFFFF",
         font_family="googlefont:Arial",
     )
 
@@ -1186,7 +1174,7 @@ def results_depression_moderate():
     custom_style = Style(
         value_font_size=45,
         background="transparent",
-        # foreground_strong='#FFFFFF',
+        # foreground_strong="#FFFFFF",
         font_family="googlefont:Arial",
     )
 
@@ -1244,7 +1232,7 @@ def results_stress_moderate():
     custom_style = Style(
         value_font_size=45,
         background="transparent",
-        # foreground_strong='#FFFFFF',
+        # foreground_strong="#FFFFFF",
         font_family="googlefont:Arial",
     )
 
