@@ -43,4 +43,6 @@ jobs:
           python validate_schema.py all
       - name: Run linter
         run: |
+          pip install pre-commit
+          pre-commit install
           pre-commit run --all-files
