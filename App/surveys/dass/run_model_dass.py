@@ -30,7 +30,7 @@ elif condition == "stress":
     elif severity == "moderate":
         questions = [6, 11, 18, 27, 29]
 
-with open("./static/models/{0}_model_{1}.bin".format(condition, severity), "rb") as f:
+with open("./static/surveys_files/{0}_model_{1}.bin".format(condition, severity), "rb") as f:
     model = pickle.load(f)
 
 answers = {}

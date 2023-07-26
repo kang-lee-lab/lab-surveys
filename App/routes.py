@@ -7,6 +7,7 @@ import plotly.graph_objects as go
 import json
 from App import app, db, Response
 
+
 data_folder = "App/static"
 
 
@@ -203,7 +204,7 @@ def depression_moderate():
 def stress_moderate():
     return render_template('stress_moderate.html')
 
-
+'''
 @app.route('/results_asq', methods=["GET", "POST"])
 def results_asq():
     MHR = request.form['MHR']
@@ -453,7 +454,7 @@ def results_asq():
                            p2=asq_definition()[0],
                            p3=asq_definition()[1]
                            )
-
+'''
 
 def normalize(user_inputs):
     mean_std = pd.read_csv(os.path.join(data_folder, "nafld_mean_std.csv"))
@@ -504,7 +505,7 @@ def results_nafld():
         
     inputs_norm = normalize(user_inputs)
 
-    with open("App/static/models/nafld_models_lr.bin", "rb") as f:
+    with open("App/static/surveys_files/nafld/nafld_models_lr.bin", "rb") as f:
         all_models = pickle.load(f)
         
     model = all_models['models'][0]
@@ -541,13 +542,13 @@ def results_childbmi():
         'BMI': [bmi]
     }
 
-    with open("App/static/models/childbmi_model_height.bin", "rb") as f:
+    with open("App/static/surveys_files/childbmi/childbmi_model_height.bin", "rb") as f:
         height_model = pickle.load(f)
         pred_height = height_model.predict(pd.DataFrame(user_inputs)).tolist()[0]
-    with open("App/static/models/childbmi_model_weight.bin", "rb") as f:
+    with open("App/static/surveys_files/childbmi/childbmi_model_weight.bin", "rb") as f:
         weight_model = pickle.load(f)
         pred_weight = weight_model.predict(pd.DataFrame(user_inputs)).tolist()[0]
-    with open("App/static/models/childbmi_model_bmi.bin", "rb") as f:
+    with open("App/static/surveys_files/childbmi/childbmi_model_bmi.bin", "rb") as f:
         bmi_model = pickle.load(f)
         pred_bmi = bmi_model.predict(pd.DataFrame(user_inputs)).tolist()[0]
         
@@ -581,7 +582,7 @@ def results_mmpi():
 
     user_inputs = pd.DataFrame.from_dict(user_inputs)
 
-    with open("App/static/models/mmpi_models.bin", "rb") as f:
+    with open("App/static/surveys_files/mmpi/mmpi_models.bin", "rb") as f:
         all_models = pickle.load(f)
         
     positive_proba = {}
@@ -632,7 +633,7 @@ def results_anxiety_moderate():
 
     user_inputs = pd.DataFrame.from_dict(user_inputs)
 
-    with open("App/static/models/anxiety_model_moderate.bin", "rb") as f:
+    with open("App/static/surveys_files/dass/anxiety_model_moderate.bin", "rb") as f:
         model = pickle.load(f)
     
     proba = model[0].predict_proba(user_inputs)
@@ -663,7 +664,7 @@ def results_depression_moderate():
         
     user_inputs = pd.DataFrame.from_dict(user_inputs)
 
-    with open("App/static/models/depression_model_moderate.bin", "rb") as f:
+    with open("App/static/surveys_files/dass/depression_model_moderate.bin", "rb") as f:
         model = pickle.load(f)
     
     proba = model[0].predict_proba(user_inputs)
@@ -695,7 +696,7 @@ def results_stress_moderate():
 
     user_inputs = pd.DataFrame.from_dict(user_inputs)
 
-    with open("App/static/models/stress_model_moderate.bin", "rb") as f:
+    with open("App/static/surveys_files/dass/stress_model_moderate.bin", "rb") as f:
         model = pickle.load(f)
     
     proba = model[0].predict_proba(user_inputs)
