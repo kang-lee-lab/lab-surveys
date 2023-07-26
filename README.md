@@ -1,6 +1,6 @@
 # lab-surveys
 
-A Python + Flask implementation of some surveys from the Kang Lee Development Lab. These surveys utilize computational models to compute results dynamically. 
+A Python + Flask implementation of some surveys from the Kang Lee Development Lab. These surveys utilize computational models to compute results dynamically.
 
 Currently hosted on a Heroku server.
 
@@ -32,6 +32,6 @@ The `main` branch is locked, and all changes should come in the form of a pull r
 
 Please name your branches `<yourname>/<issue_ID>/<brief description of your changes>`.
 
-Please test your application in the QA Heroku environment (https://dashboard.heroku.com/apps/kangleelab-surveys-qa) before pushing to the "main" branch (you can deploy a branch on Heroku) 
+Please test your application in the QA Heroku environment (https://dashboard.heroku.com/apps/kangleelab-surveys-qa) before pushing to the "main" branch (you can deploy a branch on Heroku)
 
 If you have any suggestions about how to improve this app, please add a ticket on the project page (https://github.com/orgs/kang-lee-lab/projects/2/views/2)
