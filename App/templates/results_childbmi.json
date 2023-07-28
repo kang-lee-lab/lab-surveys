@@ -1,0 +1,20 @@
+{
+    "survey_id": "childbmi",
+    "language": "EN",
+    "results": [
+        {
+            "result_id": "age_to_predict",
+            "result_name": "Age to predict",
+            "result_text": "Age to predict future BMI at",
+            "result": {
+                "type": "scalar",
+                "value": 10,
+                "unit": "years",
+                "value_lower_bound": 0,
+                "value_upper_bound": 1000,
+                "is_reverse_order": false,
+                "use_dial": false
+            }
+        }
+    ]
+}
