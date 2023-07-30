@@ -269,11 +269,6 @@ def stress_moderate():
     return render_template("stress_moderate.html")
 
 
-@app.route("/queenny_test")
-def queenny_test():
-    return render_template("queenny_test.html")
-
-
 @app.route("/results_asq", methods=["GET", "POST"])
 def results_asq():
     MHR = request.form["MHR"]
@@ -995,95 +990,93 @@ def results_mmpi():
     response = Response("mmpi", inputs_json, results_json)
     db.session.add(response)
     db.session.commit()
+    
+    Depression=round(positive_proba['DT']*100, 1)
+    Hypochondriasis=round(positive_proba['HsT']*100, 1)
+    Hysteria=round(positive_proba['HyT']*100, 1)
+    Psychopathic_Deviate=round(positive_proba['PdT']*100, 1)
+    Masculinity_Femininity=round(positive_proba['MfT']*100, 1)
+    Paranoia=round(positive_proba['PaT']*100, 1)
+    Psychasthenia=round(positive_proba['PtT']*100, 1)
+    Schizophrenia=round(positive_proba['ScT']*100, 1)
+    Hypomania=round(positive_proba['MaT']*100, 1)
+    Social_Introversion=round(positive_proba['SiT']*100, 1)
 
-    Depression = round(positive_proba["DT"] * 100, 1)
-    Hypochondriasis = round(positive_proba["HsT"] * 100, 1)
-    Hysteria = round(positive_proba["HyT"] * 100, 1)
-    Psychopathic_Deviate = round(positive_proba["PdT"] * 100, 1)
-    Masculinity_Femininity = round(positive_proba["MfT"] * 100, 1)
-    Paranoia = round(positive_proba["PaT"] * 100, 1)
-    Psychasthenia = round(positive_proba["PtT"] * 100, 1)
-    Schizophrenia = round(positive_proba["ScT"] * 100, 1)
-    Hypomania = round(positive_proba["MaT"] * 100, 1)
-    Social_Introversion = round(positive_proba["SiT"] * 100, 1)
+    # Input MMPI data
+    mmpi_input = [Depression, Hypochondriasis, Hysteria, Psychopathic_Deviate, Masculinity_Femininity, Paranoia, Psychasthenia, Schizophrenia, Hypomania, Social_Introversion]
 
-    # Style
-    custom_style = Style(
-        value_font_size=32,
-        background="transparent",
-        font_family="googlefont:Arial",
-        title_font_size=32,
-    )
+    # Draw radar chart
+    fig = go.Figure(data=go.Scatterpolar(
+        r=mmpi_input,
+        theta=['Hypochondriasis', 'Depression', 'Hysteria', 'Psychopathic Deviate', 'Masculinity', 'Paranoia', 'Psychasthenia', 'Schizophrenia', 'Hypomania', 'Social Introversion'],
+        fill='toself'
+        ))
 
-    # Function to create a gauge chart
-    def create_gauge_chart(title, value):
-        gauge = pygal.SolidGauge(
-            inner_radius=0.70,
-            show_legend=False,
-            style=custom_style,
-            explicit_size=True,
-            height=500,
-            width=500,
-            title=title,
-        )
-
-        percent_formatter = lambda x: "{:.10g}%".format(x)
-        gauge.value_formatter = percent_formatter
-
-        gauge.add(
-            "A",
-            [{"value": value, "min_value": 0, "max_value": 100, "color": "#0000EE"}],
-        )
-
-        return gauge
-
-    # Input data
-    titles = [
-        "Depression",
-        "Hypochondriasis",
-        "Hysteria",
-        "Psychopathic Deviate",
-        "Masculine",
-        "Paranoia",
-        "Psychasthenia",
-        "Schizophrenia",
-        "Hypomania",
-        "Social Introversion",
-    ]
-    values = [
-        Depression,
-        Hypochondriasis,
-        Hysteria,
-        Psychopathic_Deviate,
-        Masculinity_Femininity,
-        Paranoia,
-        Psychasthenia,
-        Schizophrenia,
-        Hypomania,
-        Social_Introversion,
+    # Change background color for different ranges
+    values = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+    colors = [
+        'rgba(0, 141, 25, 0.8)',
+        'rgba(38, 189, 0, 0.8)',
+        'rgba(75, 228, 0, 0.8)',
+        'rgba(112, 255, 0, 0.8)',
+        'rgba(167, 255, 0, 0.8)',
+        'rgba(222, 255, 0, 0.8)',
+        'rgba(255, 204, 0, 0.8)',
+        'rgba(255, 153, 0, 0.8)',
+        'rgba(255, 102, 0, 0.8)',
+        'rgba(255, 51, 0, 0.8)'
     ]
 
-    # Create and render the charts
-    for i in range(10):
-        gauge = create_gauge_chart(titles[i], values[i])
-        gauge.render_to_png(f"App/static/mmpi_{titles[i]}_chart.png")
+    for t in range(0, len(colors)):
+        fig.add_trace(go.Barpolar(
+            r=[values[t]],
+            width=360,
+            marker_color=[colors[t]],
+            opacity=0.6,
+            name='Range ' + str(t + 1),
+            showlegend=False
+        ))
+        t = t + 1
 
-    return render_template(
-        "results_mmpi.html",
-        Depression=round(positive_proba["DT"] * 100, 1),
-        Hypochondriasis=round(positive_proba["HsT"] * 100, 1),
-        Hysteria=round(positive_proba["HyT"] * 100, 1),
-        Psychopathic_Deviate=round(positive_proba["PdT"] * 100, 1),
-        Masculinity_Femininity=round(positive_proba["MfT"] * 100, 1),
-        Paranoia=round(positive_proba["PaT"] * 100, 1),
-        Psychasthenia=round(positive_proba["PtT"] * 100, 1),
-        Schizophrenia=round(positive_proba["ScT"] * 100, 1),
-        Hypomania=round(positive_proba["MaT"] * 100, 1),
-        Social_Introversion=round(positive_proba["SiT"] * 100, 1),
-    )
+    # Add values as labels to each coordinate
+    for i, theta in enumerate(fig.data[0].theta):
+        fig.add_trace(go.Scatterpolar(
+            r=[mmpi_input[i] + 5],  
+            theta=[theta],
+            mode='text',
+            text=str(mmpi_input[i]) + '%',  
+            textfont=dict(size=12, color='black'),
+            showlegend=False
+        ))
+        
+    fig.update_layout(
+        polar=dict(
+            radialaxis=dict(
+                visible=True,
+                range=[0,100]
+                ),
+            ),
+        showlegend=False
+        )
+
+    # # Create and render the charts
+    fig.write_image('App/static/mmpi_chart.png', width=1000, height=700)
+    
+    return render_template('results_mmpi.html', 
+                           Depression=round(positive_proba['DT']*100, 1),
+                           Hypochondriasis=round(positive_proba['HsT']*100, 1),
+                           Hysteria=round(positive_proba['HyT']*100, 1),
+                           Psychopathic_Deviate=round(positive_proba['PdT']*100, 1),
+                           Masculinity_Femininity=round(positive_proba['MfT']*100, 1),
+                           Paranoia=round(positive_proba['PaT']*100, 1),
+                           Psychasthenia=round(positive_proba['PtT']*100, 1),
+                           Schizophrenia=round(positive_proba['ScT']*100, 1),
+                           Hypomania=round(positive_proba['MaT']*100, 1),
+                           Social_Introversion=round(positive_proba['SiT']*100, 1))
 
 
-@app.route("/results_anxiety_moderate", methods=["GET", "POST"])
+@app.route('/results_anxiety_moderate', methods=["GET", "POST"])
+
 def results_anxiety_moderate():
     questions = [9, 11, 20, 30, 36, 40]
 
