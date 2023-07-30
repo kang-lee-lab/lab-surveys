@@ -201,9 +201,6 @@ def depression_moderate():
 def stress_moderate():
     return render_template('stress_moderate.html')
 
-@app.route('/queenny_test')
-def queenny_test():
-    return render_template('queenny_test.html')
 
 @app.route('/results_asq', methods=["GET", "POST"])
 def results_asq():
