@@ -38,7 +38,11 @@
             "show_number": false,
             "question": {
                 "type": "file",
-                "accepted_filetypes": ["jpg", "jepg", "png"]
+                "accepted_filetypes": [
+                    "jpg",
+                    "jepg",
+                    "png"
+                ]
             },
             "is_required": true
         },

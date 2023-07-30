@@ -11,7 +11,11 @@
         "language": {
             "type": "string",
             "description": "Language of the survey",
-            "enum": ["EN", "CH", "FR"]
+            "enum": [
+                "EN",
+                "CH",
+                "FR"
+            ]
         },
         "short_name": {
             "type": "string",
@@ -28,7 +32,12 @@
         "survey_type": {
             "type": "string",
             "description": "Type of survey",
-            "enum": ["physical", "psychological", "physiological", "other"]
+            "enum": [
+                "physical",
+                "psychological",
+                "physiological",
+                "other"
+            ]
         },
         "display": {
             "type": "boolean",
