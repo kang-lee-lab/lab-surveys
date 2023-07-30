@@ -1,24 +1,34 @@
+import json
 import os
 import pickle
-from flask import render_template, request
 from math import sqrt
+
 import pandas as pd
 import plotly.graph_objects as go
-import json
-from App import app, db, Response
 import pygal
+from flask import render_template, request
 from pygal.style import Style
+
+from App import Response, app, db
 
 data_folder = "App/static"
 
 
-@app.route('/')
+@app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template("index.html")
 
-@app.route('/queryNafld')
+
+@app.route("/in_progress")
+def in_progress():
+    return render_template("in_progress.html")
+
+
+@app.route("/queryNafld")
 def queryNafld():
-    responseResults = db.session.query(Response).filter(Response.response_type=='nafld').all()
+    responseResults = (
+        db.session.query(Response).filter(Response.response_type == "nafld").all()
+    )
     data = []
     responses = []
     for response in responseResults:
@@ -26,20 +36,28 @@ def queryNafld():
         temp.append(response.id)
         temp.append(response.time_stamp)
         str = response.response_answers
-        str = str.replace('{', '')
-        str = str.replace('"', '')
-        str = str.replace('}', '')
+        str = str.replace("{", "")
+        str = str.replace("'", "")
+        str = str.replace("}", "")
         response_list = str.split(",")
         response_list = [str.split(","), response.id]
         responses.append(response_list)
-        
+
         temp.append(round(float(response.response_results), 3))
         data.append(temp)
-    return render_template('queryNafld.html', responses = responses, data = data, headings = ("id", "time", "results"))
+    return render_template(
+        "queryNafld.html",
+        responses=responses,
+        data=data,
+        headings=("id", "time", "results"),
+    )
 
-@app.route('/queryASQ')
+
+@app.route("/queryASQ")
 def queryASQ():
-    responseResults = db.session.query(Response).filter(Response.response_type=='ASQ').all()
+    responseResults = (
+        db.session.query(Response).filter(Response.response_type == "ASQ").all()
+    )
     data = []
     responses = []
     for response in responseResults:
@@ -47,21 +65,28 @@ def queryASQ():
         temp.append(response.id)
         temp.append(response.time_stamp)
         str = response.response_answers
-        str = str.replace('{', '')
-        str = str.replace('"', '')
-        str = str.replace('}', '')
+        str = str.replace("{", "")
+        str = str.replace("'", "")
+        str = str.replace("}", "")
         response_list = str.split(",")
         response_list = [str.split(","), response.id]
         responses.append(response_list)
-        
-    
+
         temp.append(round(float(response.response_results), 3))
         data.append(temp)
-    return render_template('queryASQ.html', responses = responses, data = data, headings = ("id", "time", "results"))
+    return render_template(
+        "queryASQ.html",
+        responses=responses,
+        data=data,
+        headings=("id", "time", "results"),
+    )
 
-@app.route('/queryChildBMI')
+
+@app.route("/queryChildBMI")
 def queryChildBMI():
-    responseResults = db.session.query(Response).filter(Response.response_type=='childBMI').all()
+    responseResults = (
+        db.session.query(Response).filter(Response.response_type == "childBMI").all()
+    )
     data = []
     responses = []
     for response in responseResults:
@@ -69,19 +94,27 @@ def queryChildBMI():
         temp.append(response.id)
         temp.append(response.time_stamp)
         str = response.response_answers
-        str = str.replace('{', '')
-        str = str.replace('"', '')
-        str = str.replace('}', '')
+        str = str.replace("{", "")
+        str = str.replace("'", "")
+        str = str.replace("}", "")
         response_list = str.split(",")
         response_list = [str.split(","), response.id]
         responses.append(response_list)
         temp.append(round(float(response.response_results), 3))
         data.append(temp)
-    return render_template('queryChildBMI.html', responses = responses, data = data, headings = ("id", "time", "results"))
+    return render_template(
+        "queryChildBMI.html",
+        responses=responses,
+        data=data,
+        headings=("id", "time", "results"),
+    )
 
-@app.route('/queryMMPI')
+
+@app.route("/queryMMPI")
 def queryMMPI():
-    responseResults = db.session.query(Response).filter(Response.response_type=='mmpi').all()
+    responseResults = (
+        db.session.query(Response).filter(Response.response_type == "mmpi").all()
+    )
     data = []
     responses = []
     for response in responseResults:
@@ -89,22 +122,32 @@ def queryMMPI():
         temp.append(response.id)
         temp.append(response.time_stamp)
         str = response.response_answers
-        str = str.replace('{', '')
-        str = str.replace('"', '')
-        str = str.replace('}', '')
+        str = str.replace("{", "")
+        str = str.replace("'", "")
+        str = str.replace("}", "")
         response_str = response.response_results
-        response_str = response_str.replace('{', '')
-        response_str = response_str.replace('}', '')
-        response_str = response_str.replace('"', '')
+        response_str = response_str.replace("{", "")
+        response_str = response_str.replace("}", "")
+        response_str = response_str.replace("'", "")
         response_list = [str.split(","), response.id]
         responses.append(response_list)
         temp.append(response_str)
         data.append(temp)
-    return render_template('queryMMPI.html', responses = responses, data = data, headings = ("id", "time", "results"))
+    return render_template(
+        "queryMMPI.html",
+        responses=responses,
+        data=data,
+        headings=("id", "time", "results"),
+    )
 
-@app.route('/queryDassAnxiety')
+
+@app.route("/queryDassAnxiety")
 def queryDassAnxiety():
-    responseResults = db.session.query(Response).filter(Response.response_type=='DASS_Anxiety').all()
+    responseResults = (
+        db.session.query(Response)
+        .filter(Response.response_type == "DASS_Anxiety")
+        .all()
+    )
     data = []
     responses = []
     for response in responseResults:
@@ -112,21 +155,30 @@ def queryDassAnxiety():
         temp.append(response.id)
         temp.append(response.time_stamp)
         str = response.response_answers
-        str = str.replace('{', '')
-        str = str.replace('"', '')
-        str = str.replace('}', '')
+        str = str.replace("{", "")
+        str = str.replace("'", "")
+        str = str.replace("}", "")
         response_list = str.split(",")
         response_list = [str.split(","), response.id]
         responses.append(response_list)
-        
+
         temp.append(float(response.response_results))
         data.append(temp)
-    return render_template('queryDassAnxiety.html', responses = responses, data = data, headings = ("id", "time", "results"))
+    return render_template(
+        "queryDassAnxiety.html",
+        responses=responses,
+        data=data,
+        headings=("id", "time", "results"),
+    )
 
 
-@app.route('/queryDassDepression')
+@app.route("/queryDassDepression")
 def queryDassDepression():
-    responseResults = db.session.query(Response).filter(Response.response_type=='DASS_Depression').all()
+    responseResults = (
+        db.session.query(Response)
+        .filter(Response.response_type == "DASS_Depression")
+        .all()
+    )
     data = []
     responses = []
     for response in responseResults:
@@ -134,21 +186,30 @@ def queryDassDepression():
         temp.append(response.id)
         temp.append(response.time_stamp)
         str = response.response_answers
-        str = str.replace('{', '')
-        str = str.replace('"', '')
-        str = str.replace('}', '')
+        str = str.replace("{", "")
+        str = str.replace("'", "")
+        str = str.replace("}", "")
         response_list = str.split(",")
         response_list = [str.split(","), response.id]
         responses.append(response_list)
-        
+
         temp.append(float(response.response_results))
         data.append(temp)
-    return render_template('queryDassDepression.html', responses = responses, data = data, headings = ("id", "time", "results"))
+    return render_template(
+        "queryDassDepression.html",
+        responses=responses,
+        data=data,
+        headings=("id", "time", "results"),
+    )
 
 
-@app.route('/queryDassStress')
+@app.route("/queryDassStress")
 def queryDassStress():
-    responseResults = db.session.query(Response).filter(Response.response_type=='DASS_Anxiety').all()
+    responseResults = (
+        db.session.query(Response)
+        .filter(Response.response_type == "DASS_Anxiety")
+        .all()
+    )
     data = []
     responses = []
     for response in responseResults:
@@ -156,168 +217,357 @@ def queryDassStress():
         temp.append(response.id)
         temp.append(response.time_stamp)
         str = response.response_answers
-        str = str.replace('{', '')
-        str = str.replace('"', '')
-        str = str.replace('}', '')
+        str = str.replace("{", "")
+        str = str.replace("'", "")
+        str = str.replace("}", "")
         response_list = str.split(",")
         response_list = [str.split(","), response.id]
         responses.append(response_list)
-    
+
         temp.append(float(response.response_results))
         data.append(temp)
-    return render_template('queryDassAnxiety.html', responses = responses, data = data, headings = ("id", "time", "results"))
+    return render_template(
+        "queryDassAnxiety.html",
+        responses=responses,
+        data=data,
+        headings=("id", "time", "results"),
+    )
 
-@app.route('/asq')
+
+@app.route("/asq")
 def asq():
-    return render_template('asq.html')
+    return render_template("asq.html")
 
 
-@app.route('/nafld')
+@app.route("/nafld")
 def nafld():
-    return render_template('nafld.html')
+    return render_template("nafld.html")
 
 
-@app.route('/childbmi')
+@app.route("/childbmi")
 def childbmi():
-    return render_template('childbmi.html')
+    return render_template("childbmi.html")
 
 
-@app.route('/mmpi')
+@app.route("/mmpi")
 def mmpi():
-    return render_template('mmpi.html')
+    return render_template("mmpi.html")
 
 
-@app.route('/anxiety_moderate')
+@app.route("/anxiety_moderate")
 def anxiety_moderate():
-    return render_template('anxiety_moderate.html')
+    return render_template("anxiety_moderate.html")
 
 
-@app.route('/depression_moderate')
+@app.route("/depression_moderate")
 def depression_moderate():
-    return render_template('depression_moderate.html')
+    return render_template("depression_moderate.html")
 
 
-@app.route('/stress_moderate')
+@app.route("/stress_moderate")
 def stress_moderate():
-    return render_template('stress_moderate.html')
+    return render_template("stress_moderate.html")
 
-@app.route('/results_asq', methods=["GET", "POST"])
+
+@app.route("/results_asq", methods=["GET", "POST"])
 def results_asq():
-    MHR = request.form['MHR']
-    SDHR = request.form['SDHR']
-    max_RR_interval = request.form['max_RR_interval']
-    min_RR_interval = request.form['min_RR_interval']
-    mean_RR_interval= request.form['mean_RR_interval']
-    median_RR_interval = request.form['median_RR_interval']
-    SDNN = request.form['SDNN']
-    NN50 = request.form['NN50']
-    pNN50 = request.form['pNN50']
-    RMSSD = request.form['RMSSD']
-    VLF = request.form['VLF']
-    LF = request.form['LF']
-    HF = request.form['HF']
-    total = request.form['total']
-    VLF_peak = request.form['VLF_peak']
-    LF_peak = request.form['LF_peak']
-    HF_peak = request.form['HF_peak']
-    VLF_percent = request.form['VLF_percent']
-    LF_percent = request.form['LF_percent']
-    HF_percent = request.form['HF_percent']
-    LF_nu = request.form['LF_nu']
-    HF_nu = request.form['HF_nu']
-    LF_HF = request.form['LF_HF']
-    SD1 = request.form['SD1']
-    SD2 = request.form['SD2']
-    SD1_SD2 = request.form['SD1_SD2']
-    alpha = request.form['alpha']
-    alpha1 = request.form['alpha1']
-    alpha2 = request.form['alpha2']
+    MHR = request.form["MHR"]
+    SDHR = request.form["SDHR"]
+    max_RR_interval = request.form["max_RR_interval"]
+    min_RR_interval = request.form["min_RR_interval"]
+    mean_RR_interval = request.form["mean_RR_interval"]
+    median_RR_interval = request.form["median_RR_interval"]
+    SDNN = request.form["SDNN"]
+    NN50 = request.form["NN50"]
+    pNN50 = request.form["pNN50"]
+    RMSSD = request.form["RMSSD"]
+    VLF = request.form["VLF"]
+    LF = request.form["LF"]
+    HF = request.form["HF"]
+    total = request.form["total"]
+    VLF_peak = request.form["VLF_peak"]
+    LF_peak = request.form["LF_peak"]
+    HF_peak = request.form["HF_peak"]
+    VLF_percent = request.form["VLF_percent"]
+    LF_percent = request.form["LF_percent"]
+    HF_percent = request.form["HF_percent"]
+    LF_nu = request.form["LF_nu"]
+    HF_nu = request.form["HF_nu"]
+    LF_HF = request.form["LF_HF"]
+    SD1 = request.form["SD1"]
+    SD2 = request.form["SD2"]
+    SD1_SD2 = request.form["SD1_SD2"]
+    alpha = request.form["alpha"]
+    alpha1 = request.form["alpha1"]
+    alpha2 = request.form["alpha2"]
 
     hrv_input = [
-        MHR, SDHR, max_RR_interval, min_RR_interval, mean_RR_interval, median_RR_interval, SDNN, NN50, pNN50, RMSSD,
-        VLF, LF, HF, total, VLF_peak, LF_peak, HF_peak, VLF_percent, LF_percent, HF_percent, LF_nu, HF_nu, LF_HF, SD1,
-        SD2, SD1_SD2, alpha, alpha1, alpha2
-                 ]
+        MHR,
+        SDHR,
+        max_RR_interval,
+        min_RR_interval,
+        mean_RR_interval,
+        median_RR_interval,
+        SDNN,
+        NN50,
+        pNN50,
+        RMSSD,
+        VLF,
+        LF,
+        HF,
+        total,
+        VLF_peak,
+        LF_peak,
+        HF_peak,
+        VLF_percent,
+        LF_percent,
+        HF_percent,
+        LF_nu,
+        HF_nu,
+        LF_HF,
+        SD1,
+        SD2,
+        SD1_SD2,
+        alpha,
+        alpha1,
+        alpha2,
+    ]
     hrv_input = [float(i) for i in hrv_input]
 
     fs_multipliers_all = {
-        'fs1': [
-            0.19, 0.48, 0.8, -0.15, 0.81, -0.03, 0.86, 0.11, 0.53, 0.84,
-            0.18, 0.18, 0.2, 0.19, -0.08, -0.01, -0.03, 0.38, 0.28, -0.31,
-            0.29, -0.29, 0.28, 0.84, 0.87, 0.09, -0.36, -0.11, -0.33
+        "fs1": [
+            0.19,
+            0.48,
+            0.8,
+            -0.15,
+            0.81,
+            -0.03,
+            0.86,
+            0.11,
+            0.53,
+            0.84,
+            0.18,
+            0.18,
+            0.2,
+            0.19,
+            -0.08,
+            -0.01,
+            -0.03,
+            0.38,
+            0.28,
+            -0.31,
+            0.29,
+            -0.29,
+            0.28,
+            0.84,
+            0.87,
+            0.09,
+            -0.36,
+            -0.11,
+            -0.33,
         ],
-        'fs2': [
-            0.21, 0.4, 0.32, -0.39, 0.18, -0.08, 0.28, 0.1, 0.27, 0.28, 0.05,
-            0.06, 0.04, 0.05, -0.1, -0.18, -0.41, 0.58, 0.9, -0.89, 0.9, -0.9,
-            0.87, 0.28, 0.28, -0.11, -0.19, 0.34, -0.24
+        "fs2": [
+            0.21,
+            0.4,
+            0.32,
+            -0.39,
+            0.18,
+            -0.08,
+            0.28,
+            0.1,
+            0.27,
+            0.28,
+            0.05,
+            0.06,
+            0.04,
+            0.05,
+            -0.1,
+            -0.18,
+            -0.41,
+            0.58,
+            0.9,
+            -0.89,
+            0.9,
+            -0.9,
+            0.87,
+            0.28,
+            0.28,
+            -0.11,
+            -0.19,
+            0.34,
+            -0.24,
         ],
-        'fs3': [
-            0.08, 0.07, 0.2, -0.04, 0.12, -0.06, 0.22, -0.04, 0.06, 0.26, 0.96,
-            0.96, 0.97, 0.97, 0, -0.02, 0.01, 0.09, 0.04, -0.05, 0.04, -0.04,
-            0.04, 0.26, 0.19, 0.05, -0.09, 0, -0.08,
+        "fs3": [
+            0.08,
+            0.07,
+            0.2,
+            -0.04,
+            0.12,
+            -0.06,
+            0.22,
+            -0.04,
+            0.06,
+            0.26,
+            0.96,
+            0.96,
+            0.97,
+            0.97,
+            0,
+            -0.02,
+            0.01,
+            0.09,
+            0.04,
+            -0.05,
+            0.04,
+            -0.04,
+            0.04,
+            0.26,
+            0.19,
+            0.05,
+            -0.09,
+            0,
+            -0.08,
         ],
-        'fs4': [
-            0.2, 0.61, 0.15, -0.62, 0.14, -0.02, 0.16, 0.84, 0.66, 0.17, 0.01,
-            0.01, 0.01, 0.01, -0.49, -0.2, -0.12, 0.37, 0.07, -0.13, 0.09, -0.09,
-            0.09, 0.16, 0.15, 0.56, -0.23, -0.6, -0.06,
+        "fs4": [
+            0.2,
+            0.61,
+            0.15,
+            -0.62,
+            0.14,
+            -0.02,
+            0.16,
+            0.84,
+            0.66,
+            0.17,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            -0.49,
+            -0.2,
+            -0.12,
+            0.37,
+            0.07,
+            -0.13,
+            0.09,
+            -0.09,
+            0.09,
+            0.16,
+            0.15,
+            0.56,
+            -0.23,
+            -0.6,
+            -0.06,
         ],
-        'fs5': [
-            -0.11, -0.04, -0.16, 0.07, -0.06, 0.11, -0.14, -0.1, -0.19, -0.16, -0.04,
-            -0.04, -0.04, -0.04, 0.02, 0.18, 0.16, -0.19, -0.02, 0.05, -0.03, 0.03,
-            -0.07, -0.16, -0.12, -0.57, 0.74, 0.31, 0.74
+        "fs5": [
+            -0.11,
+            -0.04,
+            -0.16,
+            0.07,
+            -0.06,
+            0.11,
+            -0.14,
+            -0.1,
+            -0.19,
+            -0.16,
+            -0.04,
+            -0.04,
+            -0.04,
+            -0.04,
+            0.02,
+            0.18,
+            0.16,
+            -0.19,
+            -0.02,
+            0.05,
+            -0.03,
+            0.03,
+            -0.07,
+            -0.16,
+            -0.12,
+            -0.57,
+            0.74,
+            0.31,
+            0.74,
         ],
-        'fs6': [
-            0.89, 0.11, 0.14, -0.21, -0.36, -0.95, 0.13, -0.04, 0.03, 0.13, 0.04, 0.04,
-            0.04, 0.04, 0.02, -0.1, 0.2, 0.1, 0.1, -0.1, 0.1, -0.1, 0.12, 0.13, 0.13,
-            0.15, -0.12, -0.14, -0.06
-        ]
+        "fs6": [
+            0.89,
+            0.11,
+            0.14,
+            -0.21,
+            -0.36,
+            -0.95,
+            0.13,
+            -0.04,
+            0.03,
+            0.13,
+            0.04,
+            0.04,
+            0.04,
+            0.04,
+            0.02,
+            -0.1,
+            0.2,
+            0.1,
+            0.1,
+            -0.1,
+            0.1,
+            -0.1,
+            0.12,
+            0.13,
+            0.13,
+            0.15,
+            -0.12,
+            -0.14,
+            -0.06,
+        ],
     }
 
     # First element in mylist has to have mean/sd in first row of asq_SD_mean.csv. Specify sheet name (i.e., HRV, FS)
     def better_zscore(mylist, sheet_name):
-        df = pd.read_excel('App/static/asq_SD_mean.xlsx', sheet_name=sheet_name)
+        df = pd.read_excel("App/static/asq_SD_mean.xlsx", sheet_name=sheet_name)
         for counter, i in enumerate(mylist):
-            SD = df['SD'][counter]
-            mean = df['Mean'][counter]
-            if sheet_name == 'SQ' and counter == 4:  # check for sq5, see equation
-                mylist[counter] = (((i*-1) - mean) / SD)
+            SD = df["SD"][counter]
+            mean = df["Mean"][counter]
+            if sheet_name == "SQ" and counter == 4:  # check for sq5, see equation
+                mylist[counter] = ((i * -1) - mean) / SD
             else:
-                mylist[counter] = ((i - mean) / SD)
+                mylist[counter] = (i - mean) / SD
         return mylist
 
     def calculate_fs(hrv_list):
         fs_calculated = []
-        mylist = better_zscore(hrv_list, 'HRV')
+        mylist = better_zscore(hrv_list, "HRV")
         for key, i in fs_multipliers_all.items():
             x = 0
             for count, n in enumerate(mylist):
-                x += n*i[count]
+                x += n * i[count]
             fs_calculated.append(x)
 
         return fs_calculated
 
     def calculate_sq(fs_list):
-        zscored_fs = better_zscore(fs_list, 'FS')
+        zscored_fs = better_zscore(fs_list, "FS")
         sq = []
 
         # second z-scoring
         for i in zscored_fs:
-            x = sqrt(i+4)*-1
+            x = sqrt(i + 4) * -1
             sq.append(x)
 
-        zscored_sq = better_zscore(sq, 'SQ')
+        zscored_sq = better_zscore(sq, "SQ")
         sq = []
         for i in zscored_sq:
-            x = (i*10)+50
+            x = (i * 10) + 50
             sq.append(x)
 
         spiderplot(sq)  # testing spiderplot
         return sq
 
     def calculate_asq(sq_list):
-        mylist = [sum(sq_list)/6]
-        asq = better_zscore(mylist, 'ASQ')
-        asq = [(i*10)+50 for i in asq]
+        mylist = [sum(sq_list) / 6]
+        asq = better_zscore(mylist, "ASQ")
+        asq = [(i * 10) + 50 for i in asq]
         return asq
 
     def pipeline():
@@ -328,70 +578,81 @@ def results_asq():
 
     def spiderplot(sq_list):
         # draw spiderplot
-        df = pd.DataFrame(dict(
-            r=sq_list,
-            theta=['HRV-D1', 'HRV-D2', 'HRV-D3',
-                   'HRV-D3', 'HRV-D5', 'HRV-D6']))
-        # fig = px.line_polar(df, r='r', theta='theta', line_close=True)
+        df = pd.DataFrame(
+            dict(
+                r=sq_list,
+                theta=["HRV-D1", "HRV-D2", "HRV-D3", "HRV-D3", "HRV-D5", "HRV-D6"],
+            )
+        )
+        # fig = px.line_polar(df, r="r", theta="theta", line_close=True)
         fig = go.Figure()
 
         # change background color for different ranges
         values = [20, 10, 10, 10, 10, 10, 10]
         colors = [
-            'rgba(0, 141, 25, 0.8)',
-            'rgba(0, 172, 1, 0.8)',
-            'rgba(38, 189, 0, 0.8)',
-            'rgba(151, 229, 0, 0.8)',
-            'rgba(218, 240, 0, 0.8)',
-            'rgba(255, 204, 0, 1)',
-            'rgba(255, 34, 0, 1)'
+            "rgba(0, 141, 25, 0.8)",
+            "rgba(0, 172, 1, 0.8)",
+            "rgba(38, 189, 0, 0.8)",
+            "rgba(151, 229, 0, 0.8)",
+            "rgba(218, 240, 0, 0.8)",
+            "rgba(255, 204, 0, 1)",
+            "rgba(255, 34, 0, 1)",
         ]
 
         for t in range(0, len(colors)):
-            fig.add_trace(go.Barpolar(
-                r=[values[t]],
-                width=360,
-                marker_color=[colors[t]],
-                opacity=0.6,
-                name='Range ' + str(t + 1),
-                showlegend=False
-            ))
+            fig.add_trace(
+                go.Barpolar(
+                    r=[values[t]],
+                    width=360,
+                    marker_color=[colors[t]],
+                    opacity=0.6,
+                    name="Range " + str(t + 1),
+                    showlegend=False,
+                )
+            )
             t = t + 1
 
         # add actual sq values to each sq1-6
-        text = [i + ' (' + str(round(sq_list[count], 2)) + ')' for count, i in enumerate(df['theta'].tolist())]
+        text = [
+            i + " (" + str(round(sq_list[count], 2)) + ")"
+            for count, i in enumerate(df["theta"].tolist())
+        ]
 
-        fig.add_trace(go.Scatterpolar(
-            text=text,
-            r=sq_list,
-            mode='lines+text+markers',
-            fill='toself',
-            fillcolor='rgba(0, 0, 255, 0.4)',
-            textposition='bottom center',
-            marker=dict(color='blue'),
-            name='Your ASQ'))
-
-        fig.update_layout(
-            showlegend=False, polar = dict(angularaxis = dict(showticklabels = False)),
-            font=dict(size=20)
+        fig.add_trace(
+            go.Scatterpolar(
+                text=text,
+                r=sq_list,
+                mode="lines+text+markers",
+                fill="toself",
+                fillcolor="rgba(0, 0, 255, 0.4)",
+                textposition="bottom center",
+                marker=dict(color="blue"),
+                name="Your ASQ",
+            )
         )
 
-        fig.write_image('App/static/plotly_output.png', width=1000, height=1000)
+        fig.update_layout(
+            showlegend=False,
+            polar=dict(angularaxis=dict(showticklabels=False)),
+            font=dict(size=20),
+        )
 
-    asq_result = round(pipeline()[0], 2)  # Can't calculate pipeline twice, no idea why
+        fig.write_image("App/static/plotly_output.png", width=1000, height=1000)
+
+    asq_result = round(pipeline()[0], 2)  # Can"t calculate pipeline twice, no idea why
 
     def asq_definition():
 
-        x = ''
+        x = ""
 
-        asq_table = { # Explains what ASQ means
-            range(0, 20): ['Extremely High', 'Emerald'],
-            range(21, 30): ['High', 'Dark Green'],
-            range(31, 40): ['Slightly High', 'Green'],
-            range(41, 59): ['Average', 'Light Green'],
-            range(60, 69): ['Slightly Low', 'Yellow'],
-            range(70, 79): ['Low', 'Orange'],
-            range(80, 120): ['Extremely low', 'Red']
+        asq_table = {  # Explains what ASQ means
+            range(0, 20): ["Extremely High", "Emerald"],
+            range(21, 30): ["High", "Dark Green"],
+            range(31, 40): ["Slightly High", "Green"],
+            range(41, 59): ["Average", "Light Green"],
+            range(60, 69): ["Slightly Low", "Yellow"],
+            range(70, 79): ["Low", "Orange"],
+            range(80, 120): ["Extremely low", "Red"],
         }
 
         for key in asq_table:
@@ -400,166 +661,170 @@ def results_asq():
                 break
 
         return x
-    
+
     features = [
-        'MHR',
-        'SDHR',
-        'max_RR_interval',
-        'min_RR_interval',
-        'mean_RR_interval',
-        'median_RR_interval',
-        'SDNN',
-        'NN50',
-        'pNN500',
-        'RMSSDD',
-        'VLF',
-        'LF',
-        'HF',
-        'totall',
-        'VLF_peakpeak',
-        'LF_peakeak',
-        'HF_peakeak',
-        'VLF_percentpercent',
-        'LF_percentercent',
-        'HF_percentercent',
-        'LF_nuu',
-        'HF_nuu',
-        'LF_HFF',
-        'SD1',
-        'SD2',
-        'SD1_SD2SD2',
-        'alphaa',
-        'alpha1a1',
-        'alpha2'
+        "MHR",
+        "SDHR",
+        "max_RR_interval",
+        "min_RR_interval",
+        "mean_RR_interval",
+        "median_RR_interval",
+        "SDNN",
+        "NN50",
+        "pNN500",
+        "RMSSDD",
+        "VLF",
+        "LF",
+        "HF",
+        "totall",
+        "VLF_peakpeak",
+        "LF_peakeak",
+        "HF_peakeak",
+        "VLF_percentpercent",
+        "LF_percentercent",
+        "HF_percentercent",
+        "LF_nuu",
+        "HF_nuu",
+        "LF_HFF",
+        "SD1",
+        "SD2",
+        "SD1_SD2SD2",
+        "alphaa",
+        "alpha1a1",
+        "alpha2",
     ]
-    
+
     user_inputs = {}
-    
+
     for q in range(len(features)):
         user_inputs[features[q]] = float(hrv_input[q])
-    
+
     inputs_json = json.dumps(user_inputs)
     results_json = json.dumps(asq_result)
-  
+
     response = Response("ASQ", inputs_json, results_json)
     db.session.add(response)
     db.session.commit()
 
-    return render_template('results_asq.html',
-                           p1=asq_result,  # Round value to 2 decimals
-                           p2=asq_definition()[0],
-                           p3=asq_definition()[1]
-                           )
+    return render_template(
+        "results_asq.html",
+        p1=asq_result,  # Round value to 2 decimals
+        p2=asq_definition()[0],
+        p3=asq_definition()[1],
+    )
 
 
 def normalize(user_inputs):
     mean_std = pd.read_csv(os.path.join(data_folder, "nafld_mean_std.csv"))
     norm = {}
-    
+
     for inputs in user_inputs:
-        if inputs != 'gender0female1male':
-            mean = float(mean_std['{}_mean'.format(inputs)])
-            stdev = float(mean_std['{}_stdev'.format(inputs)])
+        if inputs != "gender0female1male":
+            mean = float(mean_std["{}_mean".format(inputs)])
+            stdev = float(mean_std["{}_stdev".format(inputs)])
             z_scored = (user_inputs[inputs] - mean) / stdev
-            
-            norm[inputs+"_norm"] = [z_scored]
+
+            norm[inputs + "_norm"] = [z_scored]
         else:
             norm[inputs] = [user_inputs[inputs]]
-            
+
     return norm
 
 
-@app.route('/results_nafld', methods=["GET", "POST"])
+@app.route("/results_nafld", methods=["GET", "POST"])
 def results_nafld():
     features = [
-     'H cholesterol', 
-     'weight',
-     'height',
-     'Red blood cell count',
-     'systolic',
-     'Alanine aminotransferase',
-     'The average hemoglobin concentration',
-     'Triglycerides',
-     'Eosinophil count',
-     'diastolic',
-     'Platelet count',
-     'Lymphocyte count',
-     'White blood cell count',
-     'age',
-     'Total bilirubin',
-     'Cholinesterase',
-     'Leucine aminopeptidase',
-     'Alkaline phosphatase',
-     'gender0female1male']
-    
+        "H cholesterol",
+        "weight",
+        "height",
+        "Red blood cell count",
+        "systolic",
+        "Alanine aminotransferase",
+        "The average hemoglobin concentration",
+        "Triglycerides",
+        "Eosinophil count",
+        "diastolic",
+        "Platelet count",
+        "Lymphocyte count",
+        "White blood cell count",
+        "age",
+        "Total bilirubin",
+        "Cholinesterase",
+        "Leucine aminopeptidase",
+        "Alkaline phosphatase",
+        "gender0female1male",
+    ]
+
     user_inputs = {}
-    
+
     for q in features:
         user_inputs[q] = float(request.form[q])
-    
-    user_inputs['bmi'] = user_inputs['weight']/((user_inputs['height']/100)**2)
-        
+
+    user_inputs["bmi"] = user_inputs["weight"] / ((user_inputs["height"] / 100) ** 2)
+
     inputs_norm = normalize(user_inputs)
 
     with open("App/static/models/nafld_models_lr.bin", "rb") as f:
         all_models = pickle.load(f)
-        
-    model = all_models['models'][0]
-    proba = model.predict_proba(pd.DataFrame.from_dict(inputs_norm)) 
-    positive = proba[0][1] # Positive probability
-    
+
+    model = all_models["models"][0]
+    proba = model.predict_proba(pd.DataFrame.from_dict(inputs_norm))
+    positive = proba[0][1]  # Positive probability
+
     inputs_json = json.dumps(user_inputs)
     results_json = json.dumps(positive)
-  
+
     response = Response("nafld", inputs_json, results_json)
     db.session.add(response)
     db.session.commit()
 
-    p1=round((positive*100), 1)
-    
-    custom_style= Style(
+    p1 = round((positive * 100), 1)
+
+    custom_style = Style(
         value_font_size=45,
-        background='transparent',
-        #foreground_strong='#FFFFFF',
-        font_family='googlefont:Arial'
+        background="transparent",
+        # foreground_strong="#FFFFFF",
+        font_family="googlefont:Arial",
     )
-    
-    gauge = pygal.SolidGauge(#half_pie = True,
-                            inner_radius = 0.70,
-                            show_legend=False,
-                            style=custom_style,
-                            explicit_size = True,
-                            height=500,
-                            width=500)
 
-    percent_formatter = lambda x: '{:.10g}%'.format(x)
+    gauge = pygal.SolidGauge(  # half_pie = True,
+        inner_radius=0.70,
+        show_legend=False,
+        style=custom_style,
+        explicit_size=True,
+        height=500,
+        width=500,
+    )
+
+    percent_formatter = lambda x: "{:.10g}%".format(x)
     gauge.value_formatter = percent_formatter
-    
-    gauge.add('', [{'value': p1, 'min_value': 0, 'max_value': 100, 'color': '#0000EE'}])
 
-    gauge.render_to_png('App/static/nafld_chart.png')
-    
-    return render_template('results_nafld.html',
-                           p1=round((positive*100), 1),
-                           )
+    gauge.add("", [{"value": p1, "min_value": 0, "max_value": 100, "color": "#0000EE"}])
+
+    gauge.render_to_png("App/static/nafld_chart.png")
+
+    return render_template(
+        "results_nafld.html",
+        p1=round((positive * 100), 1),
+    )
 
 
-@app.route('/results_childbmi', methods=["GET", "POST"])
+@app.route("/results_childbmi", methods=["GET", "POST"])
 def results_childbmi():
-    age = float(request.form['Age'])
-    age1 = float(request.form['Age1'])
-    gender = int(request.form['Gender'])
-    weight = float(request.form['Weight'])
-    height = float(request.form['Height'])
-    bmi = weight/((height/100)**2)
+    age = float(request.form["Age"])
+    age1 = float(request.form["Age1"])
+    gender = int(request.form["Gender"])
+    weight = float(request.form["Weight"])
+    height = float(request.form["Height"])
+    bmi = weight / ((height / 100) ** 2)
 
     user_inputs = {
-        'Current age': [age],
-        'Age to predict': [age1],
-        'Sex': [gender],
-        'Height': [height],
-        'Weight': [weight],
-        'BMI': [bmi]
+        "Current age": [age],
+        "Age to predict": [age1],
+        "Sex": [gender],
+        "Height": [height],
+        "Weight": [weight],
+        "BMI": [bmi],
     }
 
     with open("App/static/models/childbmi_model_height.bin", "rb") as f:
@@ -571,55 +836,157 @@ def results_childbmi():
     with open("App/static/models/childbmi_model_bmi.bin", "rb") as f:
         bmi_model = pickle.load(f)
         pred_bmi = bmi_model.predict(pd.DataFrame(user_inputs)).tolist()[0]
-        
+
     inputs_json = json.dumps(user_inputs)
     results_json = json.dumps(pred_bmi)
-  
+
     response = Response("childBMI", inputs_json, results_json)
     db.session.add(response)
     db.session.commit()
-    
-    return render_template('results_childbmi.html', 
-                           height=round(pred_height, 1),
-                           weight=round(pred_weight, 1),
-                           bmi=round(pred_bmi, 1),
-                           age=int(age1))
+
+    return render_template(
+        "results_childbmi.html",
+        height=round(pred_height, 1),
+        weight=round(pred_weight, 1),
+        bmi=round(pred_bmi, 1),
+        age=int(age1),
+    )
 
 
-@app.route('/results_mmpi', methods=["GET", "POST"])
+@app.route("/results_mmpi", methods=["GET", "POST"])
 def results_mmpi():
-    status = ['DT', 'HsT', 'HyT', 'MaT', 'MfT', 'PaT', 'PdT', 'PtT', 'ScT', 'SiT']
-    questions = [2, 3, 6, 7, 8, 9, 12, 18, 21, 22, 23, 24, 27, 32, 33, 35, 37, 38, 42, 51, 57, 63, 64, 67, 68, 71, 76, 82, 84, 91, 93, 94, 97, 102, 103, 106, 107, 110, 117, 119, 120, 122, 123, 124, 127, 128, 134, 141, 145, 152, 155, 157, 163, 164, 167, 168, 170, 175, 177, 178, 179, 181, 187, 192, 201, 202, 220, 224, 229, 230, 231, 234, 238, 245, 267, 268, 272, 278, 279, 281, 289, 292, 296, 298, 301, 315, 316, 318, 321, 324, 339, 342, 346, 350, 358, 360, 370, 383, 471, 527]
+    status = ["DT", "HsT", "HyT", "MaT", "MfT", "PaT", "PdT", "PtT", "ScT", "SiT"]
+    questions = [
+        2,
+        3,
+        6,
+        7,
+        8,
+        9,
+        12,
+        18,
+        21,
+        22,
+        23,
+        24,
+        27,
+        32,
+        33,
+        35,
+        37,
+        38,
+        42,
+        51,
+        57,
+        63,
+        64,
+        67,
+        68,
+        71,
+        76,
+        82,
+        84,
+        91,
+        93,
+        94,
+        97,
+        102,
+        103,
+        106,
+        107,
+        110,
+        117,
+        119,
+        120,
+        122,
+        123,
+        124,
+        127,
+        128,
+        134,
+        141,
+        145,
+        152,
+        155,
+        157,
+        163,
+        164,
+        167,
+        168,
+        170,
+        175,
+        177,
+        178,
+        179,
+        181,
+        187,
+        192,
+        201,
+        202,
+        220,
+        224,
+        229,
+        230,
+        231,
+        234,
+        238,
+        245,
+        267,
+        268,
+        272,
+        278,
+        279,
+        281,
+        289,
+        292,
+        296,
+        298,
+        301,
+        315,
+        316,
+        318,
+        321,
+        324,
+        339,
+        342,
+        346,
+        350,
+        358,
+        360,
+        370,
+        383,
+        471,
+        527,
+    ]
 
-    user_inputs = {}    
+    user_inputs = {}
 
-    user_inputs['Gender'] = [int(request.form['Gender'])]
-    user_inputs['Age'] = [int(request.form['Age'])]
-    
+    user_inputs["Gender"] = [int(request.form["Gender"])]
+    user_inputs["Age"] = [int(request.form["Age"])]
+
     for q in questions:
-        user_inputs['Q{}'.format(q)] = [int(request.form['Q{}'.format(q)])]
-        
+        user_inputs["Q{}".format(q)] = [int(request.form["Q{}".format(q)])]
 
     user_inputs = pd.DataFrame.from_dict(user_inputs)
 
     with open("App/static/models/mmpi_models.bin", "rb") as f:
         all_models = pickle.load(f)
-        
+
     positive_proba = {}
-    
+
     for condition in status:
         q = all_models[condition][1]
-        q = ['Gender', 'Age'] + q
+        q = ["Gender", "Age"] + q
         model = all_models[condition][0]
-        
+
         answer = user_inputs[q]
-        
+
         proba = model.predict_proba(answer)
         positive_proba[condition] = proba[0][1]
-        
+
     inputs_json = json.dumps(user_inputs.to_dict())
     results_json = json.dumps(positive_proba)
-  
+
     response = Response("mmpi", inputs_json, results_json)
     db.session.add(response)
     db.session.commit()
@@ -634,6 +1001,9 @@ def results_mmpi():
     Schizophrenia=round(positive_proba['ScT']*100, 1)
     Hypomania=round(positive_proba['MaT']*100, 1)
     Social_Introversion=round(positive_proba['SiT']*100, 1)
+
+    # Input MMPI data
+    mmpi_input = [Depression, Hypochondriasis, Hysteria, Psychopathic_Deviate, Masculinity_Femininity, Paranoia, Psychasthenia, Schizophrenia, Hypomania, Social_Introversion]
 
     # Input MMPI data
     mmpi_input = [Depression, Hypochondriasis, Hysteria, Psychopathic_Deviate, Masculinity_Femininity, Paranoia, Psychasthenia, Schizophrenia, Hypomania, Social_Introversion]
@@ -659,6 +1029,7 @@ def results_mmpi():
         'rgba(255, 102, 0, 0.8)',
         'rgba(255, 51, 0, 0.8)'
     ]
+
     for t in range(0, len(colors)):
         fig.add_trace(go.Barpolar(
             r=[values[t]],
@@ -691,7 +1062,7 @@ def results_mmpi():
         showlegend=False
         )
 
-    # Create and render the charts
+    # # Create and render the charts
     fig.write_image('App/static/mmpi_chart.png', width=1000, height=700)
     
     return render_template('results_mmpi.html', 
@@ -708,168 +1079,175 @@ def results_mmpi():
 
 
 @app.route('/results_anxiety_moderate', methods=["GET", "POST"])
+
 def results_anxiety_moderate():
     questions = [9, 11, 20, 30, 36, 40]
-    
-    user_inputs = {}    
 
-    user_inputs['gender'] = [int(request.form['Gender'])]
-    user_inputs['region'] = [int(request.form['Region'])]
-    user_inputs['age'] = [int(request.form['Age'])]
-    
+    user_inputs = {}
+
+    user_inputs["gender"] = [int(request.form["Gender"])]
+    user_inputs["region"] = [int(request.form["Region"])]
+    user_inputs["age"] = [int(request.form["Age"])]
+
     for q in questions:
-        user_inputs['Q{}A'.format(q)] = [int(request.form['Q{}'.format(q)])]
-        
+        user_inputs["Q{}A".format(q)] = [int(request.form["Q{}".format(q)])]
 
     user_inputs = pd.DataFrame.from_dict(user_inputs)
 
     with open("App/static/models/anxiety_model_moderate.bin", "rb") as f:
         model = pickle.load(f)
-    
+
     proba = model[0].predict_proba(user_inputs)
     positive = proba[0][1]
-    
+
     inputs_json = json.dumps(user_inputs.to_dict())
     results_json = json.dumps(positive)
-  
+
     response = Response("DASS_Anxiety", inputs_json, results_json)
     db.session.add(response)
     db.session.commit()
-    
-    p1=round((positive*100), 1)
-    
-    custom_style= Style(
+
+    p1 = round((positive * 100), 1)
+
+    custom_style = Style(
         value_font_size=45,
-        background='transparent',
-        #foreground_strong='#FFFFFF',
-        font_family='googlefont:Arial'
+        background="transparent",
+        # foreground_strong="#FFFFFF",
+        font_family="googlefont:Arial",
     )
-    
-    gauge = pygal.SolidGauge(#half_pie = True,
-                            inner_radius = 0.70,
-                            show_legend=False,
-                            style=custom_style,
-                            explicit_size = True,
-                            height=500,
-                            width=500)
 
-    percent_formatter = lambda x: '{:.10g}%'.format(x)
+    gauge = pygal.SolidGauge(  # half_pie = True,
+        inner_radius=0.70,
+        show_legend=False,
+        style=custom_style,
+        explicit_size=True,
+        height=500,
+        width=500,
+    )
+
+    percent_formatter = lambda x: "{:.10g}%".format(x)
     gauge.value_formatter = percent_formatter
-    
-    gauge.add('', [{'value': p1, 'min_value': 0, 'max_value': 100, 'color': '#0000EE'}])
 
-    gauge.render_to_png('App/static/anxiety_moderate_chart.png')
+    gauge.add("", [{"value": p1, "min_value": 0, "max_value": 100, "color": "#0000EE"}])
 
-    return render_template('results_anxiety_moderate.html', p1=round((positive*100), 1))
+    gauge.render_to_png("App/static/anxiety_moderate_chart.png")
+
+    return render_template(
+        "results_anxiety_moderate.html", p1=round((positive * 100), 1)
+    )
 
 
-@app.route('/results_depression_moderate', methods=["GET", "POST"])
+@app.route("/results_depression_moderate", methods=["GET", "POST"])
 def results_depression_moderate():
     questions = [3, 13, 16, 22, 24, 34]
-    
-    user_inputs = {}    
 
-    user_inputs['gender'] = [int(request.form['Gender'])]
-    user_inputs['region'] = [int(request.form['Region'])]
-    user_inputs['age'] = [int(request.form['Age'])]
-    
+    user_inputs = {}
+
+    user_inputs["gender"] = [int(request.form["Gender"])]
+    user_inputs["region"] = [int(request.form["Region"])]
+    user_inputs["age"] = [int(request.form["Age"])]
+
     for q in questions:
-        user_inputs['Q{}A'.format(q)] = [int(request.form['Q{}'.format(q)])]
-        
+        user_inputs["Q{}A".format(q)] = [int(request.form["Q{}".format(q)])]
+
     user_inputs = pd.DataFrame.from_dict(user_inputs)
 
     with open("App/static/models/depression_model_moderate.bin", "rb") as f:
         model = pickle.load(f)
-    
+
     proba = model[0].predict_proba(user_inputs)
     positive = proba[0][1]
-    
+
     inputs_json = json.dumps(user_inputs.to_dict())
     results_json = json.dumps(positive)
-  
+
     response = Response("DASS_Depression", inputs_json, results_json)
     db.session.add(response)
     db.session.commit()
-    
-    p1=round((positive*100), 1)
-    
-    custom_style= Style(
+
+    p1 = round((positive * 100), 1)
+
+    custom_style = Style(
         value_font_size=45,
-        background='transparent',
-        #foreground_strong='#FFFFFF',
-        font_family='googlefont:Arial'
+        background="transparent",
+        # foreground_strong="#FFFFFF",
+        font_family="googlefont:Arial",
     )
 
-    gauge = pygal.SolidGauge(#half_pie = True,
-                            inner_radius = 0.70,
-                            show_legend=False,
-                            style=custom_style,
-                            explicit_size = True,
-                            height=500,
-                            width=500)
+    gauge = pygal.SolidGauge(  # half_pie = True,
+        inner_radius=0.70,
+        show_legend=False,
+        style=custom_style,
+        explicit_size=True,
+        height=500,
+        width=500,
+    )
 
-    percent_formatter = lambda x: '{:.10g}%'.format(x)
+    percent_formatter = lambda x: "{:.10g}%".format(x)
     gauge.value_formatter = percent_formatter
-    
-    gauge.add('', [{'value': p1, 'min_value': 0, 'max_value': 100, 'color': '#0000EE'}])
 
-    gauge.render_to_png('App/static/depression_moderate_chart.png')
-        
-    return render_template('results_depression_moderate.html', p1=round((positive*100), 1))
+    gauge.add("", [{"value": p1, "min_value": 0, "max_value": 100, "color": "#0000EE"}])
+
+    gauge.render_to_png("App/static/depression_moderate_chart.png")
+
+    return render_template(
+        "results_depression_moderate.html", p1=round((positive * 100), 1)
+    )
 
 
-@app.route('/results_stress_moderate', methods=["GET", "POST"])
+@app.route("/results_stress_moderate", methods=["GET", "POST"])
 def results_stress_moderate():
     questions = [6, 11, 18, 27, 29]
-    
-    user_inputs = {}    
 
-    user_inputs['gender'] = [int(request.form['Gender'])]
-    user_inputs['region'] = [int(request.form['Region'])]
-    user_inputs['age'] = [int(request.form['Age'])]
-    
+    user_inputs = {}
+
+    user_inputs["gender"] = [int(request.form["Gender"])]
+    user_inputs["region"] = [int(request.form["Region"])]
+    user_inputs["age"] = [int(request.form["Age"])]
+
     for q in questions:
-        user_inputs['Q{}A'.format(q)] = [int(request.form['Q{}'.format(q)])]
-        
+        user_inputs["Q{}A".format(q)] = [int(request.form["Q{}".format(q)])]
 
     user_inputs = pd.DataFrame.from_dict(user_inputs)
 
     with open("App/static/models/stress_model_moderate.bin", "rb") as f:
         model = pickle.load(f)
-    
+
     proba = model[0].predict_proba(user_inputs)
     positive = proba[0][1]
-    
+
     inputs_json = json.dumps(user_inputs.to_dict())
     results_json = json.dumps(positive)
-  
+
     response = Response("DASS_Stress", inputs_json, results_json)
     db.session.add(response)
     db.session.commit()
-    
-    p1=round((positive*100), 1)
-    
-    custom_style= Style(
+
+    p1 = round((positive * 100), 1)
+
+    custom_style = Style(
         value_font_size=45,
-        background='transparent',
-        #foreground_strong='#FFFFFF',
-        font_family='googlefont:Arial'
+        background="transparent",
+        # foreground_strong="#FFFFFF",
+        font_family="googlefont:Arial",
     )
-    
-    gauge = pygal.SolidGauge(#half_pie = True,
-                            inner_radius = 0.70,
-                            show_legend=False,
-                            style=custom_style,
-                            explicit_size = True,
-                            height=500,
-                            width=500)
 
-    percent_formatter = lambda x: '{:.10g}%'.format(x)
+    gauge = pygal.SolidGauge(  # half_pie = True,
+        inner_radius=0.70,
+        show_legend=False,
+        style=custom_style,
+        explicit_size=True,
+        height=500,
+        width=500,
+    )
+
+    percent_formatter = lambda x: "{:.10g}%".format(x)
     gauge.value_formatter = percent_formatter
-    
-    gauge.add('', [{'value': p1, 'min_value': 0, 'max_value': 100, 'color': '#0000EE'}])
 
-    gauge.render_to_png('App/static/stress_moderate_chart.png')
-        
-    return render_template('results_stress_moderate.html', p1=round((positive*100), 1))
+    gauge.add("", [{"value": p1, "min_value": 0, "max_value": 100, "color": "#0000EE"}])
 
+    gauge.render_to_png("App/static/stress_moderate_chart.png")
+
+    return render_template(
+        "results_stress_moderate.html", p1=round((positive * 100), 1)
+    )

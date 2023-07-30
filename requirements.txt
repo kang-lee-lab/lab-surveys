@@ -10,3 +10,6 @@ xgboost==0.81
 Flask-SQLAlchemy==3.0.2
 psycopg2-binary==2.9.5
 psycopg2==2.9.5
+pytest
+pygal
+cairosvg
