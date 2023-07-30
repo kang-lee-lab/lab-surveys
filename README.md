@@ -9,15 +9,25 @@ https://kangleelab-surveys.herokuapp.com/
 
 ## Running locally
 
-To run locally you must set up a PostgreSQL database on your machine. The following link provides a tutorial on setting up a database:
+To run locally you must set up a PostgreSQL database on your machine. 
 
-https://www.postgresqltutorial.com/postgresql-administration/postgresql-create-database/
+To create a database locally you must download a database manager such as pgAdmin (As shown on the link above). PgAdmin is available on both Mac and Windows.
 
 Once the database is created, a table must be created with the name "responses" and must be created with matching data values and types as seen in the Response class found in `__init__.py`
 
 Below is a tutorial on how to create a table within a database on pgAdmin.
 
 https://www.guru99.com/create-drop-table-postgresql.html
+
+Once the database is created, get a link for the database from pgAdmin and replace it with the current link on line 10 of '__init__.py'
+
+Then run the following commands in your terminal to import the database and model:
+
+from App import db, Response
+db.create_all()
+
+The following link provides some more information on these commands
+https://www.digitalocean.com/community/tutorials/how-to-use-flask-sqlalchemy-to-interact-with-databases-in-a-flask-application
 
 Make sure you have a Python runtime environment set up (preferably Anaconda Python 3.9 or higher).
 
