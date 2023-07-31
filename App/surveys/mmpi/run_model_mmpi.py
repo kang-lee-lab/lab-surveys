@@ -108,7 +108,7 @@ questions = [
     527,
 ]
 
-with open("./static/models/mmpi_models.bin", "rb") as f:
+with open("../../static/surveys_files/mmpi/mmpi_models.bin", "rb") as f:
     all_models = pickle.load(f)
 
 answers = {}
@@ -133,4 +133,4 @@ for condition in status:
     answer = answers[q]
 
     proba = model.predict_proba(answer)
-    print(proba[0][1])
+    # print(proba[0][1])
