@@ -55,4 +55,4 @@ answers = pd.DataFrame.from_dict(answers)
 
 proba = model[0].predict_proba(answers)
 # predicted_label = model.predict(answer)
-print(proba[0][1])
+# print(proba[0][1])

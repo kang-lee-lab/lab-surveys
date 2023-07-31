@@ -133,4 +133,4 @@ for condition in status:
     answer = answers[q]
 
     proba = model.predict_proba(answer)
-    print(proba[0][1])
+    # print(proba[0][1])

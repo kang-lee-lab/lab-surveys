@@ -83,4 +83,4 @@ if __name__ == "__main__":
     inputs = inputs.dropna()
 
     proba, label = run_model("lr", inputs)
-    print("Positive probability: ", proba[0][1])
+    # print("Positive probability: ", proba[0][1])
