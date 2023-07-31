@@ -1,7 +1,10 @@
+"""Define the routes for the Flask application"""
+
 import json
 import pickle
 
 import pandas as pd
+import plotly.graph_objects as go
 import pygal
 from flask import render_template, request
 from pygal.style import Style
@@ -9,6 +12,7 @@ from pygal.style import Style
 from App import Response, app, db
 from App.surveys.asq.calculate import asq_definition, fs_multipliers, pipeline
 from App.surveys.nafld.run_model_nafld import normalize
+from App.utils import process_response_query
 
 data_folder = "App/static"
 
@@ -28,21 +32,7 @@ def queryNafld():
     responseResults = (
         db.session.query(Response).filter(Response.response_type == "nafld").all()
     )
-    data = []
-    responses = []
-    for response in responseResults:
-        temp = []
-        temp.append(response.id)
-        temp.append(response.time_stamp)
-        string = response.response_answers
-        string = string.replace("{", "")
-        string = string.replace("'", "")
-        string = string.replace("}", "")
-        response_list = [string.split(","), response.id]
-        responses.append(response_list)
-
-        temp.append(round(float(response.response_results), 3))
-        data.append(temp)
+    responses, data = process_response_query(responseResults)
     return render_template(
         "queryNafld.html",
         responses=responses,
@@ -56,21 +46,7 @@ def queryASQ():
     responseResults = (
         db.session.query(Response).filter(Response.response_type == "ASQ").all()
     )
-    data = []
-    responses = []
-    for response in responseResults:
-        temp = []
-        temp.append(response.id)
-        temp.append(response.time_stamp)
-        string = response.response_answers
-        string = string.replace("{", "")
-        string = string.replace("'", "")
-        string = string.replace("}", "")
-        response_list = [string.split(","), response.id]
-        responses.append(response_list)
-
-        temp.append(round(float(response.response_results), 3))
-        data.append(temp)
+    responses, data = process_response_query(responseResults)
     return render_template(
         "queryASQ.html",
         responses=responses,
@@ -84,20 +60,7 @@ def queryChildBMI():
     responseResults = (
         db.session.query(Response).filter(Response.response_type == "childBMI").all()
     )
-    data = []
-    responses = []
-    for response in responseResults:
-        temp = []
-        temp.append(response.id)
-        temp.append(response.time_stamp)
-        string = response.response_answers
-        string = string.replace("{", "")
-        string = string.replace("'", "")
-        string = string.replace("}", "")
-        response_list = [string.split(","), response.id]
-        responses.append(response_list)
-        temp.append(round(float(response.response_results), 3))
-        data.append(temp)
+    responses, data = process_response_query(responseResults)
     return render_template(
         "queryChildBMI.html",
         responses=responses,
@@ -111,24 +74,7 @@ def queryMMPI():
     responseResults = (
         db.session.query(Response).filter(Response.response_type == "mmpi").all()
     )
-    data = []
-    responses = []
-    for response in responseResults:
-        temp = []
-        temp.append(response.id)
-        temp.append(response.time_stamp)
-        string = response.response_answers
-        string = string.replace("{", "")
-        string = string.replace("'", "")
-        string = string.replace("}", "")
-        response_str = response.response_results
-        response_str = response_str.replace("{", "")
-        response_str = response_str.replace("}", "")
-        response_str = response_str.replace("'", "")
-        response_list = [string.split(","), response.id]
-        responses.append(response_list)
-        temp.append(response_str)
-        data.append(temp)
+    responses, data = process_response_query(responseResults, True)
     return render_template(
         "queryMMPI.html",
         responses=responses,
@@ -144,21 +90,7 @@ def queryDassAnxiety():
         .filter(Response.response_type == "DASS_Anxiety")
         .all()
     )
-    data = []
-    responses = []
-    for response in responseResults:
-        temp = []
-        temp.append(response.id)
-        temp.append(response.time_stamp)
-        string = response.response_answers
-        string = string.replace("{", "")
-        string = string.replace("'", "")
-        string = string.replace("}", "")
-        response_list = [string.split(","), response.id]
-        responses.append(response_list)
-
-        temp.append(float(response.response_results))
-        data.append(temp)
+    responses, data = process_response_query(responseResults)
     return render_template(
         "queryDassAnxiety.html",
         responses=responses,
@@ -174,21 +106,7 @@ def queryDassDepression():
         .filter(Response.response_type == "DASS_Depression")
         .all()
     )
-    data = []
-    responses = []
-    for response in responseResults:
-        temp = []
-        temp.append(response.id)
-        temp.append(response.time_stamp)
-        string = response.response_answers
-        string = string.replace("{", "")
-        string = string.replace("'", "")
-        string = string.replace("}", "")
-        response_list = [string.split(","), response.id]
-        responses.append(response_list)
-
-        temp.append(float(response.response_results))
-        data.append(temp)
+    responses, data = process_response_query(responseResults)
     return render_template(
         "queryDassDepression.html",
         responses=responses,
@@ -204,21 +122,7 @@ def queryDassStress():
         .filter(Response.response_type == "DASS_Anxiety")
         .all()
     )
-    data = []
-    responses = []
-    for response in responseResults:
-        temp = []
-        temp.append(response.id)
-        temp.append(response.time_stamp)
-        string = response.response_answers
-        string = string.replace("{", "")
-        string = string.replace("'", "")
-        string = string.replace("}", "")
-        response_list = [string.split(","), response.id]
-        responses.append(response_list)
-
-        temp.append(float(response.response_results))
-        data.append(temp)
+    responses, data = process_response_query(responseResults)
     return render_template(
         "queryDassAnxiety.html",
         responses=responses,
@@ -640,93 +544,119 @@ def results_mmpi():
     response = Response("mmpi", inputs_json, results_json)
     db.session.add(response)
     db.session.commit()
-    
-    Depression=round(positive_proba['DT']*100, 1)
-    Hypochondriasis=round(positive_proba['HsT']*100, 1)
-    Hysteria=round(positive_proba['HyT']*100, 1)
-    Psychopathic_Deviate=round(positive_proba['PdT']*100, 1)
-    Masculinity_Femininity=round(positive_proba['MfT']*100, 1)
-    Paranoia=round(positive_proba['PaT']*100, 1)
-    Psychasthenia=round(positive_proba['PtT']*100, 1)
-    Schizophrenia=round(positive_proba['ScT']*100, 1)
-    Hypomania=round(positive_proba['MaT']*100, 1)
-    Social_Introversion=round(positive_proba['SiT']*100, 1)
+
+    Depression = round(positive_proba["DT"] * 100, 1)
+    Hypochondriasis = round(positive_proba["HsT"] * 100, 1)
+    Hysteria = round(positive_proba["HyT"] * 100, 1)
+    Psychopathic_Deviate = round(positive_proba["PdT"] * 100, 1)
+    Masculinity_Femininity = round(positive_proba["MfT"] * 100, 1)
+    Paranoia = round(positive_proba["PaT"] * 100, 1)
+    Psychasthenia = round(positive_proba["PtT"] * 100, 1)
+    Schizophrenia = round(positive_proba["ScT"] * 100, 1)
+    Hypomania = round(positive_proba["MaT"] * 100, 1)
+    Social_Introversion = round(positive_proba["SiT"] * 100, 1)
 
     # Input MMPI data
-    mmpi_input = [Depression, Hypochondriasis, Hysteria, Psychopathic_Deviate, Masculinity_Femininity, Paranoia, Psychasthenia, Schizophrenia, Hypomania, Social_Introversion]
+    mmpi_input = [
+        Depression,
+        Hypochondriasis,
+        Hysteria,
+        Psychopathic_Deviate,
+        Masculinity_Femininity,
+        Paranoia,
+        Psychasthenia,
+        Schizophrenia,
+        Hypomania,
+        Social_Introversion,
+    ]
 
     # Draw radar chart
-    fig = go.Figure(data=go.Scatterpolar(
-        r=mmpi_input,
-        theta=['Hypochondriasis', 'Depression', 'Hysteria', 'Psychopathic Deviate', 'Masculinity', 'Paranoia', 'Psychasthenia', 'Schizophrenia', 'Hypomania', 'Social Introversion'],
-        fill='toself'
-        ))
+    fig = go.Figure(
+        data=go.Scatterpolar(
+            r=mmpi_input,
+            theta=[
+                "Hypochondriasis",
+                "Depression",
+                "Hysteria",
+                "Psychopathic Deviate",
+                "Masculinity",
+                "Paranoia",
+                "Psychasthenia",
+                "Schizophrenia",
+                "Hypomania",
+                "Social Introversion",
+            ],
+            fill="toself",
+        )
+    )
 
     # Change background color for different ranges
     values = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
     colors = [
-        'rgba(0, 141, 25, 0.8)',
-        'rgba(38, 189, 0, 0.8)',
-        'rgba(75, 228, 0, 0.8)',
-        'rgba(112, 255, 0, 0.8)',
-        'rgba(167, 255, 0, 0.8)',
-        'rgba(222, 255, 0, 0.8)',
-        'rgba(255, 204, 0, 0.8)',
-        'rgba(255, 153, 0, 0.8)',
-        'rgba(255, 102, 0, 0.8)',
-        'rgba(255, 51, 0, 0.8)'
+        "rgba(0, 141, 25, 0.8)",
+        "rgba(38, 189, 0, 0.8)",
+        "rgba(75, 228, 0, 0.8)",
+        "rgba(112, 255, 0, 0.8)",
+        "rgba(167, 255, 0, 0.8)",
+        "rgba(222, 255, 0, 0.8)",
+        "rgba(255, 204, 0, 0.8)",
+        "rgba(255, 153, 0, 0.8)",
+        "rgba(255, 102, 0, 0.8)",
+        "rgba(255, 51, 0, 0.8)",
     ]
 
     for t in range(0, len(colors)):
-        fig.add_trace(go.Barpolar(
-            r=[values[t]],
-            width=360,
-            marker_color=[colors[t]],
-            opacity=0.6,
-            name='Range ' + str(t + 1),
-            showlegend=False
-        ))
+        fig.add_trace(
+            go.Barpolar(
+                r=[values[t]],
+                width=360,
+                marker_color=[colors[t]],
+                opacity=0.6,
+                name="Range " + str(t + 1),
+                showlegend=False,
+            )
+        )
         t = t + 1
 
     # Add values as labels to each coordinate
     for i, theta in enumerate(fig.data[0].theta):
-        fig.add_trace(go.Scatterpolar(
-            r=[mmpi_input[i] + 5],  
-            theta=[theta],
-            mode='text',
-            text=str(mmpi_input[i]) + '%',  
-            textfont=dict(size=12, color='black'),
-            showlegend=False
-        ))
-        
-    fig.update_layout(
-        polar=dict(
-            radialaxis=dict(
-                visible=True,
-                range=[0,100]
-                ),
-            ),
-        showlegend=False
+        fig.add_trace(
+            go.Scatterpolar(
+                r=[mmpi_input[i] + 5],
+                theta=[theta],
+                mode="text",
+                text=str(mmpi_input[i]) + "%",
+                textfont=dict(size=12, color="black"),
+                showlegend=False,
+            )
         )
 
+    fig.update_layout(
+        polar=dict(
+            radialaxis=dict(visible=True, range=[0, 100]),
+        ),
+        showlegend=False,
+    )
+
     # # Create and render the charts
-    fig.write_image('App/static/mmpi_chart.png', width=1000, height=700)
-    
-    return render_template('results_mmpi.html', 
-                           Depression=round(positive_proba['DT']*100, 1),
-                           Hypochondriasis=round(positive_proba['HsT']*100, 1),
-                           Hysteria=round(positive_proba['HyT']*100, 1),
-                           Psychopathic_Deviate=round(positive_proba['PdT']*100, 1),
-                           Masculinity_Femininity=round(positive_proba['MfT']*100, 1),
-                           Paranoia=round(positive_proba['PaT']*100, 1),
-                           Psychasthenia=round(positive_proba['PtT']*100, 1),
-                           Schizophrenia=round(positive_proba['ScT']*100, 1),
-                           Hypomania=round(positive_proba['MaT']*100, 1),
-                           Social_Introversion=round(positive_proba['SiT']*100, 1))
+    fig.write_image("App/static/mmpi_chart.png", width=1000, height=700)
+
+    return render_template(
+        "results_mmpi.html",
+        Depression=round(positive_proba["DT"] * 100, 1),
+        Hypochondriasis=round(positive_proba["HsT"] * 100, 1),
+        Hysteria=round(positive_proba["HyT"] * 100, 1),
+        Psychopathic_Deviate=round(positive_proba["PdT"] * 100, 1),
+        Masculinity_Femininity=round(positive_proba["MfT"] * 100, 1),
+        Paranoia=round(positive_proba["PaT"] * 100, 1),
+        Psychasthenia=round(positive_proba["PtT"] * 100, 1),
+        Schizophrenia=round(positive_proba["ScT"] * 100, 1),
+        Hypomania=round(positive_proba["MaT"] * 100, 1),
+        Social_Introversion=round(positive_proba["SiT"] * 100, 1),
+    )
 
 
-@app.route('/results_anxiety_moderate', methods=["GET", "POST"])
-
+@app.route("/results_anxiety_moderate", methods=["GET", "POST"])
 def results_anxiety_moderate():
     questions = [9, 11, 20, 30, 36, 40]
 
