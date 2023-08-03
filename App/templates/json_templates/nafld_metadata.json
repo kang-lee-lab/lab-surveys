@@ -1,0 +1,14 @@
+{
+    "survey_id": "nafld",
+    "language": "EN",
+    "short_name": "Non-Alchoholic Fatty Liver Disease (NAFLD)",
+    "full_name": "Non-Alchoholic Fatty Liver Disease (NAFLD) prediction interactive webpage",
+    "description": "This applet computes an individuals likelihood of NAFLD. Based on 20 physical measures and blood biomarkers, this app uses a machine learning model to compute the likelihood of NAFLD.\n\nNon-alcoholic fatty liver disease (NAFLD) is becoming a major global burden of disease, but its diagnosis based on liver biopsy is invasive and expensive. This study aimed to investigate the feasibility of using patient physical and blood biomarkers to build computational models to predict NAFLD risks accurately.\nWe obtained a large dataset (N=120,376) containing patients’ physical and blood measurements, and their NAFLD status based on the invasive liver biopsy. Using this dataset, the most important patient physical and blood biomarkers were extracted using feature selection techniques. Then, using the most important features, six different machine learning algorithms trained and tested models that predict the NAFLD status. Finally, these models were validated with a pristine set of patient data never used in model training and testing, and SHAP (SHapley Additive exPlanations) analysis was performed on the final model.\nWe identified the top 20 features for predicting NAFLD risk including Weight, BMI, Alanine aminotransferase, and HDL Cholesterol. Our best machine learning model using the Extreme Gradient Boosting Decision Tree (XGB) technique achieved 84.94% area under the curve (ROC AUC), and 82.58% accuracy (88.75% sensitivity and 81.13% specificity) for predicting NAFLD status\nOur findings suggest that machine learning models based on patient physical and blood biomarkers provide a viable, non-invasive, and inexpensive method to assess patients’ risks for non-alcoholic fatty liver disease accurately.",
+    "survey_type": "physiological",
+    "display": false,
+    "is_data_collection": false,
+    "turn_off_data_collection": true,
+    "has_results": true,
+    "is_machine_learning": true,
+    "instructions": "Please enter your answers below:"
+}

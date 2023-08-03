@@ -1,0 +1,63 @@
+{
+    "survey_id": "mmpi",
+    "language": "EN",
+    "questions": [
+        {
+            "question_id": "gender",
+            "question_text": "Gender:",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "male",
+                        "value": "1",
+                        "text": "Male"
+                    },
+                    {
+                        "id": "female",
+                        "value": "0",
+                        "text": "Female"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "age",
+            "question_text": "Current Age:",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 1
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q1",
+            "question_text": "I have a good appetite.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        }
+    ]
+}

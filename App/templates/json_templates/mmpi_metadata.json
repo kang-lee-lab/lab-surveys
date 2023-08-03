@@ -1,0 +1,14 @@
+{
+    "survey_id": "mmpi",
+    "language": "EN",
+    "short_name": "Minnesota Multiphasic Personality Inventory (MMPI) prediction",
+    "full_name": "Minnesota Multiphasic Personality Inventory (MMPI) prediction interactive webpage",
+    "description": "This applet computes an individuals likelihood of MMPI. Based on 100 questions, this app uses a machine learning model to compute the likelihood of MMP\n\nMinnesota Multiphasic Personality Inventory (MMPI) is the most widely used psychometric test in the world. This study aimed to investigate the feasibility of using a reduced number of questions to predict the status in each conditions accurately.\nWe obtained a dataset of MMPI-2 responses from the Beijing Anding Hospital. The original dataset contains anonymized information on the participants including their demographics (age, sex, etc.), the raw scores and T-scores to each of the conditions, and the answers to each of the questions from the MMPI-2 test from each participant. The information of the participants includes their serial number, age, and their lname. The responses to the questions are “Yes”, “No”, or “Maybe”.\nWe identified the top 100 questions for predicting the ten MMPI conditions, which achieved at least 85% area under curve (AUC ROC) for predicting each of the conditions.\nOur findings suggest that machine learning models using reduced number of questions are capable of making accurate assessment for MMPI.",
+    "survey_type": "psychological",
+    "display": false,
+    "is_data_collection": false,
+    "turn_off_data_collection": true,
+    "has_results": true,
+    "is_machine_learning": true,
+    "instructions": "Please enter your answers below:"
+}

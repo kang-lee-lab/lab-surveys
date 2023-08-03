@@ -1,0 +1,41 @@
+{
+    "survey_id": "ihrv",
+    "language": "EN",
+    "results": [
+        {
+            "result_id": "ihrv",
+            "result_name": "iHRV",
+            "result_text": "This score represents your iHRV score",
+            "result": {
+                "type": "scalar",
+                "value": 10,
+                "unit": "m",
+                "value_lower_bound": 0,
+                "value_upper_bound": 1000,
+                "is_reverse_order": false,
+                "use_dial": false
+            }
+        },
+        {
+            "result_id": "underlying_ihrv",
+            "result_name": "Underlying iHRV Measures",
+            "result_text": "This output represents the degree of your iHRV from extremely high to extremely low",
+            "result": {
+                "type": "text",
+                "value": ""
+            }
+        },
+        {
+            "result_id": "ihrv_classification",
+            "result_name": "iHRV Classification",
+            "result_text": "This output represents what color your iHRV appears as on the graph",
+            "result": {
+                "type": "text",
+                "value": ""
+            }
+        }
+    ],
+    "use_multiedged_graph": true,
+    "use_table": false,
+    "final_message": "Lower HRV measures are related to higher risk of cardiovascular disease. If your iHRV fell within ranges classified as shades of green, it signals good heart health. If your iHRV fell within ranges classified as yellow, orange, or red, you may wish to examine your HRV measures further. Please consult a medical professional with any health concerns. Your iHRV is reflect multiple underlying HRV measures. The table below can be used to interpret your score.\nDisplayed below are your Heart Rate Variability of dimensions 1-6 (HRV-D1-6). Each reflect an orthogonal dimension underlying your HRV measures.\n\n*This webpage does not contain medical/health advice. This tool is intended for informational and educational purposes only, and should not be taken as a substitute for professional advice. Reliance on any information on the webpage is solely at your own risk."
+}

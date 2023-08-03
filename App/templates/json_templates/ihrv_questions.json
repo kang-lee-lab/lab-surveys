@@ -1,0 +1,296 @@
+{
+    "survey_id": "nafld",
+    "language": "EN",
+    "questions": [
+        {
+            "question_id": "mean_hr",
+            "question_text": "Mean HR (bpm):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.1
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "sd_hr",
+            "question_text": "SD HR (bpm):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.1
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "max_rri",
+            "question_text": "Max RRI (ms):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 1
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "min_rri",
+            "question_text": "Min RRI (ms):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 1
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "mean_rri",
+            "question_text": "Mean RRI (ms):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.1
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "med_rri",
+            "question_text": "Median RRI (ms):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.1
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "sdnn",
+            "question_text": "SDNN (ms):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.1
+            },
+            "is_required": true
+        },        
+        {
+            "question_id": "nn50",
+            "question_text": "NN50:",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.1
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "pnn50",
+            "question_text": "pNN50 (%):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.1
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "rmssd",
+            "question_text": "RMSSD (ms):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.1
+            },
+            "is_required": true
+        },        
+        {
+            "question_id": "vlf_ms",
+            "question_text": "VLF (ms²):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.01
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "lf_ms",
+            "question_text": "LF (ms²):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.01
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "hf_ms",
+            "question_text": "HF (ms²):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.01
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "total_power",
+            "question_text": "Total Power (ms²):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.01
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "peak_vlf",
+            "question_text": "Peak VLF (ms²):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.01
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "peak_lf",
+            "question_text": "Peak LF (ms²):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.01
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "peak_hf",
+            "question_text": "Peak HF (ms²):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.01
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "vlf_percent",
+            "question_text": "VLF (%):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.01
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "lf_percent",
+            "question_text": "LF (%):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.01
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "hf_percent",
+            "question_text": "HF (%):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.01
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "lf_nu",
+            "question_text": "LF (nu):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.001
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "hf_nu",
+            "question_text": "HF (nu):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.001
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "lf_hf",
+            "question_text": "LF/HF:",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.001
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "sd1",
+            "question_text": "SD1 (ms):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.01
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "sd2",
+            "question_text": "SD2 (ms):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.01
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "sd1_sd2",
+            "question_text": "SD1/SD2:",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.001
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "α",
+            "question_text": "α:",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.001
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "α1",
+            "question_text": "α1:",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.001
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "α2",
+            "question_text": "α2:",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 0.001
+            },
+            "is_required": true
+        }
+    ]
+}
