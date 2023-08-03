@@ -26,7 +26,6 @@ def load_questions(language: str = "EN") -> Tuple[Dict, Dict]:
     Outputs:
         questions (Dict): Survey questions json formatted according to the schema
         metadata (Dict): Survey metadata json formatted according to the schema
-
     """
     with open(
         os.path.join(SURVEYS_PATH, SURVEY_FOLDER, f"questions_{language}.json"), "r"

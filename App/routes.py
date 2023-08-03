@@ -1,7 +1,7 @@
+"""Define the routes for the Flask application"""
+
 import json
-import os
 import pickle
-from math import sqrt
 
 import pandas as pd
 import plotly.graph_objects as go
@@ -10,6 +10,9 @@ from flask import render_template, request
 from pygal.style import Style
 
 from App import Response, app, db
+from App.surveys.asq.calculate import asq_definition, fs_multipliers, pipeline
+from App.surveys.nafld.run_model_nafld import normalize
+from App.utils import process_response_query
 
 data_folder = "App/static"
 
@@ -29,22 +32,7 @@ def queryNafld():
     responseResults = (
         db.session.query(Response).filter(Response.response_type == "nafld").all()
     )
-    data = []
-    responses = []
-    for response in responseResults:
-        temp = []
-        temp.append(response.id)
-        temp.append(response.time_stamp)
-        str = response.response_answers
-        str = str.replace("{", "")
-        str = str.replace("'", "")
-        str = str.replace("}", "")
-        response_list = str.split(",")
-        response_list = [str.split(","), response.id]
-        responses.append(response_list)
-
-        temp.append(round(float(response.response_results), 3))
-        data.append(temp)
+    responses, data = process_response_query(responseResults)
     return render_template(
         "queryNafld.html",
         responses=responses,
@@ -58,22 +46,7 @@ def queryASQ():
     responseResults = (
         db.session.query(Response).filter(Response.response_type == "ASQ").all()
     )
-    data = []
-    responses = []
-    for response in responseResults:
-        temp = []
-        temp.append(response.id)
-        temp.append(response.time_stamp)
-        str = response.response_answers
-        str = str.replace("{", "")
-        str = str.replace("'", "")
-        str = str.replace("}", "")
-        response_list = str.split(",")
-        response_list = [str.split(","), response.id]
-        responses.append(response_list)
-
-        temp.append(round(float(response.response_results), 3))
-        data.append(temp)
+    responses, data = process_response_query(responseResults)
     return render_template(
         "queryASQ.html",
         responses=responses,
@@ -87,21 +60,7 @@ def queryChildBMI():
     responseResults = (
         db.session.query(Response).filter(Response.response_type == "childBMI").all()
     )
-    data = []
-    responses = []
-    for response in responseResults:
-        temp = []
-        temp.append(response.id)
-        temp.append(response.time_stamp)
-        str = response.response_answers
-        str = str.replace("{", "")
-        str = str.replace("'", "")
-        str = str.replace("}", "")
-        response_list = str.split(",")
-        response_list = [str.split(","), response.id]
-        responses.append(response_list)
-        temp.append(round(float(response.response_results), 3))
-        data.append(temp)
+    responses, data = process_response_query(responseResults)
     return render_template(
         "queryChildBMI.html",
         responses=responses,
@@ -115,24 +74,7 @@ def queryMMPI():
     responseResults = (
         db.session.query(Response).filter(Response.response_type == "mmpi").all()
     )
-    data = []
-    responses = []
-    for response in responseResults:
-        temp = []
-        temp.append(response.id)
-        temp.append(response.time_stamp)
-        str = response.response_answers
-        str = str.replace("{", "")
-        str = str.replace("'", "")
-        str = str.replace("}", "")
-        response_str = response.response_results
-        response_str = response_str.replace("{", "")
-        response_str = response_str.replace("}", "")
-        response_str = response_str.replace("'", "")
-        response_list = [str.split(","), response.id]
-        responses.append(response_list)
-        temp.append(response_str)
-        data.append(temp)
+    responses, data = process_response_query(responseResults, True)
     return render_template(
         "queryMMPI.html",
         responses=responses,
@@ -148,22 +90,7 @@ def queryDassAnxiety():
         .filter(Response.response_type == "DASS_Anxiety")
         .all()
     )
-    data = []
-    responses = []
-    for response in responseResults:
-        temp = []
-        temp.append(response.id)
-        temp.append(response.time_stamp)
-        str = response.response_answers
-        str = str.replace("{", "")
-        str = str.replace("'", "")
-        str = str.replace("}", "")
-        response_list = str.split(",")
-        response_list = [str.split(","), response.id]
-        responses.append(response_list)
-
-        temp.append(float(response.response_results))
-        data.append(temp)
+    responses, data = process_response_query(responseResults)
     return render_template(
         "queryDassAnxiety.html",
         responses=responses,
@@ -179,22 +106,7 @@ def queryDassDepression():
         .filter(Response.response_type == "DASS_Depression")
         .all()
     )
-    data = []
-    responses = []
-    for response in responseResults:
-        temp = []
-        temp.append(response.id)
-        temp.append(response.time_stamp)
-        str = response.response_answers
-        str = str.replace("{", "")
-        str = str.replace("'", "")
-        str = str.replace("}", "")
-        response_list = str.split(",")
-        response_list = [str.split(","), response.id]
-        responses.append(response_list)
-
-        temp.append(float(response.response_results))
-        data.append(temp)
+    responses, data = process_response_query(responseResults)
     return render_template(
         "queryDassDepression.html",
         responses=responses,
@@ -210,22 +122,7 @@ def queryDassStress():
         .filter(Response.response_type == "DASS_Anxiety")
         .all()
     )
-    data = []
-    responses = []
-    for response in responseResults:
-        temp = []
-        temp.append(response.id)
-        temp.append(response.time_stamp)
-        str = response.response_answers
-        str = str.replace("{", "")
-        str = str.replace("'", "")
-        str = str.replace("}", "")
-        response_list = str.split(",")
-        response_list = [str.split(","), response.id]
-        responses.append(response_list)
-
-        temp.append(float(response.response_results))
-        data.append(temp)
+    responses, data = process_response_query(responseResults)
     return render_template(
         "queryDassAnxiety.html",
         responses=responses,
@@ -267,11 +164,6 @@ def depression_moderate():
 @app.route("/stress_moderate")
 def stress_moderate():
     return render_template("stress_moderate.html")
-
-
-@app.route("/queenny_test")
-def queenny_test():
-    return render_template("queenny_test.html")
 
 
 @app.route("/results_asq", methods=["GET", "POST"])
@@ -338,334 +230,8 @@ def results_asq():
         alpha2,
     ]
     hrv_input = [float(i) for i in hrv_input]
-
-    fs_multipliers_all = {
-        "fs1": [
-            0.19,
-            0.48,
-            0.8,
-            -0.15,
-            0.81,
-            -0.03,
-            0.86,
-            0.11,
-            0.53,
-            0.84,
-            0.18,
-            0.18,
-            0.2,
-            0.19,
-            -0.08,
-            -0.01,
-            -0.03,
-            0.38,
-            0.28,
-            -0.31,
-            0.29,
-            -0.29,
-            0.28,
-            0.84,
-            0.87,
-            0.09,
-            -0.36,
-            -0.11,
-            -0.33,
-        ],
-        "fs2": [
-            0.21,
-            0.4,
-            0.32,
-            -0.39,
-            0.18,
-            -0.08,
-            0.28,
-            0.1,
-            0.27,
-            0.28,
-            0.05,
-            0.06,
-            0.04,
-            0.05,
-            -0.1,
-            -0.18,
-            -0.41,
-            0.58,
-            0.9,
-            -0.89,
-            0.9,
-            -0.9,
-            0.87,
-            0.28,
-            0.28,
-            -0.11,
-            -0.19,
-            0.34,
-            -0.24,
-        ],
-        "fs3": [
-            0.08,
-            0.07,
-            0.2,
-            -0.04,
-            0.12,
-            -0.06,
-            0.22,
-            -0.04,
-            0.06,
-            0.26,
-            0.96,
-            0.96,
-            0.97,
-            0.97,
-            0,
-            -0.02,
-            0.01,
-            0.09,
-            0.04,
-            -0.05,
-            0.04,
-            -0.04,
-            0.04,
-            0.26,
-            0.19,
-            0.05,
-            -0.09,
-            0,
-            -0.08,
-        ],
-        "fs4": [
-            0.2,
-            0.61,
-            0.15,
-            -0.62,
-            0.14,
-            -0.02,
-            0.16,
-            0.84,
-            0.66,
-            0.17,
-            0.01,
-            0.01,
-            0.01,
-            0.01,
-            -0.49,
-            -0.2,
-            -0.12,
-            0.37,
-            0.07,
-            -0.13,
-            0.09,
-            -0.09,
-            0.09,
-            0.16,
-            0.15,
-            0.56,
-            -0.23,
-            -0.6,
-            -0.06,
-        ],
-        "fs5": [
-            -0.11,
-            -0.04,
-            -0.16,
-            0.07,
-            -0.06,
-            0.11,
-            -0.14,
-            -0.1,
-            -0.19,
-            -0.16,
-            -0.04,
-            -0.04,
-            -0.04,
-            -0.04,
-            0.02,
-            0.18,
-            0.16,
-            -0.19,
-            -0.02,
-            0.05,
-            -0.03,
-            0.03,
-            -0.07,
-            -0.16,
-            -0.12,
-            -0.57,
-            0.74,
-            0.31,
-            0.74,
-        ],
-        "fs6": [
-            0.89,
-            0.11,
-            0.14,
-            -0.21,
-            -0.36,
-            -0.95,
-            0.13,
-            -0.04,
-            0.03,
-            0.13,
-            0.04,
-            0.04,
-            0.04,
-            0.04,
-            0.02,
-            -0.1,
-            0.2,
-            0.1,
-            0.1,
-            -0.1,
-            0.1,
-            -0.1,
-            0.12,
-            0.13,
-            0.13,
-            0.15,
-            -0.12,
-            -0.14,
-            -0.06,
-        ],
-    }
-
-    # First element in mylist has to have mean/sd in first row of asq_SD_mean.csv. Specify sheet name (i.e., HRV, FS)
-    def better_zscore(mylist, sheet_name):
-        df = pd.read_excel("App/static/asq_SD_mean.xlsx", sheet_name=sheet_name)
-        for counter, i in enumerate(mylist):
-            SD = df["SD"][counter]
-            mean = df["Mean"][counter]
-            if sheet_name == "SQ" and counter == 4:  # check for sq5, see equation
-                mylist[counter] = ((i * -1) - mean) / SD
-            else:
-                mylist[counter] = (i - mean) / SD
-        return mylist
-
-    def calculate_fs(hrv_list):
-        fs_calculated = []
-        mylist = better_zscore(hrv_list, "HRV")
-        for key, i in fs_multipliers_all.items():
-            x = 0
-            for count, n in enumerate(mylist):
-                x += n * i[count]
-            fs_calculated.append(x)
-
-        return fs_calculated
-
-    def calculate_sq(fs_list):
-        zscored_fs = better_zscore(fs_list, "FS")
-        sq = []
-
-        # second z-scoring
-        for i in zscored_fs:
-            x = sqrt(i + 4) * -1
-            sq.append(x)
-
-        zscored_sq = better_zscore(sq, "SQ")
-        sq = []
-        for i in zscored_sq:
-            x = (i * 10) + 50
-            sq.append(x)
-
-        spiderplot(sq)  # testing spiderplot
-        return sq
-
-    def calculate_asq(sq_list):
-        mylist = [sum(sq_list) / 6]
-        asq = better_zscore(mylist, "ASQ")
-        asq = [(i * 10) + 50 for i in asq]
-        return asq
-
-    def pipeline():
-        fs = calculate_fs(hrv_input)
-        sq = calculate_sq(fs)
-        asq = calculate_asq(sq)
-        return asq
-
-    def spiderplot(sq_list):
-        # draw spiderplot
-        df = pd.DataFrame(
-            dict(
-                r=sq_list,
-                theta=["HRV-D1", "HRV-D2", "HRV-D3", "HRV-D3", "HRV-D5", "HRV-D6"],
-            )
-        )
-        # fig = px.line_polar(df, r="r", theta="theta", line_close=True)
-        fig = go.Figure()
-
-        # change background color for different ranges
-        values = [20, 10, 10, 10, 10, 10, 10]
-        colors = [
-            "rgba(0, 141, 25, 0.8)",
-            "rgba(0, 172, 1, 0.8)",
-            "rgba(38, 189, 0, 0.8)",
-            "rgba(151, 229, 0, 0.8)",
-            "rgba(218, 240, 0, 0.8)",
-            "rgba(255, 204, 0, 1)",
-            "rgba(255, 34, 0, 1)",
-        ]
-
-        for t in range(0, len(colors)):
-            fig.add_trace(
-                go.Barpolar(
-                    r=[values[t]],
-                    width=360,
-                    marker_color=[colors[t]],
-                    opacity=0.6,
-                    name="Range " + str(t + 1),
-                    showlegend=False,
-                )
-            )
-            t = t + 1
-
-        # add actual sq values to each sq1-6
-        text = [
-            i + " (" + str(round(sq_list[count], 2)) + ")"
-            for count, i in enumerate(df["theta"].tolist())
-        ]
-
-        fig.add_trace(
-            go.Scatterpolar(
-                text=text,
-                r=sq_list,
-                mode="lines+text+markers",
-                fill="toself",
-                fillcolor="rgba(0, 0, 255, 0.4)",
-                textposition="bottom center",
-                marker=dict(color="blue"),
-                name="Your ASQ",
-            )
-        )
-
-        fig.update_layout(
-            showlegend=False,
-            polar=dict(angularaxis=dict(showticklabels=False)),
-            font=dict(size=20),
-        )
-
-        fig.write_image("App/static/plotly_output.png", width=1000, height=1000)
-
-    asq_result = round(pipeline()[0], 2)  # Can"t calculate pipeline twice, no idea why
-
-    def asq_definition():
-
-        x = ""
-
-        asq_table = {  # Explains what ASQ means
-            range(0, 20): ["Extremely High", "Emerald"],
-            range(21, 30): ["High", "Dark Green"],
-            range(31, 40): ["Slightly High", "Green"],
-            range(41, 59): ["Average", "Light Green"],
-            range(60, 69): ["Slightly Low", "Yellow"],
-            range(70, 79): ["Low", "Orange"],
-            range(80, 120): ["Extremely low", "Red"],
-        }
-
-        for key in asq_table:
-            if int(asq_result) in key:
-                x = asq_table[key]
-                break
-
-        return x
+    fs_multipliers_all = fs_multipliers()
+    asq_result = round(pipeline(hrv_input, fs_multipliers_all)[0], 2)
 
     features = [
         "MHR",
@@ -714,26 +280,9 @@ def results_asq():
     return render_template(
         "results_asq.html",
         p1=asq_result,  # Round value to 2 decimals
-        p2=asq_definition()[0],
-        p3=asq_definition()[1],
+        p2=asq_definition(asq_result)[0],
+        p3=asq_definition(asq_result)[1],
     )
-
-
-def normalize(user_inputs):
-    mean_std = pd.read_csv(os.path.join(data_folder, "nafld_mean_std.csv"))
-    norm = {}
-
-    for inputs in user_inputs:
-        if inputs != "gender0female1male":
-            mean = float(mean_std["{}_mean".format(inputs)])
-            stdev = float(mean_std["{}_stdev".format(inputs)])
-            z_scored = (user_inputs[inputs] - mean) / stdev
-
-            norm[inputs + "_norm"] = [z_scored]
-        else:
-            norm[inputs] = [user_inputs[inputs]]
-
-    return norm
 
 
 @app.route("/results_nafld", methods=["GET", "POST"])
@@ -769,7 +318,7 @@ def results_nafld():
 
     inputs_norm = normalize(user_inputs)
 
-    with open("App/static/models/nafld_models_lr.bin", "rb") as f:
+    with open("App/static/surveys_files/nafld/nafld_models_lr.bin", "rb") as f:
         all_models = pickle.load(f)
 
     model = all_models["models"][0]
@@ -832,13 +381,13 @@ def results_childbmi():
         "BMI": [bmi],
     }
 
-    with open("App/static/models/childbmi_model_height.bin", "rb") as f:
+    with open("App/static/surveys_files/childbmi/childbmi_model_height.bin", "rb") as f:
         height_model = pickle.load(f)
         pred_height = height_model.predict(pd.DataFrame(user_inputs)).tolist()[0]
-    with open("App/static/models/childbmi_model_weight.bin", "rb") as f:
+    with open("App/static/surveys_files/childbmi/childbmi_model_weight.bin", "rb") as f:
         weight_model = pickle.load(f)
         pred_weight = weight_model.predict(pd.DataFrame(user_inputs)).tolist()[0]
-    with open("App/static/models/childbmi_model_bmi.bin", "rb") as f:
+    with open("App/static/surveys_files/childbmi/childbmi_model_bmi.bin", "rb") as f:
         bmi_model = pickle.load(f)
         pred_bmi = bmi_model.predict(pd.DataFrame(user_inputs)).tolist()[0]
 
@@ -974,7 +523,7 @@ def results_mmpi():
 
     user_inputs = pd.DataFrame.from_dict(user_inputs)
 
-    with open("App/static/models/mmpi_models.bin", "rb") as f:
+    with open("App/static/surveys_files/mmpi/mmpi_models.bin", "rb") as f:
         all_models = pickle.load(f)
 
     positive_proba = {}
@@ -1007,50 +556,8 @@ def results_mmpi():
     Hypomania = round(positive_proba["MaT"] * 100, 1)
     Social_Introversion = round(positive_proba["SiT"] * 100, 1)
 
-    # Style
-    custom_style = Style(
-        value_font_size=32,
-        background="transparent",
-        font_family="googlefont:Arial",
-        title_font_size=32,
-    )
-
-    # Function to create a gauge chart
-    def create_gauge_chart(title, value):
-        gauge = pygal.SolidGauge(
-            inner_radius=0.70,
-            show_legend=False,
-            style=custom_style,
-            explicit_size=True,
-            height=500,
-            width=500,
-            title=title,
-        )
-
-        percent_formatter = lambda x: "{:.10g}%".format(x)
-        gauge.value_formatter = percent_formatter
-
-        gauge.add(
-            "A",
-            [{"value": value, "min_value": 0, "max_value": 100, "color": "#0000EE"}],
-        )
-
-        return gauge
-
-    # Input data
-    titles = [
-        "Depression",
-        "Hypochondriasis",
-        "Hysteria",
-        "Psychopathic Deviate",
-        "Masculine",
-        "Paranoia",
-        "Psychasthenia",
-        "Schizophrenia",
-        "Hypomania",
-        "Social Introversion",
-    ]
-    values = [
+    # Input MMPI data
+    mmpi_input = [
         Depression,
         Hypochondriasis,
         Hysteria,
@@ -1063,10 +570,76 @@ def results_mmpi():
         Social_Introversion,
     ]
 
-    # Create and render the charts
-    for i in range(10):
-        gauge = create_gauge_chart(titles[i], values[i])
-        gauge.render_to_png(f"App/static/mmpi_{titles[i]}_chart.png")
+    # Draw radar chart
+    fig = go.Figure(
+        data=go.Scatterpolar(
+            r=mmpi_input,
+            theta=[
+                "Hypochondriasis",
+                "Depression",
+                "Hysteria",
+                "Psychopathic Deviate",
+                "Masculinity",
+                "Paranoia",
+                "Psychasthenia",
+                "Schizophrenia",
+                "Hypomania",
+                "Social Introversion",
+            ],
+            fill="toself",
+        )
+    )
+
+    # Change background color for different ranges
+    values = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+    colors = [
+        "rgba(0, 141, 25, 0.8)",
+        "rgba(38, 189, 0, 0.8)",
+        "rgba(75, 228, 0, 0.8)",
+        "rgba(112, 255, 0, 0.8)",
+        "rgba(167, 255, 0, 0.8)",
+        "rgba(222, 255, 0, 0.8)",
+        "rgba(255, 204, 0, 0.8)",
+        "rgba(255, 153, 0, 0.8)",
+        "rgba(255, 102, 0, 0.8)",
+        "rgba(255, 51, 0, 0.8)",
+    ]
+
+    for t in range(0, len(colors)):
+        fig.add_trace(
+            go.Barpolar(
+                r=[values[t]],
+                width=360,
+                marker_color=[colors[t]],
+                opacity=0.6,
+                name="Range " + str(t + 1),
+                showlegend=False,
+            )
+        )
+        t = t + 1
+
+    # Add values as labels to each coordinate
+    for i, theta in enumerate(fig.data[0].theta):
+        fig.add_trace(
+            go.Scatterpolar(
+                r=[mmpi_input[i] + 5],
+                theta=[theta],
+                mode="text",
+                text=str(mmpi_input[i]) + "%",
+                textfont=dict(size=12, color="black"),
+                showlegend=False,
+            )
+        )
+
+    fig.update_layout(
+        polar=dict(
+            radialaxis=dict(visible=True, range=[0, 100]),
+        ),
+        showlegend=False,
+    )
+
+    # # Create and render the charts
+    fig.write_image("App/static/mmpi_chart.png", width=1000, height=700)
 
     return render_template(
         "results_mmpi.html",
@@ -1098,7 +671,7 @@ def results_anxiety_moderate():
 
     user_inputs = pd.DataFrame.from_dict(user_inputs)
 
-    with open("App/static/models/anxiety_model_moderate.bin", "rb") as f:
+    with open("App/static/surveys_files/dass/anxiety_model_moderate.bin", "rb") as f:
         model = pickle.load(f)
 
     proba = model[0].predict_proba(user_inputs)
@@ -1156,7 +729,7 @@ def results_depression_moderate():
 
     user_inputs = pd.DataFrame.from_dict(user_inputs)
 
-    with open("App/static/models/depression_model_moderate.bin", "rb") as f:
+    with open("App/static/surveys_files/dass/depression_model_moderate.bin", "rb") as f:
         model = pickle.load(f)
 
     proba = model[0].predict_proba(user_inputs)
@@ -1214,7 +787,7 @@ def results_stress_moderate():
 
     user_inputs = pd.DataFrame.from_dict(user_inputs)
 
-    with open("App/static/models/stress_model_moderate.bin", "rb") as f:
+    with open("App/static/surveys_files/dass/stress_model_moderate.bin", "rb") as f:
         model = pickle.load(f)
 
     proba = model[0].predict_proba(user_inputs)

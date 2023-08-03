@@ -31,7 +31,7 @@ def validate_schema(survey_id: str, language: str = "EN"):
         survey_id (str): Survey ID
         language (str): Language of the survey (EN, FR, CH, etc.)
     """
-    logging.info(f" -- Survey ID: {survey_id}\n -- Language: {language}\n")
+    logging.info(" -- Survey ID: %s\n -- Language: %s\n", survey_id, language)
     survey_path = os.path.join(SURVEYS_PATH, survey_id)
 
     with open(os.path.join(survey_path, f"metadata_{language}.json"), "r") as f:

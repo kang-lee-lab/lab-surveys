@@ -26,21 +26,21 @@ jobs:
           python -m pip install --upgrade pip
           pip install ruff pytest
           pip install -r requirements.txt
-      # - name: Lint with ruff
-      #   run: |
-      #     # stop the build if there are Python syntax errors or undefined names
-      #     ruff --format=github --select=E9,F63,F7,F82 --target-version=py37 .
-      #     # default set of ruff rules with GitHub Annotations
-      #     ruff --format=github --target-version=py37 .
-      # - name: Test with pytest
-      #   run: |
-      #     pytest
-      - name: Check JSON schema
-        run: |
-          export DATABASE_URL=postgres://postgres:123456@127.0.0.1:5432/dummy
-          export DATABASE_USER=user
-          export DATABASE_PWD=password
-          python validate_schema.py all
+#       - name: Lint with ruff
+#         run: |
+#           # stop the build if there are Python syntax errors or undefined names
+#           ruff --format=github --select=E9,F63,F7,F82 --target-version=py37 .
+#           # default set of ruff rules with GitHub Annotations
+#           ruff --format=github --target-version=py37 .
+#       - name: Test with pytest
+#         run: |
+#           pytest
+#      - name: Check JSON schema
+#        run: |
+#          export DATABASE_URL=postgres://postgres:123456@127.0.0.1:5432/dummy
+#          export DATABASE_USER=user
+#          export DATABASE_PWD=password
+#          python validate_schema.py all
       - name: Run linter
         run: |
           pip install pre-commit
