@@ -1005,9 +1005,6 @@ def results_mmpi():
     # Input MMPI data
     mmpi_input = [Depression, Hypochondriasis, Hysteria, Psychopathic_Deviate, Masculinity_Femininity, Paranoia, Psychasthenia, Schizophrenia, Hypomania, Social_Introversion]
 
-    # Input MMPI data
-    mmpi_input = [Depression, Hypochondriasis, Hysteria, Psychopathic_Deviate, Masculinity_Femininity, Paranoia, Psychasthenia, Schizophrenia, Hypomania, Social_Introversion]
-
     # Draw radar chart
     fig = go.Figure(data=go.Scatterpolar(
         r=mmpi_input,
