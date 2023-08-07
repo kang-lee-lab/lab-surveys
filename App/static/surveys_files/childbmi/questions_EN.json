@@ -1,5 +1,5 @@
 {
-    "survey_id": "mmpi",
+    "survey_id": "childbmi",
     "language": "EN",
     "questions": [
         {
@@ -34,28 +34,32 @@
             "is_required": true
         },
         {
-            "question_id": "q1",
-            "question_text": "I have a good appetite.",
+            "question_id": "weight",
+            "question_text": "Weight (kg):",
             "show_number": false,
             "question": {
-                "type": "single_select_dropdown",
-                "choices": [
-                    {
-                        "id": "yes",
-                        "value": "1",
-                        "text": "Yes"
-                    },
-                    {
-                        "id": "no",
-                        "value": "0",
-                        "text": "No"
-                    },
-                    {
-                        "id": "uncertain",
-                        "value": "2",
-                        "text": "Uncertain"
-                    }
-                ]
+                "type": "number",
+                "step": 1
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "height",
+            "question_text": "Height (cm):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 1
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "age_to_predict",
+            "question_text": "Age to predict:",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 1
             },
             "is_required": true
         }

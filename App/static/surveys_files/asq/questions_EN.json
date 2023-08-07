@@ -71,7 +71,7 @@
                 "step": 0.1
             },
             "is_required": true
-        },        
+        },
         {
             "question_id": "nn50",
             "question_text": "NN50:",
@@ -101,10 +101,10 @@
                 "step": 0.1
             },
             "is_required": true
-        },        
+        },
         {
             "question_id": "vlf_ms",
-            "question_text": "VLF (ms²):",
+            "question_text": "VLF (ms\u00b2):",
             "show_number": false,
             "question": {
                 "type": "number",
@@ -114,7 +114,7 @@
         },
         {
             "question_id": "lf_ms",
-            "question_text": "LF (ms²):",
+            "question_text": "LF (ms\u00b2):",
             "show_number": false,
             "question": {
                 "type": "number",
@@ -124,7 +124,7 @@
         },
         {
             "question_id": "hf_ms",
-            "question_text": "HF (ms²):",
+            "question_text": "HF (ms\u00b2):",
             "show_number": false,
             "question": {
                 "type": "number",
@@ -134,7 +134,7 @@
         },
         {
             "question_id": "total_power",
-            "question_text": "Total Power (ms²):",
+            "question_text": "Total Power (ms\u00b2):",
             "show_number": false,
             "question": {
                 "type": "number",
@@ -144,7 +144,7 @@
         },
         {
             "question_id": "peak_vlf",
-            "question_text": "Peak VLF (ms²):",
+            "question_text": "Peak VLF (ms\u00b2):",
             "show_number": false,
             "question": {
                 "type": "number",
@@ -154,7 +154,7 @@
         },
         {
             "question_id": "peak_lf",
-            "question_text": "Peak LF (ms²):",
+            "question_text": "Peak LF (ms\u00b2):",
             "show_number": false,
             "question": {
                 "type": "number",
@@ -164,7 +164,7 @@
         },
         {
             "question_id": "peak_hf",
-            "question_text": "Peak HF (ms²):",
+            "question_text": "Peak HF (ms\u00b2):",
             "show_number": false,
             "question": {
                 "type": "number",
@@ -263,8 +263,8 @@
             "is_required": true
         },
         {
-            "question_id": "α",
-            "question_text": "α:",
+            "question_id": "\u03b1",
+            "question_text": "\u03b1:",
             "show_number": false,
             "question": {
                 "type": "number",
@@ -273,8 +273,8 @@
             "is_required": true
         },
         {
-            "question_id": "α1",
-            "question_text": "α1:",
+            "question_id": "\u03b11",
+            "question_text": "\u03b11:",
             "show_number": false,
             "question": {
                 "type": "number",
@@ -283,8 +283,8 @@
             "is_required": true
         },
         {
-            "question_id": "α2",
-            "question_text": "α2:",
+            "question_id": "\u03b12",
+            "question_text": "\u03b12:",
             "show_number": false,
             "question": {
                 "type": "number",

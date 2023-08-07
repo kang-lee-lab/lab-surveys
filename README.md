@@ -9,7 +9,7 @@ https://kangleelab-surveys.herokuapp.com/
 
 ## Running locally
 
-To run locally you must set up a PostgreSQL database on your machine. 
+To run locally you must set up a PostgreSQL database on your machine.
 
 To create a database locally you must download a database manager such as pgAdmin (As shown on the link above). PgAdmin is available on both Mac and Windows.
 

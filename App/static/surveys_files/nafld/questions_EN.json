@@ -102,7 +102,7 @@
                 "step": 0.01
             },
             "is_required": true
-        },        
+        },
         {
             "question_id": "red_blood_count",
             "question_text": "Red blood cell count (trillion/L):",
@@ -115,7 +115,7 @@
         },
         {
             "question_id": "platelet_count",
-            "question_text": "Platelet count (thousands/µL):",
+            "question_text": "Platelet count (thousands/\u00b5L):",
             "show_number": false,
             "question": {
                 "type": "number",
@@ -132,7 +132,7 @@
                 "step": 0.01
             },
             "is_required": true
-        },        
+        },
         {
             "question_id": "white_blood_count",
             "question_text": "White blood cell count (billions/L):",
@@ -152,7 +152,7 @@
                 "step": 0.01
             },
             "is_required": true
-        },        
+        },
         {
             "question_id": "eosinophil_count",
             "question_text": "Eosinophil count (billions/L):",
