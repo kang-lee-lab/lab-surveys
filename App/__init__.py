@@ -1,8 +1,17 @@
+"""
+Initialisation module for the lab surveys website app.
+"""
 import os
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
+from App import routes
+
+# my own additions - when source .env or . .env doesn't work
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__, static_url_path="")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL").replace(
@@ -12,6 +21,14 @@ db = SQLAlchemy(app)
 
 
 class Response(db.Model):
+    """
+    Attributes:
+        - id: The unique identifier for a response.
+        - time_stamp: The timestamp indicating when the response was recorded.
+        - response_type: The type or category of the response.
+        - response_answers: JSON data representing the user's answers.
+        - response_results: JSON data representing the results associated with the response.
+    """
     __tablename__ = "responses"
     id = db.Column(db.Integer, primary_key=True)
     time_stamp = db.Column(db.DateTime(timezone=True), server_default=func.now())
@@ -20,11 +37,17 @@ class Response(db.Model):
     response_results = db.Column(db.JSON, nullable=False)
 
     def __init__(self, response_type, response_answers, response_results):
+        """
+        Initialize a new Response object.
+
+        Arguments:
+            - response_type (str): The type or category of the response.
+            - response_answers (JSON): JSON data representing the user's answers.
+            - response_results (JSON): JSON data representing the results associated with the response.
+        """
         self.response_type = response_type
         self.response_answers = response_answers
         self.response_results = response_results
 
-
-from App import routes
 
 application = app

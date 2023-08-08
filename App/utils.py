@@ -1,15 +1,22 @@
-"""General utility functions"""
+"""
+General utility functions to be used in routes.py
+"""
 
 
-def process_response_query(
-    response_results: list, process_results: bool = False
-) -> (list, list):
+def process_response_query(response_results: list, process_results: bool = False) -> (list, list):
+    """
+    Process the response results and process results into a list of lists.
+    :param response_results: The results of the response
+    :param process_results: Whether to process the results or not
+    :return: A list of lists containing the processed results
+    """
     data = []
     responses = []
     for response in response_results:
-        temp = []
-        temp.append(response.id)
-        temp.append(response.time_stamp)
+        # temp = []
+        # temp.append(response.id)
+        # temp.append(response.time_stamp)
+        temp = [response.id, response.time_stamp]
         string = response.response_answers
         string = string.replace("{", "")
         string = string.replace("'", "")

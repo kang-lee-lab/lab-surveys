@@ -50,7 +50,7 @@ def load_questions(language: str = "EN") -> Tuple[Dict, Dict]:
     return questions, metadata
 
 
-def calculate_results(answers: Dict, language: str = "EN"):
+def calculate_results(answers: Dict, language: str = "EN") -> Tuple[Dict, Dict]:
     """
     Function to calculate results for a survey
 

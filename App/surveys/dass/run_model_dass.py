@@ -1,3 +1,6 @@
+"""
+This file runs the model for the DASS survey.
+"""
 import pickle
 import random
 

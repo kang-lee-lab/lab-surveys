@@ -1,3 +1,6 @@
+"""
+This file is used to run the model for the MMPI survey.
+"""
 import pickle
 import random
 
