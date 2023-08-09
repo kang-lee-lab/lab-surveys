@@ -1,17 +1,13 @@
 """
-Initialisation module for the lab surveys website app.
+Initialization module for the lab surveys website app.
 """
 import os
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
+from sqlalchemy.dialects.postgresql import JSON
 from App import routes
-
-# my own additions - when source .env or . .env doesn't work
-from dotenv import load_dotenv
-
-load_dotenv()
 
 app = Flask(__name__, static_url_path="")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL").replace(
@@ -22,6 +18,8 @@ db = SQLAlchemy(app)
 
 class Response(db.Model):
     """
+    A class representing a response to a survey.
+    
     Attributes:
         - id: The unique identifier for a response.
         - time_stamp: The timestamp indicating when the response was recorded.
@@ -36,7 +34,7 @@ class Response(db.Model):
     response_answers = db.Column(db.JSON, nullable=False)
     response_results = db.Column(db.JSON, nullable=False)
 
-    def __init__(self, response_type, response_answers, response_results):
+    def __init__(self, response_type: str, response_answers: JSON, response_results: JSON) -> None:
         """
         Initialize a new Response object.
 
