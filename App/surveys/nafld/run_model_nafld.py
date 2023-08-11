@@ -9,10 +9,10 @@ import pandas as pd
 data_folder = "./static"
 
 
-def z_score_norm(row, col: int, mean: float, stdev: float) -> float:
+def z_score_norm(row: pd.DataFrame | dict, col: int, mean: float, stdev: float) -> float:
     """
     Z-score normalises the data given the row, column, mean and standard deviation.
-    :param row:
+    :param row: Row of the data (user inputs)
     :param col: Column number
     :param mean: Mean
     :param stdev: Standard deviation

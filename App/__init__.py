@@ -1,5 +1,5 @@
 """
-Initialisation module for the lab surveys website app.
+Initialization module for the lab surveys website app.
 """
 import os
 
