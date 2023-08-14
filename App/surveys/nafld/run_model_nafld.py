@@ -2,11 +2,7 @@ import os
 import pickle
 import pandas as pd
 
-current_dir = os.getcwd()
-parent_dir = os.path.dirname(current_dir)
-grandparent_dir = os.path.dirname(parent_dir)
-parallel_folder = "/static/surveys_files/nafld"
-file_path = grandparent_dir + parallel_folder
+data_folder = "App/static/surveys_files/nafld"
 
 
 def z_score_norm(row, col, mean, stdev):
@@ -15,13 +11,7 @@ def z_score_norm(row, col, mean, stdev):
 
 
 def normalize(user_inputs):
-    current_dir = os.getcwd()
-    parent_dir = os.path.dirname(current_dir)
-    grandparent_dir = os.path.dirname(parent_dir)
-    parallel_folder = "/static/surveys_files/nafld"
-    file_path = grandparent_dir + parallel_folder
-    
-    mean_std = pd.read_csv(os.path.join(file_path, "nafld_mean_std.csv"))
+    mean_std = pd.read_csv(os.path.join(data_folder, "nafld_mean_std.csv"))
 
     for col in user_inputs:
         if col != "gender0female1male":
@@ -53,7 +43,7 @@ def run_model(model_type, user_inputs):
 
     """
     with open(
-        os.path.join(file_path, "nafld_models_{}.bin".format(model_type)), "rb"
+        os.path.join(data_folder, "/nafld_models_{}.bin".format(model_type)), "rb"
     ) as f:
         all_models = pickle.load(f)
 
@@ -69,7 +59,7 @@ def run_model(model_type, user_inputs):
 
 
 if __name__ == "__main__":
-    nafld_data = pd.read_csv(os.path.join(file_path, "NAFLD_filtered.csv"))
+    nafld_data = pd.read_csv(os.path.join(data_folder, "NAFLD_filtered.csv"))
     valid_features = [
         "bmi",
         "H cholesterol",
