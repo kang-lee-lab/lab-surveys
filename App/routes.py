@@ -14,8 +14,6 @@ from App.surveys.asq.calculate import asq_definition, fs_multipliers, pipeline
 from App.surveys.nafld.run_model_nafld import normalize
 from App.utils import process_response_query
 
-data_folder = "App/static"
-
 
 @app.route("/")
 def index():

@@ -3,7 +3,7 @@ import pickle
 
 import pandas as pd
 
-data_folder = "./static"
+data_folder = "App/static/surveys_files/nafld"
 
 
 def z_score_norm(row, col, mean, stdev):
@@ -43,7 +43,9 @@ def run_model(model_type, user_inputs):
     Probability of being positive in NAFLD
 
     """
-    with open("./static/models/nafld_models_{}.bin".format(model_type), "rb") as f:
+    with open(
+        os.path.join(data_folder, "/nafld_models_{}.bin".format(model_type)), "rb"
+    ) as f:
         all_models = pickle.load(f)
 
     model = all_models["models"][0]

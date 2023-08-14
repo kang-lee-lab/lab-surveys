@@ -199,7 +199,9 @@ def fs_multipliers():
 # First element in mylist has to have mean/sd in first row of asq_SD_mean.csv.
 # Specify sheet name (i.e., HRV, FS)
 def better_zscore(mylist, sheet_name):
-    df = pd.read_excel("App/static/asq_SD_mean.xlsx", sheet_name=sheet_name)
+    df = pd.read_excel(
+        "App/static/surveys_files/asq/asq_SD_mean.xlsx", sheet_name=sheet_name
+    )
     for counter, i in enumerate(mylist):
         SD = df["SD"][counter]
         mean = df["Mean"][counter]
