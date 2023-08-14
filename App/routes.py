@@ -313,8 +313,8 @@ def results_nafld():
         user_inputs[q] = float(request.form[q])
 
     user_inputs["bmi"] = user_inputs["weight"] / ((user_inputs["height"] / 100) ** 2)
-    user_inputs = pd.DataFrame.from_dict(user_inputs)
-    inputs_norm = normalize(user_inputs)
+    inputs = pd.DataFrame.from_dict(user_inputs)
+    inputs_norm = normalize(inputs)
 
     with open("App/static/surveys_files/nafld/nafld_models_lr.bin", "rb") as f:
         all_models = pickle.load(f)
