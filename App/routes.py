@@ -313,18 +313,14 @@ def results_nafld():
         user_inputs[q] = float(request.form[q])
 
     user_inputs["bmi"] = user_inputs["weight"] / ((user_inputs["height"] / 100) ** 2)
-    user_inputs = pd.DataFrame.from_dict(user_inputs)
+
     inputs_norm = normalize(user_inputs)
 
     with open("App/static/surveys_files/nafld/nafld_models_lr.bin", "rb") as f:
         all_models = pickle.load(f)
 
     model = all_models["models"][0]
-    col = list(model.feature_names_in_)
-    
-    inputs_norm = inputs_norm[col]
-    
-    proba = model.predict_proba(inputs_norm)
+    proba = model.predict_proba(pd.DataFrame.from_dict(inputs_norm))
     positive = proba[0][1]  # Positive probability
 
     inputs_json = json.dumps(user_inputs)
