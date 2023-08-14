@@ -1,5 +1,6 @@
 """
-This file contains the functions that calculate the ASQ scores for the ASQ (integrated Heart Rate Variability) survey.
+This file contains the functions that calculate the ASQ scores for
+the ASQ (integrated Heart Rate Variability) survey.
 """
 from math import sqrt
 
@@ -223,7 +224,9 @@ def better_zscore(mylist: list[float], sheet_name: str) -> list[float]:
     return mylist
 
 
-def calculate_fs(hrv_list: list[float], fs_multipliers_all: dict[str, list[float]]) -> list[float]:
+def calculate_fs(
+    hrv_list: list[float], fs_multipliers_all: dict[str, list[float]]
+) -> list[float]:
     """
     Calculates FS given a list of HRV values.
     :param hrv_list: list of HRV values
@@ -277,7 +280,9 @@ def calculate_asq(sq_list: list[float]) -> list[float]:
     return asq
 
 
-def pipeline(hrv_input: list[float], fs_multipliers_all: dict[str, list[float]]) -> list[float]:
+def pipeline(
+    hrv_input: list[float], fs_multipliers_all: dict[str, list[float]]
+) -> list[float]:
     """
     Calculates ASQ given a list of HRV values and FS multipliers.
     :param hrv_input: list of HRV values

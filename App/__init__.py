@@ -27,6 +27,7 @@ class Response(db.Model):
         - response_answers: JSON data representing the user's answers.
         - response_results: JSON data representing the results associated with the response.
     """
+
     __tablename__ = "responses"
     id = db.Column(db.Integer, primary_key=True)
     time_stamp = db.Column(db.DateTime(timezone=True), server_default=func.now())
@@ -34,7 +35,9 @@ class Response(db.Model):
     response_answers = db.Column(db.JSON, nullable=False)
     response_results = db.Column(db.JSON, nullable=False)
 
-    def __init__(self, response_type: str, response_answers: JSON, response_results: JSON) -> None:
+    def __init__(
+        self, response_type: str, response_answers: JSON, response_results: JSON
+    ) -> None:
         """
         Initialize a new Response object.
 

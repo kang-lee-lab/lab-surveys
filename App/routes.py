@@ -2,7 +2,6 @@
 
 import json
 import pickle
-from typing import Any
 
 import pandas as pd
 import plotly.graph_objects as go
@@ -599,7 +598,10 @@ def results_mmpi():
     # user_inputs["Gender"] = [int(request.form["Gender"])]
     # user_inputs["Age"] = [int(request.form["Age"])]
 
-    user_inputs = {"Gender": [int(request.form["Gender"])], "Age": [int(request.form["Age"])]}
+    user_inputs = {
+        "Gender": [int(request.form["Gender"])],
+        "Age": [int(request.form["Age"])],
+    }
 
     for q in questions:
         user_inputs["Q{}".format(q)] = [int(request.form["Q{}".format(q)])]
@@ -742,7 +744,8 @@ def results_mmpi():
 @app.route("/results_anxiety_moderate", methods=["GET", "POST"])
 def results_anxiety_moderate():
     """
-    This function gets the user input from the DASS (moderate anxiety) survey and returns the results.
+    This function gets the user input from the DASS
+    (moderate anxiety) survey and returns the results.
     :return: results_anxiety_moderate.html template
     """
 
@@ -754,9 +757,11 @@ def results_anxiety_moderate():
     # user_inputs["region"] = [int(request.form["Region"])]
     # user_inputs["age"] = [int(request.form["Age"])]
 
-    user_inputs = {"gender": [int(request.form["Gender"])],
-                   "region": [int(request.form["Region"])],
-                   "age": [int(request.form["Age"])]}
+    user_inputs = {
+        "gender": [int(request.form["Gender"])],
+        "region": [int(request.form["Region"])],
+        "age": [int(request.form["Age"])],
+    }
 
     for q in questions:
         user_inputs["Q{}A".format(q)] = [int(request.form["Q{}".format(q)])]
@@ -809,7 +814,8 @@ def results_anxiety_moderate():
 @app.route("/results_depression_moderate", methods=["GET", "POST"])
 def results_depression_moderate():
     """
-    This function gets the user input from the DASS (moderate depression) survey and returns the results.
+    This function gets the user input from the DASS
+    (moderate depression) survey and returns the results.
     :return: results_depression_moderate.html template
     """
     questions = [3, 13, 16, 22, 24, 34]
@@ -820,9 +826,11 @@ def results_depression_moderate():
     # user_inputs["region"] = [int(request.form["Region"])]
     # user_inputs["age"] = [int(request.form["Age"])]
 
-    user_inputs = {"gender": [int(request.form["Gender"])],
-                   "region": [int(request.form["Region"])],
-                   "age": [int(request.form["Age"])]}
+    user_inputs = {
+        "gender": [int(request.form["Gender"])],
+        "region": [int(request.form["Region"])],
+        "age": [int(request.form["Age"])],
+    }
 
     for q in questions:
         user_inputs["Q{}A".format(q)] = [int(request.form["Q{}".format(q)])]
@@ -875,7 +883,8 @@ def results_depression_moderate():
 @app.route("/results_stress_moderate", methods=["GET", "POST"])
 def results_stress_moderate():
     """
-    This function gets the user input from the DASS (moderate stress) survey and returns the results.
+    This function gets the user input from the DASS
+    (moderate stress) survey and returns the results.
     :return: results_stress_moderate.html template
     """
     questions = [6, 11, 18, 27, 29]
@@ -886,9 +895,11 @@ def results_stress_moderate():
     # user_inputs["region"] = [int(request.form["Region"])]
     # user_inputs["age"] = [int(request.form["Age"])]
 
-    user_inputs = {"gender": [int(request.form["Gender"])],
-                   "region": [int(request.form["Region"])],
-                   "age": [int(request.form["Age"])]}
+    user_inputs = {
+        "gender": [int(request.form["Gender"])],
+        "region": [int(request.form["Region"])],
+        "age": [int(request.form["Age"])],
+    }
 
     for q in questions:
         user_inputs["Q{}A".format(q)] = [int(request.form["Q{}".format(q)])]

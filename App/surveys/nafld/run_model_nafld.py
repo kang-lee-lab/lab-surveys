@@ -9,7 +9,9 @@ import pandas as pd
 data_folder = "./static"
 
 
-def z_score_norm(row: pd.DataFrame | dict, col: int, mean: float, stdev: float) -> float:
+def z_score_norm(
+    row: pd.DataFrame | dict, col: int, mean: float, stdev: float
+) -> float:
     """
     Z-score normalises the data given the row, column, mean and standard deviation.
     :param row: Row of the data (user inputs)
@@ -24,7 +26,8 @@ def z_score_norm(row: pd.DataFrame | dict, col: int, mean: float, stdev: float) 
 
 def normalize(user_inputs: pd.DataFrame | dict) -> pd.DataFrame | dict:
     """
-    Z-score normalizes the user input with mean and standard deviation of the data from nafld_mean_std.csv.
+    Z-score normalizes the user input with mean and standard deviation of the data
+    from nafld_mean_std.csv.
     :param user_inputs: pandas dataframe or dictionary containing the user's input for their
                   biomarkers in the 20 top features of NAFLD.
     :return: pandas dataframe containing the z-score normalized user input.

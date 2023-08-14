@@ -3,7 +3,9 @@ General utility functions to be used in routes.py
 """
 
 
-def process_response_query(response_results: list, process_results: bool = False) -> (list, list):
+def process_response_query(
+    response_results: list, process_results: bool = False
+) -> (list, list):
     """
     Process the response results and process results into a list of lists.
     :param response_results: The results of the response
