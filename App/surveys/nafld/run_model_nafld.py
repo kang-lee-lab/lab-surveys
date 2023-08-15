@@ -1,6 +1,5 @@
 import os
 import pickle
-
 import pandas as pd
 
 data_folder = "App/static/surveys_files/nafld"
@@ -49,8 +48,10 @@ def run_model(model_type, user_inputs):
         all_models = pickle.load(f)
 
     model = all_models["models"][0]
+    col = list(model.feature_names_in_)
 
     normalized = normalize(user_inputs)
+    normalized = normalized[col]
     proba = model.predict_proba(normalized)
     predicted_label = model.predict(normalized)
 
@@ -83,6 +84,6 @@ if __name__ == "__main__":
     ]
     inputs = nafld_data[valid_features]
     inputs = inputs.dropna()
-
+    
     proba, label = run_model("lr", inputs)
     # print("Positive probability: ", proba[0][1])
