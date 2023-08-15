@@ -310,9 +310,9 @@ def results_nafld():
     user_inputs = {}
 
     for q in features:
-        user_inputs[q] = float(request.form[q])
+        user_inputs[q] = [float(request.form[q])]
 
-    user_inputs["bmi"] = user_inputs["weight"] / ((user_inputs["height"] / 100) ** 2)
+    user_inputs["bmi"] = [user_inputs["weight"] / ((user_inputs["height"] / 100) ** 2)]
     inputs = pd.DataFrame.from_dict(user_inputs)
     inputs_norm = normalize(inputs)
 
