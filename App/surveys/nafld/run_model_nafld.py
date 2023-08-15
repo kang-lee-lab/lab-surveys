@@ -11,6 +11,15 @@ def z_score_norm(row, col, mean, stdev):
 
 
 def normalize(user_inputs):
+    '''
+    Parameters
+    ----------
+    user_inputs : Pandas data frame containing user's raw inputs
+
+    Returns
+    -------
+    user_inputs : Pandas data frame containing normalized user inputs
+    '''
     mean_std = pd.read_csv(os.path.join(data_folder, "nafld_mean_std.csv"))
 
     for col in user_inputs:
