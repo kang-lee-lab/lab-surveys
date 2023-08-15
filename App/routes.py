@@ -310,10 +310,10 @@ def results_nafld():
     user_inputs = {}
 
     for q in features:
-        user_inputs[q] = [float(request.form[q])]
+        user_inputs[q] = float(request.form[q])
 
-    user_inputs["bmi"] = [user_inputs["weight"] / ((user_inputs["height"] / 100) ** 2)]
-    inputs = pd.DataFrame.from_dict(user_inputs)
+    user_inputs["bmi"] = user_inputs["weight"] / ((user_inputs["height"] / 100) ** 2)
+    inputs = pd.DataFrame(user_inputs, index = [0]) # Convert dictionary to Pandas data frame
     inputs_norm = normalize(inputs)
 
     with open("App/static/surveys_files/nafld/nafld_models_lr.bin", "rb") as f:
