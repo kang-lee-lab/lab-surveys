@@ -1,17 +1,36 @@
+"""
+This file is used to run the model for NAFLD survey.
+"""
 import os
 import pickle
-
 import pandas as pd
 
-data_folder = "./static"
+data_folder = "App/static/surveys_files/nafld"
 
 
-def z_score_norm(row, col, mean, stdev):
+def z_score_norm(
+    row: pd.DataFrame | dict, col: int, mean: float, stdev: float
+) -> float:
+    """
+    Z-score normalises the data given the row, column, mean and standard deviation.
+    :param row: Row of the data (user inputs)
+    :param col: Column number
+    :param mean: Mean
+    :param stdev: Standard deviation
+    :return: z-score normalised value
+    """
     z_score = (float(row[col]) - mean) / stdev
     return float(z_score)
 
 
-def normalize(user_inputs):
+def normalize(user_inputs: pd.DataFrame | dict) -> pd.DataFrame | dict:
+    """
+    Z-score normalizes the user input with mean and standard deviation of the data
+    from nafld_mean_std.csv.
+    :param user_inputs: pandas dataframe or dictionary containing the user's input for their
+                  biomarkers in the 20 top features of NAFLD.
+    :return: pandas dataframe containing the z-score normalized user input.
+    """
     mean_std = pd.read_csv(os.path.join(data_folder, "nafld_mean_std.csv"))
 
     for col in user_inputs:
@@ -26,7 +45,7 @@ def normalize(user_inputs):
     return user_inputs
 
 
-def run_model(model_type, user_inputs):
+def run_model(model_type, user_inputs: pd.DataFrame):
     """
     Runs the specified model to generate the likelihood of NAFLD.
     It will normalize the user input using z score with mean and standard
@@ -43,12 +62,16 @@ def run_model(model_type, user_inputs):
     Probability of being positive in NAFLD
 
     """
-    with open("./static/models/nafld_models_{}.bin".format(model_type), "rb") as f:
+    with open(
+        os.path.join(data_folder, "/nafld_models_{}.bin".format(model_type)), "rb"
+    ) as f:
         all_models = pickle.load(f)
 
     model = all_models["models"][0]
+    col = list(model.feature_names_in_)
 
     normalized = normalize(user_inputs)
+    normalized = normalized[col]
     proba = model.predict_proba(normalized)
     predicted_label = model.predict(normalized)
 
@@ -81,6 +104,6 @@ if __name__ == "__main__":
     ]
     inputs = nafld_data[valid_features]
     inputs = inputs.dropna()
-
+    
     proba, label = run_model("lr", inputs)
     # print("Positive probability: ", proba[0][1])

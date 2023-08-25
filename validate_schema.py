@@ -60,6 +60,10 @@ def validate_schema(survey_id: str, language: str = "EN"):
 
 
 def validate_all():
+    """
+    Validate all surveys against the schema
+    :return: Refer to console log. If no errors, all surveys are valid.
+    """
     all_surveys = glob.glob(os.path.join(SURVEYS_PATH, "*"), recursive=True)
     for survey in all_surveys:
         validate_schema(survey_id=os.path.split(survey)[-1], language="EN")
