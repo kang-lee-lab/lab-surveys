@@ -1,3 +1,6 @@
+"""
+This file is used to run the model for NAFLD survey.
+"""
 import os
 import pickle
 import pandas as pd
@@ -5,21 +8,29 @@ import pandas as pd
 data_folder = "App/static/surveys_files/nafld"
 
 
-def z_score_norm(row, col, mean, stdev):
+def z_score_norm(
+    row: pd.DataFrame | dict, col: int, mean: float, stdev: float
+) -> float:
+    """
+    Z-score normalises the data given the row, column, mean and standard deviation.
+    :param row: Row of the data (user inputs)
+    :param col: Column number
+    :param mean: Mean
+    :param stdev: Standard deviation
+    :return: z-score normalised value
+    """
     z_score = (float(row[col]) - mean) / stdev
     return float(z_score)
 
 
-def normalize(user_inputs):
-    '''
-    Parameters
-    ----------
-    user_inputs : Pandas data frame containing user's raw inputs
-
-    Returns
-    -------
-    user_inputs : Pandas data frame containing normalized user inputs
-    '''
+def normalize(user_inputs: pd.DataFrame | dict) -> pd.DataFrame | dict:
+    """
+    Z-score normalizes the user input with mean and standard deviation of the data
+    from nafld_mean_std.csv.
+    :param user_inputs: pandas dataframe or dictionary containing the user's input for their
+                  biomarkers in the 20 top features of NAFLD.
+    :return: pandas dataframe containing the z-score normalized user input.
+    """
     mean_std = pd.read_csv(os.path.join(data_folder, "nafld_mean_std.csv"))
 
     for col in user_inputs:
@@ -34,7 +45,7 @@ def normalize(user_inputs):
     return user_inputs
 
 
-def run_model(model_type, user_inputs):
+def run_model(model_type, user_inputs: pd.DataFrame):
     """
     Runs the specified model to generate the likelihood of NAFLD.
     It will normalize the user input using z score with mean and standard

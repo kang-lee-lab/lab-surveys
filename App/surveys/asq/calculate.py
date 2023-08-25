@@ -1,3 +1,7 @@
+"""
+This file contains the functions that calculate the ASQ scores for
+the ASQ (integrated Heart Rate Variability) survey.
+"""
 from math import sqrt
 
 import pandas as pd
@@ -5,6 +9,10 @@ import plotly.graph_objects as go
 
 
 def fs_multipliers():
+    """
+    This function returns all the multipliers for the FS scores.
+    :return: list of fs multipliers
+    """
     fs_multipliers_all = {
         "fs1": [
             0.19,
@@ -198,21 +206,35 @@ def fs_multipliers():
 
 # First element in mylist has to have mean/sd in first row of asq_SD_mean.csv.
 # Specify sheet name (i.e., HRV, FS)
-def better_zscore(mylist, sheet_name):
+def better_zscore(mylist: list[float], sheet_name: str) -> list[float]:
+    """
+    Calculates z-scores for SQ or non-SQ sheets.
+    :param mylist: list of HRV/SQ/FS/ASQ values
+    :param sheet_name: Sheet name (i.e., SQ, HRV, FS, ASQ)
+    :return: list of z-scores
+    """
     df = pd.read_excel(
         "App/static/surveys_files/asq/asq_SD_mean.xlsx", sheet_name=sheet_name
     )
     for counter, i in enumerate(mylist):
-        SD = df["SD"][counter]
+        sd = df["SD"][counter]
         mean = df["Mean"][counter]
         if sheet_name == "SQ" and counter == 4:  # check for sq5, see equation
-            mylist[counter] = ((i * -1) - mean) / SD
+            mylist[counter] = ((i * -1) - mean) / sd
         else:
-            mylist[counter] = (i - mean) / SD
+            mylist[counter] = (i - mean) / sd
     return mylist
 
 
-def calculate_fs(hrv_list, fs_multipliers_all):
+def calculate_fs(
+    hrv_list: list[float], fs_multipliers_all: dict[str, list[float]]
+) -> list[float]:
+    """
+    Calculates FS given a list of HRV values.
+    :param hrv_list: list of HRV values
+    :param fs_multipliers_all: dictionary of FS multipliers
+    :return: list of calculated FS values
+    """
     fs_calculated = []
     mylist = better_zscore(hrv_list, "HRV")
     for _, i in fs_multipliers_all.items():
@@ -224,7 +246,12 @@ def calculate_fs(hrv_list, fs_multipliers_all):
     return fs_calculated
 
 
-def calculate_sq(fs_list):
+def calculate_sq(fs_list: list[float]) -> list[float]:
+    """
+    Calculates SQ given a list of FS values.
+    :param fs_list: list of FS values
+    :return: list of calculated sq values
+    """
     zscored_fs = better_zscore(fs_list, "FS")
     sq = []
 
@@ -243,21 +270,39 @@ def calculate_sq(fs_list):
     return sq
 
 
-def calculate_asq(sq_list):
+def calculate_asq(sq_list: list[float]) -> list[float]:
+    """
+    Calculates ASQ given a list of SQ values.
+    :param sq_list: list of SQ values
+    :return: list of calculated ASQ values
+    """
     mylist = [sum(sq_list) / 6]
     asq = better_zscore(mylist, "ASQ")
     asq = [(i * 10) + 50 for i in asq]
     return asq
 
 
-def pipeline(hrv_input, fs_multipliers_all):
+def pipeline(
+    hrv_input: list[float], fs_multipliers_all: dict[str, list[float]]
+) -> list[float]:
+    """
+    Calculates ASQ given a list of HRV values and FS multipliers.
+    :param hrv_input: list of HRV values
+    :param fs_multipliers_all: dictionary of FS multipliers
+    :return: list of ASQ values
+    """
     fs = calculate_fs(hrv_input, fs_multipliers_all)
     sq = calculate_sq(fs)
     asq = calculate_asq(sq)
     return asq
 
 
-def spiderplot(sq_list):
+def spiderplot(sq_list: list[float]) -> go.Figure(go.Scatterpolar):
+    """
+    Draws spiderplot given a list of 6 SQ values.
+    :param sq_list: list of SQ values
+    :return: Spiderplot of 6 SQ values
+    """
     # draw spiderplot
     df = pd.DataFrame(
         dict(
@@ -321,7 +366,12 @@ def spiderplot(sq_list):
     fig.write_image("App/static/plotly_output.png", width=1000, height=1000)
 
 
-def asq_definition(asq_result):
+def asq_definition(asq_result: float) -> str:
+    """
+    Break if asq_result is within the ranges of the asq_table, or return an empty string otherwise.
+    :param asq_result: ASQ value (rounded to 2 decimal places)
+    :return: empty string if asq_result is not within the ranges of the asq_table
+    """
     x = ""
 
     asq_table = {  # Explains what ASQ means

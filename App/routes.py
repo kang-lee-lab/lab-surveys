@@ -17,16 +17,28 @@ from App.utils import process_response_query
 
 @app.route("/")
 def index():
+    """
+    Render the index page.
+    :return: index.html page
+    """
     return render_template("index.html")
 
 
 @app.route("/in_progress")
 def in_progress():
+    """
+    Render the in_progress page.
+    :return: in_progress.html page
+    """
     return render_template("in_progress.html")
 
 
 @app.route("/queryNafld")
 def queryNafld():
+    """
+    Query the database for all responses for the NAFLD survey.
+    :return: queryNafld.html page
+    """
     responseResults = (
         db.session.query(Response).filter(Response.response_type == "nafld").all()
     )
@@ -41,6 +53,10 @@ def queryNafld():
 
 @app.route("/queryASQ")
 def queryASQ():
+    """
+    Query the database for all responses for the ASQ survey.
+    :return: queryASQ.html page
+    """
     responseResults = (
         db.session.query(Response).filter(Response.response_type == "ASQ").all()
     )
@@ -55,6 +71,10 @@ def queryASQ():
 
 @app.route("/queryChildBMI")
 def queryChildBMI():
+    """
+    Query the database for all responses for the Child BMI survey.
+    :return: queryChildBMI.html page
+    """
     responseResults = (
         db.session.query(Response).filter(Response.response_type == "childBMI").all()
     )
@@ -69,6 +89,10 @@ def queryChildBMI():
 
 @app.route("/queryMMPI")
 def queryMMPI():
+    """
+    Query the database for all responses for the MMPI survey.
+    :return: queryMMPI.html page
+    """
     responseResults = (
         db.session.query(Response).filter(Response.response_type == "mmpi").all()
     )
@@ -83,6 +107,10 @@ def queryMMPI():
 
 @app.route("/queryDassAnxiety")
 def queryDassAnxiety():
+    """
+    Query the database for all responses for the DASS Anxiety survey.
+    :return: queryDassAnxiety.html page
+    """
     responseResults = (
         db.session.query(Response)
         .filter(Response.response_type == "DASS_Anxiety")
@@ -99,6 +127,10 @@ def queryDassAnxiety():
 
 @app.route("/queryDassDepression")
 def queryDassDepression():
+    """
+    Query the database for all responses for the DASS Depression survey.
+    :return: queryDassDepression.html page
+    """
     responseResults = (
         db.session.query(Response)
         .filter(Response.response_type == "DASS_Depression")
@@ -115,6 +147,10 @@ def queryDassDepression():
 
 @app.route("/queryDassStress")
 def queryDassStress():
+    """
+    Query the database for all responses for the DASS Stress survey.
+    :return: queryDassStress.html page
+    """
     responseResults = (
         db.session.query(Response)
         .filter(Response.response_type == "DASS_Anxiety")
@@ -131,41 +167,73 @@ def queryDassStress():
 
 @app.route("/asq")
 def asq():
+    """
+    Renders the asq survey page.
+    :return: asq.html page
+    """
     return render_template("asq.html")
 
 
 @app.route("/nafld")
 def nafld():
+    """
+    Renders the nafld survey page.
+    :return: nafld.html page
+    """
     return render_template("nafld.html")
 
 
 @app.route("/childbmi")
 def childbmi():
+    """
+    Renders the childbmi survey page.
+    :return: childbmi.html page
+    """
     return render_template("childbmi.html")
 
 
 @app.route("/mmpi")
 def mmpi():
+    """
+    Renders the mmpi survey page.
+    :return: mmpi.html page
+    """
     return render_template("mmpi.html")
 
 
 @app.route("/anxiety_moderate")
 def anxiety_moderate():
+    """
+    Renders the Depression Anxiety Stress Scales survey (moderate anxiety) page.
+    :return: anxiety_moderate.html page
+    """
     return render_template("anxiety_moderate.html")
 
 
 @app.route("/depression_moderate")
 def depression_moderate():
+    """
+    Renders the Depression Anxiety Stress Scales survey (moderate depression) page.
+    :return: depression_moderate.html page
+    """
     return render_template("depression_moderate.html")
 
 
 @app.route("/stress_moderate")
 def stress_moderate():
+    """
+    Renders the Depression Anxiety Stress Scales survey (moderate stress) page.
+    :return: stress_moderate.html page
+    """
     return render_template("stress_moderate.html")
 
 
 @app.route("/results_asq", methods=["GET", "POST"])
 def results_asq():
+    """
+    Renders the results page for the ASQ survey.
+    :return: asq_results.html page
+    """
     MHR = request.form["MHR"]
     SDHR = request.form["SDHR"]
     max_RR_interval = request.form["max_RR_interval"]
@@ -285,6 +353,10 @@ def results_asq():
 
 @app.route("/results_nafld", methods=["GET", "POST"])
 def results_nafld():
+    """
+    Renders the results page for the NAFLD survey.
+    :return: results_nafld.html page
+    """
     features = [
         "H cholesterol",
         "weight",
@@ -366,6 +438,10 @@ def results_nafld():
 
 @app.route("/results_childbmi", methods=["GET", "POST"])
 def results_childbmi():
+    """
+    Renders the results page for the childbmi survey.
+    :return: results_childbmi.html page
+    """
     age = float(request.form["Age"])
     age1 = float(request.form["Age1"])
     gender = int(request.form["Gender"])
@@ -410,6 +486,10 @@ def results_childbmi():
 
 @app.route("/results_mmpi", methods=["GET", "POST"])
 def results_mmpi():
+    """
+    Renders the results page for the MMPI survey.
+    :return: results_mmpi.html page
+    """
     status = ["DT", "HsT", "HyT", "MaT", "MfT", "PaT", "PdT", "PtT", "ScT", "SiT"]
     questions = [
         2,
@@ -514,10 +594,15 @@ def results_mmpi():
         527,
     ]
 
-    user_inputs = {}
+    # user_inputs = {}
+    #
+    # user_inputs["Gender"] = [int(request.form["Gender"])]
+    # user_inputs["Age"] = [int(request.form["Age"])]
 
-    user_inputs["Gender"] = [int(request.form["Gender"])]
-    user_inputs["Age"] = [int(request.form["Age"])]
+    user_inputs = {
+        "Gender": [int(request.form["Gender"])],
+        "Age": [int(request.form["Age"])],
+    }
 
     for q in questions:
         user_inputs["Q{}".format(q)] = [int(request.form["Q{}".format(q)])]
@@ -659,13 +744,25 @@ def results_mmpi():
 
 @app.route("/results_anxiety_moderate", methods=["GET", "POST"])
 def results_anxiety_moderate():
+    """
+    This function gets the user input from the DASS
+    (moderate anxiety) survey and returns the results.
+    :return: results_anxiety_moderate.html template
+    """
+
     questions = [9, 11, 20, 30, 36, 40]
 
-    user_inputs = {}
+    # user_inputs = {}
+    #
+    # user_inputs["gender"] = [int(request.form["Gender"])]
+    # user_inputs["region"] = [int(request.form["Region"])]
+    # user_inputs["age"] = [int(request.form["Age"])]
 
-    user_inputs["gender"] = [int(request.form["Gender"])]
-    user_inputs["region"] = [int(request.form["Region"])]
-    user_inputs["age"] = [int(request.form["Age"])]
+    user_inputs = {
+        "gender": [int(request.form["Gender"])],
+        "region": [int(request.form["Region"])],
+        "age": [int(request.form["Age"])],
+    }
 
     for q in questions:
         user_inputs["Q{}A".format(q)] = [int(request.form["Q{}".format(q)])]
@@ -717,13 +814,24 @@ def results_anxiety_moderate():
 
 @app.route("/results_depression_moderate", methods=["GET", "POST"])
 def results_depression_moderate():
+    """
+    This function gets the user input from the DASS
+    (moderate depression) survey and returns the results.
+    :return: results_depression_moderate.html template
+    """
     questions = [3, 13, 16, 22, 24, 34]
 
-    user_inputs = {}
+    # user_inputs = {}
+    #
+    # user_inputs["gender"] = [int(request.form["Gender"])]
+    # user_inputs["region"] = [int(request.form["Region"])]
+    # user_inputs["age"] = [int(request.form["Age"])]
 
-    user_inputs["gender"] = [int(request.form["Gender"])]
-    user_inputs["region"] = [int(request.form["Region"])]
-    user_inputs["age"] = [int(request.form["Age"])]
+    user_inputs = {
+        "gender": [int(request.form["Gender"])],
+        "region": [int(request.form["Region"])],
+        "age": [int(request.form["Age"])],
+    }
 
     for q in questions:
         user_inputs["Q{}A".format(q)] = [int(request.form["Q{}".format(q)])]
@@ -775,13 +883,24 @@ def results_depression_moderate():
 
 @app.route("/results_stress_moderate", methods=["GET", "POST"])
 def results_stress_moderate():
+    """
+    This function gets the user input from the DASS
+    (moderate stress) survey and returns the results.
+    :return: results_stress_moderate.html template
+    """
     questions = [6, 11, 18, 27, 29]
 
-    user_inputs = {}
+    # user_inputs = {}
+    #
+    # user_inputs["gender"] = [int(request.form["Gender"])]
+    # user_inputs["region"] = [int(request.form["Region"])]
+    # user_inputs["age"] = [int(request.form["Age"])]
 
-    user_inputs["gender"] = [int(request.form["Gender"])]
-    user_inputs["region"] = [int(request.form["Region"])]
-    user_inputs["age"] = [int(request.form["Age"])]
+    user_inputs = {
+        "gender": [int(request.form["Gender"])],
+        "region": [int(request.form["Region"])],
+        "age": [int(request.form["Age"])],
+    }
 
     for q in questions:
         user_inputs["Q{}A".format(q)] = [int(request.form["Q{}".format(q)])]
