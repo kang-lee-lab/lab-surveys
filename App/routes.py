@@ -14,8 +14,6 @@ from App.surveys.asq.calculate import asq_definition, fs_multipliers, pipeline
 from App.surveys.nafld.run_model_nafld import normalize
 from App.utils import process_response_query
 
-data_folder = "App/static"
-
 
 @app.route("/")
 def index():
@@ -387,14 +385,17 @@ def results_nafld():
         user_inputs[q] = float(request.form[q])
 
     user_inputs["bmi"] = user_inputs["weight"] / ((user_inputs["height"] / 100) ** 2)
-
-    inputs_norm = normalize(user_inputs)
+    inputs = pd.DataFrame(user_inputs, index = [0]) # Convert dictionary to Pandas data frame
+    inputs_norm = normalize(inputs)
 
     with open("App/static/surveys_files/nafld/nafld_models_lr.bin", "rb") as f:
         all_models = pickle.load(f)
 
     model = all_models["models"][0]
-    proba = model.predict_proba(pd.DataFrame.from_dict(inputs_norm))
+    col = list(model.feature_names_in_)
+    inputs_norm = inputs_norm[col] # Matching features
+    
+    proba = model.predict_proba(inputs_norm)
     positive = proba[0][1]  # Positive probability
 
     inputs_json = json.dumps(user_inputs)

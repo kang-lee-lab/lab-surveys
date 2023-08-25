@@ -213,7 +213,9 @@ def better_zscore(mylist: list[float], sheet_name: str) -> list[float]:
     :param sheet_name: Sheet name (i.e., SQ, HRV, FS, ASQ)
     :return: list of z-scores
     """
-    df = pd.read_excel("App/static/asq_SD_mean.xlsx", sheet_name=sheet_name)
+    df = pd.read_excel(
+        "App/static/surveys_files/asq/asq_SD_mean.xlsx", sheet_name=sheet_name
+    )
     for counter, i in enumerate(mylist):
         sd = df["SD"][counter]
         mean = df["Mean"][counter]

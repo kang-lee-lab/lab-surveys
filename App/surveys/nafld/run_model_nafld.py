@@ -3,10 +3,9 @@ This file is used to run the model for NAFLD survey.
 """
 import os
 import pickle
-
 import pandas as pd
 
-data_folder = "./static"
+data_folder = "App/static/surveys_files/nafld"
 
 
 def z_score_norm(
@@ -63,12 +62,16 @@ def run_model(model_type, user_inputs: pd.DataFrame):
     Probability of being positive in NAFLD
 
     """
-    with open("./static/models/nafld_models_{}.bin".format(model_type), "rb") as f:
+    with open(
+        os.path.join(data_folder, "/nafld_models_{}.bin".format(model_type)), "rb"
+    ) as f:
         all_models = pickle.load(f)
 
     model = all_models["models"][0]
+    col = list(model.feature_names_in_)
 
     normalized = normalize(user_inputs)
+    normalized = normalized[col]
     proba = model.predict_proba(normalized)
     predicted_label = model.predict(normalized)
 
@@ -101,6 +104,6 @@ if __name__ == "__main__":
     ]
     inputs = nafld_data[valid_features]
     inputs = inputs.dropna()
-
+    
     proba, label = run_model("lr", inputs)
     # print("Positive probability: ", proba[0][1])
