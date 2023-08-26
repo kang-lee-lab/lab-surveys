@@ -7,7 +7,11 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 from sqlalchemy.dialects.postgresql import JSON
-from App import routes
+
+# when source .env or . .env doesn't work
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__, static_url_path="")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL").replace(
@@ -50,5 +54,7 @@ class Response(db.Model):
         self.response_answers = response_answers
         self.response_results = response_results
 
+
+from App import routes
 
 application = app

@@ -297,7 +297,7 @@ def pipeline(
     return asq
 
 
-def spiderplot(sq_list: list[float]) -> go.Figure(go.Scatterpolar):
+def spiderplot(sq_list: list[float]) -> go.Figure():
     """
     Draws spiderplot given a list of 6 SQ values.
     :param sq_list: list of SQ values
