@@ -8,11 +8,6 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 from sqlalchemy.dialects.postgresql import JSON
 
-# when source .env or . .env doesn't work
-from dotenv import load_dotenv
-
-load_dotenv()
-
 app = Flask(__name__, static_url_path="")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL").replace(
     "://", "ql://", 1
