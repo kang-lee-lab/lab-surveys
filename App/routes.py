@@ -1,18 +1,34 @@
 """Define the routes for the Flask application"""
 
 import json
-import pickle
-
-import pandas as pd
-import plotly.graph_objects as go
-import pygal
 from flask import render_template, request
-from pygal.style import Style
 
 from App import Response, app, db
-from App.surveys.asq.calculate import asq_definition, fs_multipliers, pipeline
-from App.surveys.nafld.run_model_nafld import normalize
 from App.utils import process_response_query
+
+from App.surveys.asq.asq_survey import (
+    asq_calculate_results,
+    asq_definition,
+)
+from App.surveys.mmpi.mmpi_survey import (
+    mmpi_calculate_results,
+    mmpi_questions,
+    mmpi_spiderplot,
+)
+from App.surveys.nafld.nafld_survey import (
+    nafld_calculate_results,
+    nafld_features,
+    nafld_chart,
+)
+from App.surveys.childbmi.childbmi_survey import (
+    childbmi_calculate_results,
+)
+from App.surveys.dass.dass_survey import (
+    dass_calculate_results,
+    anxiety_chart,
+    depression_chart,
+    stress_chart,
+)
 
 
 @app.route("/")
@@ -296,8 +312,7 @@ def results_asq():
         alpha2,
     ]
     hrv_input = [float(i) for i in hrv_input]
-    fs_multipliers_all = fs_multipliers()
-    asq_result = round(pipeline(hrv_input, fs_multipliers_all)[0], 2)
+    results, metadata, asq_result = asq_calculate_results(hrv_input)
 
     features = [
         "MHR",
@@ -337,9 +352,8 @@ def results_asq():
         user_inputs[features[q]] = float(hrv_input[q])
 
     inputs_json = json.dumps(user_inputs)
-    results_json = json.dumps(asq_result)
 
-    response = Response("ASQ", inputs_json, results_json)
+    response = Response("ASQ", inputs_json, results)
     db.session.add(response)
     db.session.commit()
 
@@ -357,27 +371,7 @@ def results_nafld():
     Renders the results page for the NAFLD survey.
     :return: results_nafld.html page
     """
-    features = [
-        "H cholesterol",
-        "weight",
-        "height",
-        "Red blood cell count",
-        "systolic",
-        "Alanine aminotransferase",
-        "The average hemoglobin concentration",
-        "Triglycerides",
-        "Eosinophil count",
-        "diastolic",
-        "Platelet count",
-        "Lymphocyte count",
-        "White blood cell count",
-        "age",
-        "Total bilirubin",
-        "Cholinesterase",
-        "Leucine aminopeptidase",
-        "Alkaline phosphatase",
-        "gender0female1male",
-    ]
+    features = nafld_features()
 
     user_inputs = {}
 
@@ -385,50 +379,14 @@ def results_nafld():
         user_inputs[q] = float(request.form[q])
 
     user_inputs["bmi"] = user_inputs["weight"] / ((user_inputs["height"] / 100) ** 2)
-    inputs = pd.DataFrame(user_inputs, index = [0]) # Convert dictionary to Pandas data frame
-    inputs_norm = normalize(inputs)
-
-    with open("App/static/surveys_files/nafld/nafld_models_lr.bin", "rb") as f:
-        all_models = pickle.load(f)
-
-    model = all_models["models"][0]
-    col = list(model.feature_names_in_)
-    inputs_norm = inputs_norm[col] # Matching features
-    
-    proba = model.predict_proba(inputs_norm)
-    positive = proba[0][1]  # Positive probability
-
+    results, metadata, positive = nafld_calculate_results(user_inputs)
     inputs_json = json.dumps(user_inputs)
-    results_json = json.dumps(positive)
 
-    response = Response("nafld", inputs_json, results_json)
+    response = Response("nafld", inputs_json, results)
     db.session.add(response)
     db.session.commit()
 
-    p1 = round((positive * 100), 1)
-
-    custom_style = Style(
-        value_font_size=45,
-        background="transparent",
-        # foreground_strong="#FFFFFF",
-        font_family="googlefont:Arial",
-    )
-
-    gauge = pygal.SolidGauge(  # half_pie = True,
-        inner_radius=0.70,
-        show_legend=False,
-        style=custom_style,
-        explicit_size=True,
-        height=500,
-        width=500,
-    )
-
-    percent_formatter = lambda x: "{:.10g}%".format(x)
-    gauge.value_formatter = percent_formatter
-
-    gauge.add("", [{"value": p1, "min_value": 0, "max_value": 100, "color": "#0000EE"}])
-
-    gauge.render_to_png("App/static/nafld_chart.png")
+    nafld_chart(positive)
 
     return render_template(
         "results_nafld.html",
@@ -458,20 +416,12 @@ def results_childbmi():
         "BMI": [bmi],
     }
 
-    with open("App/static/surveys_files/childbmi/childbmi_model_height.bin", "rb") as f:
-        height_model = pickle.load(f)
-        pred_height = height_model.predict(pd.DataFrame(user_inputs)).tolist()[0]
-    with open("App/static/surveys_files/childbmi/childbmi_model_weight.bin", "rb") as f:
-        weight_model = pickle.load(f)
-        pred_weight = weight_model.predict(pd.DataFrame(user_inputs)).tolist()[0]
-    with open("App/static/surveys_files/childbmi/childbmi_model_bmi.bin", "rb") as f:
-        bmi_model = pickle.load(f)
-        pred_bmi = bmi_model.predict(pd.DataFrame(user_inputs)).tolist()[0]
-
+    results, metadata, pred_height, pred_weight, pred_bmi = childbmi_calculate_results(
+        user_inputs
+    )
     inputs_json = json.dumps(user_inputs)
-    results_json = json.dumps(pred_bmi)
 
-    response = Response("childBMI", inputs_json, results_json)
+    response = Response("childBMI", inputs_json, results)
     db.session.add(response)
     db.session.commit()
 
@@ -490,114 +440,7 @@ def results_mmpi():
     Renders the results page for the MMPI survey.
     :return: results_mmpi.html page
     """
-    status = ["DT", "HsT", "HyT", "MaT", "MfT", "PaT", "PdT", "PtT", "ScT", "SiT"]
-    questions = [
-        2,
-        3,
-        6,
-        7,
-        8,
-        9,
-        12,
-        18,
-        21,
-        22,
-        23,
-        24,
-        27,
-        32,
-        33,
-        35,
-        37,
-        38,
-        42,
-        51,
-        57,
-        63,
-        64,
-        67,
-        68,
-        71,
-        76,
-        82,
-        84,
-        91,
-        93,
-        94,
-        97,
-        102,
-        103,
-        106,
-        107,
-        110,
-        117,
-        119,
-        120,
-        122,
-        123,
-        124,
-        127,
-        128,
-        134,
-        141,
-        145,
-        152,
-        155,
-        157,
-        163,
-        164,
-        167,
-        168,
-        170,
-        175,
-        177,
-        178,
-        179,
-        181,
-        187,
-        192,
-        201,
-        202,
-        220,
-        224,
-        229,
-        230,
-        231,
-        234,
-        238,
-        245,
-        267,
-        268,
-        272,
-        278,
-        279,
-        281,
-        289,
-        292,
-        296,
-        298,
-        301,
-        315,
-        316,
-        318,
-        321,
-        324,
-        339,
-        342,
-        346,
-        350,
-        358,
-        360,
-        370,
-        383,
-        471,
-        527,
-    ]
-
-    # user_inputs = {}
-    #
-    # user_inputs["Gender"] = [int(request.form["Gender"])]
-    # user_inputs["Age"] = [int(request.form["Age"])]
+    questions = mmpi_questions()
 
     user_inputs = {
         "Gender": [int(request.form["Gender"])],
@@ -607,27 +450,10 @@ def results_mmpi():
     for q in questions:
         user_inputs["Q{}".format(q)] = [int(request.form["Q{}".format(q)])]
 
-    user_inputs = pd.DataFrame.from_dict(user_inputs)
+    results, metadata, positive_proba = mmpi_calculate_results(user_inputs)
+    inputs_json = json.dumps(user_inputs)
 
-    with open("App/static/surveys_files/mmpi/mmpi_models.bin", "rb") as f:
-        all_models = pickle.load(f)
-
-    positive_proba = {}
-
-    for condition in status:
-        q = all_models[condition][1]
-        q = ["Gender", "Age"] + q
-        model = all_models[condition][0]
-
-        answer = user_inputs[q]
-
-        proba = model.predict_proba(answer)
-        positive_proba[condition] = proba[0][1]
-
-    inputs_json = json.dumps(user_inputs.to_dict())
-    results_json = json.dumps(positive_proba)
-
-    response = Response("mmpi", inputs_json, results_json)
+    response = Response("mmpi", inputs_json, results)
     db.session.add(response)
     db.session.commit()
 
@@ -656,76 +482,7 @@ def results_mmpi():
         Social_Introversion,
     ]
 
-    # Draw radar chart
-    fig = go.Figure(
-        data=go.Scatterpolar(
-            r=mmpi_input,
-            theta=[
-                "Hypochondriasis",
-                "Depression",
-                "Hysteria",
-                "Psychopathic Deviate",
-                "Masculinity",
-                "Paranoia",
-                "Psychasthenia",
-                "Schizophrenia",
-                "Hypomania",
-                "Social Introversion",
-            ],
-            fill="toself",
-        )
-    )
-
-    # Change background color for different ranges
-    values = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
-    colors = [
-        "rgba(0, 141, 25, 0.8)",
-        "rgba(38, 189, 0, 0.8)",
-        "rgba(75, 228, 0, 0.8)",
-        "rgba(112, 255, 0, 0.8)",
-        "rgba(167, 255, 0, 0.8)",
-        "rgba(222, 255, 0, 0.8)",
-        "rgba(255, 204, 0, 0.8)",
-        "rgba(255, 153, 0, 0.8)",
-        "rgba(255, 102, 0, 0.8)",
-        "rgba(255, 51, 0, 0.8)",
-    ]
-
-    for t in range(0, len(colors)):
-        fig.add_trace(
-            go.Barpolar(
-                r=[values[t]],
-                width=360,
-                marker_color=[colors[t]],
-                opacity=0.6,
-                name="Range " + str(t + 1),
-                showlegend=False,
-            )
-        )
-        t = t + 1
-
-    # Add values as labels to each coordinate
-    for i, theta in enumerate(fig.data[0].theta):
-        fig.add_trace(
-            go.Scatterpolar(
-                r=[mmpi_input[i] + 5],
-                theta=[theta],
-                mode="text",
-                text=str(mmpi_input[i]) + "%",
-                textfont=dict(size=12, color="black"),
-                showlegend=False,
-            )
-        )
-
-    fig.update_layout(
-        polar=dict(
-            radialaxis=dict(visible=True, range=[0, 100]),
-        ),
-        showlegend=False,
-    )
-
-    # # Create and render the charts
-    fig.write_image("App/static/mmpi_chart.png", width=1000, height=700)
+    mmpi_spiderplot(mmpi_input)
 
     return render_template(
         "results_mmpi.html",
@@ -752,12 +509,6 @@ def results_anxiety_moderate():
 
     questions = [9, 11, 20, 30, 36, 40]
 
-    # user_inputs = {}
-    #
-    # user_inputs["gender"] = [int(request.form["Gender"])]
-    # user_inputs["region"] = [int(request.form["Region"])]
-    # user_inputs["age"] = [int(request.form["Age"])]
-
     user_inputs = {
         "gender": [int(request.form["Gender"])],
         "region": [int(request.form["Region"])],
@@ -767,45 +518,14 @@ def results_anxiety_moderate():
     for q in questions:
         user_inputs["Q{}A".format(q)] = [int(request.form["Q{}".format(q)])]
 
-    user_inputs = pd.DataFrame.from_dict(user_inputs)
+    results, metadata, positive = dass_calculate_results(user_inputs, "anxiety")
+    inputs_json = json.dumps(user_inputs)
 
-    with open("App/static/surveys_files/dass/anxiety_model_moderate.bin", "rb") as f:
-        model = pickle.load(f)
-
-    proba = model[0].predict_proba(user_inputs)
-    positive = proba[0][1]
-
-    inputs_json = json.dumps(user_inputs.to_dict())
-    results_json = json.dumps(positive)
-
-    response = Response("DASS_Anxiety", inputs_json, results_json)
+    response = Response("DASS_Anxiety", inputs_json, results)
     db.session.add(response)
     db.session.commit()
 
-    p1 = round((positive * 100), 1)
-
-    custom_style = Style(
-        value_font_size=45,
-        background="transparent",
-        # foreground_strong="#FFFFFF",
-        font_family="googlefont:Arial",
-    )
-
-    gauge = pygal.SolidGauge(  # half_pie = True,
-        inner_radius=0.70,
-        show_legend=False,
-        style=custom_style,
-        explicit_size=True,
-        height=500,
-        width=500,
-    )
-
-    percent_formatter = lambda x: "{:.10g}%".format(x)
-    gauge.value_formatter = percent_formatter
-
-    gauge.add("", [{"value": p1, "min_value": 0, "max_value": 100, "color": "#0000EE"}])
-
-    gauge.render_to_png("App/static/anxiety_moderate_chart.png")
+    anxiety_chart(positive)
 
     return render_template(
         "results_anxiety_moderate.html", p1=round((positive * 100), 1)
@@ -821,12 +541,6 @@ def results_depression_moderate():
     """
     questions = [3, 13, 16, 22, 24, 34]
 
-    # user_inputs = {}
-    #
-    # user_inputs["gender"] = [int(request.form["Gender"])]
-    # user_inputs["region"] = [int(request.form["Region"])]
-    # user_inputs["age"] = [int(request.form["Age"])]
-
     user_inputs = {
         "gender": [int(request.form["Gender"])],
         "region": [int(request.form["Region"])],
@@ -836,45 +550,14 @@ def results_depression_moderate():
     for q in questions:
         user_inputs["Q{}A".format(q)] = [int(request.form["Q{}".format(q)])]
 
-    user_inputs = pd.DataFrame.from_dict(user_inputs)
+    results, metadata, positive = dass_calculate_results(user_inputs, "depression")
+    inputs_json = json.dumps(user_inputs)
 
-    with open("App/static/surveys_files/dass/depression_model_moderate.bin", "rb") as f:
-        model = pickle.load(f)
-
-    proba = model[0].predict_proba(user_inputs)
-    positive = proba[0][1]
-
-    inputs_json = json.dumps(user_inputs.to_dict())
-    results_json = json.dumps(positive)
-
-    response = Response("DASS_Depression", inputs_json, results_json)
+    response = Response("DASS_Depression", inputs_json, results)
     db.session.add(response)
     db.session.commit()
 
-    p1 = round((positive * 100), 1)
-
-    custom_style = Style(
-        value_font_size=45,
-        background="transparent",
-        # foreground_strong="#FFFFFF",
-        font_family="googlefont:Arial",
-    )
-
-    gauge = pygal.SolidGauge(  # half_pie = True,
-        inner_radius=0.70,
-        show_legend=False,
-        style=custom_style,
-        explicit_size=True,
-        height=500,
-        width=500,
-    )
-
-    percent_formatter = lambda x: "{:.10g}%".format(x)
-    gauge.value_formatter = percent_formatter
-
-    gauge.add("", [{"value": p1, "min_value": 0, "max_value": 100, "color": "#0000EE"}])
-
-    gauge.render_to_png("App/static/depression_moderate_chart.png")
+    depression_chart(positive)
 
     return render_template(
         "results_depression_moderate.html", p1=round((positive * 100), 1)
@@ -890,12 +573,6 @@ def results_stress_moderate():
     """
     questions = [6, 11, 18, 27, 29]
 
-    # user_inputs = {}
-    #
-    # user_inputs["gender"] = [int(request.form["Gender"])]
-    # user_inputs["region"] = [int(request.form["Region"])]
-    # user_inputs["age"] = [int(request.form["Age"])]
-
     user_inputs = {
         "gender": [int(request.form["Gender"])],
         "region": [int(request.form["Region"])],
@@ -905,45 +582,14 @@ def results_stress_moderate():
     for q in questions:
         user_inputs["Q{}A".format(q)] = [int(request.form["Q{}".format(q)])]
 
-    user_inputs = pd.DataFrame.from_dict(user_inputs)
+    results, metadata, positive = dass_calculate_results(user_inputs, "stress")
+    inputs_json = json.dumps(user_inputs)
 
-    with open("App/static/surveys_files/dass/stress_model_moderate.bin", "rb") as f:
-        model = pickle.load(f)
-
-    proba = model[0].predict_proba(user_inputs)
-    positive = proba[0][1]
-
-    inputs_json = json.dumps(user_inputs.to_dict())
-    results_json = json.dumps(positive)
-
-    response = Response("DASS_Stress", inputs_json, results_json)
+    response = Response("DASS_Stress", inputs_json, results)
     db.session.add(response)
     db.session.commit()
 
-    p1 = round((positive * 100), 1)
-
-    custom_style = Style(
-        value_font_size=45,
-        background="transparent",
-        # foreground_strong="#FFFFFF",
-        font_family="googlefont:Arial",
-    )
-
-    gauge = pygal.SolidGauge(  # half_pie = True,
-        inner_radius=0.70,
-        show_legend=False,
-        style=custom_style,
-        explicit_size=True,
-        height=500,
-        width=500,
-    )
-
-    percent_formatter = lambda x: "{:.10g}%".format(x)
-    gauge.value_formatter = percent_formatter
-
-    gauge.add("", [{"value": p1, "min_value": 0, "max_value": 100, "color": "#0000EE"}])
-
-    gauge.render_to_png("App/static/stress_moderate_chart.png")
+    stress_chart(positive)
 
     return render_template(
         "results_stress_moderate.html", p1=round((positive * 100), 1)
