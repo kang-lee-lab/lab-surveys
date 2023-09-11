@@ -1,0 +1,2639 @@
+{
+    "survey_id": "mmpi",
+    "language": "EN",
+    "questions": [
+        {
+            "question_id": "gender",
+            "question_text": "Gender:",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "male",
+                        "value": "1",
+                        "text": "Male"
+                    },
+                    {
+                        "id": "female",
+                        "value": "0",
+                        "text": "Female"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "age",
+            "question_text": "Current Age:",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 1,
+                "min": 0,
+                "max": 100
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q1",
+            "question_text": "I have a good appetite.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q2",
+            "question_text": "When I wake up in the morning, I often feel rested and clear-headed.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q3",
+            "question_text": "I like to read news on crimes.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q4",
+            "question_text": "My hands and feet are usually warm.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q5",
+            "question_text": "My daily life is full of things that are interesting to me.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q6",
+            "question_text": "My ability in work (study) is the same as before.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q7",
+            "question_text": "I like detective or mystery novels.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q8",
+            "question_text": "I rarely have constipation issues.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q9",
+            "question_text": "Sometimes I want to leave home.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q10",
+            "question_text": "Sometimes I cry and laugh uncontrollably.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q11",
+            "question_text": "I am troubled with nausea and vomiting problems.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q12",
+            "question_text": "It seems like nobody understands me.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q13",
+            "question_text": "Sometimes I feel like I am being possessed.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q14",
+            "question_text": "I find it hard to focus on one job.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q15",
+            "question_text": "I have had very special or strange experiences.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q16",
+            "question_text": "I would have achieved a lot more if it wasn\u2019t because I was impeded by someone.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q17",
+            "question_text": "I have never had problems with my sexual activities.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q18",
+            "question_text": "I did petty theft when I was young.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q19",
+            "question_text": "My family is unsatisfied with my chosen job (or upcoming job).",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q20",
+            "question_text": "I am as healthy as most of my friends.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q21",
+            "question_text": "I become familiar with others as soon as I meet them.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q22",
+            "question_text": "I defecate normally and controllably.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q23",
+            "question_text": "Sometimes I do something non-stop until it annoys someone.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q24",
+            "question_text": "I hope I can be happy like others.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q25",
+            "question_text": "I have never had pain in the back of my neck.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q26",
+            "question_text": "I believe many people exaggerate their misfortunes to gain sympathy and help from others.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q27",
+            "question_text": "I get angry sometimes.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q28",
+            "question_text": "I believe I would enjoy being a forest ranger (or a similar job).",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q29",
+            "question_text": "Everyone can succeed if they have the ability and desire to do the job.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q30",
+            "question_text": "Sometimes I delay things I am supposed to do today to the next day.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q31",
+            "question_text": "I want to be a nurse.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q32",
+            "question_text": "I believe most people will lie to make gains.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q33",
+            "question_text": "I rarely quarrel with my family.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q34",
+            "question_text": "I believe women should enjoy the same rights as men when it comes to sex life.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q35",
+            "question_text": "I believe I am the hardest to control.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q36",
+            "question_text": "I lose my temper when my body is in discomfort.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q37",
+            "question_text": "I always feel like I have done something wrong or committed some crime.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q38",
+            "question_text": "Some people are so bossy that I have to go against them, even when I know they are right.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q39",
+            "question_text": "I like games or competitions that I have wagered in more.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q40",
+            "question_text": "When I was in school, sometimes I was called out by the leader for making a fuss.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q41",
+            "question_text": "I always speak at a pace that is neither fast nor slow, and I am neither ambiguous nor hoarse.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q42",
+            "question_text": "I believe someone is plotting against me.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q43",
+            "question_text": "I seem to be as capable as the people around me.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q44",
+            "question_text": "I believe someone is stalking me.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q45",
+            "question_text": "I enjoy theatrical works.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q46",
+            "question_text": "I know who is causing me trouble.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q47",
+            "question_text": "I have never indulged myself in any unusual sexual behavior.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q48",
+            "question_text": "I enjoy cooking.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q49",
+            "question_text": "I like to be a soldier.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q50",
+            "question_text": "Someone has been wanting to kill me with poison.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q51",
+            "question_text": "I have never had a twitching problem.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q52",
+            "question_text": "WThere was a time when I didn't remember anything I did.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q53",
+            "question_text": "I hate it when people trick me, forcing me to admit defeat.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q54",
+            "question_text": "I hardly get tired.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q55",
+            "question_text": "I am afraid of looking down from high places.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q56",
+            "question_text": "I don\u2019t get nervous, even when someone in my family breaks the law.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q57",
+            "question_text": "I am not afraid to manage money.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q58",
+            "question_text": "I have never fainted before.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q59",
+            "question_text": "I am not afraid of snakes.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q60",
+            "question_text": "My mother is a good person.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q61",
+            "question_text": "My memory seems to be good.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q62",
+            "question_text": "I feel like I don\u2019t know what to say when I encounter strangers.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q63",
+            "question_text": "I often find my hands trembling when I need to do something.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q64",
+            "question_text": "Sometimes, I sweat a lot when I am embarrassed. This troubles me.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q65",
+            "question_text": "Someone wants to steal my thoughts and plans.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q66",
+            "question_text": "I wish I am not as shy as I am now.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q67",
+            "question_text": "I think I'd like a job as a construction contractor.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q68",
+            "question_text": "I like to hunt.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q69",
+            "question_text": "Sometimes I feel it is easy to make a decision.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q70",
+            "question_text": "I like joining several groups at once.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q71",
+            "question_text": "I never felt short of breath.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q72",
+            "question_text": "Sometimes I prevent others from doing certain things, not because of the potential impact, but because I feel I am morally obligated.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q73",
+            "question_text": "Almost all my relatives sympathize with me.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q74",
+            "question_text": "My methods are often misunderstood.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q75",
+            "question_text": "I get excited at least once or twice a week.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q76",
+            "question_text": "I don\u2019t know what to say when there are a lot of people.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q77",
+            "question_text": "I don\u2019t blame someone who bullies a person who has brought it upon themselves.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q78",
+            "question_text": "Sometimes I admire a con man's wit so much that I even hope they get away with it.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q79",
+            "question_text": "I often feel that some strangers are staring at me critically.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q80",
+            "question_text": "Most people make friends because friends are useful to them.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q81",
+            "question_text": "Problems with nausea and vomiting bother me.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q82",
+            "question_text": "At least once or twice in my life, I felt someone hint at me to do something.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q83",
+            "question_text": "I like reading novels like Dream of the Red Chamber.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q84",
+            "question_text": "I wish I wasn't bothered by sexual thoughts anymore.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q85",
+            "question_text": "I have never liked dolls in my entire life.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q86",
+            "question_text": "Occasionally I think of things that are too evil to be said aloud.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q87",
+            "question_text": "I deeply believe that life is cruel to me.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q88",
+            "question_text": "I am more sensitive than most people.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q89",
+            "question_text": "I have a lot of dreams about sex.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q90",
+            "question_text": "I have had very special or strange experiences.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q91",
+            "question_text": "I worry about more things than I should.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q92",
+            "question_text": "Sometimes my hearing is so sensitive that it annoys me.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q93",
+            "question_text": "I often feel everything is not real.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q94",
+            "question_text": "I have some weird or special ideas.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q95",
+            "question_text": "There were a few times I gave up on the thing I was doing because I feel incapable.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q96",
+            "question_text": "Sometimes I am bothered by unimportant thoughts, making me uneasy for days.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q97",
+            "question_text": "In social gatherings, I mostly sit alone or with another person, rather than being with a crowd.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q98",
+            "question_text": "I like social gatherings because I can get together with people.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q99",
+            "question_text": "Things about sex annoy me.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "q100",
+            "question_text": "My future doesn\u2019t seem hopeful.",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "yes",
+                        "value": "1",
+                        "text": "Yes"
+                    },
+                    {
+                        "id": "no",
+                        "value": "0",
+                        "text": "No"
+                    },
+                    {
+                        "id": "uncertain",
+                        "value": "2",
+                        "text": "Uncertain"
+                    }
+                ]
+            },
+            "is_required": true
+        }
+    ]
+}

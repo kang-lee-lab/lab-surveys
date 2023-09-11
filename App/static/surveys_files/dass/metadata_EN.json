@@ -1,0 +1,14 @@
+{
+    "survey_id": "dass",
+    "language": "EN",
+    "short_name": "Depression Anxiety Stress Scales (DASS) prediction",
+    "full_name": "Depression Anxiety Stress Scales (DASS) prediction interactive webpage",
+    "description": "This applet computes an individual's likelihood of moderate anxiety, depression or stress. Based on 6 questions, this app uses a machine learning model to compute the likelihood of anxiety, depression or stress.",
+    "survey_type": "psychological",
+    "display": false,
+    "is_data_collection": false,
+    "turn_off_data_collection": true,
+    "has_results": true,
+    "is_machine_learning": true,
+    "instructions": "Please enter your answers below:"
+}

@@ -1,0 +1,75 @@
+{
+    "survey_id": "childbmi",
+    "language": "EN",
+    "questions": [
+        {
+            "question_id": "gender",
+            "question_text": "Gender:",
+            "show_number": false,
+            "question": {
+                "type": "single_select_dropdown",
+                "choices": [
+                    {
+                        "id": "male",
+                        "value": "1",
+                        "text": "Male"
+                    },
+                    {
+                        "id": "female",
+                        "value": "0",
+                        "text": "Female"
+                    }
+                ]
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "age",
+            "question_text": "Current Age:",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 1,
+                "min": 0,
+                "max": 100
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "weight",
+            "question_text": "Weight (kg):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 1,
+                "min": 0,
+                "max": 150
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "height",
+            "question_text": "Height (cm):",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 1,
+                "min": 0,
+                "max": 200
+            },
+            "is_required": true
+        },
+        {
+            "question_id": "age_to_predict",
+            "question_text": "Age to predict:",
+            "show_number": false,
+            "question": {
+                "type": "number",
+                "step": 1,
+                "min": 0,
+                "max": 100
+            },
+            "is_required": true
+        }
+    ]
+}

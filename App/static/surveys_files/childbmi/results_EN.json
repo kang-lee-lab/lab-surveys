@@ -1,0 +1,23 @@
+{
+    "survey_id": "childbmi",
+    "language": "EN",
+    "results": [
+        {
+            "result_id": "age_to_predict",
+            "result_name": "Age to predict",
+            "result_text": "Age to predict future BMI at",
+            "result": {
+                "type": "scalar",
+                "value": 10,
+                "unit": "years",
+                "value_lower_bound": 0,
+                "value_upper_bound": 1000,
+                "is_reverse_order": false,
+                "use_dial": false
+            }
+        }
+    ],
+    "use_multiedged_graph": false,
+    "use_table": false,
+    "final_message": "Displayed is your children's future height, weight, and BMI given their current physical measurements. This is calculated through a machine learning model trained using patient data.\n\n*This webpage does not contain medical/health advice. This tool is intended for informational and educational purposes only, and should not be taken as a substitute for professional advice. Reliance on any information on the webpage is solely at your own risk."
+}
