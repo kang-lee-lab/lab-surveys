@@ -9,6 +9,8 @@ import pandas as pd
 import pygal
 import plotly.graph_objects as go
 from pygal.style import Style
+from typing import Union
+
 
 from jsonschema import validate
 
@@ -102,7 +104,7 @@ def nafld_calculate_results(
 
 
 def z_score_norm(
-    row: pd.DataFrame | dict, col: int, mean: float, stdev: float
+    row: Union[pd.DataFrame, dict], col: int, mean: float, stdev: float
 ) -> float:
     """
     Z-score normalises the data given the row, column, mean and standard deviation.
@@ -116,7 +118,7 @@ def z_score_norm(
     return float(z_score)
 
 
-def normalize(user_inputs: pd.DataFrame | dict) -> pd.DataFrame | dict:
+def normalize(user_inputs: Union[pd.DataFrame, dict]) -> Union[pd.DataFrame, dict]:
     """
     Z-score normalizes the user input with mean and standard deviation of the data
     from nafld_mean_std.csv.
