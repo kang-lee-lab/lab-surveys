@@ -118,7 +118,7 @@ def z_score_norm(
     return float(z_score)
 
 
-def normalize(user_inputs: pd.DataFrame | dict) -> pd.DataFrame | dict:
+def normalize(user_inputs: Union[pd.DataFrame, dict]) -> Union[pd.DataFrame, dict]:
     """
     Z-score normalizes the user input with mean and standard deviation of the data
     from nafld_mean_std.csv.
