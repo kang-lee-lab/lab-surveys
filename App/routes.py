@@ -353,9 +353,12 @@ def results_asq():
 
     inputs_json = json.dumps(user_inputs)
 
-    response = Response("ASQ", inputs_json, results)
-    db.session.add(response)
-    db.session.commit()
+    participating = [int(request.form["participating"])]
+    
+    if participating==1:
+        response = Response("DASS_Stress", inputs_json, results)
+        db.session.add(response)
+        db.session.commit()
 
     return render_template(
         "results_asq.html",
@@ -382,9 +385,12 @@ def results_nafld():
     results, metadata, positive = nafld_calculate_results(user_inputs)
     inputs_json = json.dumps(user_inputs)
 
-    response = Response("nafld", inputs_json, results)
-    db.session.add(response)
-    db.session.commit()
+    participating = [int(request.form["participating"])]
+    
+    if participating==1:
+        response = Response("DASS_Stress", inputs_json, results)
+        db.session.add(response)
+        db.session.commit()
 
     nafld_chart(positive)
 
@@ -421,9 +427,12 @@ def results_childbmi():
     )
     inputs_json = json.dumps(user_inputs)
 
-    response = Response("childBMI", inputs_json, results)
-    db.session.add(response)
-    db.session.commit()
+    participating = [int(request.form["participating"])]
+    
+    if participating==1:
+        response = Response("DASS_Stress", inputs_json, results)
+        db.session.add(response)
+        db.session.commit()
 
     return render_template(
         "results_childbmi.html",
@@ -453,9 +462,12 @@ def results_mmpi():
     results, metadata, positive_proba = mmpi_calculate_results(user_inputs)
     inputs_json = json.dumps(user_inputs)
 
-    response = Response("mmpi", inputs_json, results)
-    db.session.add(response)
-    db.session.commit()
+    participating = [int(request.form["participating"])]
+    
+    if participating==1:
+        response = Response("DASS_Stress", inputs_json, results)
+        db.session.add(response)
+        db.session.commit()
 
     Depression = round(positive_proba["DT"] * 100, 1)
     Hypochondriasis = round(positive_proba["HsT"] * 100, 1)
@@ -521,9 +533,12 @@ def results_anxiety_moderate():
     results, metadata, positive = dass_calculate_results(user_inputs, "anxiety")
     inputs_json = json.dumps(user_inputs)
 
-    response = Response("DASS_Anxiety", inputs_json, results)
-    db.session.add(response)
-    db.session.commit()
+    participating = [int(request.form["participating"])]
+    
+    if participating==1:
+        response = Response("DASS_Stress", inputs_json, results)
+        db.session.add(response)
+        db.session.commit()
 
     anxiety_chart(positive)
 
@@ -553,9 +568,12 @@ def results_depression_moderate():
     results, metadata, positive = dass_calculate_results(user_inputs, "depression")
     inputs_json = json.dumps(user_inputs)
 
-    response = Response("DASS_Depression", inputs_json, results)
-    db.session.add(response)
-    db.session.commit()
+    participating = [int(request.form["participating"])]
+    
+    if participating==1:
+        response = Response("DASS_Stress", inputs_json, results)
+        db.session.add(response)
+        db.session.commit()
 
     depression_chart(positive)
 
@@ -585,9 +603,13 @@ def results_stress_moderate():
     results, metadata, positive = dass_calculate_results(user_inputs, "stress")
     inputs_json = json.dumps(user_inputs)
 
-    response = Response("DASS_Stress", inputs_json, results)
-    db.session.add(response)
-    db.session.commit()
+    participating = [int(request.form["participating"])]
+    
+    if participating==1:
+        response = Response("DASS_Stress", inputs_json, results)
+        db.session.add(response)
+        db.session.commit()
+
 
     stress_chart(positive)
 
