@@ -193,6 +193,10 @@
                                             "max": {
                                                 "type": "number",
                                                 "description": "Maximum accepted value"
+                                            },
+                                            "exclude": {
+                                                "type": "object",
+                                                "description": "Expression of the numeric values to exclude, written as a list of symbols, e.g. ['<', '18', 'and', '>', '60'] to exclude values under 18 and over 60."
                                             }
                                         },
                                         "required": [
@@ -226,6 +230,10 @@
                                             "max": {
                                                 "type": "number",
                                                 "description": "Maximum value"
+                                            },
+                                            "exclude": {
+                                                "type": "object",
+                                                "description": "Expression of the numeric values to exclude, written as a list of symbols, e.g. ['<', '18', 'and', '>', '60'] to exclude values under 18 and over 60."
                                             }
                                         },
                                         "required": [
@@ -255,6 +263,10 @@
                                             "max": {
                                                 "type": "string",
                                                 "description": "Maximum accepted date (YYYY-mm-dd)"
+                                            },
+                                            "exclude": {
+                                                "type": "object",
+                                                "description": "Expression of the date values to exclude, written as a list of symbols, e.g. ['<', '1950-01-01'] to exclude dates before 1950-01-01."
                                             }
                                         },
                                         "required": [
@@ -318,7 +330,7 @@
                                                 "value": "single_select"
                                             },
                                             "default_value": {
-                                                "type": "number",
+                                                "type": "string",
                                                 "description": "Default value"
                                             },
                                             "choices": {
@@ -351,6 +363,10 @@
                                                     ],
                                                     "additionalProperties": false
                                                 }
+                                            },
+                                            "exclude": {
+                                                "type": "object",
+                                                "description": "List of option ID's to exclude"
                                             }
                                         },
                                         "required": [
@@ -392,6 +408,10 @@
                                                     ],
                                                     "additionalProperties": false
                                                 }
+                                            },
+                                            "exclude": {
+                                                "type": "object",
+                                                "description": "List of option ID's to exclude"
                                             }
                                         },
                                         "required": [
@@ -441,6 +461,10 @@
                                                     ],
                                                     "additionalProperties": false
                                                 }
+                                            },
+                                            "exclude": {
+                                                "type": "object",
+                                                "description": "List of option ID's to exclude"
                                             }
                                         },
                                         "required": [
