@@ -17,442 +17,468 @@
                 "FR"
             ]
         },
-        "questions": {
+        "pages": {
             "type": "array",
-            "description": "All questions of the survey in a list",
-            "items": {
+            "description": "All pages of the survey in a list",
+            "properties": {
                 "type": "object",
-                "properties": {
-                    "question_id": {
+                "description": "List of questions for each page",
+                "items": {
+                    "page_order": {
+                        "type": "number",
+                        "description": "Order of the page to display"
+                    },
+                    "page_title": {
                         "type": "string",
-                        "description": "Question ID (no spaces)"
+                        "description": "Page title"
                     },
-                    "question_text": {
+                    "page_instructions": {
                         "type": "string",
-                        "description": "Question text"
+                        "description": "Page instructions text (HTML formatted text accepted)"                        
                     },
-                    "show_number": {
-                        "type": "boolean",
-                        "description": "Whether to display question number in front"
-                    },
-                    "question": {
+                    "questions": {
                         "type": "object",
-                        "description": "Contents of the question",
-                        "anyOf": [
-                            {
-                                "type": "object",
-                                "description": "Short text question",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "value": "short_text"
-                                    },
-                                    "default_value": {
-                                        "type": "string",
-                                        "description": "Default value"
-                                    },
-                                    "maxlength": {
-                                        "type": "number",
-                                        "description": "Maximum length of text"
-                                    }
-                                },
-                                "required": [
-                                    "type",
-                                    "maxlength"
-                                ],
-                                "additionalProperties": false
-                            },
-                            {
-                                "type": "object",
-                                "description": "Long text (text box) question",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "value": "long_text"
-                                    },
-                                    "default_value": {
-                                        "type": "string",
-                                        "description": "Default value"
-                                    },
-                                    "rows": {
-                                        "type": "number",
-                                        "description": "Number of rows in text box"
-                                    },
-                                    "cols": {
-                                        "type": "number",
-                                        "description": "Width of text box"
-                                    }
-                                },
-                                "required": [
-                                    "type",
-                                    "rows"
-                                ],
-                                "additionalProperties": false
-                            },
-                            {
-                                "type": "object",
-                                "description": "Email input",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "value": "email"
-                                    }
-                                },
-                                "required": [
-                                    "type"
-                                ],
-                                "additionalProperties": false
-                            },
-                            {
-                                "type": "object",
-                                "description": "Phone number input",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "value": "phone"
-                                    }
-                                },
-                                "required": [
-                                    "type"
-                                ],
-                                "additionalProperties": false
-                            },
-                            {
-                                "type": "object",
-                                "description": "Password / Hidden field input",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "value": "password"
-                                    }
-                                },
-                                "required": [
-                                    "type"
-                                ],
-                                "additionalProperties": false
-                            },
-                            {
-                                "type": "object",
-                                "description": "File upload",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "value": "file"
-                                    },
-                                    "accepted_filetypes": {
-                                        "type": "array",
-                                        "description": "Accepted file extensions (csv, png, etc.)",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "required": [
-                                    "type",
-                                    "accepted_filetypes"
-                                ],
-                                "additionalProperties": false
-                            },
-                            {
-                                "type": "object",
-                                "description": "Number input",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "value": "number"
-                                    },
-                                    "default_value": {
-                                        "type": "number",
-                                        "description": "Default value"
-                                    },
-                                    "step": {
-                                        "type": "number",
-                                        "description": "Step size (0.01, 0.1, 1, etc.)"
-                                    },
-                                    "min": {
-                                        "type": "number",
-                                        "description": "Minumum accepted value"
-                                    },
-                                    "max": {
-                                        "type": "number",
-                                        "description": "Maximum accepted value"
-                                    }
-                                },
-                                "required": [
-                                    "type",
-                                    "step",
-                                    "min",
-                                    "max"
-                                ],
-                                "additionalProperties": false
-                            },
-                            {
-                                "type": "object",
-                                "description": "Slider number input",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "value": "number_slider"
-                                    },
-                                    "default_value": {
-                                        "type": "number",
-                                        "description": "Default value"
-                                    },
-                                    "step": {
-                                        "type": "number",
-                                        "description": "Step size (0.01, 0.1, 1, etc.)"
-                                    },
-                                    "min": {
-                                        "type": "number",
-                                        "description": "Minumum value"
-                                    },
-                                    "max": {
-                                        "type": "number",
-                                        "description": "Maximum value"
-                                    }
-                                },
-                                "required": [
-                                    "type",
-                                    "step",
-                                    "min",
-                                    "max"
-                                ],
-                                "additionalProperties": false
-                            },
-                            {
-                                "type": "object",
-                                "description": "Date input",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "value": "date"
-                                    },
-                                    "default_value": {
-                                        "type": "string",
-                                        "description": "Default value (YYYY-mm-dd)"
-                                    },
-                                    "min": {
-                                        "type": "string",
-                                        "description": "Minumum accepted date (YYYY-mm-dd)"
-                                    },
-                                    "max": {
-                                        "type": "string",
-                                        "description": "Maximum accepted date (YYYY-mm-dd)"
-                                    }
-                                },
-                                "required": [
-                                    "type",
-                                    "min",
-                                    "max"
-                                ],
-                                "additionalProperties": false
-                            },
-                            {
-                                "type": "object",
-                                "description": "Time input",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "value": "time"
-                                    }
-                                },
-                                "required": [
-                                    "type"
-                                ],
-                                "additionalProperties": false
-                            },
-                            {
-                                "type": "object",
-                                "description": "Datetime input",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "value": "datetime"
-                                    }
-                                },
-                                "required": [
-                                    "type"
-                                ],
-                                "additionalProperties": false
-                            },
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "value": "checkbox"
-                                    },
-                                    "text": {
-                                        "type": "string",
-                                        "description": "Checkbox text"
-                                    }
-                                },
-                                "required": [
-                                    "type",
-                                    "text"
-                                ],
-                                "additionalProperties": false
-                            },
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "value": "single_select"
-                                    },
-                                    "default_value": {
-                                        "type": "number",
-                                        "description": "Default value"
-                                    },
-                                    "choices": {
-                                        "type": "array",
-                                        "description": "Single selection choices",
-                                        "items": {
-                                            "type": "object",
-                                            "properties": {
-                                                "id": {
-                                                    "type": "string",
-                                                    "description": "Option id (no spaces)"
-                                                },
-                                                "value": {
-                                                    "type": "string",
-                                                    "description": "Option value"
-                                                },
-                                                "text": {
-                                                    "type": "string",
-                                                    "description": "Option text"
-                                                },
-                                                "textbox": {
-                                                    "type": "boolean",
-                                                    "description": "Show textbox (e.g. for other, please enter:)"
-                                                }
-                                            },
-                                            "required": [
-                                                "id",
-                                                "value",
-                                                "text"
-                                            ],
-                                            "additionalProperties": false
-                                        }
-                                    }
-                                },
-                                "required": [
-                                    "type",
-                                    "choices"
-                                ],
-                                "additionalProperties": false
-                            },
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "value": "single_select_dropdown"
-                                    },
-                                    "choices": {
-                                        "type": "array",
-                                        "description": "Single selection dropdown",
-                                        "items": {
-                                            "type": "object",
-                                            "properties": {
-                                                "id": {
-                                                    "type": "string",
-                                                    "description": "Option id (no spaces)"
-                                                },
-                                                "value": {
-                                                    "type": "string",
-                                                    "description": "Option value"
-                                                },
-                                                "text": {
-                                                    "type": "string",
-                                                    "description": "Option text"
-                                                }
-                                            },
-                                            "required": [
-                                                "id",
-                                                "value",
-                                                "text"
-                                            ],
-                                            "additionalProperties": false
-                                        }
-                                    }
-                                },
-                                "required": [
-                                    "type",
-                                    "choices"
-                                ],
-                                "additionalProperties": false
-                            },
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "value": "multiple_select"
-                                    },
-                                    "choices": {
-                                        "type": "array",
-                                        "description": "Multiple selection choices",
-                                        "items": {
-                                            "type": "object",
-                                            "properties": {
-                                                "id": {
-                                                    "type": "string",
-                                                    "description": "Option id (no spaces)"
-                                                },
-                                                "value": {
-                                                    "type": "string",
-                                                    "description": "Option value"
-                                                },
-                                                "text": {
-                                                    "type": "string",
-                                                    "description": "Option text"
-                                                },
-                                                "selected_default": {
-                                                    "type": "boolean",
-                                                    "description": "If option is selected by default"
-                                                },
-                                                "textbox": {
-                                                    "type": "boolean",
-                                                    "description": "Show textbox (e.g. for other, please enter:)"
-                                                }
-                                            },
-                                            "required": [
-                                                "id",
-                                                "value",
-                                                "text"
-                                            ],
-                                            "additionalProperties": false
-                                        }
-                                    }
-                                },
-                                "required": [
-                                    "type",
-                                    "choices"
-                                ],
-                                "additionalProperties": false
-                            }
-                        ]
-                    },
-                    "is_required": {
-                        "type": "boolean",
-                        "description": "Is the question required"
-                    },
-                    "dependencies": {
-                        "type": "array",
-                        "description": "If the question depends on other questions, it will be disabled until the following questions are answered",
+                        "description": "List of questions",
                         "items": {
-                            "type": "string",
-                            "description": "Provide a list of question_id's that the current question depends on"
-                        }
+                            "question_id": {
+                                "type": "string",
+                                "description": "Question ID (no spaces)"
+                            },
+                            "question_text": {
+                                "type": "string",
+                                "description": "Question text"
+                            },
+                            "show_number": {
+                                "type": "boolean",
+                                "description": "Whether to display question number in front"
+                            },
+                            "question": {
+                                "type": "object",
+                                "description": "Contents of the question",
+                                "anyOf": [
+                                    {
+                                        "type": "object",
+                                        "description": "Short text question",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "value": "short_text"
+                                            },
+                                            "default_value": {
+                                                "type": "string",
+                                                "description": "Default value"
+                                            },
+                                            "maxlength": {
+                                                "type": "number",
+                                                "description": "Maximum length of text"
+                                            }
+                                        },
+                                        "required": [
+                                            "type",
+                                            "maxlength"
+                                        ],
+                                        "additionalProperties": false
+                                    },
+                                    {
+                                        "type": "object",
+                                        "description": "Long text (text box) question",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "value": "long_text"
+                                            },
+                                            "default_value": {
+                                                "type": "string",
+                                                "description": "Default value"
+                                            },
+                                            "rows": {
+                                                "type": "number",
+                                                "description": "Number of rows in text box"
+                                            },
+                                            "cols": {
+                                                "type": "number",
+                                                "description": "Width of text box"
+                                            }
+                                        },
+                                        "required": [
+                                            "type",
+                                            "rows"
+                                        ],
+                                        "additionalProperties": false
+                                    },
+                                    {
+                                        "type": "object",
+                                        "description": "Email input",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "value": "email"
+                                            }
+                                        },
+                                        "required": [
+                                            "type"
+                                        ],
+                                        "additionalProperties": false
+                                    },
+                                    {
+                                        "type": "object",
+                                        "description": "Phone number input",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "value": "phone"
+                                            }
+                                        },
+                                        "required": [
+                                            "type"
+                                        ],
+                                        "additionalProperties": false
+                                    },
+                                    {
+                                        "type": "object",
+                                        "description": "Password / Hidden field input",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "value": "password"
+                                            }
+                                        },
+                                        "required": [
+                                            "type"
+                                        ],
+                                        "additionalProperties": false
+                                    },
+                                    {
+                                        "type": "object",
+                                        "description": "File upload",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "value": "file"
+                                            },
+                                            "accepted_filetypes": {
+                                                "type": "array",
+                                                "description": "Accepted file extensions (csv, png, etc.)",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "required": [
+                                            "type",
+                                            "accepted_filetypes"
+                                        ],
+                                        "additionalProperties": false
+                                    },
+                                    {
+                                        "type": "object",
+                                        "description": "Number input",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "value": "number"
+                                            },
+                                            "default_value": {
+                                                "type": "number",
+                                                "description": "Default value"
+                                            },
+                                            "step": {
+                                                "type": "number",
+                                                "description": "Step size (0.01, 0.1, 1, etc.)"
+                                            },
+                                            "min": {
+                                                "type": "number",
+                                                "description": "Minumum accepted value"
+                                            },
+                                            "max": {
+                                                "type": "number",
+                                                "description": "Maximum accepted value"
+                                            }
+                                        },
+                                        "required": [
+                                            "type",
+                                            "step",
+                                            "min",
+                                            "max"
+                                        ],
+                                        "additionalProperties": false
+                                    },
+                                    {
+                                        "type": "object",
+                                        "description": "Slider number input",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "value": "number_slider"
+                                            },
+                                            "default_value": {
+                                                "type": "number",
+                                                "description": "Default value"
+                                            },
+                                            "step": {
+                                                "type": "number",
+                                                "description": "Step size (0.01, 0.1, 1, etc.)"
+                                            },
+                                            "min": {
+                                                "type": "number",
+                                                "description": "Minumum value"
+                                            },
+                                            "max": {
+                                                "type": "number",
+                                                "description": "Maximum value"
+                                            }
+                                        },
+                                        "required": [
+                                            "type",
+                                            "step",
+                                            "min",
+                                            "max"
+                                        ],
+                                        "additionalProperties": false
+                                    },
+                                    {
+                                        "type": "object",
+                                        "description": "Date input",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "value": "date"
+                                            },
+                                            "default_value": {
+                                                "type": "string",
+                                                "description": "Default value (YYYY-mm-dd)"
+                                            },
+                                            "min": {
+                                                "type": "string",
+                                                "description": "Minumum accepted date (YYYY-mm-dd)"
+                                            },
+                                            "max": {
+                                                "type": "string",
+                                                "description": "Maximum accepted date (YYYY-mm-dd)"
+                                            }
+                                        },
+                                        "required": [
+                                            "type",
+                                            "min",
+                                            "max"
+                                        ],
+                                        "additionalProperties": false
+                                    },
+                                    {
+                                        "type": "object",
+                                        "description": "Time input",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "value": "time"
+                                            }
+                                        },
+                                        "required": [
+                                            "type"
+                                        ],
+                                        "additionalProperties": false
+                                    },
+                                    {
+                                        "type": "object",
+                                        "description": "Datetime input",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "value": "datetime"
+                                            }
+                                        },
+                                        "required": [
+                                            "type"
+                                        ],
+                                        "additionalProperties": false
+                                    },
+                                    {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "value": "checkbox"
+                                            },
+                                            "text": {
+                                                "type": "string",
+                                                "description": "Checkbox text"
+                                            }
+                                        },
+                                        "required": [
+                                            "type",
+                                            "text"
+                                        ],
+                                        "additionalProperties": false
+                                    },
+                                    {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "value": "single_select"
+                                            },
+                                            "default_value": {
+                                                "type": "number",
+                                                "description": "Default value"
+                                            },
+                                            "choices": {
+                                                "type": "array",
+                                                "description": "Single selection choices",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "description": "Option id (no spaces)"
+                                                        },
+                                                        "value": {
+                                                            "type": "string",
+                                                            "description": "Option value"
+                                                        },
+                                                        "text": {
+                                                            "type": "string",
+                                                            "description": "Option text"
+                                                        },
+                                                        "textbox": {
+                                                            "type": "boolean",
+                                                            "description": "Show textbox (e.g. for other, please enter:)"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "id",
+                                                        "value",
+                                                        "text"
+                                                    ],
+                                                    "additionalProperties": false
+                                                }
+                                            }
+                                        },
+                                        "required": [
+                                            "type",
+                                            "choices"
+                                        ],
+                                        "additionalProperties": false
+                                    },
+                                    {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "value": "single_select_dropdown"
+                                            },
+                                            "choices": {
+                                                "type": "array",
+                                                "description": "Single selection dropdown",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "description": "Option id (no spaces)"
+                                                        },
+                                                        "value": {
+                                                            "type": "string",
+                                                            "description": "Option value"
+                                                        },
+                                                        "text": {
+                                                            "type": "string",
+                                                            "description": "Option text"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "id",
+                                                        "value",
+                                                        "text"
+                                                    ],
+                                                    "additionalProperties": false
+                                                }
+                                            }
+                                        },
+                                        "required": [
+                                            "type",
+                                            "choices"
+                                        ],
+                                        "additionalProperties": false
+                                    },
+                                    {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "value": "multiple_select"
+                                            },
+                                            "choices": {
+                                                "type": "array",
+                                                "description": "Multiple selection choices",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string",
+                                                            "description": "Option id (no spaces)"
+                                                        },
+                                                        "value": {
+                                                            "type": "string",
+                                                            "description": "Option value"
+                                                        },
+                                                        "text": {
+                                                            "type": "string",
+                                                            "description": "Option text"
+                                                        },
+                                                        "selected_default": {
+                                                            "type": "boolean",
+                                                            "description": "If option is selected by default"
+                                                        },
+                                                        "textbox": {
+                                                            "type": "boolean",
+                                                            "description": "Show textbox (e.g. for other, please enter:)"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "id",
+                                                        "value",
+                                                        "text"
+                                                    ],
+                                                    "additionalProperties": false
+                                                }
+                                            }
+                                        },
+                                        "required": [
+                                            "type",
+                                            "choices"
+                                        ],
+                                        "additionalProperties": false
+                                    }
+                                ]
+                            },
+                            "is_required": {
+                                "type": "boolean",
+                                "description": "Is the question required"
+                            },
+                            "dependencies": {
+                                "type": "array",
+                                "description": "If the question depends on other questions, it will be disabled until the following questions are answered",
+                                "items": {
+                                    "type": "string",
+                                    "description": "Provide a list of question_id's that the current question depends on"
+                                }
+                            }
+                        },
+                        "required": [
+                            "question_id",
+                            "question_text",
+                            "show_number",
+                            "question",
+                            "is_required"
+                        ],
+                        "additionalProperties": false
                     }
                 },
                 "required": [
-                    "question_id",
-                    "question_text",
-                    "show_number",
-                    "question",
-                    "is_required"
+                    "page_order",
+                    "page_title",
+                    "page_instructions",
+                    "questions"
                 ],
                 "additionalProperties": false
             }
