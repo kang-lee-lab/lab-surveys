@@ -223,8 +223,8 @@ def mmpi_spiderplot(mmpi_input: list[float]) -> go.Figure():
         data=go.Scatterpolar(
             r=mmpi_input,
             theta=[
-                "Hypochondriasis",
                 "Depression",
+                "Hypochondriasis",
                 "Hysteria",
                 "Psychopathic Deviate",
                 "Masculinity",
