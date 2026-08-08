@@ -19,6 +19,7 @@ SURVEY_JSON_PATHS: Dict[str, str] = {
     "nafld": "surveys/static/survey_files/nafld/nafld.json",
     "manga": "surveys/static/survey_files/manga/manga.json",
     "anxiety_multiclass": "surveys/static/survey_files/dass_multiclass/anxiety_multiclass.json",
+    "sample_survey": "surveys/static/survey_files/sample_survey/sample_survey.json",
 }
 
 # Matches surveys/static/schemas/metadata.json survey_type enum

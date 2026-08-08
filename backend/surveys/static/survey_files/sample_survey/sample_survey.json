@@ -1,0 +1,79 @@
+{
+    "survey_id": "sample_survey",
+    "language": "EN",
+    "survey_mode": "",
+    "title": "Sample Survey — Sum of Two Numbers",
+    "description": {
+        "p1": "This demo survey computes the sum of two numbers and shows example result types (scalar, percentage, and text). Use it to verify the survey pipeline and SurveyForm question types supported in the frontend."
+    },
+    "pages": [
+        {
+            "page_order": "0",
+            "page_title": "",
+            "page_instructions": "",
+            "questions": [
+                {
+                    "question_id": "Number1",
+                    "question_text": "Enter a random number between 0 and 100:",
+                    "show_number": false,
+                    "question": {
+                        "type": "number",
+                        "default_value": 0,
+                        "step": 1,
+                        "min": 0,
+                        "max": 100,
+                        "exclude": {}
+                    },
+                    "is_required": true,
+                    "dependencies": []
+                },
+                {
+                    "question_id": "Number2",
+                    "question_text": "Enter a second random number between 0 and 100:",
+                    "show_number": false,
+                    "question": {
+                        "type": "number",
+                        "default_value": 0,
+                        "step": 1,
+                        "min": 0,
+                        "max": 100,
+                        "exclude": {}
+                    },
+                    "is_required": true,
+                    "dependencies": []
+                },
+                {
+                    "question_id": "experience_rating",
+                    "question_text": "Rate this experience (0–10):",
+                    "show_number": false,
+                    "question": {
+                        "type": "number",
+                        "default_value": 5,
+                        "step": 1,
+                        "min": 0,
+                        "max": 10,
+                        "exclude": {}
+                    },
+                    "is_required": true,
+                    "dependencies": []
+                },
+                {
+                    "question_id": "gender",
+                    "question_text": "Your gender:",
+                    "show_number": false,
+                    "question": {
+                        "type": "single_select_dropdown",
+                        "choices": [
+                            { "id": "male", "value": "1", "text": "Male" },
+                            { "id": "female", "value": "2", "text": "Female" },
+                            { "id": "other", "value": "3", "text": "Other" }
+                        ],
+                        "exclude": {}
+                    },
+                    "is_required": true,
+                    "dependencies": []
+                }
+            ]
+        }
+    ]
+}

@@ -253,6 +253,13 @@ function ResultsPage() {
           </div>
         </div>
       )}
+      {surveyId === "sample_survey" && (
+        <div>
+          <h1>Sum: {data.scalar_score}</h1>
+          <p>{data.summary_text}</p>
+          <p>Experience rating: {(data.likelihood * 100).toFixed(0)}%</p>
+        </div>
+      )}
       <p>
         *This webpage does not contain medical/health advice. This tool is
         intended for informational and educational purposes only, and should not
