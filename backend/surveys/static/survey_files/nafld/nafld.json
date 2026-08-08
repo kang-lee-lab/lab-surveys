@@ -1,0 +1,326 @@
+{
+  "survey_id": "nafld",
+  "language": "EN",
+  "survey_mode": "",
+  "title": "Non-Alchoholic Fatty Liver Disease (NAFLD) prediction",
+  "description": {
+    "p1": "This applet computes an individuals likelihood of NAFLD. Based on 20 physical measures and blood biomarkers, this app uses a machine learning model to compute the likelihood of NAFLD.",
+    "p2": "Non-alcoholic fatty liver disease (NAFLD) is becoming a major global burden of disease, but its diagnosis based on liver biopsy is invasive and expensive. This study aimed to investigate the feasibility of using patient physical and blood biomarkers to build computational models to predict NAFLD risks accurately.",
+    "p3": "We obtained a large dataset (N=120,376) containing patients\u2019 physical and blood measurements, and their NAFLD status based on the invasive liver biopsy. Using this dataset, the most important patient physical and blood biomarkers were extracted using feature selection techniques. Then, using the most important features, six different machine learning algorithms trained and tested models that predict the NAFLD status. Finally, these models were validated with a pristine set of patient data never used in model training and testing, and SHAP (SHapley Additive exPlanations) analysis was performed on the final model.",
+    "p4": "We identified the top 20 features for predicting NAFLD risk including Weight, BMI, Alanine aminotransferase, and HDL Cholesterol. Our best machine learning model using the Extreme Gradient Boosting Decision Tree (XGB) technique achieved 84.94% area under the curve (ROC AUC), and 82.58% accuracy (88.75% sensitivity and 81.13% specificity) for predicting NAFLD status",
+    "p5": "Our findings suggest that machine learning models based on patient physical and blood biomarkers provide a viable, non-invasive, and inexpensive method to assess patients\u2019 risks for non-alcoholic fatty liver disease accurately."
+  },
+  "pages": [
+    {
+      "page_order": "0",
+      "page_title": "",
+      "page_instructions": "",
+      "questions": [
+        {
+          "question_id": "age",
+          "question_text": "Age",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 18,
+            "step": 1,
+            "min": 18,
+            "max": 100,
+            "exclude": {},
+            "unit": null
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "gender0female1male",
+          "question_text": "Gender:",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "1", "value": "1", "text": "Male" },
+              { "id": "2", "value": "2", "text": "Female" }
+            ],
+            "exclude": {},
+            "unit": null
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "weight",
+          "question_text": "Weight (kg)",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 65,
+            "step": 1,
+            "min": 0,
+            "max": 150,
+            "exclude": {},
+            "unit": "kg"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "height",
+          "question_text": "Height (cm)",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 170,
+            "step": 1,
+            "min": 0,
+            "max": 200,
+            "exclude": {},
+            "unit": "cm"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "H cholesterol",
+          "question_text": "HDL cholesterol (mmol/L):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 1.33,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "mmol/L"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Triglycerides",
+          "question_text": "Triglycerides (mmol/L):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 1.32,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "mmol/L"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "diastolic",
+          "question_text": "Diastolic blood pressure (mmHg):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 75.69,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "mmHg"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "systolic",
+          "question_text": "Systolic blood pressure (mmHg):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 123.48,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "mmHg"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "The average hemoglobin concentration",
+          "question_text": "The average hemoglobin concentration (g/L):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 330.27,
+            "step": 0.1,
+            "min": -1000,
+            "max": 1000,
+            "exclude": {},
+            "unit": "g/L"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Red blood cell count",
+          "question_text": "Red blood cell count (trillion/L):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 4.85,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "trillion/L"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Platelet count",
+          "question_text": "Platelet count (thousands/\u00b5L):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 231.8,
+            "step": 0.1,
+            "min": -1000,
+            "max": 1000,
+            "exclude": {},
+            "unit": "thousands/\u00b5L"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Alanine aminotransferase",
+          "question_text": "Alanine aminotransferase (IU/L):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 24.2,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "IU/L"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "White blood cell count",
+          "question_text": "White blood cell count (billions/L):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 6.17,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "billions/L"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Lymphocyte count",
+          "question_text": "Lymphocyte count (billions/L):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 2.03,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "billions/L"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Eosinophil count",
+          "question_text": "Eosinophil count (billions/L):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 0.14,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "billions/L"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Total bilirubin",
+          "question_text": "Total bilirubin (mg/L):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 11.6,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "mg/L"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_text": "Cholinesterase (U/mL):",
+          "question_id": "Cholinesterase",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 9,
+            "step": 1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "U/mL"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_text": "Leucine aminopeptidase (U/mL):",
+          "question_id": "Leucine aminopeptidase",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 51,
+            "step": 1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "U/mL"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_text": "Alkaline phosphatase (IU/L):",
+          "question_id": "Alkaline phosphatase",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 62,
+            "step": 1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "IU/L"
+          },
+          "is_required": true,
+          "dependencies": []
+        }
+      ]
+    }
+  ]
+}

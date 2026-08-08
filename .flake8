@@ -1,14 +1,21 @@
 [flake8]
 ignore =
-    E133, # closing bracket is missing indentation
-    W503, # line break before binary operator
-    E800, # code comments
-    E731, # lambda expressions
-    C408, # dict() calls
+    # closing bracket is missing indentation
+    E133,
+    # line break before binary operator
+    W503,
+    # code comments
+    E800,
+    # lambda expressions
+    E731,
+    # dict() calls
+    C408,
 extend-ignore =
-    E203, # colons should not have any space before them, not black-compatible
+    # colons should not have any space before them, not black-compatible
+    E203,
 exclude =
-    __init__.py,docs/conf.py, test_pi.py
+    .gitignore
 max-line-length = 100
 enable-extensions =
-    G # Logging violations such as fstrings, exceptions, etc. (default is version dependent)
+    # Logging violations such as fstrings, exceptions, etc. (default is version dependent)
+    G

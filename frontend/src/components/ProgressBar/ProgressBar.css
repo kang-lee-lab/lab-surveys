@@ -1,0 +1,21 @@
+.progress-container {
+    width: '100px';
+    text-align: center;
+}
+
+.progress-container>.progress-label {
+    position: relative;
+    bottom: -30px;
+}
+
+.progress-container>p {
+    margin: 0;
+}
+
+.progress-bar {
+    height: 40px;
+    width: '100px';
+    background-color: "#e0e0de";
+    border-radius: 50;
+    border: 1px solid rgb(126, 126, 126);
+}

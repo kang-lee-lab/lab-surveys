@@ -1,0 +1,29 @@
+# Dockerfile.legacy
+# Legacy ML environment: sklearn 1.0.2 (ASQ, DASS dep/anx/stress, MMPI, NAFLD, Child BMI)
+
+FROM python:3.10-slim
+
+# Avoid .pyc files and make logs unbuffered
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+WORKDIR /app
+
+# System deps needed for some Python packages (psycopg2, etc.)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libpq-dev \
+  && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies for the legacy ML environment
+COPY docker/legacy/requirements-legacy.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the Django app code
+COPY . /app
+
+# Django dev server port inside container
+EXPOSE 8000
+
+# Start Django dev server
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

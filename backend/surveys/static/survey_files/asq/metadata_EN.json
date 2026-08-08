@@ -1,0 +1,14 @@
+{
+    "survey_id": "asq",
+    "language": "EN",
+    "short_name": "Average Stress Quotient (ASQ)",
+    "full_name": "Average Stress Quotient (ASQ) calculator",
+    "description": "The Average Stress Quotient (ASQ) is a synthesized value derived from 29 Heart Rate Variability (HRV) indexes . HRV indexes are measures of variation in the time intervals between two successive heartbeats. These measures can be obtained through analysis of electrocardiography. Extensive research has found these measures to be indicative of a person\u2019s stress level. However, research often use different indexes, making interpretation of HRV as a physiological indicator of stress difficult. Wu et al. (2026) established a method for synthesizing multiple indexes to enable examination of six dimensions of HRV, and further compute scores that can be used to easily interpret the dimensions in terms of stress levels. Specifically, we provide Stress Quotient 1-6 (SQ1-6) to interpret stress levels based on each of the 6 dimensions of HRV, and an Average Stress Quotient (ASQ) for wholistic interpretation of stress based on the 29 HRV indexes. Here, we provide the ASQ Calculator for you to try Wu et al. (2026)\u2019s method! Please input values of HRV indexes and we will generate your SQ1-6 and ASQ!",
+    "survey_type": "psychological",
+    "display": false,
+    "is_data_collection": false,
+    "turn_off_data_collection": true,
+    "has_results": true,
+    "is_machine_learning": false,
+    "instructions": "Please enter your answers below:"
+}

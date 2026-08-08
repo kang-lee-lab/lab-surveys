@@ -1,0 +1,832 @@
+{
+  "survey_id": "manga",
+  "language": "EN",
+  "survey_mode": "",
+  "title": "Teen Manga Report-Teen",
+  "description": {
+    "p1": ""
+  },
+  "pages": [
+    {
+      "page_order": "0",
+      "page_title": "",
+      "page_instructions": "",
+      "questions": [
+        {
+          "question_id": "Gender",
+          "question_text": "What is your gender?",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "1", "value": "1", "text": "Male" },
+              { "id": "2", "value": "2", "text": "Female" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Race",
+          "question_text": "What is your race/ethnicity?",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "White" },
+              { "id": "1", "value": "1", "text": "Black" },
+              { "id": "2", "value": "2", "text": "Indigenous" },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+              },
+              { "id": "4", "value": "4", "text": "Chinese" },
+              { "id": "5", "value": "5", "text": "Filipino" },
+              { "id": "6", "value": "6", "text": "Latin America" },
+              { "id": "7", "value": "7", "text": "Arab" },
+              {
+                "id": "8",
+                "value": "8",
+                "text": "Southeast Asian (e.g., Vietnamese, Cambodian, Laotian, Thai etc.)"
+              },
+              {
+                "id": "9",
+                "value": "9",
+                "text": "West Asian (e.g. Iranian, Afghan, etc.)"
+              },
+              { "id": "10", "value": "10", "text": "Korean" },
+              { "id": "11", "value": "11", "text": "Japanese" },
+              { "id": "12", "value": "12", "text": "Other" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Disorders",
+          "question_text": "Have you ever been diagnosed with any psychological disorder(s)?",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              {
+                "id": "0",
+                "value": "0",
+                "text": "No diagnosed disorder"
+              },
+              { "id": "1", "value": "1", "text": "Dyslexia" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Attention-Deficit/Hyperactivity Disorder (ADHD)"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Autism Spectrum Disorder (ASD)"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Generalized Anxiety Disorder"
+              },
+              {
+                "id": "5",
+                "value": "5",
+                "text": "Major Depressive Disorder"
+              },
+              {
+                "id": "6",
+                "value": "6",
+                "text": "Other"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "age",
+          "question_text": "How old were you when you began reading manga?",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 0,
+            "step": 1,
+            "min": 0,
+            "max": 80,
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Language",
+          "question_text": "What language do you most often read manga in?",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              {
+                "id": "0",
+                "value": "0",
+                "text": "English"
+              },
+              { "id": "1", "value": "1", "text": "Japanese" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Chinese"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Korean"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "French"
+              },
+              {
+                "id": "5",
+                "value": "5",
+                "text": "Spanish"
+              },
+              {
+                "id": "6",
+                "value": "6",
+                "text": "Other"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "OftenMag",
+          "question_text": "The following questions ask about how often you engage with different sources of stories. How often do you read magazines?",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              {
+                "id": "0",
+                "value": "0",
+                "text": "Never"
+              },
+              { "id": "1", "value": "1", "text": "Once or twice a year" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Once or twice a month"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Once or twice a week"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Several times a week"
+              },
+              {
+                "id": "5",
+                "value": "5",
+                "text": "Once a day"
+              },
+              {
+                "id": "6",
+                "value": "6",
+                "text": "Several times a day"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "OftenNonFict",
+          "question_text": "How often do you read nonfiction books for enjoyment?",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              {
+                "id": "0",
+                "value": "0",
+                "text": "Never"
+              },
+              { "id": "1", "value": "1", "text": "Once or twice a year" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Once or twice a month"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Once or twice a week"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Several times a week"
+              },
+              {
+                "id": "5",
+                "value": "5",
+                "text": "Once a day"
+              },
+              {
+                "id": "6",
+                "value": "6",
+                "text": "Several times a day"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "OftenNovels",
+          "question_text": "How often do you read novels for enjoyment?",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              {
+                "id": "0",
+                "value": "0",
+                "text": "Never"
+              },
+              { "id": "1", "value": "1", "text": "Once or twice a year" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Once or twice a month"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Once or twice a week"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Several times a week"
+              },
+              {
+                "id": "5",
+                "value": "5",
+                "text": "Once a day"
+              },
+              {
+                "id": "6",
+                "value": "6",
+                "text": "Several times a day"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "OftenComics",
+          "question_text": "How often do you read comic books?",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              {
+                "id": "0",
+                "value": "0",
+                "text": "Never"
+              },
+              { "id": "1", "value": "1", "text": "Once or twice a year" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Once or twice a month"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Once or twice a week"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Several times a week"
+              },
+              {
+                "id": "5",
+                "value": "5",
+                "text": "Once a day"
+              },
+              {
+                "id": "6",
+                "value": "6",
+                "text": "Several times a day"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "OftenComicStrip",
+          "question_text": "How often do you read comic strips?",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              {
+                "id": "0",
+                "value": "0",
+                "text": "Never"
+              },
+              { "id": "1", "value": "1", "text": "Once or twice a year" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Once or twice a month"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Once or twice a week"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Several times a week"
+              },
+              {
+                "id": "5",
+                "value": "5",
+                "text": "Once a day"
+              },
+              {
+                "id": "6",
+                "value": "6",
+                "text": "Several times a day"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "OftenGraphicNovels",
+          "question_text": "How often do you read graphic novels?",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              {
+                "id": "0",
+                "value": "0",
+                "text": "Never"
+              },
+              { "id": "1", "value": "1", "text": "Once or twice a year" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Once or twice a month"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Once or twice a week"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Several times a week"
+              },
+              {
+                "id": "5",
+                "value": "5",
+                "text": "Once a day"
+              },
+              {
+                "id": "6",
+                "value": "6",
+                "text": "Several times a day"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "OftenManga",
+          "question_text": "How often do you read Japanese comics (manga)?",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              {
+                "id": "0",
+                "value": "0",
+                "text": "Never"
+              },
+              { "id": "1", "value": "1", "text": "Once or twice a year" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Once or twice a month"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Once or twice a week"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Several times a week"
+              },
+              {
+                "id": "5",
+                "value": "5",
+                "text": "Once a day"
+              },
+              {
+                "id": "6",
+                "value": "6",
+                "text": "Several times a day"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "OftenWebtoons",
+          "question_text": "How often do you read webcomics (webtoons)?",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              {
+                "id": "0",
+                "value": "0",
+                "text": "Never"
+              },
+              { "id": "1", "value": "1", "text": "Once or twice a year" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Once or twice a month"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Once or twice a week"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Several times a week"
+              },
+              {
+                "id": "5",
+                "value": "5",
+                "text": "Once a day"
+              },
+              {
+                "id": "6",
+                "value": "6",
+                "text": "Several times a day"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "OftenMovies",
+          "question_text": "How often do you watch movies?",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              {
+                "id": "0",
+                "value": "0",
+                "text": "Never"
+              },
+              { "id": "1", "value": "1", "text": "Once or twice a year" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Once or twice a month"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Once or twice a week"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Several times a week"
+              },
+              {
+                "id": "5",
+                "value": "5",
+                "text": "Once a day"
+              },
+              {
+                "id": "6",
+                "value": "6",
+                "text": "Several times a day"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "OftenTVshows",
+          "question_text": "How often do you watch TV shows?",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              {
+                "id": "0",
+                "value": "0",
+                "text": "Never"
+              },
+              { "id": "1", "value": "1", "text": "Once or twice a year" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Once or twice a month"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Once or twice a week"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Several times a week"
+              },
+              {
+                "id": "5",
+                "value": "5",
+                "text": "Once a day"
+              },
+              {
+                "id": "6",
+                "value": "6",
+                "text": "Several times a day"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "OftenCartoons",
+          "question_text": "How often do you watch cartoons?",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              {
+                "id": "0",
+                "value": "0",
+                "text": "Never"
+              },
+              { "id": "1", "value": "1", "text": "Once or twice a year" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Once or twice a month"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Once or twice a week"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Several times a week"
+              },
+              {
+                "id": "5",
+                "value": "5",
+                "text": "Once a day"
+              },
+              {
+                "id": "6",
+                "value": "6",
+                "text": "Several times a day"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "OftenAnime",
+          "question_text": "How often do you watch Japanese animations (anime)?",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              {
+                "id": "0",
+                "value": "0",
+                "text": "Never"
+              },
+              { "id": "1", "value": "1", "text": "Once or twice a year" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Once or twice a month"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Once or twice a week"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Several times a week"
+              },
+              {
+                "id": "5",
+                "value": "5",
+                "text": "Once a day"
+              },
+              {
+                "id": "6",
+                "value": "6",
+                "text": "Several times a day"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "OftenGames",
+          "question_text": "How often do you play video games?",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              {
+                "id": "0",
+                "value": "0",
+                "text": "Never"
+              },
+              { "id": "1", "value": "1", "text": "Once or twice a year" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Once or twice a month"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Once or twice a week"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Several times a week"
+              },
+              {
+                "id": "5",
+                "value": "5",
+                "text": "Once a day"
+              },
+              {
+                "id": "6",
+                "value": "6",
+                "text": "Several times a day"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Careful",
+          "question_text": "How carefully are you reading this survey? Choose never if you are reading carefully.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              {
+                "id": "0",
+                "value": "0",
+                "text": "Never"
+              },
+              { "id": "1", "value": "1", "text": "Once or twice a year" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Once or twice a month"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Once or twice a week"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Several times a week"
+              },
+              {
+                "id": "5",
+                "value": "5",
+                "text": "Once a day"
+              },
+              {
+                "id": "6",
+                "value": "6",
+                "text": "Several times a day"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Honesty",
+          "question_text": "Your honesty in this survey is important to our understanding of manga readers. Please \ntell us if you've responded to the previous questions honestly. You will be compensated for your \ntime and effort in this study regardless.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              {
+                "id": "0",
+                "value": "0",
+                "text": "Yes, I have answered questions honestly."
+              },
+              {
+                "id": "1",
+                "value": "1",
+                "text": "No, I have not answered questions honestly."
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Contacted",
+          "question_text": "Would you like to be contacted for future studies similar to this one?",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              {
+                "id": "0",
+                "value": "0",
+                "text": "Yes"
+              },
+              { "id": "1", "value": "1", "text": "N o" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        }
+      ]
+    }
+  ]
+}

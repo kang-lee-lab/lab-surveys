@@ -1,0 +1,99 @@
+{
+  "survey_id": "child_bmi",
+  "language": "EN",
+  "survey_mode": "",
+  "title": "Children's Future BMI prediction",
+  "description": {
+    "p1": "This applet computes children's future height, weight, and BMI. Based on a child's current age and physical measurements, this app uses a machine learning model to compute the children's future height, weight, and BMI for a specified number of years into the future.",
+    "p2": "Yasin, Y., Sun, Y.H., and Lee, K. (2022). A machine learning approach for predicting children's future BMI. Canadian Developmental Psychology Conference."
+  },
+  "pages": [
+    {
+      "page_order": "0",
+      "page_title": "",
+      "page_instructions": "",
+      "questions": [
+        {
+          "question_id": "Sex",
+          "question_text": "Gender",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "1", "value": "1", "text": "Male" },
+              { "id": "2", "value": "2", "text": "Female" }
+            ],
+            "exclude": {},
+            "unit": null
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Current age",
+          "question_text": "Current Age",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 5,
+            "step": 1,
+            "min": 0,
+            "max": 100,
+            "exclude": {},
+            "unit": null
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Weight",
+          "question_text": "Weight (kg)",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 20,
+            "step": 1,
+            "min": 0,
+            "max": 150,
+            "exclude": {},
+            "unit": "kg"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Height",
+          "question_text": "Height (cm)",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 110,
+            "step": 1,
+            "min": 0,
+            "max": 250,
+            "exclude": {},
+            "unit": "cm"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Age to predict",
+          "question_text": "Age to predict",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 15,
+            "step": 1,
+            "min": 0,
+            "max": 80,
+            "exclude": {},
+            "unit": null
+          },
+          "is_required": true,
+          "dependencies": []
+        }
+      ]
+    }
+  ]
+}

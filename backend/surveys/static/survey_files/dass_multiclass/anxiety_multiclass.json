@@ -1,0 +1,280 @@
+{
+    "survey_id": "dass_multiclass",
+    "language": "EN",
+    "survey_mode": "anxiety-multiclass",
+    "title": "Depression Anxiety Stress Scales (DASS) multiclass anxiety prediction",
+    "description": {
+      "p1": "This applet computes an individual's anxiety classification using a machine learning model. Please read each statement and indicate how much the statement applied to you over the past week."
+    },
+    "pages": [
+      {
+        "page_order": "0",
+        "page_title": "",
+        "page_instructions": "",
+        "questions": [
+          {
+            "question_id": "Q4",
+            "question_text": "I experienced breathing difficulty (e.g., excessively rapid breathing, breathlessness in the absence of physical exertion).",
+            "show_number": false,
+            "question": {
+              "type": "single_select_dropdown",
+              "choices": [
+                { "id": "1", "value": "0", "text": "Did not apply to me at all" },
+                {
+                  "id": "2",
+                  "value": "1",
+                  "text": "Applied to me to some degree, or some of the time"
+                },
+                {
+                  "id": "3",
+                  "value": "2",
+                  "text": "Applied to me to a considerable degree, or a good part of time"
+                },
+                {
+                  "id": "4",
+                  "value": "3",
+                  "text": "Applied to me very much, or most of the time"
+                }
+              ],
+              "exclude": {}
+            },
+            "is_required": true,
+            "dependencies": []
+          },
+          {
+            "question_id": "Q7",
+            "question_text": "I had a feeling of shakiness (e.g., legs going to give way).",
+            "show_number": false,
+            "question": {
+              "type": "single_select_dropdown",
+              "choices": [
+                { "id": "1", "value": "0", "text": "Did not apply to me at all" },
+                {
+                  "id": "2",
+                  "value": "1",
+                  "text": "Applied to me to some degree, or some of the time"
+                },
+                {
+                  "id": "3",
+                  "value": "2",
+                  "text": "Applied to me to a considerable degree, or a good part of time"
+                },
+                {
+                  "id": "4",
+                  "value": "3",
+                  "text": "Applied to me very much, or most of the time"
+                }
+              ],
+              "exclude": {}
+            },
+            "is_required": true,
+            "dependencies": []
+          },
+          {
+            "question_id": "Q9",
+            "question_text": "I found myself in situations that made me so anxious I was most relieved when they ended.",
+            "show_number": false,
+            "question": {
+              "type": "single_select_dropdown",
+              "choices": [
+                { "id": "1", "value": "0", "text": "Did not apply to me at all" },
+                {
+                  "id": "2",
+                  "value": "1",
+                  "text": "Applied to me to some degree, or some of the time"
+                },
+                {
+                  "id": "3",
+                  "value": "2",
+                  "text": "Applied to me to a considerable degree, or a good part of time"
+                },
+                {
+                  "id": "4",
+                  "value": "3",
+                  "text": "Applied to me very much, or most of the time"
+                }
+              ],
+              "exclude": {}
+            },
+            "is_required": true,
+            "dependencies": []
+          },
+          {
+            "question_id": "Q20",
+            "question_text": "I felt scared without any good reason.",
+            "show_number": false,
+            "question": {
+              "type": "single_select_dropdown",
+              "choices": [
+                { "id": "1", "value": "0", "text": "Did not apply to me at all" },
+                {
+                  "id": "2",
+                  "value": "1",
+                  "text": "Applied to me to some degree, or some of the time"
+                },
+                {
+                  "id": "3",
+                  "value": "2",
+                  "text": "Applied to me to a considerable degree, or a good part of time"
+                },
+                {
+                  "id": "4",
+                  "value": "3",
+                  "text": "Applied to me very much, or most of the time"
+                }
+              ],
+              "exclude": {}
+            },
+            "is_required": true,
+            "dependencies": []
+          },
+          {
+            "question_id": "Q25",
+            "question_text": "I was aware of the action of my heart in the absence of physical exertion (e.g., sense of heart rate increase, heart missing a beat).",
+            "show_number": false,
+            "question": {
+              "type": "single_select_dropdown",
+              "choices": [
+                { "id": "1", "value": "0", "text": "Did not apply to me at all" },
+                {
+                  "id": "2",
+                  "value": "1",
+                  "text": "Applied to me to some degree, or some of the time"
+                },
+                {
+                  "id": "3",
+                  "value": "2",
+                  "text": "Applied to me to a considerable degree, or a good part of time"
+                },
+                {
+                  "id": "4",
+                  "value": "3",
+                  "text": "Applied to me very much, or most of the time"
+                }
+              ],
+              "exclude": {}
+            },
+            "is_required": true,
+            "dependencies": []
+          },
+          {
+            "question_id": "Q28",
+            "question_text": "I felt I was close to panic.",
+            "show_number": false,
+            "question": {
+              "type": "single_select_dropdown",
+              "choices": [
+                { "id": "1", "value": "0", "text": "Did not apply to me at all" },
+                {
+                  "id": "2",
+                  "value": "1",
+                  "text": "Applied to me to some degree, or some of the time"
+                },
+                {
+                  "id": "3",
+                  "value": "2",
+                  "text": "Applied to me to a considerable degree, or a good part of time"
+                },
+                {
+                  "id": "4",
+                  "value": "3",
+                  "text": "Applied to me very much, or most of the time"
+                }
+              ],
+              "exclude": {}
+            },
+            "is_required": true,
+            "dependencies": []
+          },
+          {
+            "question_id": "Q36",
+            "question_text": "I felt terrified.",
+            "show_number": false,
+            "question": {
+              "type": "single_select_dropdown",
+              "choices": [
+                { "id": "1", "value": "0", "text": "Did not apply to me at all" },
+                {
+                  "id": "2",
+                  "value": "1",
+                  "text": "Applied to me to some degree, or some of the time"
+                },
+                {
+                  "id": "3",
+                  "value": "2",
+                  "text": "Applied to me to a considerable degree, or a good part of time"
+                },
+                {
+                  "id": "4",
+                  "value": "3",
+                  "text": "Applied to me very much, or most of the time"
+                }
+              ],
+              "exclude": {}
+            },
+            "is_required": true,
+            "dependencies": []
+          },
+          {
+            "question_id": "Q40",
+            "question_text": "I was worried about situations in which I might panic and make a fool of myself.",
+            "show_number": false,
+            "question": {
+              "type": "single_select_dropdown",
+              "choices": [
+                { "id": "1", "value": "0", "text": "Did not apply to me at all" },
+                {
+                  "id": "2",
+                  "value": "1",
+                  "text": "Applied to me to some degree, or some of the time"
+                },
+                {
+                  "id": "3",
+                  "value": "2",
+                  "text": "Applied to me to a considerable degree, or a good part of time"
+                },
+                {
+                  "id": "4",
+                  "value": "3",
+                  "text": "Applied to me very much, or most of the time"
+                }
+              ],
+              "exclude": {}
+            },
+            "is_required": true,
+            "dependencies": []
+          },
+          {
+            "question_id": "Q41",
+            "question_text": "I experienced trembling (e.g., in the hands).",
+            "show_number": false,
+            "question": {
+              "type": "single_select_dropdown",
+              "choices": [
+                { "id": "1", "value": "0", "text": "Did not apply to me at all" },
+                {
+                  "id": "2",
+                  "value": "1",
+                  "text": "Applied to me to some degree, or some of the time"
+                },
+                {
+                  "id": "3",
+                  "value": "2",
+                  "text": "Applied to me to a considerable degree, or a good part of time"
+                },
+                {
+                  "id": "4",
+                  "value": "3",
+                  "text": "Applied to me very much, or most of the time"
+                }
+              ],
+              "exclude": {}
+            },
+            "is_required": true,
+            "dependencies": []
+          }
+        ]
+      }
+    ]
+  }
+  

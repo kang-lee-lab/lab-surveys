@@ -1,0 +1,482 @@
+{
+  "survey_id": "asq",
+  "language": "EN",
+  "survey_mode": "",
+  "title": "Average Stress Quotient (ASQ) Calculator",
+  "description": {
+    "p1": "The Average Stress Quotient (ASQ) is a synthesized value derived from 29 Heart Rate Variability (HRV) indexes . HRV indexes are measures of variation in the time intervals between two successive heartbeats. These measures can be obtained through analysis of electrocardiography. Extensive research has found these measures to be indicative of a person\u2019s stress level. However, research often use different indexes, making interpretation of HRV as a physiological indicator of stress difficult. Wu et al. (2026) established a method for synthesizing multiple indexes to enable examination of six dimensions of HRV, and further compute scores that can be used to easily interpret the dimensions in terms of stress levels. Specifically, we provide Stress Quotient 1-6 (SQ1-6) to interpret stress levels based on each of the 6 dimensions of HRV, and an Average Stress Quotient (ASQ) for wholistic interpretation of stress based on the 29 HRV indexes. Here, we provide the ASQ Calculator for you to try Wu et al. (2026)\u2019s method! Please input values of HRV indexes and we will generate your SQ1-6 and ASQ!"
+  },
+  "pages": [
+    {
+      "page_order": "0",
+      "page_title": "",
+      "page_instructions": "",
+      "questions": [
+        {
+          "question_id": "MHR",
+          "question_text": "Mean Heart Rate (BPM):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 71.1,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "BPM"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "SDHR",
+          "question_text": "Standard Deviation Heart Rate (BPM):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 10.13,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "BPM"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "max_RR_interval",
+          "question_text": "Max RR Interval (ms):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 400,
+            "step": 1,
+            "min": -2000,
+            "max": 2000,
+            "exclude": {},
+            "unit": "ms"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "min_RR_interval",
+          "question_text": "Min RR Interval (ms):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 635,
+            "step": 1,
+            "min": -2000,
+            "max": 2000,
+            "exclude": {},
+            "unit": "ms"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "mean_RR_interval",
+          "question_text": "Mean RR Interval (ms):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 859.9,
+            "step": 0.1,
+            "min": -2000,
+            "max": 2000,
+            "exclude": {},
+            "unit": "ms"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "median_RR_interval",
+          "question_text": "Median RR Interval (ms):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 915.8,
+            "step": 0.1,
+            "min": -3000,
+            "max": 3000,
+            "exclude": {},
+            "unit": "ms"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "SDNN",
+          "question_text": "SDNN (ms):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 107.9,
+            "step": 0.1,
+            "min": -2000,
+            "max": 2000,
+            "exclude": {},
+            "unit": "ms"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "NN50",
+          "question_text": "NN50:",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 1,
+            "step": 1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": null
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "pNN50",
+          "question_text": "pNN50 (%):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 0.3,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "%"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "RMSSD",
+          "question_text": "RMSSD (ms):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 3,
+            "step": 1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "ms"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "VLF",
+          "question_text": "VLF (ms\u00b2):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 0.01,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "ms\u00b2"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "LF",
+          "question_text": "LF (ms\u00b2):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 0.34,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "ms\u00b2"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "HF",
+          "question_text": "HF (ms\u00b2):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 4.7,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "ms\u00b2"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "total",
+          "question_text": "Total (ms\u00b2):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 5.05,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "ms\u00b2"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "VLF_peak",
+          "question_text": "Peak VLF (ms\u00b2):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 0.03,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "ms\u00b2"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "LF_peak",
+          "question_text": "Peak LF (ms\u00b2):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 0.14,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "ms\u00b2"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "HF_peak",
+          "question_text": "Peak HF (ms\u00b2):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 0.32,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "ms\u00b2"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "VLF_percent",
+          "question_text": "VLF (%):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 0.2,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "%"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "LF_percent",
+          "question_text": "LF (%):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 6.7,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "%"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "HF_percent",
+          "question_text": "HF (%):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 6.7,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "%"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "LF_nu",
+          "question_text": "LF (nu):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 0.067,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "nu"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "HF_nu",
+          "question_text": "HF (nu):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 0.933,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "nu"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "LF_HF",
+          "question_text": "LF/HF:",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 0.072,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": null
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "SD1",
+          "question_text": "SD1 (ms):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 14.6,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "ms"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "SD2",
+          "question_text": "SD2 (ms):",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 151.9,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": "ms"
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "SD1_SD2",
+          "question_text": "SD1/SD2:",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 0.096,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": null
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "alpha",
+          "question_text": "\u03b1:",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 1.53,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": null
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "alpha1",
+          "question_text": "\u03b11:",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 0.976,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": null
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "alpha2",
+          "question_text": "\u03b12:",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 1.632,
+            "step": 0.1,
+            "min": -500,
+            "max": 500,
+            "exclude": {},
+            "unit": null
+          },
+          "is_required": true,
+          "dependencies": []
+        }
+      ]
+    }
+  ]
+}
