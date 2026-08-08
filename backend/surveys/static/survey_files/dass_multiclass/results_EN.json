@@ -1,0 +1,21 @@
+{
+    "survey_id": "dass_multiclass",
+    "language": "EN",
+    "results": [
+        {
+            "result_id": "anxiety_severity_level",
+            "result_name": "Anxiety Severity Level",
+            "result_text": "This score represents severity level for anxiety (i.e. normal, mild, moderate, severe, extremely severe).",
+            "result": {
+                "type": "string",
+                "value": "text",
+                "result_explanation": "Your classification of anxiety is xxx",
+                "is_reverse_order": true,
+                "use_dial": true
+            }
+        }
+    ],
+    "use_multiedged_graph": false,
+    "use_table": false,
+    "final_message": "Displayed is your estimated likelihood of moderate anxiety, depression or stress given your answers to the DASS questions. This is calculated through a machine learning model trained using data collected from an online survey.\n\n*This webpage does not contain medical/health advice. This tool is intended for informational and educational purposes only, and should not be taken as a substitute for professional advice. Reliance on any information on the webpage is solely at your own risk."
+}

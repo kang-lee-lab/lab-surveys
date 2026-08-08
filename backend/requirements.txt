@@ -1,0 +1,29 @@
+# Web framework
+Django==4.2.3
+django-cors-headers>=3.11
+gunicorn
+asgiref>=3.7
+sqlparse>=0.4
+
+# Database
+psycopg2-binary>=2.9.9
+
+# Environment
+python-dotenv>=0.10
+
+# Data processing
+pandas>=2.2,<3
+openpyxl
+numpy>=1.26,<2
+
+# Scientific computing / ML
+scipy
+scikit-learn==1.4.2
+joblib
+
+# Validation
+jsonschema>=4.6
+
+# Visualization
+plotly
+kaleido

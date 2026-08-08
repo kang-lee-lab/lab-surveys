@@ -1,0 +1,41 @@
+{
+    "survey_id": "asq",
+    "language": "EN",
+    "results": [
+        {
+            "result_id": "asq",
+            "result_name": "ASQ",
+            "result_text": "This score represents your Average Stress Quotient (ASQ)",
+            "result": {
+                "type": "scalar",
+                "value": 10,
+                "unit": "m",
+                "value_lower_bound": 0,
+                "value_upper_bound": 1000,
+                "is_reverse_order": false,
+                "use_dial": false
+            }
+        },
+        {
+            "result_id": "underlying_sq",
+            "result_name": "Underlying SQ Measures",
+            "result_text": "This output represents your Stress Quotients for factors 1-6 (SQ1-6)",
+            "result": {
+                "type": "text",
+                "value": ""
+            }
+        },
+        {
+            "result_id": "asq_classification",
+            "result_name": "ASQ Classification",
+            "result_text": "This output represents your ASQ stress level classification",
+            "result": {
+                "type": "text",
+                "value": ""
+            }
+        }
+    ],
+    "use_multiedged_graph": true,
+    "use_table": false,
+    "final_message": "Your ASQ is an indication of your overall stress level. The table below can be used to interpret your score.\n\nASQ Range | ASQ Classification\n80 and over | Very High Stress\n70-79 | High Stress\n60-69 | Slightly High Stress\n41-59 | Average\n31-40 | Slightly Low Stress\n21-30 | Low Stress\n20 and below | Very Low Stress\n\nDisplayed below are your Stress Quotients for factors 1-6 (SQ1-6). Each SQ is unique and contribute to your overall Average Stress Quotient (ASQ).\n\n*This webpage does not contain medical/health advice. This tool is intended for informational and educational purposes only, and should not be taken as a substitute for professional advice. Reliance on any information on the webpage is solely at your own risk."
+}

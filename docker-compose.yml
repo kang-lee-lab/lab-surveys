@@ -1,0 +1,20 @@
+services:
+  # Legacy ML backend — sklearn 1.0.2 (ASQ, DASS, MMPI, NAFLD, Child BMI)
+  legacy_backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.legacy
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  # Modern ML backend — sklearn 1.4.2 (DASS Multiclass Anxiety)
+  modern_backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.modern
+    ports:
+      - "8001:8000"
+    environment:
+      - PYTHONUNBUFFERED=1

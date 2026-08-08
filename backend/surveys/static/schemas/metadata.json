@@ -1,0 +1,82 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Survey Metadata Schema",
+    "description": "Survey Metadata Schema",
+    "type": "object",
+    "properties": {
+        "survey_id": {
+            "type": "string",
+            "description": "Unique Survey ID"
+        },
+        "language": {
+            "type": "string",
+            "description": "Language of the survey",
+            "enum": [
+                "EN",
+                "CH",
+                "FR"
+            ]
+        },
+        "short_name": {
+            "type": "string",
+            "description": "Short name of survey (for buttons)"
+        },
+        "full_name": {
+            "type": "string",
+            "description": "Full name of survey"
+        },
+        "description": {
+            "type": "string",
+            "description": "Description of survey"
+        },
+        "survey_type": {
+            "type": "string",
+            "description": "Type of survey",
+            "enum": [
+                "physical",
+                "psychological",
+                "physiological",
+                "other"
+            ]
+        },
+        "display": {
+            "type": "boolean",
+            "description": "Whether or not to display this survey"
+        },
+        "is_data_collection": {
+            "type": "boolean",
+            "description": "Is this a data collection survey"
+        },
+        "turn_off_data_collection": {
+            "type": "boolean",
+            "description": "Turn off data collection"
+        },
+        "has_results": {
+            "type": "boolean",
+            "description": "Does the survey calculate results"
+        },
+        "is_machine_learning": {
+            "type": "boolean",
+            "description": "Does this survey use a machine learning model to calculate results"
+        },
+        "instructions": {
+            "type": "string",
+            "description": "Survey instructions (can be formatted in HTML)"
+        }
+    },
+    "required": [
+        "survey_id",
+        "language",
+        "short_name",
+        "full_name",
+        "description",
+        "survey_type",
+        "display",
+        "is_data_collection",
+        "turn_off_data_collection",
+        "has_results",
+        "is_machine_learning",
+        "instructions"
+    ],
+    "additionalProperties": false
+}

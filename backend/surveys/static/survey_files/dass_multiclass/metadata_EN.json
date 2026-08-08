@@ -1,0 +1,14 @@
+{
+    "survey_id": "dass_multiclass",
+    "language": "EN",
+    "short_name": "Depression Anxiety Stress Scales (DASS) multiclass anxiety prediction",
+    "full_name": "Depression Anxiety Stress Scales (DASS) multiclass anxiety prediction interactive webpage",
+    "description": "This applet computes an individual's anxiety classification using a machine learning model. Please read each statement and indicate how much the statement applied to you over the past week.",
+    "survey_type": "psychological",
+    "display": false,
+    "is_data_collection": false,
+    "turn_off_data_collection": true,
+    "has_results": true,
+    "is_machine_learning": true,
+    "instructions": "Please enter your answers below:"
+}

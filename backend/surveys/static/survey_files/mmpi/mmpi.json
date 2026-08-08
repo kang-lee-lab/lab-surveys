@@ -1,0 +1,1652 @@
+{
+  "survey_id": "mmpi",
+  "language": "EN",
+  "survey_mode": "",
+  "title": "Minnesota Multiphasic Personality Inventory (MMPI) prediction",
+  "description": {
+    "p1": "This applet computes an individuals likelihood of MMPI. Based on 100 questions, this app uses a machine learning model to compute the likelihood of MMP.",
+    "p2": "Minnesota Multiphasic Personality Inventory (MMPI) is the most widely used psychometric test in the world. This study aimed to investigate the feasibility of using a reduced number of questions to predict the status in each conditions accurately.",
+    "p3": "We obtained a dataset of MMPI-2 responses from the Beijing Anding Hospital. The original dataset contains anonymized information on the participants including their demographics (age, sex, etc.), the raw scores and T-scores to each of the conditions, and the answers to each of the questions from the MMPI-2 test from each participant. The information of the participants includes their serial number, age, and their lname. The responses to the questions are \u201cYes\u201d, \u201cNo\u201d, or \u201cMaybe\u201d.",
+    "p4": "We identified the top 100 questions for predicting the ten MMPI conditions, which achieved at least 85% area under curve (AUC ROC) for predicting each of the conditions.",
+    "p5": "Our findings suggest that machine learning models using reduced number of questions are capable of making accurate assessment for MMPI."
+  },
+  "pages": [
+    {
+      "page_order": "0",
+      "page_title": "",
+      "page_instructions": "",
+      "questions": [
+        {
+          "question_id": "Gender",
+          "question_text": "Gender:",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Male" },
+              { "id": "1", "value": "1", "text": "Female" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Age",
+          "question_text": "Age",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 18,
+            "step": 1,
+            "min": 18,
+            "max": 100,
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q2",
+          "question_text": "I have a good appetite.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q3",
+          "question_text": "When I wake up in the morning, I often feel rested and clear-headed.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q6",
+          "question_text": "I like to read news on crimes.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q7",
+          "question_text": "My hands and feet are usually warm.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q8",
+          "question_text": "My daily life is full of things that are interesting to me.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q9",
+          "question_text": "My ability in work (study) is the same as before.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q12",
+          "question_text": "I like detective or mystery novels.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q18",
+          "question_text": "I rarely have constipation issues.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q21",
+          "question_text": "Sometimes I want to leave home.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q22",
+          "question_text": "Sometimes I cry and laugh uncontrollably.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q23",
+          "question_text": "I am troubled with nausea and vomiting problems.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q24",
+          "question_text": "It seems like nobody understands me.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q27",
+          "question_text": "Sometimes I feel like I am being possessed.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q32",
+          "question_text": "I find it hard to focus on one job.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q33",
+          "question_text": "I have experienced very special or strange experiences.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q35",
+          "question_text": "I would have achieved a lot more if it wasn\u2019t because I was impeded by someone.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q37",
+          "question_text": "I have never had problems with my sexual activities.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q38",
+          "question_text": "I did petty theft when I was young.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q42",
+          "question_text": "My family is unsatisfied with my chosen job (or upcoming job).",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q51",
+          "question_text": "I am as healthy as most of my friends.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q57",
+          "question_text": "I become familiar with others as soon as I meet them.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q63",
+          "question_text": "I defecate normally and controllably.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q64",
+          "question_text": "Sometimes I do something non-stop until it annoys someone.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q67",
+          "question_text": "I hope I can be happy like others.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q68",
+          "question_text": "I have never had pain in the back of my neck.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q71",
+          "question_text": "I believe many people exaggerate their misfortunes to gain sympathy and help from others.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q76",
+          "question_text": "I get angry sometimes.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q82",
+          "question_text": "I believe I would enjoy being a forest ranger (or a similar job)",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q84",
+          "question_text": "Everyone can succeed if they have the ability and desire to do the job.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q91",
+          "question_text": "Sometimes I delay things I am supposed to do today to the next day.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q93",
+          "question_text": "I want to be a nurse.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q94",
+          "question_text": "I believe most people will lie to make gains.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q97",
+          "question_text": "I rarely quarrel with my family.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q102",
+          "question_text": "I believe women should enjoy the same rights as men when it comes to sex life.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q103",
+          "question_text": "I believe I am the hardest to control.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q106",
+          "question_text": "I lose my temper when my body is in discomfort.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q107",
+          "question_text": "I always feel like I have done something wrong or committed some crime.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q110",
+          "question_text": "Some people are so bossy that I have to go against them, even when I know they are right.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q117",
+          "question_text": "I like games or competitions that I have wagered in more.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q119",
+          "question_text": "When I was in school, sometimes I was called out by the leader for making a fuss.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q120",
+          "question_text": "I always speak at a pace that is neither fast nor slow, and I am neither ambiguous nor hoarse.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q122",
+          "question_text": "I believe someone is plotting against me.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q123",
+          "question_text": "I seem to be as capable as the people around me.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q124",
+          "question_text": "I believe someone is stalking me.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q127",
+          "question_text": "I enjoy theatrical works.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q128",
+          "question_text": "I know who is causing me trouble.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q134",
+          "question_text": "I have never indulged myself in any unusual sexual behavior.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q141",
+          "question_text": "I enjoy cooking.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q145",
+          "question_text": "I like to be a soldier.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q152",
+          "question_text": "Someone has been wanting to kill me with poison.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q155",
+          "question_text": "I have never had a twitching problem.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q157",
+          "question_text": "There was a time when I didn't remember anything I did.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q163",
+          "question_text": "I hate it when people trick me, forcing me to admit defeat.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q164",
+          "question_text": "I hardly get tired.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q167",
+          "question_text": "I am afraid of looking down from high places.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q168",
+          "question_text": "I don\u2019t get nervous, even when someone in my family breaks the law.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q170",
+          "question_text": "I am not afraid to manage money.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q175",
+          "question_text": "I have never fainted before.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q177",
+          "question_text": "I am not afraid of snakes.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q178",
+          "question_text": "My mother is a good person.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q179",
+          "question_text": "My memory seems to be good.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q181",
+          "question_text": "I feel like I don\u2019t know what to say when I encounter strangers.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q187",
+          "question_text": "I often find my hands trembling when I need to do something.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q192",
+          "question_text": "Sometimes, I sweat a lot when I am embarrassed. This troubles me.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q201",
+          "question_text": "Someone wants to steal my thoughts and plans.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q202",
+          "question_text": "I wish I am not as shy as I am now.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q220",
+          "question_text": "I think I'd like a job as a construction contractor.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q224",
+          "question_text": "I like to hunt.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q229",
+          "question_text": "Sometimes I feel it is easy to make a decision.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q230",
+          "question_text": "I like joining several groups at once.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q231",
+          "question_text": "I never felt short of breath.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q234",
+          "question_text": "Sometimes I prevent others from doing certain things, not because of the potential impact, but because I feel I am morally obligated.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q238",
+          "question_text": "Almost all my relatives sympathize with me.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q245",
+          "question_text": "My methods are often misunderstood.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q267",
+          "question_text": "I get excited at least once or twice a week.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q268",
+          "question_text": "I don\u2019t know what to say when there are a lot of people.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q272",
+          "question_text": "I don\u2019t blame someone who bullies a person who has brought it upon themselves.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q278",
+          "question_text": "Sometimes I admire a con man's wit so much that I even hope they get away with it.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q279",
+          "question_text": "I often feel that some strangers are staring at me critically.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q281",
+          "question_text": "Most people make friends because friends are useful to them.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q289",
+          "question_text": "Problems with nausea and vomiting bother me.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q292",
+          "question_text": "At least once or twice in my life, I felt someone hint at me to do something.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q296",
+          "question_text": "I like reading novels like Dream of the Red Chamber.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q298",
+          "question_text": "I wish I wasn't bothered by sexual thoughts anymore.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q301",
+          "question_text": "I have never liked dolls in my entire life.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q315",
+          "question_text": "Occasionally I think of things that are too evil to be said aloud.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q316",
+          "question_text": "I deeply believe that life is cruel to me.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q318",
+          "question_text": "I am more sensitive than most people.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q321",
+          "question_text": "I have a lot of dreams about sex.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q324",
+          "question_text": "I have had very special or strange experiences.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q339",
+          "question_text": "I worry about more things than I should.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q342",
+          "question_text": "Sometimes my hearing is so sensitive that it annoys me.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q346",
+          "question_text": "I often feel everything is not real.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q350",
+          "question_text": "I have some weird or special ideas.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q358",
+          "question_text": "There were a few times I gave up on the thing I was doing because I feel incapable.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q360",
+          "question_text": "Sometimes I am bothered by unimportant thoughts, making me uneasy for days.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q370",
+          "question_text": "In social gatherings, I mostly sit alone or with another person, rather than being with a crowd.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q383",
+          "question_text": "I like social gatherings because I can get together with people.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q471",
+          "question_text": "Things about sex annoy me.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q527",
+          "question_text": "My future doesn\u2019t seem hopeful.",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "0", "value": "0", "text": "Yes" },
+              { "id": "1", "value": "1", "text": "No" },
+              { "id": "2", "value": "2", "text": "Uncertain" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        }
+      ]
+    }
+  ]
+}

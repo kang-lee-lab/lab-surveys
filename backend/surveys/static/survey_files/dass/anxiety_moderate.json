@@ -1,0 +1,238 @@
+{
+  "survey_id": "dass",
+  "language": "EN",
+  "survey_mode": "anxiety",
+  "title": "Depression Anxiety Stress Scales (DASS) prediction",
+  "description": {
+    "p1": "This applet computes an individual's likelihood of moderate anxiety. Based on 6 questions, this app uses a machine learning model to compute the likelihood of anxiety."
+  },
+  "pages": [
+    {
+      "page_order": "0",
+      "page_title": "",
+      "page_instructions": "",
+      "questions": [
+        {
+          "question_id": "gender",
+          "question_text": "Gender",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "1", "value": "1", "text": "Male" },
+              { "id": "2", "value": "2", "text": "Female" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "region",
+          "question_text": "Region",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "1", "value": "1", "text": "East" },
+              { "id": "2", "value": "2", "text": "West" },
+              { "id": "3", "value": "3", "text": "Other" }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "age",
+          "question_text": "Age",
+          "show_number": false,
+          "question": {
+            "type": "number",
+            "default_value": 18,
+            "step": 1,
+            "min": 18,
+            "max": 100,
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q9A",
+          "question_text": "I found myself in situations that made me so anxious I was most relieved when they ended",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "1", "value": "1", "text": "Did not apply to me at all" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Applied to me to some degree, or some of the time"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Applied to me to a considerable degree, or a good part of time"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Applied to me very much, or most of the time"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q11A",
+          "question_text": "I found myself getting upset rather easily",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "1", "value": "1", "text": "Did not apply to me at all" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Applied to me to some degree, or some of the time"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Applied to me to a considerable degree, or a good part of time"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Applied to me very much, or most of the time"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q20A",
+          "question_text": "I felt scared without any good reason",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "1", "value": "1", "text": "Did not apply to me at all" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Applied to me to some degree, or some of the time"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Applied to me to a considerable degree, or a good part of time"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Applied to me very much, or most of the time"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q30A",
+          "question_text": "I feared that I would be 'thrown' by some trivial but unfamiliar task",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "1", "value": "1", "text": "Did not apply to me at all" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Applied to me to some degree, or some of the time"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Applied to me to a considerable degree, or a good part of time"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Applied to me very much, or most of the time"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q36A",
+          "question_text": "I felt terrified",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "1", "value": "1", "text": "Did not apply to me at all" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Applied to me to some degree, or some of the time"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Applied to me to a considerable degree, or a good part of time"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Applied to me very much, or most of the time"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        },
+        {
+          "question_id": "Q40A",
+          "question_text": "I was worried about situations in which I might panic and make a fool of myself",
+          "show_number": false,
+          "question": {
+            "type": "single_select_dropdown",
+            "choices": [
+              { "id": "1", "value": "1", "text": "Did not apply to me at all" },
+              {
+                "id": "2",
+                "value": "2",
+                "text": "Applied to me to some degree, or some of the time"
+              },
+              {
+                "id": "3",
+                "value": "3",
+                "text": "Applied to me to a considerable degree, or a good part of time"
+              },
+              {
+                "id": "4",
+                "value": "4",
+                "text": "Applied to me very much, or most of the time"
+              }
+            ],
+            "exclude": {}
+          },
+          "is_required": true,
+          "dependencies": []
+        }
+      ]
+    }
+  ]
+}

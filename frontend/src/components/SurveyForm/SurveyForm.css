@@ -1,0 +1,33 @@
+.question-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0px;
+}
+
+.survey-form-container>button>span {
+    cursor: pointer;
+}
+
+.input-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .unit-wrapper {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    color: rgb(175, 175, 175);
+  }
+
+button:disabled,
+button[disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+}
+
+.text-error{
+    color:red;
+}

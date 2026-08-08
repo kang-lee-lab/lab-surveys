@@ -1,47 +1,84 @@
-# lab-surveys
+# Kang Lee Lab Surveys
 
-A Python + Flask implementation of some surveys from the Kang Lee Development Lab. These surveys utilize computational models to compute results dynamically.
+Computational survey tools for the Kang Lee Development Lab. The current stack is a React frontend and Django backend with PostgreSQL. Survey results are computed dynamically, including machine learning models where applicable.
 
-Currently hosted on a Heroku server.
-
-https://kangleelab-surveys.herokuapp.com/
-
+| Directory | Description |
+|-----------|-------------|
+| `frontend/` | React UI (Create React App) |
+| `backend/` | Django API, survey definitions, ML models |
+| `legacy-flask/` | Original Flask + Jinja monolith (archived) |
 
 ## Running locally
 
-To run locally you must set up a PostgreSQL database on your machine. 
+### Frontend
 
-To create a database locally you must download a database manager such as pgAdmin (As shown on the link above). PgAdmin is available on both Mac and Windows.
+```bash
+cd frontend
+npm install
+cp .env.example .env   # then edit as needed
+npm start              # http://localhost:3000
+```
 
-Once the database is created, a table must be created with the name "responses" and must be created with matching data values and types as seen in the Response class found in `__init__.py`
+### Backend (single server)
 
-Below is a tutorial on how to create a table within a database on pgAdmin.
+```bash
+cd backend
+pip install -r requirements.txt
+cp .env.example .env   # then edit as needed
+python manage.py runserver
+```
 
-https://www.guru99.com/create-drop-table-postgresql.html
+The frontend expects the legacy API at `http://127.0.0.1:8000` by default.
 
-Once the database is created, get a link for the database from pgAdmin and replace it with the current link on line 10 of '__init__.py'
+### Backend (dual ML environments via Docker)
 
-Then run the following commands in your terminal to import the database and model:
+Some surveys require sklearn 1.0.2 (legacy) and DASS multiclass requires sklearn 1.4.2 (modern). From the repository root:
 
-from App import db, Response
-db.create_all()
+```bash
+docker compose up
+```
 
-The following link provides some more information on these commands
-https://www.digitalocean.com/community/tutorials/how-to-use-flask-sqlalchemy-to-interact-with-databases-in-a-flask-application
+- Legacy backend: http://127.0.0.1:8000
+- Modern backend (DASS multiclass): http://127.0.0.1:8001
 
-Make sure you have a Python runtime environment set up (preferably Anaconda Python 3.9 or higher).
+Configure `frontend/.env` accordingly (see `frontend/.env.example`).
 
-Then make sure you install all the libraries (`pip install -r requirements.txt` or `conda install -r requirements.txt` for Anaconda)
+### Legacy Flask app
 
-Once created, launch the app by running `python run.py`
+See [legacy-flask/README.md](legacy-flask/README.md).
 
+## Environment variables
+
+- **Frontend** — `frontend/.env.example`
+- **Backend** — `backend/.env.example`
+
+Never commit `.env` files.
 
 ## Development
 
-The `main` branch is locked, and all changes should come in the form of a pull request (PR) on GitHub from your development branch.
+The `main` branch is protected; changes should come through pull requests.
 
-Please name your branches `<yourname>/<issue_ID>/<brief description of your changes>`.
+Branch naming: `<yourname>/<issue_ID>/<brief-description>`
 
-Please test your application in the QA Heroku environment (https://dashboard.heroku.com/apps/kangleelab-surveys-qa) before pushing to the "main" branch (you can deploy a branch on Heroku)
+- Backend CI runs on changes to `backend/**`
+- Frontend CI runs on changes to `frontend/**`
+- Legacy Flask CI runs on changes to `legacy-flask/**`
 
-If you have any suggestions about how to improve this app, please add a ticket on the project page (https://github.com/orgs/kang-lee-lab/projects/2/views/2)
+Install pre-commit at the repo root: `pre-commit install`
+
+## Adding a new survey
+
+See [backend/README.md](backend/README.md) for the full guide (homepage card, JSON survey files, views, results page).
+
+## Deployment
+
+Production uses separate hosts for frontend and backend (Heroku, Vercel, Supabase). When deploying from this monorepo:
+
+- **Backend (Heroku)** — set the app root / build context to `backend/`
+- **Frontend (Vercel or Heroku)** — set the root directory to `frontend/`
+
+See [backend/ARCHITECTURE.md](backend/ARCHITECTURE.md) for architecture and operational notes.
+
+## License
+
+See [LICENSE](LICENSE).

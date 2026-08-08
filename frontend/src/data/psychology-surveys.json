@@ -1,0 +1,32 @@
+[
+    {
+        "title": "DASS Anxiety",
+        "description": "Rapid Depression Anxiety Stress Scale - Anxiety",
+        "link": "anxiety-moderate"
+    },
+    {
+        "title": "DASS Depression",
+        "description": "Rapid Depression Anxiety Stress Scale - Depression",
+        "link": "depression-moderate"
+    },
+    {
+        "title": "DASS Stress",
+        "description": "Rapid Depression Anxiety Stress Scale - Stress",
+        "link": "stress-moderate"
+    },
+    {
+        "title": "Rapid MMPI",
+        "description": "Rapid Minnesota Multiphasic Personality Inventory",
+        "link": "mmpi"
+    },
+    {
+        "title": "ASQ",
+        "description": "Average Stress Quotient calculator",
+        "link": "asq"
+    },
+    {
+        "title": "Multiclass DASS Anxiety",
+        "description": "Multiclass Depression Anxiety Stress Scale - Anxiety",
+        "link": "anxiety-multiclass"
+    }
+]

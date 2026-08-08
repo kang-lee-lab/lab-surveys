@@ -1,0 +1,16 @@
+.homepage-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+.survey-card-containers {
+    display: flex;
+    flex-direction: column;
+}
+
+.survey-card-containers>div>h2 {
+    padding: 0;
+    margin: 0;
+    margin-top: 30px;
+}

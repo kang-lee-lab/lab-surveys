@@ -1,0 +1,30 @@
+.survey-cards {
+    float: left;
+    width: 250px;
+    background-color: #f8f8f8;
+    padding: 25px 20px 40px 25px;
+    margin-top: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    border: 2px solid rgb(230, 228, 228);
+}
+
+.survey-cards:hover {
+    border: 2px solid #5b87ff;
+}
+
+.survey-cards>a {
+    color: #fff;
+    background-color: #5b87ff;
+    border: 2px solid #415eaf;
+    border-radius: 10px;
+    padding: 8px 12px;
+}
+
+.survey-cards>a:hover {
+    background-color: #415eaf;
+}
+
+.survey-cards>p {
+    margin-bottom: 30px;
+}
