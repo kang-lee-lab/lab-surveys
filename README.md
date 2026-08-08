@@ -6,7 +6,6 @@ Computational survey tools for the Kang Lee Development Lab. The current stack i
 |-----------|-------------|
 | `frontend/` | React UI (Create React App) |
 | `backend/` | Django API, survey definitions, ML models |
-| `legacy-flask/` | Original Flask + Jinja monolith (archived) |
 
 ## Running locally
 
@@ -43,10 +42,6 @@ docker compose up
 
 Configure `frontend/.env` accordingly (see `frontend/.env.example`).
 
-### Legacy Flask app
-
-See [legacy-flask/README.md](legacy-flask/README.md).
-
 ## Environment variables
 
 - **Frontend** — `frontend/.env.example`
@@ -62,9 +57,12 @@ Branch naming: `<yourname>/<issue_ID>/<brief-description>`
 
 - Backend CI runs on changes to `backend/**`
 - Frontend CI runs on changes to `frontend/**`
-- Legacy Flask CI runs on changes to `legacy-flask/**`
 
 Install pre-commit at the repo root: `pre-commit install`
+
+## Roadmap
+
+See [docs/implementation-plan.md](docs/implementation-plan.md) for the phased plan (catalog-driven UI, data collection, Auth0 profiles, metadata-driven results).
 
 ## Adding a new survey
 

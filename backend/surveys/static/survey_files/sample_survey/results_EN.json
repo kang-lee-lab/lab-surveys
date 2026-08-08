@@ -1,0 +1,43 @@
+{
+    "survey_id": "sample_survey",
+    "language": "EN",
+    "results": [
+        {
+            "result_id": "score1",
+            "result_name": "Scalar Score",
+            "result_text": "Sum of the two numbers you entered",
+            "result": {
+                "type": "scalar",
+                "value": 10,
+                "unit": "",
+                "value_lower_bound": 0,
+                "value_upper_bound": 200,
+                "is_reverse_order": false,
+                "use_dial": false
+            }
+        },
+        {
+            "result_id": "score2",
+            "result_name": "Likelihood Score",
+            "result_text": "Your experience rating as a percentage",
+            "result": {
+                "type": "percentage",
+                "value": 10,
+                "is_reverse_order": true,
+                "use_dial": true
+            }
+        },
+        {
+            "result_id": "score3",
+            "result_name": "Text Output",
+            "result_text": "A short summary of your inputs",
+            "result": {
+                "type": "text",
+                "value": ""
+            }
+        }
+    ],
+    "use_multiedged_graph": false,
+    "use_table": true,
+    "final_message": "This survey result is unofficial and does not represent medical advice. Please seek a professional for an official diagnosis."
+}

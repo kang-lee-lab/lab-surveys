@@ -8,6 +8,7 @@ from surveys.utils.dass.dass_survey import dass_calculate_results
 from surveys.utils.mmpi.mmpi_survey import mmpi_calculate_results
 from surveys.utils.nafld.nafld_survey import nafld_calculate_results
 from surveys.utils.dass_multiclass.dass_multiclass_survey import dass_multiclass_calculate_results
+from surveys.utils.sample_survey.sample_survey import sample_survey_calculate_results
 from django.views.decorators.csrf import csrf_exempt
 import json
 
@@ -123,6 +124,23 @@ def calculate_results(request):
             data["db_result"] = results
             data["rank"] = rank
             data["severity_level"] = severity_level
+        elif request_body["survey"] == "sample_survey":
+            (
+                results,
+                metadata,
+                scalar_score,
+                likelihood,
+                summary_text,
+            ) = sample_survey_calculate_results(request_body["data"], "EN")
+            data["scalar_score"] = scalar_score
+            data["positive"] = likelihood
+            data["likelihood"] = likelihood
+            data["summary_text"] = summary_text
+            data["db_result"] = {
+                "Scalar score (sum)": scalar_score,
+                "Experience rating (%)": likelihood * 100,
+                "Summary": summary_text,
+            }
                         
         else:
             data = {"message": "This survey type is invalid."}

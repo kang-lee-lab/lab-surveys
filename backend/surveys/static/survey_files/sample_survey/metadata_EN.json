@@ -1,0 +1,14 @@
+{
+    "survey_id": "sample_survey",
+    "language": "EN",
+    "short_name": "Sample Survey",
+    "full_name": "Sample Survey for demonstration purposes",
+    "description": "A demo survey for development and authoring reference. Not shown on the public site—access via GET /survey/sample_survey or direct URL /survey/sample-survey for testing.",
+    "survey_type": "other",
+    "display": false,
+    "is_data_collection": false,
+    "turn_off_data_collection": true,
+    "has_results": true,
+    "is_machine_learning": false,
+    "instructions": "Enter two numbers and rate your experience below."
+}
