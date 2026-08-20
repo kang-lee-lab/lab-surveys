@@ -29,6 +29,8 @@ python manage.py runserver
 
 The frontend expects the legacy API at `http://127.0.0.1:8000` by default.
 
+`DEBUG` is hardcoded to `False` in `backend/labsurveysbackend/settings.py` so that deployments never expose stack traces. For local debugging, set it to `True` temporarily — but revert it before committing.
+
 ### Backend (dual ML environments via Docker)
 
 Some surveys require sklearn 1.0.2 (legacy) and DASS multiclass requires sklearn 1.4.2 (modern). From the repository root:

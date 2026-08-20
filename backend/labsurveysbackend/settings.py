@@ -27,7 +27,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-x)1do+^3ha+c$uf252vag9q#kiyocu!1zzrbz$47k&f52zmftb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Set to True temporarily for local debugging only — never commit it as True.
+DEBUG = False
 
 # Application definition
 
@@ -90,6 +91,7 @@ CSRF_TRUSTED_ORIGINS = [
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1', 
+    '.run.app',
     'kangleelab-surveys-backend-2f18288704d1.herokuapp.com',
     'kangleelab-surveys-backend-mod-a18d92aaefbc.herokuapp.com',
     'kangleelab-surveys.vercel.app',
