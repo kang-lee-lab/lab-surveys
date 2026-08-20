@@ -4,6 +4,7 @@ from django.http import HttpResponse, JsonResponse
 from surveys.survey_registry import build_survey_catalog, get_survey_file_path
 from surveys.utils.asq.asq_survey import asq_calculate_results
 from surveys.utils.child_bmi.child_bmi_survey import child_bmi_calculate_results
+from surveys.utils.child_bmi.child_bmi_survey import MODEL_VERSION as CHILD_BMI_MODEL_VERSION
 from surveys.utils.dass.dass_survey import dass_calculate_results
 from surveys.utils.mmpi.mmpi_survey import mmpi_calculate_results
 from surveys.utils.nafld.nafld_survey import nafld_calculate_results
@@ -111,6 +112,9 @@ def calculate_results(request):
             data["pred_weight"] = pred_weight
             data["pred_bmi"] = pred_bmi
             data["age_to_predict"] = request_body["data"]["Age to predict"]
+            # Reported so a stored prediction can be attributed to the model that
+            # produced it; callers previously had to hardcode a version string.
+            data["model_version"] = CHILD_BMI_MODEL_VERSION
             data["db_result"] = {"Predicted Height (cm)": pred_height, "Predicted Weight (kg)": pred_weight, "Predicted BMI (kg/m²)": pred_bmi}
         elif request_body["survey"] == "dass":
             results, metadata, positive = dass_calculate_results(
