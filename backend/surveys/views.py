@@ -57,6 +57,23 @@ def index(request):
     return HttpResponse("Hello, world. You're at the survey.")
 
 
+def wakeup(request):
+    """Warm a cold instance so the first real survey request is fast.
+
+    Cloud Run scales to zero, so the homepage pings this before the user picks
+    a survey. Resolving any URL already loads Django, this module and pandas,
+    but sklearn is only imported when a model is first unpickled -- so pull it
+    in explicitly here. Failures are non-fatal; this is only a warmup.
+    """
+    try:
+        import sklearn.ensemble  # noqa: F401  (RandomForest, StackingClassifier)
+        import sklearn.linear_model  # noqa: F401
+        import sklearn.svm  # noqa: F401  (child BMI)
+    except Exception as e:
+        logger.warning(f"Wakeup could not preload the ML stack: {e}")
+    return JsonResponse({"status": "awake"}, status=200)
+
+
 @csrf_exempt
 def calculate_results(request):
     # throw error if it is not a POST request
