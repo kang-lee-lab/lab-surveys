@@ -1,10 +1,8 @@
 """
 Functions related to the Child BMI survey.
 
-Height and weight are served by svr-v2 (see MODEL_VERSION below); BMI is still
-the original svr-v1 artifact, because BMI is close to unpredictable from this
-data — R2 0.359, where simply predicting the training mean already gets within
-0.7 of svr-v2's error. Retraining it would be churn without a real gain.
+Height and weight are served by svr-v2. BMI is DERIVED from those two
+predictions rather than predicted by its own model — see point 5 below.
 
 Four things in here are deliberate and easy to undo by accident:
 
@@ -27,6 +25,19 @@ Four things in here are deliberate and easy to undo by accident:
 
 4.  Models are cached per process. They were being unpickled from disk on every
     request.
+
+5.  BMI is computed from the predicted height and weight, not from a third model.
+    The three targets used to be predicted independently, so the BMI output did
+    not have to agree with the height and weight shown beside it. On a grouped
+    holdout that disagreement averaged 0.48 BMI points and reached 2.57, and
+    upgrading height and weight to svr-v2 widened it, because those two moved and
+    BMI did not. Deriving it is consistent by construction and also marginally
+    more accurate than either model: holdout MAE 1.55, against 1.60 for the
+    svr-v1 artifact and 1.56 for the svr-v2 one.
+
+    childbmi_model_bmi.bin is intentionally left in place but no longer loaded,
+    so the two approaches can still be compared without recovering a file from
+    git history.
 """
 import json
 import pickle
@@ -42,7 +53,7 @@ SURVEY_FOLDER = "child_bmi"
 
 # Reported to callers so a stored prediction can be attributed to the model that
 # produced it. Bump this whenever a .bin in this folder is replaced.
-MODEL_VERSION = "svr-v2-height-weight"
+MODEL_VERSION = "svr-v2"
 
 # Must match `feature_names_in_` on the pickled estimators, in this order.
 FEATURE_ORDER = ["Sex", "Height", "Weight", "Current age", "Age to predict", "BMI"]
@@ -55,7 +66,7 @@ _MODEL_CACHE: Dict[str, Any] = {}
 
 
 def _load_model(name: str):
-    """Loads and caches one estimator. `name` is height, weight or bmi."""
+    """Loads and caches one estimator. `name` is height or weight; BMI is derived."""
     if name not in _MODEL_CACHE:
         with open(MODEL_DIR / f"childbmi_model_{name}.bin", "rb") as f:
             _MODEL_CACHE[name] = pickle.load(f)
@@ -110,7 +121,9 @@ def child_bmi_calculate_results(
 
     pred_height = float(_load_model("height").predict(features)[0])
     pred_weight = float(_load_model("weight").predict(features)[0])
-    pred_bmi = float(_load_model("bmi").predict(features)[0])
+    # Derived so the three numbers cannot contradict one another. calculate_bmi
+    # takes weight first.
+    pred_bmi = float(calculate_bmi(pred_weight, pred_height))
 
     results = json.dumps(pred_bmi)
 
