@@ -1,8 +1,10 @@
 """
 Functions related to the Child BMI survey.
 
-Height is served by svr-v2 (see MODEL_VERSION below); weight and BMI are still
-the original svr-v1 artifacts.
+Height and weight are served by svr-v2 (see MODEL_VERSION below); BMI is still
+the original svr-v1 artifact, because BMI is close to unpredictable from this
+data — R2 0.359, where simply predicting the training mean already gets within
+0.7 of svr-v2's error. Retraining it would be churn without a real gain.
 
 Four things in here are deliberate and easy to undo by accident:
 
@@ -40,7 +42,7 @@ SURVEY_FOLDER = "child_bmi"
 
 # Reported to callers so a stored prediction can be attributed to the model that
 # produced it. Bump this whenever a .bin in this folder is replaced.
-MODEL_VERSION = "svr-v2-height"
+MODEL_VERSION = "svr-v2-height-weight"
 
 # Must match `feature_names_in_` on the pickled estimators, in this order.
 FEATURE_ORDER = ["Sex", "Height", "Weight", "Current age", "Age to predict", "BMI"]
