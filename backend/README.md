@@ -11,6 +11,55 @@ From the `backend/` directory:
 
 For the dual ML backend setup (legacy + DASS multiclass), use `docker compose up` from the repository root.
 
+## API authentication
+
+The API accepts Auth0 access tokens (RS256, verified against the tenant's JWKS).
+Set `AUTH0_DOMAIN` and `AUTH0_AUDIENCE` in `backend/.env` -- `AUTH0_AUDIENCE`
+must byte-match the frontend's `REACT_APP_AUTH0_AUDIENCE`, or every token is
+rejected as having the wrong audience.
+
+Every route sits in exactly one tier. `labsurveysbackend/auth0.py` supplies the
+decorators; a route with no decorator is public by construction, so new routes
+should be classified deliberately rather than by omission.
+
+| Tier | Behavior | Routes |
+|------|----------|--------|
+| **Public** | token never read | `GET /`, `GET /surveys/`, `GET /surveys/wakeup`, `GET /surveys/catalog`, `GET /surveys/survey/<id>`, `GET /surveys/participate/<id>` |
+| **Optional** (`@optional_auth`) | anonymous allowed; a signed-in caller is identified. An **invalid** token is still a 401 | `POST /surveys/results` |
+| **Protected** (`@require_auth`) | 401 without a valid token | `GET /surveys/me` |
+| **Staff** (`@require_permission("read:responses")`) | valid token **and** the permission, else 403 | `GET /surveys/history`, `GET /surveys/history/<type>/`, `GET /surveys/download-csv` |
+
+A missing credential and a bad credential are different things. On the optional
+tier, no `Authorization` header means guest, but a forged or expired token is
+rejected -- otherwise an attacker downgrades to guest by sending garbage.
+
+Failures are distinguishable on purpose:
+
+| Status | Meaning |
+|--------|---------|
+| 401 (+ `WWW-Authenticate: Bearer`) | missing, malformed, expired or forged token |
+| 403 | valid token, but the account lacks the required permission |
+| 503 | the Auth0 JWKS endpoint could not be reached |
+| 500 | this server is missing `AUTH0_DOMAIN` / `AUTH0_AUDIENCE` |
+
+### Granting staff access
+
+The staff tier reads the `permissions` claim, which Auth0 only issues when the
+API has RBAC turned on. In the Auth0 dashboard, under **Applications -> APIs ->
+`urn:lab-surveys-backend`**:
+
+1. **Permissions** tab -- add `read:responses` ("Read survey response data").
+2. **Settings** tab -- enable **RBAC** and **Add Permissions in the Access Token**.
+3. **User Management -> Roles** -- create a `lab-admin` role, add the
+   `read:responses` permission to it, and assign the role to each staff account.
+
+Until step 2 is done no token carries permissions and the staff routes return
+403 for everyone, including admins.
+
+Verify with `GET /surveys/me`: it returns the caller's `sub` and `permissions`
+without touching the database, which separates a token problem from a stack
+problem.
+
 ## Development
 
 Please download the 'Prettier - Code formatter' extension on VSCode so we can keep our formatting consistent. This also reduces conflicts when committing code since it'll adjust spacing, tabbing, etc for us.

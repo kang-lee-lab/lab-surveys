@@ -1,7 +1,7 @@
 import csv
 
 from django.http import HttpResponse, JsonResponse
-from labsurveysbackend.auth0 import require_auth
+from labsurveysbackend.auth0 import optional_auth, require_auth, require_permission
 from surveys.survey_registry import build_survey_catalog, get_survey_file_path
 from surveys.utils.asq.asq_survey import asq_calculate_results
 from surveys.utils.child_bmi.child_bmi_survey import child_bmi_calculate_results
@@ -54,8 +54,6 @@ def call_from_db_id(id):
 
 
 def index(request):
-    r = Response(2, "asq", "test1", "test2", datetime.now())
-    r.save()
     return HttpResponse("Hello, world. You're at the survey.")
 
 
@@ -93,7 +91,11 @@ def me(request):
     )
 
 
+# Optional auth: guests may take demo surveys, and a signed-in caller is
+# identified so their submission can be attributed. csrf_exempt stays
+# outermost so the middleware sees the exemption on the final callable.
 @csrf_exempt
+@optional_auth
 def calculate_results(request):
     # throw error if it is not a POST request
     if request.method != "POST":
@@ -254,11 +256,13 @@ def get_survey_questions(request, survey_folder: str) -> List[Any]:
     return questions
 
 
+@require_permission("read:responses")
 def get_history(request):
     data = Response.objects.all()
     serialized_data = [model_to_dict(item) for item in data]
     return JsonResponse(serialized_data, safe=False)
 
+@require_permission("read:responses")
 def history_view(request, response_type):
     # Filter data based on response_type
     filtered_responses = Response.objects.filter(response_type=response_type)
@@ -278,6 +282,7 @@ def history_view(request, response_type):
 
     return JsonResponse(response_data, safe=False)
 
+@require_permission("read:responses")
 def download_csv(request):
     data = Response.objects.all()
     response = HttpResponse(content_type='text/csv')

@@ -51,6 +51,10 @@ Configure `frontend/.env` accordingly (see `frontend/.env.example`).
 
 Never commit `.env` files.
 
+The Auth0 audience must be identical on both sides (`AUTH0_AUDIENCE` and
+`REACT_APP_AUTH0_AUDIENCE`). See [backend/README.md](backend/README.md#api-authentication) for
+the endpoint authentication tiers and how staff access is granted.
+
 ## Development
 
 The `main` branch is protected; changes should come through pull requests.
