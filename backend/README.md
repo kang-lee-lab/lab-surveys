@@ -26,7 +26,7 @@ should be classified deliberately rather than by omission.
 |------|----------|--------|
 | **Public** | token never read | `GET /`, `GET /surveys/`, `GET /surveys/wakeup`, `GET /surveys/catalog`, `GET /surveys/survey/<id>`, `GET /surveys/participate/<id>` |
 | **Optional** (`@optional_auth`) | anonymous allowed; a signed-in caller is identified. An **invalid** token is still a 401 | `POST /surveys/results` |
-| **Protected** (`@require_auth`) | 401 without a valid token | `GET /surveys/me` |
+| **Protected** (`@require_auth`) | 401 without a valid token | `GET /surveys/me`, `GET /surveys/participants/me/responses` |
 | **Staff** (`@require_permission("read:responses")`) | valid token **and** the permission, else 403 | `GET /surveys/history`, `GET /surveys/history/<type>/`, `GET /surveys/download-csv` |
 
 A missing credential and a bad credential are different things. On the optional
@@ -41,6 +41,25 @@ Failures are distinguishable on purpose:
 | 403 | valid token, but the account lacks the required permission |
 | 503 | the Auth0 JWKS endpoint could not be reached |
 | 500 | this server is missing `AUTH0_DOMAIN` / `AUTH0_AUDIENCE` |
+
+### Who owns a response
+
+A signed-in caller is resolved to a `Participant` row keyed on the Auth0 `sub`
+claim -- never on email, which users change and which providers reissue to
+different accounts. There is no registration step: the first authenticated
+request for an unseen `sub` creates the row.
+
+`POST /surveys/results` persists a response **only when the caller is signed
+in**. An anonymous submission is calculated and returned, and nothing reaches
+the database.
+
+`GET /surveys/participants/me/responses` is scoped by the participant resolved
+from the verified token, never by an id the caller supplies, so there is no id
+to forge. If a route ever does accept a response id, it must check ownership
+and answer 404 for unknown and 403 for someone else's -- an unguessable id is
+protection against enumeration, not an authorization check.
+
+Run migrations after pulling: `python manage.py migrate`.
 
 ### Granting staff access
 

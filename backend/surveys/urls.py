@@ -6,6 +6,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("wakeup", views.wakeup, name="wakeup"),
     path("me", views.me, name="me"),
+    path("participants/me/responses", views.my_responses, name="my_responses"),
     path("catalog", views.list_surveys_catalog, name="list_surveys_catalog"),
     path("results", views.calculate_results, name="calculate_results"),
     path('survey/<str:id>', views.get_survey, name="get_survey"),
