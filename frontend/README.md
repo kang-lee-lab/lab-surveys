@@ -32,6 +32,12 @@ Guests keep full access to the demo surveys and send no `Authorization` header
 at all, because an empty `Bearer ` is an invalid credential rather than an
 absent one.
 
+### Pages
+
+`/profile` ("My Surveys") lists the responses attributed to the
+signed-in participant, from `GET /surveys/participants/me/responses`.
+Surveys taken while signed out are not saved to any account.
+
 ### Staff access
 
 Survey history and the CSV export are staff-only. `isStaff` comes from

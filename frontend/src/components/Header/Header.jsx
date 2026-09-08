@@ -19,6 +19,7 @@ function Header() {
         </a>
         <Link to={"/"}>Home</Link>
         <Link to={"/participate"}>Participate</Link>
+        {isAuthenticated && <Link to={"/profile"}>My Surveys</Link>}
       </div>
       <div className="header-right">
         {isAuthenticated ? (
