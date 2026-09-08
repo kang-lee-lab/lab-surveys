@@ -1,6 +1,7 @@
 import csv
 
 from django.http import HttpResponse, JsonResponse
+from labsurveysbackend.auth0 import require_auth
 from surveys.survey_registry import build_survey_catalog, get_survey_file_path
 from surveys.utils.asq.asq_survey import asq_calculate_results
 from surveys.utils.child_bmi.child_bmi_survey import child_bmi_calculate_results
@@ -73,6 +74,23 @@ def wakeup(request):
     except Exception as e:
         logger.warning(f"Wakeup could not preload the ML stack: {e}")
     return JsonResponse({"status": "awake"}, status=200)
+
+
+@require_auth
+def me(request):
+    """Token smoke test: proves an access token validates end to end.
+
+    Deliberately touches nothing else -- no database, no model files, no survey
+    JSON -- so when something breaks it separates "auth is broken" from "the
+    rest of the stack is broken".
+    """
+    if request.method != "GET":
+        return JsonResponse({"message": "Only GET requests are allowed."}, status=400)
+    user = request.auth_user
+    return JsonResponse(
+        {"sub": user.sub, "email": user.email, "permissions": user.permissions},
+        status=200,
+    )
 
 
 @csrf_exempt
