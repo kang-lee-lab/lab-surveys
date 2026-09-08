@@ -61,6 +61,16 @@ protection against enumeration, not an authorization check.
 
 Run migrations after pulling: `python manage.py migrate`.
 
+### Tests
+
+```bash
+python manage.py test
+```
+
+The auth tests need no Auth0 tenant and no network: a locally generated RSA key
+signs real RS256 tokens and the JWKS lookup is stubbed to return the matching
+public key, so the whole validation path runs offline. Backend CI runs them.
+
 ### Granting staff access
 
 The staff tier reads the `permissions` claim, which Auth0 only issues when the

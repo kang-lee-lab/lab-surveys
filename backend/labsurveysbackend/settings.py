@@ -117,8 +117,10 @@ AUTH0_AUDIENCE = os.getenv("AUTH0_AUDIENCE", "")
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv("DB_ENGINE"),
-        'NAME': os.getenv("DB_NAME"),
+        # Default to a local sqlite file so a fresh clone and CI can run the
+        # test suite without any database configuration.
+        'ENGINE': os.getenv("DB_ENGINE", "django.db.backends.sqlite3"),
+        'NAME': os.getenv("DB_NAME", "db.sqlite3"),
         'USER': os.getenv("DB_USER"),
         'PASSWORD': os.getenv("DB_PASSWORD"),
         'HOST': os.getenv("DB_HOST"),
