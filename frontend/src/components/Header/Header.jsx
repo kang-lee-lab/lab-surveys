@@ -1,21 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
 import { useAuth } from "../../contexts/AuthContext";
-import LoginModal from "../LoginModal/LoginModal";
 import logo from "../../assets/images/logos/lab-logo.webp";
 
 function Header() {
-  const { isAuthenticated: isAdminAuthenticated, logout: adminLogout } = useAuth();
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-
-  const {
-    isAuthenticated: isUserAuthenticated,
-    user,
-    loginWithRedirect,
-    logout: auth0Logout,
-  } = useAuth0();
+  const { isAuthenticated, isLoading, isStaff, email, login, logout } = useAuth();
 
   return (
     <div className="header">
@@ -29,40 +19,24 @@ function Header() {
         </a>
         <Link to={"/"}>Home</Link>
         <Link to={"/participate"}>Participate</Link>
-        {!isAdminAuthenticated && (
-          <button className="admin-toggle" onClick={() => setIsLoginModalOpen(true)}>
-            Log In
-          </button>
-        )}
-        {isAdminAuthenticated && (
-          <button className="admin-toggle" onClick={adminLogout}>
-            Log Out
-          </button>
-        )}
       </div>
       <div className="header-right">
-        {isUserAuthenticated ? (
+        {isAuthenticated ? (
           <div className="user-menu">
-            <span className="user-email">{user?.email}</span>
-            <button
-              className="auth-button"
-              onClick={() =>
-                auth0Logout({ logoutParams: { returnTo: window.location.origin } })
-              }
-            >
+            <span className="user-email">
+              {email}
+              {isStaff && <span className="staff-badge"> (staff)</span>}
+            </span>
+            <button className="auth-button" onClick={logout}>
               Sign Out
             </button>
           </div>
         ) : (
-          <button className="auth-button" onClick={() => loginWithRedirect()}>
+          <button className="auth-button" onClick={login} disabled={isLoading}>
             Sign In
           </button>
         )}
       </div>
-      <LoginModal
-        isOpen={isLoginModalOpen}
-        onClose={() => setIsLoginModalOpen(false)}
-      />
     </div>
   );
 }

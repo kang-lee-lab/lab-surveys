@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import { useApi } from "../../api/client";
 import "./SurveyPage.css";
 import SurveyForm from "../../components/SurveyForm/SurveyForm";
 import ErrorPopup from "../../components/ErrorPopup/ErrorPopup";
@@ -29,6 +30,7 @@ function pickApiBaseForSurvey(pythonSurveyName, surveyObj) {
 
 function SurveyPage() {
   const navigate = useNavigate();
+  const { request } = useApi();
   const location = useLocation();
   const [description, setDescription] = useState([]);
   const split = window.location.pathname.split("/");
@@ -78,15 +80,18 @@ function SurveyPage() {
       const pythonSurveyName = surveyName.replaceAll("-", "_");
       const apiBaseForPost = pickApiBaseForSurvey(pythonSurveyName, survey);
 
-      const response = await axios.post(
-        `${apiBaseForPost}/results`,
-        {
+      // Optional-auth route: guests submit anonymously, and a signed-in
+      // participant is identified so the submission can be attributed.
+      const response = await request({
+        method: "post",
+        url: `${apiBaseForPost}/results`,
+        data: {
           survey: survey.survey_id,
           mode: survey.survey_mode,
           data: surveyResponses,
           duration: response_duration,
-        }
-      );
+        },
+      });
       navigate(location.pathname + "/results", { state: response.data });
     }
   };

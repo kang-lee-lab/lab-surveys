@@ -27,3 +27,7 @@ td {
     text-align: left;
     border:1px solid black;
 }
+
+.history-error {
+  color: #b00020;
+}
