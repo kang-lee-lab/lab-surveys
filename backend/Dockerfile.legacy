@@ -19,6 +19,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY docker/legacy/requirements-legacy.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Auth0 token validation needs PyJWT. Kept in its own layer so adding it
+# does not invalidate the expensive ML dependency install above.
+RUN pip install --no-cache-dir --timeout 120 --retries 10 PyJWT==2.8.0
+
 # Copy the Django app code
 COPY . /app
 

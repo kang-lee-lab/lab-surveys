@@ -1,13 +1,62 @@
+# Local development only. Production uses Heroku for the backends and a managed
+# Postgres; point DB_* at that instead of this service.
 services:
-  # Legacy ML backend — sklearn 1.0.2 (ASQ, DASS, MMPI, NAFLD, Child BMI)
+  # Local Postgres, so development does not depend on the shared Supabase
+  # instance (which also sleeps on the free tier).
+  postgres:
+    image: postgres:16
+    ports:
+      # Host 5434: 5432 may be a native Postgres and 5433 is taken by the
+      # llm_psych_assessment stack.
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: lab_surveys
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d lab_surveys"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # One-shot: bring the schema up before either backend serves traffic, so the
+  # two of them never race to apply the same migrations.
+  migrate:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.legacy
+    image: lab-surveys-legacy
+    command: python manage.py migrate
+    environment: &backend_env
+      PYTHONUNBUFFERED: 1
+      DB_ENGINE: django.db.backends.postgresql
+      DB_NAME: lab_surveys
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: postgres
+      DB_PORT: 5432
+      AUTH0_DOMAIN: ${AUTH0_DOMAIN:-dev-id2r2nb0y8g8mxq1.us.auth0.com}
+      AUTH0_AUDIENCE: ${AUTH0_AUDIENCE:-urn:lab-surveys-backend}
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # Legacy ML backend — sklearn 1.0.2 (ASQ, DASS, MMPI, NAFLD, Child BMI).
+  # These models were pickled under 1.0.2 and cannot be unpickled by 1.4.2, so
+  # they only run in this image.
   legacy_backend:
     build:
       context: ./backend
       dockerfile: Dockerfile.legacy
+    image: lab-surveys-legacy
     ports:
       - "8000:8000"
-    environment:
-      - PYTHONUNBUFFERED=1
+    environment: *backend_env
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
 
   # Modern ML backend — sklearn 1.4.2 (DASS Multiclass Anxiety)
   modern_backend:
@@ -16,5 +65,10 @@ services:
       dockerfile: Dockerfile.modern
     ports:
       - "8001:8000"
-    environment:
-      - PYTHONUNBUFFERED=1
+    environment: *backend_env
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+
+volumes:
+  postgres_data:

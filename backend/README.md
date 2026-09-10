@@ -7,9 +7,14 @@ Django API for the Kang Lee Lab Surveys website. See the [repository root README
 From the `backend/` directory:
 
 1. `pip install -r requirements.txt`
-2. `python manage.py runserver`
+2. `docker compose up -d postgres` from the repository root, for the local database
+3. `python manage.py migrate`
+4. `python manage.py runserver`
 
-For the dual ML backend setup (legacy + DASS multiclass), use `docker compose up` from the repository root.
+Note that ASQ, DASS, MMPI, NAFLD and Child BMI only work under `docker compose
+up` from the repository root: their models were pickled under scikit-learn 1.0.2
+and cannot be unpickled by the 1.4.2 pinned here, so a native server returns a
+500 for them. See the [root README](../README.md#backend-and-database-docker--the-normal-path).
 
 ## API authentication
 
