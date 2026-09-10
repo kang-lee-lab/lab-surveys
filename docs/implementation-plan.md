@@ -32,9 +32,9 @@ This document outlines the roadmap to make the React + Django application metada
 | Survey questions | `SurveyPage` + JSON from `GET /survey/{id}` | Multi-page surveys (`pages[1+]`) not navigated |
 | Homepage | Hardcoded `*-surveys.json` | `GET /catalog` exists but unused |
 | Results | Hardcoded `ResultsPage.jsx` per `survey_id` | `results_EN.json` ignored for display |
-| Persistence | `Response` model + `post_to_db` | `post_to_db` commented out in `calculate_results` |
+| Persistence | `Response` model + `post_to_db`, saving for signed-in participants | Anonymous submissions are not stored |
 | Data collection | Manga flow prototype | Hardcoded list; consent not stored; manga not saved |
-| Auth | Auth0 sign-in UI; local admin for history/CSV | No user FK on responses; JWT not validated on API |
+| Auth | Auth0 end to end: JWT validated on the API, `Participant` FK on responses, staff routes behind the `read:responses` permission | Consent records not yet linked (Phase 3) |
 | Validation | JSON schemas in `backend/surveys/static/schemas/` | No automated validation in CI |
 
 ---

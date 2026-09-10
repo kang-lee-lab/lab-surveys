@@ -34,22 +34,19 @@ That starts everything development needs:
 | `legacy_backend` | http://127.0.0.1:8000 | sklearn 1.0.2 — ASQ, DASS, MMPI, NAFLD, Child BMI |
 | `modern_backend` | http://127.0.0.1:8001 | sklearn 1.4.2 — DASS Multiclass Anxiety |
 
-**Most surveys only work in Docker.** Their models were pickled under
-scikit-learn 1.0.2 and cannot be unpickled by the 1.4.2 in `requirements.txt` --
-a native server answers `POST /surveys/results` with a 500 for those surveys.
-The two images exist precisely because the two sets of models need different
-scikit-learn versions.
+**ASQ, DASS, MMPI, NAFLD and Child BMI only work in Docker** — their models
+need scikit-learn 1.0.2, and `requirements.txt` pins 1.4.2, so a native server
+returns a 500 for them.
 
-Host port 5434 avoids clashing with a native Postgres on 5432 and with the
-llm_psych_assessment stack on 5433. Data lives in the
-`postgres_data` volume and survives `docker compose down`; add `-v` to discard it.
+Postgres data lives in the `postgres_data` volume and survives
+`docker compose down`; add `-v` to discard it. Development does not use
+Supabase; production points `DB_*` at its own managed database.
 
-Development does not use Supabase. Production points `DB_*` at its own managed
-database.
+Schema and API tiers: [backend/README.md](backend/README.md#database).
 
 ### Backend (native, without Docker)
 
-Useful for the tests and for the surveys that need no legacy model:
+For the tests and the surveys needing no legacy model:
 
 ```bash
 cd backend
@@ -69,9 +66,7 @@ python manage.py runserver
 
 Never commit `.env` files.
 
-The Auth0 audience must be identical on both sides (`AUTH0_AUDIENCE` and
-`REACT_APP_AUTH0_AUDIENCE`). See [backend/README.md](backend/README.md#api-authentication) for
-the endpoint authentication tiers and how staff access is granted.
+`AUTH0_AUDIENCE` and `REACT_APP_AUTH0_AUDIENCE` must be identical.
 
 ## Development
 

@@ -18,81 +18,77 @@ and cannot be unpickled by the 1.4.2 pinned here, so a native server returns a
 
 ## API authentication
 
-The API accepts Auth0 access tokens (RS256, verified against the tenant's JWKS).
-Set `AUTH0_DOMAIN` and `AUTH0_AUDIENCE` in `backend/.env` -- `AUTH0_AUDIENCE`
-must byte-match the frontend's `REACT_APP_AUTH0_AUDIENCE`, or every token is
-rejected as having the wrong audience.
+Auth0 access tokens, RS256, verified against the tenant JWKS. Set `AUTH0_DOMAIN`
+and `AUTH0_AUDIENCE` in `backend/.env`; `AUTH0_AUDIENCE` must match the
+frontend's `REACT_APP_AUTH0_AUDIENCE` exactly.
 
-Every route sits in exactly one tier. `labsurveysbackend/auth0.py` supplies the
-decorators; a route with no decorator is public by construction, so new routes
-should be classified deliberately rather than by omission.
+Decorators are in `labsurveysbackend/auth0.py`. An undecorated route is public.
 
-| Tier | Behavior | Routes |
-|------|----------|--------|
-| **Public** | token never read | `GET /`, `GET /surveys/`, `GET /surveys/wakeup`, `GET /surveys/catalog`, `GET /surveys/survey/<id>`, `GET /surveys/participate/<id>` |
-| **Optional** (`@optional_auth`) | anonymous allowed; a signed-in caller is identified. An **invalid** token is still a 401 | `POST /surveys/results` |
-| **Protected** (`@require_auth`) | 401 without a valid token | `GET /surveys/me`, `GET /surveys/participants/me/responses` |
-| **Staff** (`@require_permission("read:responses")`) | valid token **and** the permission, else 403 | `GET /surveys/history`, `GET /surveys/history/<type>/`, `GET /surveys/download-csv` |
+| Tier | Decorator | Routes |
+|------|-----------|--------|
+| Public | — | `GET /`, `/surveys/`, `/surveys/wakeup`, `/surveys/catalog`, `/surveys/survey/<id>`, `/surveys/participate/<id>` |
+| Optional | `@optional_auth` | `POST /surveys/results` |
+| Protected | `@require_auth` | `GET /surveys/me`, `GET /surveys/participants/me/responses` |
+| Staff | `@require_permission("read:responses")` | `GET /surveys/history`, `/surveys/history/<type>/`, `/surveys/download-csv` |
 
-A missing credential and a bad credential are different things. On the optional
-tier, no `Authorization` header means guest, but a forged or expired token is
-rejected -- otherwise an attacker downgrades to guest by sending garbage.
-
-Failures are distinguishable on purpose:
+On the optional tier, no token means guest; an invalid token is still a 401.
 
 | Status | Meaning |
 |--------|---------|
-| 401 (+ `WWW-Authenticate: Bearer`) | missing, malformed, expired or forged token |
-| 403 | valid token, but the account lacks the required permission |
-| 503 | the Auth0 JWKS endpoint could not be reached |
-| 500 | this server is missing `AUTH0_DOMAIN` / `AUTH0_AUDIENCE` |
+| 401 | missing, malformed, expired or forged token |
+| 403 | valid token, account lacks the permission |
+| 503 | Auth0 JWKS unreachable |
+| 500 | `AUTH0_DOMAIN` / `AUTH0_AUDIENCE` not set |
 
-### Who owns a response
+`GET /surveys/me` returns `{sub, email, permissions}` and touches no database —
+use it to check a token.
 
-A signed-in caller is resolved to a `Participant` row keyed on the Auth0 `sub`
-claim -- never on email, which users change and which providers reissue to
-different accounts. There is no registration step: the first authenticated
-request for an unseen `sub` creates the row.
+### Granting staff access
 
-`POST /surveys/results` persists a response **only when the caller is signed
-in**. An anonymous submission is calculated and returned, and nothing reaches
-the database.
+Auth0 dashboard, under **Applications → APIs → `urn:lab-surveys-backend`**:
 
-`GET /surveys/participants/me/responses` is scoped by the participant resolved
-from the verified token, never by an id the caller supplies, so there is no id
-to forge. If a route ever does accept a response id, it must check ownership
-and answer 404 for unknown and 403 for someone else's -- an unguessable id is
-protection against enumeration, not an authorization check.
+1. **Permissions** — add `read:responses`.
+2. **Settings** — enable **RBAC** and **Add Permissions in the Access Token**.
+3. **User Management → Roles** — create `lab-admin`, give it `read:responses`,
+   assign it to each staff account.
 
-Run migrations after pulling: `python manage.py migrate`.
+Without step 2 no token carries permissions and the staff routes return 403 for
+everyone, including admins.
 
-### Tests
+## Database
+
+Two tables. Run `python manage.py migrate` after pulling.
+
+```
+surveys_participant                    surveys_response
+────────────────────────               ─────────────────────────────
+id          bigint PK ◄────────┐       id                 int PK
+auth0_sub   varchar(255) UNIQUE└───────participant_id     bigint FK, nullable
+email       varchar(254) nullable       response_type     varchar(100)
+created_at  timestamptz                 response_answers  jsonb
+updated_at  timestamptz                 response_results  jsonb
+                                        response_date     date
+                                        response_time     time
+                                        response_duration interval
+```
+
+- A participant row is created on the first authenticated request for an unseen
+  Auth0 `sub`. There is no registration step.
+- `POST /surveys/results` stores a response only when the caller is signed in.
+  Anonymous submissions return results and are not stored.
+- `participant_id` is null only on rows predating sign-in. Deleting a
+  participant cascades to their responses.
+- `email` fills in only if the access token carries an email claim, which Auth0
+  does not include by default.
+- `GET /surveys/participants/me/responses` is scoped to the caller's token.
+
+## Tests
 
 ```bash
 python manage.py test
 ```
 
-The auth tests need no Auth0 tenant and no network: a locally generated RSA key
-signs real RS256 tokens and the JWKS lookup is stubbed to return the matching
-public key, so the whole validation path runs offline. Backend CI runs them.
-
-### Granting staff access
-
-The staff tier reads the `permissions` claim, which Auth0 only issues when the
-API has RBAC turned on. In the Auth0 dashboard, under **Applications -> APIs ->
-`urn:lab-surveys-backend`**:
-
-1. **Permissions** tab -- add `read:responses` ("Read survey response data").
-2. **Settings** tab -- enable **RBAC** and **Add Permissions in the Access Token**.
-3. **User Management -> Roles** -- create a `lab-admin` role, add the
-   `read:responses` permission to it, and assign the role to each staff account.
-
-Until step 2 is done no token carries permissions and the staff routes return
-403 for everyone, including admins.
-
-Verify with `GET /surveys/me`: it returns the caller's `sub` and `permissions`
-without touching the database, which separates a token problem from a stack
-problem.
+Runs offline — no Auth0 tenant or network needed. Backend CI runs them.
 
 ## Development
 
