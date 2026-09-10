@@ -107,10 +107,15 @@ def calculate_results(request):
                 pred_height,
                 pred_weight,
                 pred_bmi,
+                intervals,
             ) = child_bmi_calculate_results(request_body["data"], "EN")
             data["pred_height"] = pred_height
             data["pred_weight"] = pred_weight
             data["pred_bmi"] = pred_bmi
+            # Calibrated uncertainty, present from gbm-v1 onward and absent for
+            # older models. Additive, so clients that ignore it are unaffected.
+            if intervals:
+                data["prediction_intervals"] = intervals
             data["age_to_predict"] = request_body["data"]["Age to predict"]
             # Reported so a stored prediction can be attributed to the model that
             # produced it; callers previously had to hardcode a version string.
