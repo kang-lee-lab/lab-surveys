@@ -1,0 +1,246 @@
+{
+  "version": "gbm-v1",
+  "created_utc": "2026-09-10T18:52:59+00:00",
+  "data_file": "growth_pairs.csv",
+  "data_sha256_16": "5294c4c8047f0688",
+  "rows_used": 27493,
+  "groups": 1276,
+  "split": "group",
+  "seed": 42,
+  "features": [
+    "Sex",
+    "Height",
+    "Weight",
+    "Current age",
+    "Age to predict",
+    "BMI",
+    "height_z",
+    "weight_z",
+    "bmi_z"
+  ],
+  "estimator": "gbm",
+  "target_space": "dz",
+  "search_sample": null,
+  "wrapper": "scripts/growth_model.py:GrowthPredictor  (must be importable to unpickle)",
+  "sex_encoding": {
+    "male": 1,
+    "female": 0
+  },
+  "python": "3.9.6",
+  "scikit_learn": "1.4.2",
+  "targets": {
+    "height_1": {
+      "artifact": "childbmi_model_height.bin",
+      "params": {
+        "model__l2_regularization": "1.0",
+        "model__learning_rate": "0.03",
+        "model__max_leaf_nodes": "15",
+        "model__min_samples_leaf": "20"
+      },
+      "cv_mae_train": 0.40740601225867856,
+      "holdout": {
+        "mae": 2.773437144671357,
+        "rmse": 3.9455263928465656,
+        "r2": 0.9349308652972869,
+        "n": 5473
+      },
+      "naive_centile": {
+        "mae": 3.255029807317903,
+        "rmse": 4.984552143121908,
+        "r2": 0.896147390685184,
+        "n": 5473
+      },
+      "interval": {
+        "nominal": 0.8,
+        "coverage": 0.79974419879408,
+        "median_width": 8.444793828957103,
+        "by_horizon": [
+          {
+            "horizon": "0-2",
+            "n": 1206,
+            "coverage": 0.7777777777777778,
+            "median_width": 4.1983798580787095
+          },
+          {
+            "horizon": "2-4",
+            "n": 1488,
+            "coverage": 0.823252688172043,
+            "median_width": 7.003898661123159
+          },
+          {
+            "horizon": "4-6",
+            "n": 1838,
+            "coverage": 0.8150163220892275,
+            "median_width": 9.497798427166018
+          },
+          {
+            "horizon": "6-8",
+            "n": 99,
+            "coverage": 0.7171717171717171,
+            "median_width": 9.765035700127896
+          },
+          {
+            "horizon": "8-10",
+            "n": 211,
+            "coverage": 0.8530805687203792,
+            "median_width": 14.302029674182535
+          },
+          {
+            "horizon": "10-13",
+            "n": 362,
+            "coverage": 0.7707182320441989,
+            "median_width": 16.772821251896318
+          },
+          {
+            "horizon": "13-100",
+            "n": 269,
+            "coverage": 0.6914498141263941,
+            "median_width": 14.753725517589231
+          }
+        ]
+      }
+    },
+    "weight_1": {
+      "artifact": "childbmi_model_weight.bin",
+      "params": {
+        "model__l2_regularization": "0.0",
+        "model__learning_rate": "0.03",
+        "model__max_leaf_nodes": "15",
+        "model__min_samples_leaf": "20"
+      },
+      "cv_mae_train": 0.4596175421480607,
+      "holdout": {
+        "mae": 4.159658723254813,
+        "rmse": 6.229460988039732,
+        "r2": 0.8195309034142355,
+        "n": 5473
+      },
+      "naive_centile": {
+        "mae": 4.825969835042239,
+        "rmse": 12.286025370260948,
+        "r2": 0.29805334533455086,
+        "n": 5470
+      },
+      "interval": {
+        "nominal": 0.8,
+        "coverage": 0.7928010232048237,
+        "median_width": 11.78442194981249,
+        "by_horizon": [
+          {
+            "horizon": "0-2",
+            "n": 1206,
+            "coverage": 0.7943615257048093,
+            "median_width": 4.7474078563679125
+          },
+          {
+            "horizon": "2-4",
+            "n": 1488,
+            "coverage": 0.801747311827957,
+            "median_width": 9.130602544748594
+          },
+          {
+            "horizon": "4-6",
+            "n": 1838,
+            "coverage": 0.8041349292709467,
+            "median_width": 14.708362271567257
+          },
+          {
+            "horizon": "6-8",
+            "n": 99,
+            "coverage": 0.7575757575757576,
+            "median_width": 12.735208252403623
+          },
+          {
+            "horizon": "8-10",
+            "n": 211,
+            "coverage": 0.8056872037914692,
+            "median_width": 18.717768355232277
+          },
+          {
+            "horizon": "10-13",
+            "n": 362,
+            "coverage": 0.7541436464088398,
+            "median_width": 19.360634500626958
+          },
+          {
+            "horizon": "13-100",
+            "n": 269,
+            "coverage": 0.7137546468401487,
+            "median_width": 21.03819300594194
+          }
+        ]
+      }
+    },
+    "bmi1": {
+      "artifact": "childbmi_model_bmi.bin",
+      "params": {
+        "model__l2_regularization": "0.0",
+        "model__learning_rate": "0.03",
+        "model__max_leaf_nodes": "15",
+        "model__min_samples_leaf": "20"
+      },
+      "cv_mae_train": 0.5349084188264225,
+      "holdout": {
+        "mae": 1.6747049137945573,
+        "rmse": 2.451220182246084,
+        "r2": 0.6650371960485404,
+        "n": 5473
+      },
+      "naive_centile": {
+        "mae": 2.228899740692413,
+        "rmse": 6.10052267182191,
+        "r2": -1.1188105532164196,
+        "n": 5433
+      },
+      "interval": {
+        "nominal": 0.8,
+        "coverage": 0.7878280290340591,
+        "median_width": 4.652670900303399,
+        "by_horizon": [
+          {
+            "horizon": "0-2",
+            "n": 1204,
+            "coverage": 0.803156146179402,
+            "median_width": 2.6229553818292475
+          },
+          {
+            "horizon": "2-4",
+            "n": 1450,
+            "coverage": 0.8,
+            "median_width": 3.8919352690628077
+          },
+          {
+            "horizon": "4-6",
+            "n": 1778,
+            "coverage": 0.8093363329583803,
+            "median_width": 5.517504220939413
+          },
+          {
+            "horizon": "6-8",
+            "n": 99,
+            "coverage": 0.7474747474747475,
+            "median_width": 4.1544893506514775
+          },
+          {
+            "horizon": "8-10",
+            "n": 211,
+            "coverage": 0.7488151658767772,
+            "median_width": 6.108424588311383
+          },
+          {
+            "horizon": "10-13",
+            "n": 362,
+            "coverage": 0.7596685082872928,
+            "median_width": 5.896448769843281
+          },
+          {
+            "horizon": "13-100",
+            "n": 269,
+            "coverage": 0.5947955390334573,
+            "median_width": 4.902999442439587
+          }
+        ]
+      }
+    }
+  }
+}
