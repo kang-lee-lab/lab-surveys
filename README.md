@@ -7,42 +7,67 @@ Computational survey tools for the Kang Lee Development Lab. The current stack i
 | `frontend/` | React UI (Create React App) |
 | `backend/` | Django API, survey definitions, ML models |
 
-## Running locally
+## Quickstart
 
-### Frontend
+Prerequisites: Docker Desktop, Node 18+.
 
 ```bash
+# 1. Database, migrations and both backends (from the repository root)
+cp backend/.env.example backend/.env
+docker compose up --build -d
+
+# 2. Frontend
 cd frontend
 npm install
-cp .env.example .env   # then edit as needed
-npm start              # http://localhost:3000
+cp .env.example .env
+npm start
 ```
 
-### Backend and database (Docker — the normal path)
+Open **http://localhost:3000**.
+
+Both `.env.example` files are pre-filled for local development, Auth0 dev tenant
+included, so nothing needs editing to get started.
+
+First build takes several minutes; afterwards `docker compose up -d` is seconds.
+
+Check the backends are up:
 
 ```bash
-cp backend/.env.example backend/.env   # then edit as needed
-docker compose up --build
+curl http://127.0.0.1:8000/surveys/wakeup   # {"status": "awake"}
+curl http://127.0.0.1:8001/surveys/wakeup   # {"status": "awake"}
 ```
 
-That starts everything development needs:
+Stop with `docker compose down`, or `docker compose down -v` to discard the
+database too.
+
+### What is running
 
 | Service | Address | Notes |
 |---------|---------|-------|
-| `postgres` | `localhost:5434` | local dev database (`lab_surveys`, `postgres`/`postgres`) |
-| `migrate` | — | one-shot; applies migrations, then the backends start |
+| frontend | http://localhost:3000 | the app |
 | `legacy_backend` | http://127.0.0.1:8000 | sklearn 1.0.2 — ASQ, DASS, MMPI, NAFLD, Child BMI |
 | `modern_backend` | http://127.0.0.1:8001 | sklearn 1.4.2 — DASS Multiclass Anxiety |
+| `postgres` | `localhost:5434` | database `lab_surveys`, user/password `postgres` |
+| `migrate` | — | one-shot; applies migrations before the backends start |
 
 **ASQ, DASS, MMPI, NAFLD and Child BMI only work in Docker** — their models
 need scikit-learn 1.0.2, and `requirements.txt` pins 1.4.2, so a native server
 returns a 500 for them.
 
 Postgres data lives in the `postgres_data` volume and survives
-`docker compose down`; add `-v` to discard it. Development does not use
-Supabase; production points `DB_*` at its own managed database.
+`docker compose down`. Development does not use Supabase; production points
+`DB_*` at its own managed database.
 
 Schema and API tiers: [backend/README.md](backend/README.md#database).
+
+### If something does not start
+
+| Symptom | Fix |
+|---------|-----|
+| `Bind for 0.0.0.0:5434 failed: port is already allocated` | another stack holds the port; change the `postgres` host port in `docker-compose.yml` and `DB_PORT` in `backend/.env` |
+| `Something is already running on port 3000` | an old `npm start` is still alive; stop it |
+| Build fails on a pip read timeout | rerun `docker compose build`; it resumes from the layer cache |
+| History or CSV export returns 403 while signed in | Auth0 RBAC is not enabled — see [backend/README.md](backend/README.md#granting-staff-access) |
 
 ### Backend (native, without Docker)
 
