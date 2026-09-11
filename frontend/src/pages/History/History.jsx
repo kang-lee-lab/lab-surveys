@@ -1,30 +1,55 @@
 import React, { useEffect, useState } from "react";
 import "./History.css";
-import axios from "axios";
+import { API_BASE, ForbiddenError, UnauthorizedError, useApi } from "../../api/client";
+import { useAuth } from "../../contexts/AuthContext";
 import physicalSurveys from "../../data/physical-surveys.json";
 import physiologySurveys from "../../data/physiology-surveys.json";
 import psychologySurveys from "../../data/psychology-surveys.json";
 
 function History() {
   const [data, setData] = useState([]);
+  const [error, setError] = useState("");
+  const { request } = useApi();
+  const { isAuthenticated, isLoading } = useAuth();
   const split = window.location.pathname.split("/");
   const surveyName = split[2];
 
   useEffect(() => {
+    // Wait for the SDK to restore the session; it reports signed-out until it
+    // has, which would fetch without a token and 401 on every page load.
+    if (isLoading) return;
+
+    let cancelled = false;
     const fetchData = async () => {
+      // Response data belongs to whoever is signed in now, so drop whatever the
+      // previous identity was shown before asking again.
+      setData([]);
+      setError("");
       try {
         const responseType = surveyName.replaceAll("-", "_");
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_ADDRESS}/history/${responseType}/`
-        );
-        setData(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
+        const response = await request({
+          method: "get",
+          url: `${API_BASE}/history/${responseType}/`,
+        });
+        if (!cancelled) setData(response.data);
+      } catch (err) {
+        if (cancelled) return;
+        if (err instanceof UnauthorizedError) {
+          setError("Sign in with a lab account to view response history.");
+        } else if (err instanceof ForbiddenError) {
+          setError("This account does not have access to response history.");
+        } else {
+          console.error("Error fetching data:", err);
+          setError("Could not load response history.");
+        }
       }
     };
 
     fetchData();
-  }, [surveyName]);
+    return () => {
+      cancelled = true;
+    };
+  }, [surveyName, request, isAuthenticated, isLoading]);
 
   const formatAnswers = (answers, questions) => {
     const formattedAnswers = [];
@@ -92,10 +117,12 @@ function History() {
 
   const handleDownload = async () => {
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_ADDRESS}/survey/download-csv`
-      );
-      const blob = await response.blob();
+      const response = await request({
+        method: "get",
+        url: `${API_BASE}/download-csv`,
+        responseType: "blob",
+      });
+      const blob = response.data;
       const url = window.URL.createObjectURL(new Blob([blob]));
       const a = document.createElement("a");
       a.href = url;
@@ -103,8 +130,13 @@ function History() {
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-    } catch (error) {
-      console.error("Error downloading CSV:", error);
+    } catch (err) {
+      console.error("Error downloading CSV:", err);
+      setError(
+        err instanceof UnauthorizedError || err instanceof ForbiddenError
+          ? "This account does not have access to the CSV export."
+          : "Could not download the CSV."
+      );
     }
   };
 
@@ -120,6 +152,8 @@ function History() {
         }{" "}
         History
       </h1>
+
+      {error && <p className="history-error">{error}</p>}
 
       <button onClick={handleDownload}>Download CSV</button>
       <br />

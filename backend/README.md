@@ -7,9 +7,88 @@ Django API for the Kang Lee Lab Surveys website. See the [repository root README
 From the `backend/` directory:
 
 1. `pip install -r requirements.txt`
-2. `python manage.py runserver`
+2. `docker compose up -d postgres` from the repository root, for the local database
+3. `python manage.py migrate`
+4. `python manage.py runserver`
 
-For the dual ML backend setup (legacy + DASS multiclass), use `docker compose up` from the repository root.
+Note that ASQ, DASS, MMPI, NAFLD and Child BMI only work under `docker compose
+up` from the repository root: their models were pickled under scikit-learn 1.0.2
+and cannot be unpickled by the 1.4.2 pinned here, so a native server returns a
+500 for them. See the [root README](../README.md#backend-and-database-docker--the-normal-path).
+
+## API authentication
+
+Auth0 access tokens, RS256, verified against the tenant JWKS. Set `AUTH0_DOMAIN`
+and `AUTH0_AUDIENCE` in `backend/.env`; `AUTH0_AUDIENCE` must match the
+frontend's `REACT_APP_AUTH0_AUDIENCE` exactly.
+
+Decorators are in `labsurveysbackend/auth0.py`. An undecorated route is public.
+
+| Tier | Decorator | Routes |
+|------|-----------|--------|
+| Public | — | `GET /`, `/surveys/`, `/surveys/wakeup`, `/surveys/catalog`, `/surveys/survey/<id>`, `/surveys/participate/<id>` |
+| Optional | `@optional_auth` | `POST /surveys/results` |
+| Protected | `@require_auth` | `GET /surveys/me`, `GET /surveys/participants/me/responses` |
+| Staff | `@require_permission("read:responses")` | `GET /surveys/history`, `/surveys/history/<type>/`, `/surveys/download-csv` |
+
+On the optional tier, no token means guest; an invalid token is still a 401.
+
+| Status | Meaning |
+|--------|---------|
+| 401 | missing, malformed, expired or forged token |
+| 403 | valid token, account lacks the permission |
+| 503 | Auth0 JWKS unreachable |
+| 500 | `AUTH0_DOMAIN` / `AUTH0_AUDIENCE` not set |
+
+`GET /surveys/me` returns `{sub, email, permissions}` and touches no database —
+use it to check a token.
+
+### Granting staff access
+
+Auth0 dashboard, under **Applications → APIs → `urn:lab-surveys-backend`**:
+
+1. **Permissions** — add `read:responses`.
+2. **Settings** — enable **RBAC** and **Add Permissions in the Access Token**.
+3. **User Management → Roles** — create `lab-admin`, give it `read:responses`,
+   assign it to each staff account.
+
+Without step 2 no token carries permissions and the staff routes return 403 for
+everyone, including admins.
+
+## Database
+
+Two tables. Run `python manage.py migrate` after pulling.
+
+```
+surveys_participant                    surveys_response
+────────────────────────               ─────────────────────────────
+id          bigint PK ◄────────┐       id                 int PK
+auth0_sub   varchar(255) UNIQUE└───────participant_id     bigint FK, nullable
+email       varchar(254) nullable       response_type     varchar(100)
+created_at  timestamptz                 response_answers  jsonb
+updated_at  timestamptz                 response_results  jsonb
+                                        response_date     date
+                                        response_time     time
+                                        response_duration interval
+```
+
+- A participant row is created on the first authenticated request for an unseen
+  Auth0 `sub`. There is no registration step.
+- `POST /surveys/results` stores a response only when the caller is signed in.
+  Anonymous submissions return results and are not stored.
+- `participant_id` is null only on rows predating sign-in. Deleting a
+  participant cascades to their responses.
+- `email` fills in only if the access token carries an email claim, which Auth0
+  does not include by default.
+- `GET /surveys/participants/me/responses` is scoped to the caller's token.
+
+## Tests
+
+```bash
+python manage.py test
+```
+
+Runs offline — no Auth0 tenant or network needed. Backend CI runs them.
 
 ## Development
 

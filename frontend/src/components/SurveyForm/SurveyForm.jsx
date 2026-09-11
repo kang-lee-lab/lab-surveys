@@ -9,7 +9,7 @@ function SurveyForm(props) {
   const [responses, setResponses] = useState({});
   const [validResponses, setValidResponses] = useState(0);
   const totalQuestions = useRef(0);
-  const { isAuthenticated } = useAuth();
+  const { isStaff } = useAuth();
   const [validationMessages, setValidationMessages] = useState({});
 
   const [isFormValid, setIsFormValid] = useState(true);
@@ -230,7 +230,7 @@ function SurveyForm(props) {
           <span>Return to Home</span>
         </button>
 
-        {isAuthenticated && (
+        {isStaff && (
           <button id="history-button" onClick={handleNextClick}>
             <span>History</span>
           </button>

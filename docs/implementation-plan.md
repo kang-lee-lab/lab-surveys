@@ -32,9 +32,9 @@ This document outlines the roadmap to make the React + Django application metada
 | Survey questions | `SurveyPage` + JSON from `GET /survey/{id}` | Multi-page surveys (`pages[1+]`) not navigated |
 | Homepage | Hardcoded `*-surveys.json` | `GET /catalog` exists but unused |
 | Results | Hardcoded `ResultsPage.jsx` per `survey_id` | `results_EN.json` ignored for display |
-| Persistence | `Response` model + `post_to_db` | `post_to_db` commented out in `calculate_results` |
+| Persistence | `Response` model + `post_to_db`, saving for signed-in participants | Anonymous submissions are not stored |
 | Data collection | Manga flow prototype | Hardcoded list; consent not stored; manga not saved |
-| Auth | Auth0 sign-in UI; local admin for history/CSV | No user FK on responses; JWT not validated on API |
+| Auth | Auth0 end to end: JWT validated on the API, `Participant` FK on responses, staff routes behind the `read:responses` permission | Consent records not yet linked (Phase 3) |
 | Validation | JSON schemas in `backend/surveys/static/schemas/` | No automated validation in CI |
 
 ---
@@ -180,7 +180,7 @@ This document outlines the roadmap to make the React + Django application metada
 | Auth0 token on API calls | Axios interceptor adds `Authorization: Bearer` |
 | Profile page | `/profile` — consents + survey history |
 | Header | “My surveys” when signed in |
-| Clarify roles | Auth0 = participant; env-based admin login = lab staff only (or migrate admin to Auth0 roles) |
+| Clarify roles | Done: staff are Auth0 accounts holding the `read:responses` permission; the env-based admin login has been removed |
 
 **Acceptance criteria**
 
@@ -386,7 +386,6 @@ Data collection: `consent_id` required; `participant_id` required when Phase 4 i
 ## Out of scope (for now)
 
 - Public self-registration (accounts created manually in Auth0 per ARCHITECTURE.md)
-- Replacing local admin login (can stay until Auth0 roles are ready)
 - French (`FR`) and additional locales beyond EN/CH
 - Real-time collaboration or in-survey chat
 

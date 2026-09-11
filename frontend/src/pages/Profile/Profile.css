@@ -1,0 +1,29 @@
+.profile-container {
+  padding: 2rem;
+}
+
+.profile-email {
+  opacity: 0.7;
+}
+
+.profile-error {
+  color: #b00020;
+}
+
+.profile-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.profile-table th,
+.profile-table td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.profile-results {
+  margin: 0;
+  padding-left: 1rem;
+}

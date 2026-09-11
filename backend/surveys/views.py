@@ -1,6 +1,7 @@
 import csv
 
 from django.http import HttpResponse, JsonResponse
+from labsurveysbackend.auth0 import optional_auth, require_auth, require_permission
 from surveys.survey_registry import build_survey_catalog, get_survey_file_path
 from surveys.utils.asq.asq_survey import asq_calculate_results
 from surveys.utils.child_bmi.child_bmi_survey import child_bmi_calculate_results
@@ -13,7 +14,7 @@ from surveys.utils.sample_survey.sample_survey import sample_survey_calculate_re
 from django.views.decorators.csrf import csrf_exempt
 import json
 
-from .models import Response
+from .models import Participant, Response
 from datetime import datetime
 from django.forms.models import model_to_dict
 from datetime import timedelta
@@ -29,19 +30,38 @@ if not hasattr(collections, 'Mapping'):
 
 logger = logging.getLogger(__name__)
 
-def post_to_db(response_type, response_answers, response_results, response_duration):
+def ensure_participant(auth_user):
+    """Get-or-create the participant row for a verified caller.
+
+    get_or_create is the right primitive here rather than a get-then-create:
+    two requests from the same new user can race, which a SPA firing parallel
+    calls right after login does routinely, and it recovers from the resulting
+    IntegrityError by re-selecting. The UNIQUE constraint on auth0_sub is what
+    makes that recovery correct instead of hopeful.
+    """
+    participant, _ = Participant.objects.get_or_create(
+        auth0_sub=auth_user.sub,
+        defaults={"email": auth_user.email},
+    )
+    return participant
+
+
+def post_to_db(
+    response_type, response_answers, response_results, response_duration, participant
+):
     time = datetime.now()
     date = time.date()
     # change response_duration to seconds
     duration_timedelta = timedelta(seconds=response_duration)
-    
-    r = Response(response_type=response_type, 
-                 response_answers=response_answers, 
-                 response_results=response_results, 
+
+    r = Response(participant=participant,
+                 response_type=response_type,
+                 response_answers=response_answers,
+                 response_results=response_results,
                  response_date=date,
                  response_time=time,
                  response_duration=duration_timedelta)
-                
+
     r.save()
     
 def call_from_db_all():
@@ -53,8 +73,6 @@ def call_from_db_id(id):
 
 
 def index(request):
-    r = Response(2, "asq", "test1", "test2", datetime.now())
-    r.save()
     return HttpResponse("Hello, world. You're at the survey.")
 
 
@@ -75,7 +93,28 @@ def wakeup(request):
     return JsonResponse({"status": "awake"}, status=200)
 
 
+@require_auth
+def me(request):
+    """Token smoke test: proves an access token validates end to end.
+
+    Deliberately touches nothing else -- no database, no model files, no survey
+    JSON -- so when something breaks it separates "auth is broken" from "the
+    rest of the stack is broken".
+    """
+    if request.method != "GET":
+        return JsonResponse({"message": "Only GET requests are allowed."}, status=400)
+    user = request.auth_user
+    return JsonResponse(
+        {"sub": user.sub, "email": user.email, "permissions": user.permissions},
+        status=200,
+    )
+
+
+# Optional auth: guests may take demo surveys, and a signed-in caller is
+# identified so their submission can be attributed. csrf_exempt stays
+# outermost so the middleware sees the exemption on the final callable.
 @csrf_exempt
+@optional_auth
 def calculate_results(request):
     # throw error if it is not a POST request
     if request.method != "POST":
@@ -174,8 +213,24 @@ def calculate_results(request):
         data["results"] = results
         data["metadata"] = metadata
         duration = request_body["duration"]
-        # TODO: Uncomment this line to save the results to the database
-        # post_to_db(response_type, json.dumps(request_body["data"]), json.dumps(data["db_result"]), duration)
+
+        # Guests are not persisted: an anonymous submission is calculated and
+        # returned, and nothing reaches the database.
+        if request.auth_user is not None:
+            try:
+                participant = ensure_participant(request.auth_user)
+                post_to_db(
+                    response_type,
+                    json.dumps(request_body["data"]),
+                    json.dumps(data["db_result"]),
+                    duration,
+                    participant,
+                )
+            except Exception as e:
+                # The results are already computed and the participant should
+                # still see them, so a storage failure is logged rather than
+                # turned into a 500 that discards their completed survey.
+                logger.error(f"Could not save the survey response: {e}")
     except Exception as e:
         logger.error(f"Error while calculating survey results: {e}")
         data = {"message": "There was an error while calculating the survey results."}
@@ -241,11 +296,44 @@ def get_survey_questions(request, survey_folder: str) -> List[Any]:
     return questions
 
 
+@require_auth
+def my_responses(request):
+    """The signed-in participant's own responses, and only their own.
+
+    Scoped by the participant resolved from the verified token, never by an id
+    the caller supplies, so there is no id to forge.
+    """
+    if request.method != "GET":
+        return JsonResponse({"message": "Only GET requests are allowed."}, status=400)
+
+    participant = ensure_participant(request.auth_user)
+    responses = Response.objects.filter(participant=participant).order_by("-id")
+    return JsonResponse(
+        [
+            {
+                "id": r.id,
+                "response_type": r.response_type,
+                "response_answers": r.response_answers,
+                "response_results": r.response_results,
+                "response_date": r.response_date.strftime("%Y-%m-%d"),
+                "response_time": r.response_time.strftime("%H:%M:%S"),
+                "response_duration": (
+                    r.response_duration.total_seconds() if r.response_duration else None
+                ),
+            }
+            for r in responses
+        ],
+        safe=False,
+    )
+
+
+@require_permission("read:responses")
 def get_history(request):
     data = Response.objects.all()
     serialized_data = [model_to_dict(item) for item in data]
     return JsonResponse(serialized_data, safe=False)
 
+@require_permission("read:responses")
 def history_view(request, response_type):
     # Filter data based on response_type
     filtered_responses = Response.objects.filter(response_type=response_type)
@@ -265,6 +353,7 @@ def history_view(request, response_type):
 
     return JsonResponse(response_data, safe=False)
 
+@require_permission("read:responses")
 def download_csv(request):
     data = Response.objects.all()
     response = HttpResponse(content_type='text/csv')
