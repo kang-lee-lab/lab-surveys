@@ -1,0 +1,17 @@
+# Never bake secrets or a stale database into the image. Without this,
+# `COPY . /app` shipped db.sqlite3 with a ready-made schema, which let a
+# misconfigured deploy silently write to container-local disk.
+.env
+*.env
+db.sqlite3
+db.sqlite3-journal
+
+.git
+.github
+__pycache__/
+*.pyc
+.venv/
+venv/
+staticfiles/
+screenshots/
+*.md
