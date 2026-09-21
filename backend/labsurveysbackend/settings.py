@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv, dotenv_values
 
 load_dotenv()
@@ -127,6 +128,27 @@ DATABASES = {
         'PORT': os.getenv("DB_PORT")
     }
 }
+
+# Production shares one Postgres instance with another project, so every table
+# this app owns -- Django's own auth_* and django_* tables included -- lives in
+# its own schema instead of in `public`. Unset locally, where the database is
+# ours alone and `public` is correct.
+DB_SCHEMA = os.getenv("DB_SCHEMA")
+if DB_SCHEMA:
+    DATABASES['default']['OPTIONS'] = {
+        'options': f'-c search_path={DB_SCHEMA},public'
+    }
+
+# Cloud Run sets K_SERVICE in every container. Without DB_ENGINE the block above
+# falls back to sqlite on container-local disk, which accepts writes and loses
+# them on the next cold start -- silently, because the image ships a ready-made
+# schema. Refuse to boot instead.
+if os.getenv("K_SERVICE") and "sqlite" in DATABASES['default']['ENGINE']:
+    raise ImproperlyConfigured(
+        "Running on Cloud Run with no DB_ENGINE set. Refusing to start on "
+        "container-local sqlite, which would discard every write. Set DB_ENGINE, "
+        "DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT and DB_SCHEMA."
+    )
 
 
 # Password validation
