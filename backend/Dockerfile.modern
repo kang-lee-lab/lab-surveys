@@ -1,5 +1,8 @@
 # Dockerfile.modern
-# Modern ML environment: sklearn 1.4.2 (DASS Multiclass Anxiety)
+# Modern ML environment: sklearn 1.4.2, numpy 1.26 (DASS Multiclass Anxiety,
+# Child BMI). numpy is pinned >=1.24 because gbm-v1 was pickled under a numpy
+# whose Generator constructor takes two arguments; 1.23 raises TypeError on
+# load. See backend/surveys/utils/child_bmi/verify_model.py.
 
 FROM python:3.10-slim
 
