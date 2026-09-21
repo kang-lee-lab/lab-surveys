@@ -1,5 +1,8 @@
 # Dockerfile.legacy
-# Legacy ML environment: sklearn 1.0.2 (ASQ, DASS dep/anx/stress, MMPI, NAFLD, Child BMI)
+# Legacy ML environment: sklearn 1.0.2 (ASQ, DASS dep/anx/stress, MMPI, NAFLD)
+# Child BMI moved to Dockerfile.modern at gbm-v1: its artifacts need
+# scikit-learn 1.4.2 and numpy >=1.24, neither of which this image can carry
+# without breaking the 1.0.2 pickles the surveys above still use.
 
 FROM python:3.10-slim
 
