@@ -114,10 +114,14 @@ See [backend/README.md](backend/README.md) for the full guide (homepage card, JS
 
 ## Deployment
 
-Production uses separate hosts for frontend and backend (Heroku, Vercel, Supabase). When deploying from this monorepo:
+Production uses separate hosts for frontend, backend and database. When deploying from this monorepo:
 
-- **Backend (Heroku)** — set the app root / build context to `backend/`
-- **Frontend (Vercel or Heroku)** — set the root directory to `frontend/`
+- **Backends (Google Cloud Run)** — two services, `legacy` and `modern`, both built from `backend/`
+- **Frontend (Vercel)** — set the root directory to `frontend/`
+- **Database (Supabase)** — a Postgres instance shared with the `llm_psych_assessment` project; this app's tables live in a `lab_surveys` schema
+
+First-time database setup, and the Cloud Run variables both services need:
+[backend/README.md](backend/README.md#production-database-supabase).
 
 See [backend/ARCHITECTURE.md](backend/ARCHITECTURE.md) for architecture and operational notes.
 

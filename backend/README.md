@@ -82,6 +82,109 @@ updated_at  timestamptz                 response_results  jsonb
   does not include by default.
 - `GET /surveys/participants/me/responses` is scoped to the caller's token.
 
+## Production database (Supabase)
+
+Production runs on a Supabase Postgres instance **shared with the
+`llm_psych_assessment` project**, which owns the `public` schema. Everything
+this app owns lives in a `lab_surveys` schema instead, reached by a dedicated
+role that has no privileges on `public`.
+
+Development does not use Supabase at all — `docker compose up` gives you a
+local Postgres, and none of the steps below apply.
+
+### 1. Collect the connection details
+
+Supabase dashboard → the project → **Connect**. Use the **Session pooler**
+entry, not "Direct connection": the direct host is IPv6-only and Cloud Run
+cannot reach it.
+
+From that panel you need the host (`aws-0-<region>.pooler.supabase.com`), the
+port (`5432`), and the project ref — the `wfazmzy…` string that appears in the
+username. The database name is `postgres`.
+
+### 2. Create the role and schema
+
+SQL Editor → new query. Pick a strong password and keep it in the lab password
+manager; Supabase shows a database password once and cannot show it again.
+
+```sql
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'lab_surveys_app') THEN
+    CREATE ROLE lab_surveys_app WITH LOGIN PASSWORD 'CHOOSE-A-STRONG-PASSWORD';
+  END IF;
+END $$;
+
+CREATE SCHEMA IF NOT EXISTS lab_surveys;
+GRANT USAGE, CREATE ON SCHEMA lab_surveys TO lab_surveys_app;
+GRANT CONNECT ON DATABASE postgres TO lab_surveys_app;
+ALTER ROLE lab_surveys_app SET search_path = lab_surveys, public;
+```
+
+The schema is deliberately left owned by `postgres`: `CREATE SCHEMA …
+AUTHORIZATION lab_surveys_app` fails with `42501: must be member of role`,
+because Supabase's `postgres` is not a superuser. `GRANT CREATE` is enough —
+Django creates and owns its own tables.
+
+**The `ALTER ROLE` line is not optional.** `DB_SCHEMA` asks psycopg2 to send
+`search_path` as a libpq startup parameter, and Supabase's Supavisor pooler
+does not forward it. Without the role-level default, every query resolves
+against `public`, and the API returns 500 with
+`relation "surveys_participant" does not exist`. Setting it on the role stores
+it in `pg_db_role_setting`, so it applies to every connection regardless of
+what the pooler passes through.
+
+### 3. Apply the migrations
+
+Point `backend/.env` at Supabase — the same variables as step 4 — then:
+
+```bash
+python manage.py migrate
+```
+
+Restore your local `.env` afterwards. Run migrations from a workstation, not
+from Cloud Run; the containers only serve traffic.
+
+### 4. Configure both Cloud Run services
+
+`legacy` **and** `modern`, identically — both write responses. Console →
+service → Variables & Secrets accepts a pasted block:
+
+```
+DB_ENGINE=django.db.backends.postgresql
+DB_NAME=postgres
+DB_USER=lab_surveys_app.<project-ref>
+DB_PASSWORD=<role password from step 2>
+DB_HOST=aws-0-<region>.pooler.supabase.com
+DB_PORT=5432
+DB_SCHEMA=lab_surveys
+AUTH0_DOMAIN=<tenant>.us.auth0.com
+AUTH0_AUDIENCE=urn:lab-surveys-backend
+```
+
+The pooler username is `<role>.<project-ref>`, not the bare role name.
+
+Include the `AUTH0_*` variables even though they are unrelated to the
+database: pasting a block replaces the whole set rather than merging, so
+leaving them out removes them.
+
+Never set `PORT` — Cloud Run injects it and rejects it as reserved.
+
+### 5. Verify
+
+Table Editor → schema selector → `lab_surveys` should list 12 tables, and
+`public` should be unchanged. Then sign in on the site, submit a survey, and
+check the row arrived:
+
+```sql
+select id, auth0_sub, created_at
+from lab_surveys.surveys_participant order by id desc limit 5;
+```
+
+`settings.py` refuses to boot when `K_SERVICE` is set and the engine still
+resolves to sqlite, so a missing `DB_ENGINE` fails the deploy outright instead
+of silently writing to container-local disk.
+
 ## Tests
 
 ```bash
